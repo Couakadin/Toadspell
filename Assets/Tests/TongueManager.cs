@@ -9,20 +9,24 @@ public class TongueManager : MonoBehaviour
     private void Awake()
     {
         _speed = _tongueBlackboard.GetValue<float>("Speed");
+        _cooldown = _tongueBlackboard.GetValue<float>("Cooldown");
+        _grabDelay = _tongueBlackboard.GetValue<float>("GrabDelay");
         _maxDistance = _tongueBlackboard.GetValue<float>("MaxDistance");
+        _cooldownTimer = _tongueBlackboard.GetValue<float>("CooldownTimer");
     }
 
     private void Start()
     {
-        _initialTonguePosition = _tongueTip.localPosition;  // Safe initial position
+        _initialTonguePosition = _tongueTip.localPosition; // Safe initial position
     }
 
     private void Update()
     {
-        if (_isExtending)
-            ExtendTongue();
-        else if (_isReturning)
-            ReturnTongue();
+        if (_cooldownTimer > 0) 
+            _cooldownTimer -= Time.deltaTime;
+
+        if (_isGrabbling)
+            StartGrabble();
     }
 
     #endregion
@@ -31,54 +35,53 @@ public class TongueManager : MonoBehaviour
 
     public void OnGrabEvent()
     {
-        if (!_isExtending && !_isReturning)
-            _isExtending = true;  // Trigger the Tongue extension
+        if (!_isGrabbling)
+            _isGrabbling = true; // Trigger the Tongue grabbler
+    }
+
+    #endregion
+
+    #region Utils
+
+    private void StartGrabble()
+    {
+        if (_cooldownTimer > 0) return;
+
+        RaycastHit hit;
+        if (Physics.Raycast(_player.position, _player.forward, out hit, _maxDistance, _grabLayer))
+        {
+            _grabblePoint = hit.point;
+            _grabbedObject = hit.transform;
+
+            Invoke(nameof(ExtendTongue), _grabDelay);
+        }
+        else
+        {
+            _grabblePoint = _player.position + _player.forward * _maxDistance;
+            Invoke(nameof(ReturnTongue), _grabDelay);
+        }
     }
 
     private void ExtendTongue()
     {
-        // Move Tongue forward
-        _tongueTip.Translate(Vector3.forward * _speed * Time.deltaTime);
+        EnemyManager grabManager = _grabbedObject.GetComponent<EnemyManager>();
 
-        // Check max distance
-        if (Vector3.Distance(_tongueTip.position, _player.position) >= _maxDistance)
+        if (grabManager.m_grapSize == IGrappable.Size.Small)
         {
-            _isExtending = false;
-            _isReturning = true;  // Start returning if Tongue reached its max distance
+            _grabbedObject.position = _player.position;
         }
-
-        // Raycast to detect objets on the path
-        RaycastHit hit;
-        if (Physics.Raycast(_player.position, _tongueTip.position - _player.position, out hit, _maxDistance, _grabLayer))
+        else if (grabManager.m_grapSize == IGrappable.Size.Large)
         {
-            _isExtending = false;
-            _isReturning = true;
-            _grabbedObject = hit.transform;  // Save grabed object
-            _grabbedObject.position = _tongueTip.position;  // Attach the object to Tongue
+            _player.position = _grabblePoint;
         }
+ 
+        _isGrabbling = false;
     }
 
     private void ReturnTongue()
     {
-        // Go back to initial position
-        _tongueTip.localPosition = Vector3.MoveTowards(_tongueTip.localPosition, _initialTonguePosition, _speed * Time.deltaTime);
-
-        // If an object is catched, bring it back to the player
-        if (_grabbedObject != null)
-            _grabbedObject.position = _tongueTip.position;  // The object follows Tongue
-
-        // Check if Tongue is at initial position
-        if (_tongueTip.localPosition == _initialTonguePosition)
-        {
-            _isReturning = false;
-            
-            if (_grabbedObject != null)
-            {
-                // Set the object position in front of the player
-                _grabbedObject.position = _player.position + _player.forward * 1f;
-                _grabbedObject = null;  // Reset catched object
-            }
-        }
+        _isGrabbling = false;
+        _cooldownTimer = _cooldown;
     }
 
     #endregion
@@ -91,25 +94,28 @@ public class TongueManager : MonoBehaviour
 
     [Title("Blackboard variables")]
     private float _speed;
+    private float _cooldown;
+    private float _grabDelay;
     private float _maxDistance;
+    private float _cooldownTimer;
 
     [Title("Layers")]
     [SerializeField]
-    private LayerMask _grabLayer;  // Layer of grabbing objects
+    private LayerMask _grabLayer; // Layer of grabbing objects
 
     [Title("Transforms")]
     [SerializeField]
-    private Transform _player;  // Player reference
+    private Transform _player; // Player reference
     [SerializeField]
-    private Transform _tongueTip;  // Tip of Tongue collider
+    private Transform _tongueTip; // Tip of Tongue collider
 
     [Title("Privates")]
-    private Vector3 _initialTonguePosition;  // Initial Tongue position
+    private Vector3 _grabblePoint; // Target point on hit
+    private Vector3 _initialTonguePosition; // Initial Tongue position
+
+    private Transform _grabbedObject = null; // Grabbed object
     
-    private Transform _grabbedObject = null;  // Grabbed object
-    
-    private bool _isExtending = false;  // The tongue is currently extending
-    private bool _isReturning = false;  // The tongue is currently returning
+    private bool _isGrabbling = false; // The Tongue is currently grappling
 
     #endregion
 }
