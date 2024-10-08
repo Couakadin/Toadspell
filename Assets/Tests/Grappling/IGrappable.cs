@@ -9,8 +9,8 @@ public interface IGrappable
     /// </summary>
     public enum Size
     {
-        Small,
-        Large
+        Small = 0,
+        Large = 1
     }
 
     /// <summary>
