@@ -17,7 +17,7 @@ public class TongueManager : MonoBehaviour
 
     private void Start()
     {
-        _initialTonguePosition = _tongueTip.localPosition; // Safe initial position
+        _initialTonguePosition = _tongueTip.localPosition; // Save initial position
     }
 
     private void Update()
@@ -46,9 +46,11 @@ public class TongueManager : MonoBehaviour
     private void StartGrabble()
     {
         if (_cooldownTimer > 0) return;
+        
+        _tongueTip.Translate(Vector3.forward * _speed * Time.deltaTime);
 
         RaycastHit hit;
-        if (Physics.Raycast(_player.position, _player.forward, out hit, _maxDistance, _grabLayer))
+        if (Physics.Raycast(_player.position, _player.forward, out hit, _maxDistance, _grabLayer) && Vector3.Distance(_tongueTip.position, _player.position) >= _maxDistance)
         {
             _grabblePoint = hit.point;
             _grabbedObject = hit.transform;
@@ -74,7 +76,9 @@ public class TongueManager : MonoBehaviour
         {
             _player.position = _grabblePoint;
         }
- 
+
+        _tongueTip.localPosition = Vector3.MoveTowards(_tongueTip.localPosition, _initialTonguePosition, _speed * Time.deltaTime);
+
         _isGrabbling = false;
     }
 
