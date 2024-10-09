@@ -336,7 +336,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324402504}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07355418, y: 2.397605e-10, z: -1.7683395e-11, w: 0.99729127}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -592,6 +592,7 @@ MonoBehaviour:
   m_shoulderCam: {fileID: 899878262}
   m_aimReticle: {fileID: 11757417}
   m_player: {fileID: 855487818}
+  _inputReader: {fileID: 11400000, guid: af5f7d947020e134482a14755680676c, type: 2}
 --- !u!114 &449243957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,7 +1080,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850871130}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09168223, y: -3.717435e-16, z: 6.559004e-17, w: 0.99578834}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1099,7 +1100,7 @@ GameObject:
   - component: {fileID: 855487821}
   - component: {fileID: 855487820}
   - component: {fileID: 855487819}
-  - component: {fileID: 855487823}
+  - component: {fileID: 855487824}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1195,7 +1196,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &855487823
+--- !u!114 &855487824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1204,28 +1205,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 855487818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b421c80893b4d140a6ff2118c955ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 489d3075b9ab1134caf706819902447e,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Base
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  _playerBlackboard: {fileID: 11400000, guid: 6f7cdc8645846ca4db31bbd17f817354, type: 2}
+  _inputReader: {fileID: 11400000, guid: af5f7d947020e134482a14755680676c, type: 2}
 --- !u!1 &899878261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,7 +1354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306248732}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.05544976, y: 0.00000002998804, z: -0.0000000016653918, w: 0.9984615}
+  m_LocalRotation: {x: 0.05544976, y: 0, z: 0, w: 0.9984615}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

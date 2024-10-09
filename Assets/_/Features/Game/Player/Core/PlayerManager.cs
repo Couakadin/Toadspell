@@ -1,6 +1,6 @@
+using Data.Runtime;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Player.Runtime
 {
@@ -10,58 +10,87 @@ namespace Player.Runtime
 
         private void Awake()
         {
-            _playerInput = GetComponent<PlayerInput>();
-            _movementAction = _playerInput.actions["Movement"];
-            _rigidbody = GetComponent<Rigidbody>();
+            _speed = _playerBlackboard.GetValue<float>("Speed");
+            _jumpSpeed = _playerBlackboard.GetValue<float>("JumpSpeed");
         }
 
         private void OnEnable()
         {
-            _playerInput.ActivateInput();
+            _inputReader.MoveEvent += HandleMove;
+
+            _inputReader.JumpEvent += HandleJump;
+            _inputReader.JumpCancelledEvent += HandleCancelledJump;
+
+            _inputReader.AimEvent += HandleAim;
         }
 
         private void OnDisable()
         {
-            _playerInput.DeactivateInput();
+            _inputReader.MoveEvent -= HandleMove;
+
+            _inputReader.JumpEvent -= HandleJump;
+            _inputReader.JumpCancelledEvent -= HandleCancelledJump;
+
+            _inputReader.AimEvent -= HandleAim;
         }
 
         private void FixedUpdate()
         {
             Move();
+            Jump();
+            Aim();
         }
 
         #endregion
 
         #region Utils
 
+        private void HandleMove(Vector2 dir) => _moveDirection = dir;
+
+        private void HandleJump() => _isJumping = true;
+        private void HandleCancelledJump() => _isJumping = false;
+
+        private void HandleAim() => _isAiming = _isAiming ? false : true;
+
         private void Move()
         {
-            Vector2 position = _movementAction.ReadValue<Vector2>();
+            if (_moveDirection == Vector2.zero) return;
+            transform.position += new Vector3(_moveDirection.x, 0, _moveDirection.y) * (_speed * Time.fixedDeltaTime);
+        }
 
-            _horizontal = position.x;
-            _vertical = position.y;
+        private void Jump()
+        {
+            if (_isJumping)
+                transform.position += new Vector3(0, 1, 0) * (_jumpSpeed * Time.fixedDeltaTime);
+        }
 
-            _rigidbody.velocity = new Vector3(
-                _horizontal * _movementSpeed * Time.fixedDeltaTime,
-                _rigidbody.velocity.y,
-                _vertical * _movementSpeed * Time.fixedDeltaTime);
+        private void Aim()
+        {
+            if (_isAiming)
+            {
+                _moveDirection = Vector2.zero;
+                _isJumping = false;
+            }
         }
 
         #endregion
 
         #region Privates
 
-        private PlayerInput _playerInput;
-        private InputAction _movementAction;
+        [Title("Blackboard")]
+        [SerializeField]
+        private Blackboard _playerBlackboard;
+
+        [Title("Input")]
+        [SerializeField]
+        private InputReader _inputReader;
 
         [Title("Privates")]
-        private float _movement;
-        private Rigidbody _rigidbody;
-        private LayerMask _groundLayer;
-        private Vector3 _forward, _right;
+        private Vector2 _moveDirection;
 
-        private float _movementSpeed = 5f;
-        private float _horizontal, _vertical;
+        private float _speed, _jumpSpeed;
+
+        private bool _isJumping, _isAiming;
 
         #endregion
     }

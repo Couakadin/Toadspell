@@ -1,6 +1,5 @@
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.InputSystem;
 
 namespace Player.Runtime
 {
@@ -14,28 +13,24 @@ namespace Player.Runtime
         /// <param name="manager"></param>
         /// <param name="shoulderCam"></param>
         /// <param name="aimReticle"></param>
-        /// <param name="playerInput"></param>
-        public AimState(CameraManager manager, CinemachineVirtualCamera shoulderCam, GameObject aimReticle, PlayerInput playerInput)
+        public AimState(CameraManager manager, CinemachineVirtualCamera shoulderCam, GameObject aimReticle)
         {
             this._manager = manager;
             this._shoulderCam = shoulderCam;
             this._aimReticle = aimReticle;
-            this._playerInput = playerInput;
         }
 
         public void Enter()
         {
             _shoulderCam.Priority = 10; // Activate shoulder cam
             _aimReticle.SetActive(true); // Show visor
-            _playerInput.enabled = false; // Deactivate Player Input system
             Cursor.visible = true; // Show cursor
             Cursor.lockState = CursorLockMode.None; // Unlock cursor
         }
 
         public void Tick()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-                _manager.SwitchToExplorationState();
+            if (!_manager.IsAiming()) _manager.SwitchToExplorationState();
         }
 
         public void Exit()
@@ -51,7 +46,6 @@ namespace Player.Runtime
         private CameraManager _manager;
         private CinemachineVirtualCamera _shoulderCam;
         private GameObject _aimReticle;
-        private PlayerInput _playerInput;
 
         #endregion
     }

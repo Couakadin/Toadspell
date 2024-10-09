@@ -1,8 +1,8 @@
 {
-    "name": "Data.Runtime",
-    "rootNamespace": "Data.Runtime",
+    "name": "Manager.Runtime",
+    "rootNamespace": "Manager.Runtime",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:b257376341a27b14aa192fc553604206"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

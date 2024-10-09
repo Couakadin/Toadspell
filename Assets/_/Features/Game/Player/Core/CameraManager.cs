@@ -1,6 +1,7 @@
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.InputSystem;
+using Sirenix.OdinInspector;
+using Data.Runtime;
 
 namespace Player.Runtime
 {
@@ -19,15 +20,24 @@ namespace Player.Runtime
 
         private void Start()
         {
-            _playerInput = m_player.GetComponent<PlayerInput>();
             _stateMachine = new PlayerStateMachine();
 
             // States init
-            _explorationState = new ExplorationState(this, m_thirdPersonCam, _playerInput);
-            _aimState = new AimState(this, m_shoulderCam, m_aimReticle, _playerInput);
+            _explorationState = new ExplorationState(this, m_thirdPersonCam);
+            _aimState = new AimState(this, m_shoulderCam, m_aimReticle);
 
             // Define initial state
             _stateMachine.SetState(_explorationState);
+        }
+
+        private void OnEnable()
+        {
+            _inputReader.AimEvent += HandleAim;
+        }
+
+        private void OnDisable()
+        {
+            _inputReader.AimEvent -= HandleAim;
         }
 
         private void Update() => _stateMachine.Tick();
@@ -38,17 +48,30 @@ namespace Player.Runtime
 
         public void SwitchToExplorationState() => _stateMachine.SetState(_explorationState);
 
-        public void SwitchToAimingState() => _stateMachine.SetState(_aimState);
+        public void SwitchToAimState() => _stateMachine.SetState(_aimState);
+
+        public bool IsAiming() => _isAiming;
+
+        #endregion
+
+        #region Utils
+
+        private void HandleAim() => _isAiming = _isAiming ? false : true;
 
         #endregion
 
         #region Privates
 
+        [Title("Input")]
+        [SerializeField]
+        private InputReader _inputReader;
+
+        [Title("Privates")]
         private PlayerStateMachine _stateMachine;
         private ExplorationState _explorationState;
         private AimState _aimState;
 
-        private PlayerInput _playerInput;
+        private bool _isAiming;
 
         #endregion
     }
