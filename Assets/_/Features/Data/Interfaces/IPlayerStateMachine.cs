@@ -1,4 +1,4 @@
-namespace Player.Runtime
+namespace Data.Runtime
 {
     public interface IPlayerStateMachine
     {

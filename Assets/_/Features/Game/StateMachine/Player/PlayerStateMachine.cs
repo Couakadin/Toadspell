@@ -1,4 +1,6 @@
-namespace Player.Runtime
+using Data.Runtime;
+
+namespace Game.Runtime
 {
     public class PlayerStateMachine
     {
@@ -10,6 +12,8 @@ namespace Player.Runtime
             _currentState = newState;
             _currentState.Enter();
         }
+
+        public IPlayerStateMachine GetState() => _currentState;
 
         public void Tick() => _currentState?.Tick();
 
