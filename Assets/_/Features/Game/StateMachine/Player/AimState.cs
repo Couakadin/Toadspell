@@ -1,4 +1,3 @@
-using UnityEngine;
 using Data.Runtime;
 
 namespace Game.Runtime

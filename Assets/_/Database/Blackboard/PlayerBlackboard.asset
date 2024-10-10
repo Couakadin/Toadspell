@@ -64,7 +64,7 @@ MonoBehaviour:
       Data: 3|System.Single, mscorlib
     - Name: 
       Entry: 4
-      Data: 5
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
