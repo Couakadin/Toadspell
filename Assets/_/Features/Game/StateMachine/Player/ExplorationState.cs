@@ -16,11 +16,12 @@ namespace Game.Runtime
         public void Enter() 
         {
             _player.m_thirdPersonCam.Priority = 10; // Third person activated
-            Cursor.visible = false; // Hide cursor
-            Cursor.lockState = CursorLockMode.Locked; // Lock the cursor in the center of the screen
         }
 
-        public void Exit() { }
+        public void Exit() 
+        {
+            _player.m_thirdPersonCam.Priority = 0; // Third person deactivated
+        }
 
         public void Tick()
         {

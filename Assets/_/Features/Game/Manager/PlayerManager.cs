@@ -2,6 +2,7 @@ using Cinemachine;
 using Data.Runtime;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Game.Runtime
 {
@@ -9,7 +10,7 @@ namespace Game.Runtime
     {
         #region Publics 
 
-        public CinemachineFreeLook m_thirdPersonCam;
+        public CinemachineVirtualCamera m_thirdPersonCam;
         public CinemachineVirtualCamera m_shoulderCam;
         public GameObject m_aimReticle;
 
@@ -42,6 +43,11 @@ namespace Game.Runtime
 
             // Define initial state
             _stateMachine.SetState(_explorationState);
+
+            m_aimReticle.SetActive(false); // Hide visor
+
+            Cursor.visible = false; // Hide cursor
+            Cursor.lockState = CursorLockMode.Locked; // Lock the cursor in the center of the screen
         }
 
         private void OnEnable()

@@ -9,7 +9,7 @@ namespace Game.Runtime
 
         public void Enter()
         {
-            
+            _player.m_thirdPersonCam.Priority = 10; // Third person activated
         }
 
         public void Exit()

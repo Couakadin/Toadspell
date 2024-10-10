@@ -15,11 +15,8 @@ namespace Game.Runtime
 
         public void Enter()
         {
-            _player.m_thirdPersonCam.Priority = 0; // Third person deactivated
             _player.m_shoulderCam.Priority = 10; // Activate shoulder cam
             _player.m_aimReticle.SetActive(true); // Show visor
-            Cursor.visible = true; // Show cursor
-            Cursor.lockState = CursorLockMode.None; // Unlock cursor
         }
 
         public void Exit()
