@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Data.Runtime
 {
-    [CreateAssetMenu(fileName = "TongueStats", menuName = "Data/Scriptables")]
+    [CreateAssetMenu(fileName = "TongueStats", menuName = "Data/Scriptables/TongueStats")]
     public class TongueStatsData : ScriptableObject
     {
         #region Publics

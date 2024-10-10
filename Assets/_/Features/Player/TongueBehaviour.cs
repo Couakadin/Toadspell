@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using Data.Runtime;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 
 namespace Player.Runtime
 {
@@ -26,7 +27,7 @@ namespace Player.Runtime
 	        if (_tongue.coolDownTimer > 0) 
                 _tongue.coolDownTimer -= Time.deltaTime;
 
-            if (_isAiming) StartSendingTongue();
+            if (_isAiming) StartRaycastSendingTongue();
 
         }
 
@@ -35,7 +36,7 @@ namespace Player.Runtime
 
         #region Main Methods
 
-        private void StartSendingTongue()
+        private void StartRaycastSendingTongue()
         {
             if (_tongue.coolDownTimer > 0) return;
 
@@ -45,6 +46,7 @@ namespace Player.Runtime
             if(Physics.Raycast(_camera.position, _camera.forward, out hit, _tongue.maxDistance, _grabLayer))
             {
                 _tongueHitPoint = hit.point;
+                _grabbedObject = hit.transform;
 
                 Invoke(nameof(ExtendTongue), _tongue.grabDelay);
             }
@@ -57,15 +59,44 @@ namespace Player.Runtime
             
         }
 
+        private void StartLockedSendingTongue()
+        {
+            if (_tongue.coolDownTimer > 0) return;
+
+            _isSendingTongue = true;
+
+            if (_lockedObject.gameObject == null)
+            {
+                Invoke(nameof(ReturnTongue), _tongue.grabDelay);
+            }
+            else
+            {
+                _grabbedObject = _lockedObject.gameObject.transform;
+                _tongueHitPoint = _lockedObject.gameObject.transform.position;
+                Invoke(nameof(ExtendTongue), _tongue.grabDelay);
+            }
+        }
+
         private void ExtendTongue()
         {
+            EnemySizeInformation grabbedObjectSize = _grabbedObject.GetComponent<EnemySizeInformation>();
+
+            if(grabbedObjectSize.m_grapSize == IAmInteractable.Size.Small)
+            {
+                _grabbedObject.position = _player.position;
+            }
+            else if(grabbedObjectSize.m_grapSize == IAmInteractable.Size.Large)
+            {
+                _player.position = _tongueHitPoint;
+            }
+
+            _tongueTip.localPosition = Vector3.MoveTowards(_tongueTip.localPosition, _initialTonguePosition, _tongue.speed * Time.deltaTime);
             
+            ResetCoolDownTimer();
         }
         
         private void ReturnTongue()
         {
-            _isSendingTongue = false;
-
             ResetCoolDownTimer();
         }
 
@@ -94,6 +125,7 @@ namespace Player.Runtime
 
         private void ResetCoolDownTimer()
         {
+            _isSendingTongue = false;
             _tongue.coolDownTimer = _tongue.coolDown;
         }
 
@@ -106,17 +138,19 @@ namespace Player.Runtime
         [SerializeField] private Transform _player; // Player ref 
         [SerializeField] private Transform _camera; // Camera ref for Raycast
         [SerializeField] private Transform _tongueTip; // Tip of Tongue collider
-        [SerializeField] private TongueStatsData _tongue;
+        [SerializeField] private TongueStatsData _tongue; // Scriptable Object for the stats
+        [SerializeField] private Vector3 _initialTonguePosition; //Empty Transform for return of the tongue
 
         [Header("Privates")]
         private Vector3 _tongueHitPoint;
-        private Vector3 _initialTonguePosition; 
+        private Transform _grabbedObject;
 
         [Title("Layers")]
         [SerializeField]
         private LayerMask _grabLayer; // Layer of grabbing objects
 
         [Header("Switch Aim to Lock")]
+        [SerializeField] private GameObjectData _lockedObject;
         [SerializeField] private bool _isAiming;
         [SerializeField] private bool _isLocking;
         private bool _isSendingTongue;

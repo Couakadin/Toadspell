@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 647993176}
   - component: {fileID: 647993175}
   - component: {fileID: 647993174}
-  m_Layer: 4
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 738741191}
   - component: {fileID: 738741189}
   - component: {fileID: 738741194}
+  - component: {fileID: 738741196}
   - component: {fileID: 738741195}
   m_Layer: 0
   m_Name: Capsule
@@ -433,7 +434,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738741188}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a0bab9ca05a79b4ea252f2b9092e9f6, type: 3}
   m_Name: 
@@ -467,6 +468,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &738741196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738741188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a933fa89bfb53624f8fef674fb93fa22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lockedObject: {fileID: 11400000, guid: 4463a092d4becd84ca1e1bf1ff77de57, type: 2}
+  _lockingList: []
+  _index: 0
 --- !u!1 &1256197586
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +495,7 @@ GameObject:
   - component: {fileID: 1256197589}
   - component: {fileID: 1256197588}
   - component: {fileID: 1256197587}
-  m_Layer: 4
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +718,7 @@ GameObject:
   - component: {fileID: 1994532640}
   - component: {fileID: 1994532639}
   - component: {fileID: 1994532638}
-  m_Layer: 4
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
