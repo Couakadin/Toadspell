@@ -2,7 +2,6 @@ using Cinemachine;
 using Data.Runtime;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Game.Runtime
 {
