@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TongueStats
   m_EditorClassIdentifier: 
   speed: 2
-  coolDown: 3
-  maxDistance: 10
+  coolDown: 1
+  grabDelay: 1
+  maxDistance: 12
   coolDownTimer: 1
-  grabDelayTime: 1
