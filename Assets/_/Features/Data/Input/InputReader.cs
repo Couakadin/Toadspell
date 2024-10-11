@@ -19,6 +19,10 @@ namespace Data.Runtime
 
         public event Action AimEvent;
 
+        public event Action TongueEvent;
+
+        public event Action LockEvent;
+
         #endregion
 
         #region Unity
@@ -91,6 +95,16 @@ namespace Data.Runtime
         public void OnAim(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed) AimEvent?.Invoke();
+        }
+
+        public void OnTongue(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed) TongueEvent?.Invoke();
+        }
+
+        public void OnLock(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed) LockEvent?.Invoke();
         }
 
         #endregion

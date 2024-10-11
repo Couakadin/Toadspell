@@ -62,6 +62,24 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tongue"",
+                    ""type"": ""Button"",
+                    ""id"": ""a21150be-9bd6-4d5e-ae1a-478091d51434"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lock"",
+                    ""type"": ""Button"",
+                    ""id"": ""b9838a3e-7c03-4f7a-aacc-9232e8515084"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,6 +214,50 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5d98f05-c14d-467d-b8cd-c20975fe6fb5"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tongue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b974e8a-3b36-4295-a38c-06a62dc34e2c"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tongue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""006cbf7d-2d7a-413e-8635-dc2a391d78d6"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97ef17ab-a38f-4b68-bf3e-6eb538163d07"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -247,6 +309,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
+        m_Gameplay_Tongue = m_Gameplay.FindAction("Tongue", throwIfNotFound: true);
+        m_Gameplay_Lock = m_Gameplay.FindAction("Lock", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -321,6 +385,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_Aim;
+    private readonly InputAction m_Gameplay_Tongue;
+    private readonly InputAction m_Gameplay_Lock;
     public struct GameplayActions
     {
         private @GameInput m_Wrapper;
@@ -329,6 +395,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
+        public InputAction @Tongue => m_Wrapper.m_Gameplay_Tongue;
+        public InputAction @Lock => m_Wrapper.m_Gameplay_Lock;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -350,6 +418,12 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
+            @Tongue.started += instance.OnTongue;
+            @Tongue.performed += instance.OnTongue;
+            @Tongue.canceled += instance.OnTongue;
+            @Lock.started += instance.OnLock;
+            @Lock.performed += instance.OnLock;
+            @Lock.canceled += instance.OnLock;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -366,6 +440,12 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
+            @Tongue.started -= instance.OnTongue;
+            @Tongue.performed -= instance.OnTongue;
+            @Tongue.canceled -= instance.OnTongue;
+            @Lock.started -= instance.OnLock;
+            @Lock.performed -= instance.OnLock;
+            @Lock.canceled -= instance.OnLock;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -435,6 +515,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnTongue(InputAction.CallbackContext context);
+        void OnLock(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

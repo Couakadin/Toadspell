@@ -1,4 +1,5 @@
 using Data.Runtime;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,19 +9,31 @@ namespace Player.Runtime
     {
         #region Unity API
 
-    	void Update()
+        private void OnEnable()
+        {
+            _inputReader.LockEvent += SwitchLockObject;
+        }
+
+        private void OnDisable()
+        {
+            _inputReader.LockEvent -= SwitchLockObject;
+        }
+
+        void Update()
     	{
             if (_lockingList.Count == 0)
             {
                 _lockedObject.gameObject = null;
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                lockObjectInList();
-            }
+            
             _lockedObject.gameObject = _lockingList[_index];
             _lockingList[_index].gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+
+        private void SwitchLockObject()
+        {
+            lockObjectInList();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -58,6 +71,10 @@ namespace Player.Runtime
 
 
         #region Privates & Protected
+
+        [Title("Input")]
+        [SerializeField]
+        private InputReader _inputReader;
 
         [SerializeField] private GameObjectData _lockedObject;
         [SerializeField] private List<GameObject> _lockingList;

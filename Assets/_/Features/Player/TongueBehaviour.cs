@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using Data.Runtime;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
 
 namespace Player.Runtime
 {
@@ -19,22 +15,37 @@ namespace Player.Runtime
 		
     	void Start()
     	{
-	
+            _isExploring = true;
     	}
 
-    	void Update()
+        private void OnEnable()
+        {
+            _inputReader.AimEvent += AimAtAnything;
+            _inputReader.TongueEvent += SendTongue;
+        }
+
+        private void OnDisable()
+        {
+            _inputReader.AimEvent -= AimAtAnything;
+            _inputReader.TongueEvent -= SendTongue;
+        }
+
+        void Update()
     	{
 	        if (_tongue.coolDownTimer > 0) 
                 _tongue.coolDownTimer -= Time.deltaTime;
-
-            if (_isAiming) StartRaycastSendingTongue();
-
         }
 
         #endregion
 
 
         #region Main Methods
+
+        private void SendTongue()
+        {
+            if (_isAiming) StartRaycastSendingTongue();
+            if (_isExploring) StartLockedSendingTongue();
+        }
 
         private void StartRaycastSendingTongue()
         {
@@ -73,6 +84,7 @@ namespace Player.Runtime
             {
                 _grabbedObject = _lockedObject.gameObject.transform;
                 _tongueHitPoint = _lockedObject.gameObject.transform.position;
+                _tongueTip.localPosition = Vector3.MoveTowards(_tongueTip.localPosition, _grabbedObject.position, _tongue.speed * Time.deltaTime);
                 Invoke(nameof(ExtendTongue), _tongue.grabDelay);
             }
         }
@@ -90,13 +102,14 @@ namespace Player.Runtime
                 _player.position = _tongueHitPoint;
             }
 
-            _tongueTip.localPosition = Vector3.MoveTowards(_tongueTip.localPosition, _initialTonguePosition, _tongue.speed * Time.deltaTime);
+           
             
             ResetCoolDownTimer();
         }
         
         private void ReturnTongue()
         {
+            _tongueTip.localPosition = Vector3.MoveTowards(_tongueTip.localPosition, _initialTonguePosition, _tongue.speed * Time.deltaTime);
             ResetCoolDownTimer();
         }
 
@@ -104,17 +117,25 @@ namespace Player.Runtime
         {
             if (!_isAiming)
             {
-                _isLocking = false;
+                _isExploring = false;
                 _isAiming = true;
+            }
+            else { 
+                _isExploring = true;
+                _isAiming = false;
             }
         }
 
         public void AimAtLockedTargets() // Trigger the Locked Targets
         {
-            if(!_isLocking)
+            if (!_isExploring)
             {
                 _isAiming = false;
-                _isLocking = true;
+                _isExploring = true;
+            }
+            else { 
+                _isAiming = true;
+                _isExploring = false;
             }
         }
 
@@ -134,6 +155,10 @@ namespace Player.Runtime
 
         #region Privates & Protected
 
+        [Title("Input")]
+        [SerializeField]
+        private InputReader _inputReader;
+
         [Header("Tongue References")]
         [SerializeField] private Transform _player; // Player ref 
         [SerializeField] private Transform _camera; // Camera ref for Raycast
@@ -152,7 +177,7 @@ namespace Player.Runtime
         [Header("Switch Aim to Lock")]
         [SerializeField] private GameObjectData _lockedObject;
         [SerializeField] private bool _isAiming;
-        [SerializeField] private bool _isLocking;
+        [SerializeField] private bool _isExploring;
         private bool _isSendingTongue;
 
 
