@@ -93,17 +93,31 @@ namespace Player.Runtime
         {
             EnemySizeInformation grabbedObjectSize = _grabbedObject.GetComponent<EnemySizeInformation>();
 
-            if(grabbedObjectSize.m_grapSize == IAmInteractable.Size.Small)
+            if (grabbedObjectSize.m_grapSize == IAmInteractable.Size.Small)
             {
-                _grabbedObject.position = _player.position;
+                // Calculer la direction entre le joueur et l'objet
+                Vector3 directionToPlayer = (_player.position - _grabbedObject.position).normalized;
+
+                // Appliquer un offset pour que l'objet se positionne devant le joueur
+                Vector3 targetPosition = _player.position - directionToPlayer * _offsetDistance;
+
+                // Mettre à jour la position de l'objet
+                _grabbedObject.position = targetPosition;
             }
-            else if(grabbedObjectSize.m_grapSize == IAmInteractable.Size.Large)
+            else if (grabbedObjectSize.m_grapSize == IAmInteractable.Size.Large)
             {
-                _player.position = _tongueHitPoint;
+                // Calculer la direction entre le joueur et l'objet
+                Vector3 directionToObject = (_tongueHitPoint - _player.position).normalized;
+
+                // Appliquer un offset pour que le joueur se positionne devant l'objet
+                Vector3 targetPosition = _tongueHitPoint - directionToObject * _offsetDistance;
+
+                // Mettre à jour la position du joueur
+                _player.position = targetPosition;
             }
 
-           
-            
+
+
             ResetCoolDownTimer();
         }
         
@@ -180,7 +194,8 @@ namespace Player.Runtime
         [SerializeField] private bool _isExploring;
         private bool _isSendingTongue;
 
-
+        [SerializeField]
+        private float _offsetDistance;
 
 
         #endregion

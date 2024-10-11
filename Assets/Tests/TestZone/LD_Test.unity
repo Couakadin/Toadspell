@@ -7609,6 +7609,7 @@ MonoBehaviour:
   _lockedObject: {fileID: 11400000, guid: 4463a092d4becd84ca1e1bf1ff77de57, type: 2}
   _isAiming: 0
   _isExploring: 1
+  _offsetDistance: 1.5
 --- !u!114 &759013623
 MonoBehaviour:
   m_ObjectHideFlags: 0
