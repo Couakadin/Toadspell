@@ -1,6 +1,6 @@
 namespace Data.Runtime
 {
-    public interface IStateMachine
+    public interface IAmStateMachine
     {
         #region Methods
 

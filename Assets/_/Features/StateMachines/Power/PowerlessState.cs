@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace StateMachine.Runtime
 {
-    public class PowerlessState : AState, IStateMachine
+    public class PowerlessState : AState, IAmStateMachine
     {
         #region Methods
 
@@ -59,9 +59,9 @@ namespace StateMachine.Runtime
             // Loop through detected colliders
             foreach (Collider hitCollider in hitColliders)
             {
-                // Check if the object has the ILockable component
-                if (hitCollider.TryGetComponent<ILockable>(out ILockable lockable))
-                    // Add the gameObject of the MonoBehaviour that implements ILockable
+                // Check if the object has the IAmLockable component
+                if (hitCollider.TryGetComponent<IAmLockable>(out IAmLockable lockable))
+                    // Add the gameObject of the MonoBehaviour that implements IAmLockable
                     _lockingList.Add(hitCollider.gameObject);
             }
 
@@ -103,7 +103,7 @@ namespace StateMachine.Runtime
 
             // Set the new target and lock it
             _currentLockedTarget = target;
-            target.TryGetComponent<ILockable>(out ILockable lockable);
+            target.TryGetComponent<IAmLockable>(out IAmLockable lockable);
             if (lockable == null) return;
             lockable.OnLock(); // Call the lock behavior (e.g., change material to red)
         }
@@ -117,7 +117,7 @@ namespace StateMachine.Runtime
             if (_currentLockedTarget == null) return;
 
             // Call the OnUnlock method of the currently locked target
-            _currentLockedTarget.TryGetComponent<ILockable>(out ILockable lockable);
+            _currentLockedTarget.TryGetComponent<IAmLockable>(out IAmLockable lockable);
             if (lockable == null) return;
             lockable.OnUnlock(); // Call the unlock behavior (e.g., revert material to default)
 

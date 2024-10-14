@@ -3,7 +3,7 @@ using Data.Runtime;
 
 namespace Enemies.Runtime
 {
-    public class EnemySizeInformation : MonoBehaviour, IAmInteractable
+    public class InteractBehaviour : MonoBehaviour, IAmInteractable
     {
         #region Publics
 

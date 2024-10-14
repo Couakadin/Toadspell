@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemies.Runtime
 {
-    public class LockableBehaviour : MonoBehaviour, ILockable
+    public class LockableBehaviour : MonoBehaviour, IAmLockable
     {
         #region Unity
 

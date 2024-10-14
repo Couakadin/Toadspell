@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace StateMachine.Runtime
 {
-    public class ExplorationState : AState, IStateMachine
+    public class ExplorationState : AState, IAmStateMachine
     {
         #region Methods
 
