@@ -1,6 +1,6 @@
 namespace Data.Runtime
 {
-    public interface ILockable
+    public interface IAmLockable
     {
         public void OnLock();
 

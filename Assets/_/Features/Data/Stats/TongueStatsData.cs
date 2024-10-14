@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Data.Runtime
@@ -9,11 +8,11 @@ namespace Data.Runtime
     {
         #region Publics
 
-        public float speed = 2f;
-        public float coolDown = 3f;
-        public float grabDelay = 1f;
-        public float maxDistance = 10f;
-        public float coolDownTimer = 1f;
+        [InfoBox("Tongue Power (Cursor on properties to show how they work)")]
+        [Tooltip("Max distance of the tongue")]
+        public float m_maxDistance;
+        [Tooltip("Speed of the tongue")]
+        public float m_speed;
 
         #endregion
     }

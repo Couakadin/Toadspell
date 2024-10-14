@@ -13,6 +13,8 @@ namespace StateMachine.Runtime
         public void SetJumpState(JumpState jumpState) => _jumpState = jumpState;
         public void SetAimState(AimState aimState) => _aimState = aimState;
         public void SetExplorationState(ExplorationState explorationState) => _explorationState = explorationState;
+        public void SetPowerlessState(PowerlessState powerlessState) => _powerlessState = powerlessState;
+        public void SetTongueState(TongueState tongueState) => _tonguetState = tongueState;
 
         #endregion
 
@@ -24,9 +26,11 @@ namespace StateMachine.Runtime
             this._playerRigidbody = GetItemFromParameterDictionary<Rigidbody>("rigidbody");
             this._playerTransform = GetItemFromParameterDictionary<Transform>("transform");
             this._playerBlackboard = GetItemFromParameterDictionary<Blackboard>("playerBlackboard");
+            this._tongueBlackboard = GetItemFromParameterDictionary<Blackboard>("tongueBlackboard");
             this._playerStats = GetItemFromParameterDictionary<PlayerStatsData>("playerStats");
             this._thirdPersonCamera = GetItemFromParameterDictionary<CinemachineFreeLook>("thirdPersonCamera");
             this._shoulderCamera = GetItemFromParameterDictionary<CinemachineVirtualCamera>("shoulderCamera");
+            this._tongueStats = GetItemFromParameterDictionary<TongueStatsData>("tongueStats");
             this._mainCamera = Camera.main;
         }
 
@@ -50,18 +54,22 @@ namespace StateMachine.Runtime
 
         // StateMachine
         protected StateMachineCore _stateMachine;
-        // States
+        // States Locomotion
         protected ExplorationState _explorationState;
         protected JumpState _jumpState;
         protected AimState _aimState;
+        // States Power
+        protected PowerlessState _powerlessState;
+        protected TongueState _tonguetState;
 
         // Dictionary
         protected Dictionary<string, object> _parameterDictionary;
 
         // Blackboard
-        protected Blackboard _playerBlackboard;
+        protected Blackboard _playerBlackboard, _tongueBlackboard;
         // Stats
         protected PlayerStatsData _playerStats;
+        protected TongueStatsData _tongueStats;
         // Input
         protected GameInputObject _inputReader;
         // Components
@@ -71,6 +79,7 @@ namespace StateMachine.Runtime
 
         // Cameras
         protected Camera _mainCamera;
+        protected Transform _mainCameraTransform;
         protected CinemachineFreeLook _thirdPersonCamera;
         protected CinemachineVirtualCamera _shoulderCamera;
 

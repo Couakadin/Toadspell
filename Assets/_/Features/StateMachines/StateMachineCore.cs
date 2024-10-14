@@ -10,7 +10,7 @@ namespace StateMachine.Runtime
         /// Set a new state of a StateMachine instance.
         /// </summary>
         /// <param name="newState"></param>
-        public void SetState(IStateMachine newState)
+        public void SetState(IAmStateMachine newState)
         {
             _currentState?.Exit();
             _currentState = newState;
@@ -21,7 +21,7 @@ namespace StateMachine.Runtime
         /// Get the current state of a State Machine.
         /// </summary>
         /// <returns></returns>
-        public IStateMachine GetState() => _currentState;
+        public IAmStateMachine GetState() => _currentState;
 
         /// <summary>
         /// Similar to Update method, call each frame.
@@ -43,7 +43,7 @@ namespace StateMachine.Runtime
         #region Privates
 
         // Parameters
-        private IStateMachine _currentState;
+        private IAmStateMachine _currentState;
 
         #endregion
     }

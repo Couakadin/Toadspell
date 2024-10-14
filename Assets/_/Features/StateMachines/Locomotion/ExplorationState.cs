@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace StateMachine.Runtime
 {
-    public class ExplorationState : AState, IStateMachine
+    public class ExplorationState : AState, IAmStateMachine
     {
         #region Methods
 
@@ -46,7 +46,7 @@ namespace StateMachine.Runtime
 
         public void LateTick()
         {
-
+            _playerBlackboard.SetValue<Vector3>("Position", _playerTransform.position);
         }
 
         #endregion
