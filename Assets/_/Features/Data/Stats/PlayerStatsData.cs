@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Data.Runtime
 {
-    [CreateAssetMenu(fileName = "PlayerStats", menuName = "Data/Player Stats")]
+    [CreateAssetMenu(fileName = "PlayerStatsData", menuName = "Data/Player Stats")]
 
-    public class PlayerStats : ScriptableObject
+    public class PlayerStatsData : ScriptableObject
     {
         #region Publics
 

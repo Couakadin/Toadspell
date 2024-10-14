@@ -24,7 +24,7 @@ namespace StateMachine.Runtime
             this._playerRigidbody = GetItemFromParameterDictionary<Rigidbody>("rigidbody");
             this._playerTransform = GetItemFromParameterDictionary<Transform>("transform");
             this._playerBlackboard = GetItemFromParameterDictionary<Blackboard>("playerBlackboard");
-            this._playerStats = GetItemFromParameterDictionary<PlayerStats>("playerStats");
+            this._playerStats = GetItemFromParameterDictionary<PlayerStatsData>("playerStats");
             this._thirdPersonCamera = GetItemFromParameterDictionary<CinemachineFreeLook>("thirdPersonCamera");
             this._shoulderCamera = GetItemFromParameterDictionary<CinemachineVirtualCamera>("shoulderCamera");
             this._mainCamera = Camera.main;
@@ -61,7 +61,7 @@ namespace StateMachine.Runtime
         // Blackboard
         protected Blackboard _playerBlackboard;
         // Stats
-        protected PlayerStats _playerStats;
+        protected PlayerStatsData _playerStats;
         // Input
         protected GameInputObject _inputReader;
         // Components

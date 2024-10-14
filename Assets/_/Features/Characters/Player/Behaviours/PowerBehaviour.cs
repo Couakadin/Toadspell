@@ -72,7 +72,7 @@ namespace Player.Runtime
         private Blackboard _playerBlackboard;
         // Base Stats
         [SerializeField]
-        private PlayerStats _playerStats;
+        private PlayerStatsData _playerStats;
 
         #endregion
     }
