@@ -91,10 +91,9 @@ namespace Player.Runtime
 
         private void ExtendTongue()
         {
-            /*
-            EnemySizeInformation grabbedObjectSize = _grabbedObject.GetComponent<EnemySizeInformation>();
+            _grabbedObject.TryGetComponent(out _interactable);
 
-            if (grabbedObjectSize.m_grapSize == IAmInteractable.Size.Small)
+            if (_interactable.m_grapSize == IAmInteractable.Size.Small)
             {
                 // Calculer la direction entre le joueur et l'objet
                 Vector3 directionToPlayer = (_player.position - _grabbedObject.position).normalized;
@@ -105,7 +104,7 @@ namespace Player.Runtime
                 // Mettre à jour la position de l'objet
                 _grabbedObject.position = targetPosition;
             }
-            else if (grabbedObjectSize.m_grapSize == IAmInteractable.Size.Large)
+            else if (_interactable.m_grapSize == IAmInteractable.Size.Large)
             {
                 // Calculer la direction entre le joueur et l'objet
                 Vector3 directionToObject = (_tongueHitPoint - _player.position).normalized;
@@ -120,7 +119,6 @@ namespace Player.Runtime
 
 
             ResetCoolDownTimer();
-            */
         }
         
         private void ReturnTongue()
@@ -198,6 +196,8 @@ namespace Player.Runtime
 
         [SerializeField]
         private float _offsetDistance;
+
+        private IAmInteractable _interactable;
 
 
         #endregion
