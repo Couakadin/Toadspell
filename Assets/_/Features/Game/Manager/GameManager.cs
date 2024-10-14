@@ -34,7 +34,7 @@ namespace Game.Runtime
 
         [Title("Input")]
         [SerializeField]
-        private InputReader _inputReader;
+        private GameInputObject _inputReader;
         [SerializeField]
         private GameObject _pauseMenu;
 
