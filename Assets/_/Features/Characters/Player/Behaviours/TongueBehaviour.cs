@@ -6,6 +6,7 @@ namespace Player.Runtime
 {
     public class TongueBehaviour : MonoBehaviour
     {
+        /*
         #region Publics
 	
         #endregion
@@ -201,5 +202,6 @@ namespace Player.Runtime
 
 
         #endregion
+        */
     }
 }

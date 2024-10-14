@@ -46,7 +46,7 @@ namespace StateMachine.Runtime
 
         public void LateTick()
         {
-
+            _playerBlackboard.SetValue<Vector3>("Position", _playerTransform.position);
         }
 
         #endregion

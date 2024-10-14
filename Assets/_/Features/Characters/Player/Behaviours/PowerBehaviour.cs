@@ -18,7 +18,9 @@ namespace Player.Runtime
             // Dictionary
             _sharedParameterDictionary.Add("transform", _transform);
             _sharedParameterDictionary.Add("playerBlackboard", _playerBlackboard);
+            _sharedParameterDictionary.Add("tongueBlackboard", _tongueBlackboard);
             _sharedParameterDictionary.Add("playerStats", _playerStats);
+            _sharedParameterDictionary.Add("tongueStats", _tongueStats);
         }
 
             private void Start()
@@ -26,6 +28,10 @@ namespace Player.Runtime
             // StateMachine
             _stateMachine = new();
             PowerlessState powerlessState = new(_stateMachine, _inputReader, _sharedParameterDictionary);
+            TongueState tongueState = new(_stateMachine, _inputReader, _tongueTip, _sharedParameterDictionary);
+
+            tongueState.SetPowerlessState(powerlessState);
+            powerlessState.SetTongueState(tongueState);
 
             // Initial State
             _stateMachine.SetState(powerlessState);
@@ -70,9 +76,17 @@ namespace Player.Runtime
         // Blackboard
         [SerializeField]
         private Blackboard _playerBlackboard;
+        [SerializeField]
+        private Blackboard _tongueBlackboard;
         // Base Stats
         [SerializeField]
         private PlayerStatsData _playerStats;
+        [SerializeField]
+        private TongueStatsData _tongueStats;
+
+        // GameObjects
+        [SerializeField]
+        private GameObject _tongueTip;
 
         #endregion
     }

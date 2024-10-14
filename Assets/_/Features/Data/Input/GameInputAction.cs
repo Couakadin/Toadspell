@@ -71,6 +71,15 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tongue"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb2e3977-f5fe-4e89-bdbb-ebb5d8436f09"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -198,7 +207,7 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""832892a2-9c71-4092-9fb3-8259ec826288"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -220,11 +229,33 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""21468162-7fd6-4952-ba6d-a9bee0ab5ae9"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Lock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""878015d9-7b57-4662-9924-210acef19a4d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tongue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b4e4f80-5ccb-4ac4-a8a0-fef63676416b"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tongue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -279,6 +310,7 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
         m_Gameplay_Lock = m_Gameplay.FindAction("Lock", throwIfNotFound: true);
+        m_Gameplay_Tongue = m_Gameplay.FindAction("Tongue", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -354,6 +386,7 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_Aim;
     private readonly InputAction m_Gameplay_Lock;
+    private readonly InputAction m_Gameplay_Tongue;
     public struct GameplayActions
     {
         private @GameInputAction m_Wrapper;
@@ -363,6 +396,7 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
         public InputAction @Lock => m_Wrapper.m_Gameplay_Lock;
+        public InputAction @Tongue => m_Wrapper.m_Gameplay_Tongue;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -387,6 +421,9 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
             @Lock.started += instance.OnLock;
             @Lock.performed += instance.OnLock;
             @Lock.canceled += instance.OnLock;
+            @Tongue.started += instance.OnTongue;
+            @Tongue.performed += instance.OnTongue;
+            @Tongue.canceled += instance.OnTongue;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -406,6 +443,9 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
             @Lock.started -= instance.OnLock;
             @Lock.performed -= instance.OnLock;
             @Lock.canceled -= instance.OnLock;
+            @Tongue.started -= instance.OnTongue;
+            @Tongue.performed -= instance.OnTongue;
+            @Tongue.canceled -= instance.OnTongue;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -476,6 +516,7 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnLock(InputAction.CallbackContext context);
+        void OnTongue(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

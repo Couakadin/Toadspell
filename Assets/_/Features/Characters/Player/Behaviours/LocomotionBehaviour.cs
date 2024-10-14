@@ -31,6 +31,7 @@ namespace Player.Runtime
             _sharedParameterDictionary.Add("playerStats", _playerStats);
             _sharedParameterDictionary.Add("thirdPersonCamera", _thirdPersonCamera);
             _sharedParameterDictionary.Add("shoulderCamera", _shoulderCamera);
+            _sharedParameterDictionary.Add("transform", transform);
         }
 
         private void Start()

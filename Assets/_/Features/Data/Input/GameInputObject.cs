@@ -19,6 +19,8 @@ namespace Data.Runtime
 
         public event Action LockEvent;
 
+        public event Action TongueEvent;
+
         public event Action PauseEvent;
         public event Action ResumeEvent;
 
@@ -132,6 +134,17 @@ namespace Data.Runtime
             }
             else if (context.phase == InputActionPhase.Canceled)
                 _actionStates["Lock"] = false;
+        }
+
+        public void OnTongue(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                _actionStates["Tongue"] = true;
+                TongueEvent?.Invoke();
+            }
+            else if (context.phase == InputActionPhase.Canceled)
+                _actionStates["Tongue"] = false;
         }
 
         #endregion
