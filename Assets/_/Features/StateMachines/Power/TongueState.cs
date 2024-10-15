@@ -20,22 +20,28 @@ namespace StateMachine.Runtime
             _mainCameraTransform = _mainCamera.transform;
 
             _initialTongueParent = _tongueTipTransform.parent;
+
+            _tongueCooldownTimer = new Timer(1f);
         }
 
         public void Enter()
         {
             _tongueDistanceCovered = 0;
+            _tongueCooldownTimer?.Reset();
             _inputReader.TongueEvent += SendTongue;
+            _tongueCooldownTimer.OnTimerFinished += ReturnPowerless;
         }
 
         public void Exit()
         {
+            _tongueCooldownTimer?.Stop();
             _inputReader.TongueEvent -= SendTongue;
+            _tongueCooldownTimer.OnTimerFinished -= ReturnPowerless;
         }
 
         public void Tick()
         {
-            _tongueBlackboard.SetValue<bool>("IsTongueReturned", _isTongueReturning);
+            _tongueCooldownTimer.Tick();
         }
 
         public void FixedTick()
@@ -54,8 +60,11 @@ namespace StateMachine.Runtime
 
         #region Utils
 
+        private void ReturnPowerless() => _stateMachine.SetState(_powerlessState);
+
         private void SendTongue()
         {
+            if (_tongueCooldownTimer.IsRunning()) return;
             if (_isTongueExtending || _isTongueReturning) return;
 
             _tongueTipTransform.parent = null;
@@ -158,6 +167,7 @@ namespace StateMachine.Runtime
         {
             _isTongueExtending = false;
             _isTongueReturning = true;
+            _tongueCooldownTimer.Begin();
         }
 
         private void ReturnTongue()
@@ -171,8 +181,6 @@ namespace StateMachine.Runtime
                 _tongueTipTransform.parent = _initialTongueParent;
                 _tongueTipTransform.localPosition = Vector3.zero;
             }
-
-            _stateMachine.SetState(_powerlessState);
         }
 
         #endregion
@@ -188,7 +196,7 @@ namespace StateMachine.Runtime
         private Vector3 _tongueHitPoint;
         private Transform _tongueHitTransform;
         private Transform _initialTongueParent;
-
+        private Timer _tongueCooldownTimer;
         private bool _isTongueExtending, _isTongueReturning;
         private float _tongueDistanceCovered;
 
