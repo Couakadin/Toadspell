@@ -30,7 +30,7 @@ namespace StateMachine.Runtime
             // Update lockable targets with OverlapSphere
             UpdateLockableList();
 
-            if (_inputReader.IsPerformed("Tongue") && !_tongueBlackboard.GetValue<bool>("IsTongueReturned"))
+            if (_inputReader.IsPerformed("Tongue"))
                 _stateMachine.SetState(_tonguetState);
 
             _tongueBlackboard.SetValue<GameObject>("currentLockedTarget", _currentLockedTarget);
