@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 157135592}
   - component: {fileID: 157135597}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Cube Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57628844d5175c48a21f9eef17c0dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySize: 0
+  _enemySize: 1
 --- !u!1 &186410527
 GameObject:
   m_ObjectHideFlags: 3
@@ -1113,7 +1113,7 @@ GameObject:
   - component: {fileID: 1233259405}
   - component: {fileID: 1233259410}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cube Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1423,7 +1423,7 @@ CharacterController:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
@@ -1792,7 +1792,7 @@ GameObject:
   - component: {fileID: 1653957499}
   - component: {fileID: 1653957504}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Cube Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
