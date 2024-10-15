@@ -48,6 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _blackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   _lockObject: {fileID: 3392612283262688849}
+  _maxDetectionRange: 20
+  _angleDetectionRange: 1
+  _rushDistance: 10
+  _rushSpeed: 15
+  _returnSpeed: 5
+  _returnDelay: 2
 --- !u!1 &3392612283262688849
 GameObject:
   m_ObjectHideFlags: 0

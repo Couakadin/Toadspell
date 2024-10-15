@@ -32,11 +32,12 @@ namespace Enemies.Runtime
             // L'ennemi ne suit le joueur du regard que sur les côtés, pas en l'air
             var playerFollow = new Vector3(playerPosition.x, transform.position.y, playerPosition.z);
 
-            if (distanceWithPlayer < _maxDetectionRange && !_isRushing && !_isReturning)
+            if (distanceWithPlayer < _maxDetectionRange && !_isRushing)
             {
                 transform.LookAt(playerFollow);
+                // We can show here that the enemy is about to rush
                 
-                if(Mathf.Abs(playerPosition.x - transform.position.x) < _xDetectionRange)
+                if(IsAlignedWithPlayer(playerPosition) && !_isCoolingDownAfterRush)
                 {
                     Attack(); // Lance l'attaque si le joueur est proche
                 }
@@ -44,7 +45,8 @@ namespace Enemies.Runtime
 
             if(_isRushing) Rush();
 
-            if (_isReturning) ReturnToOrigin();
+            if (_isCoolingDownAfterRush) CooldownAfterRush();
+
         }
 
         #endregion
@@ -65,23 +67,25 @@ namespace Enemies.Runtime
             if (Vector3.Distance(_rushStartPosition, transform.position) >= _rushDistance)
             {
                 _isRushing = false;
-                _isReturning = true;
+                _isCoolingDownAfterRush = true;
             }
         }
 
-        private void ReturnToOrigin()
+        private bool IsAlignedWithPlayer(Vector3 playerPosition)
+        {
+            Vector3 directionToPlayer = (playerPosition - transform.position).normalized;
+
+            float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
+
+            return angleToPlayer <= _angleDetectionRange;
+        }
+        private void CooldownAfterRush()
         {
             _returnTimer -= Time.deltaTime;
             if (_returnTimer <= 0)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _originPosition, _returnSpeed * Time.deltaTime);
-
-                if (Vector3.Distance(transform.position, _originPosition) <= 0.1f)
-                {
-                    _isReturning = false;
-                    _returnTimer = _returnDelay;
-                }
-
+                _isCoolingDownAfterRush = false;
+                _returnTimer = _returnDelay;
             }
         }
         public void OnLock()
@@ -105,7 +109,7 @@ namespace Enemies.Runtime
         [SerializeField] private GameObject _lockObject;
         [Header("Player Detection")]
         [SerializeField] private float _maxDetectionRange = 20f;
-        [SerializeField] private float _xDetectionRange = 1f;
+        [SerializeField] private float _angleDetectionRange = 10f;
         
         [Header("Attack Specifics")] 
         [SerializeField] private float _rushDistance = 5f; // Distance du rush
@@ -114,7 +118,7 @@ namespace Enemies.Runtime
         [SerializeField] private float _returnDelay = 5f; // Reinitialise le timer
         private float _returnTimer; // Est décrémenté en Update
         private bool _isRushing = false; // Indique si l'ennemi rush
-        private bool _isReturning = false;
+        private bool _isCoolingDownAfterRush = false;
         private Vector3 _rushStartPosition;
         private Vector3 _originPosition; // Position de départ du rush
 
