@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f89f8d7fa8daa48b5f26ab37424ef2, type: 3}
   m_Name: TongueStats
   m_EditorClassIdentifier: 
-  m_maxDistance: 12
+  m_maxDistanceAim: 30
+  m_maxDistanceLock: 20
   m_speed: 30
+  m_offsetDistance: 2
+  m_rotationSpeed: 10

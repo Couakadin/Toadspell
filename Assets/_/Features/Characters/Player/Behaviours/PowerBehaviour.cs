@@ -50,6 +50,7 @@ namespace Player.Runtime
         private void LateUpdate()
         {
             _stateMachine.LateTick();
+            _tongueBlackboard.SetValue<Vector3>("TonguePosition", _tongueTip.transform.position);
         }
 
         #endregion
