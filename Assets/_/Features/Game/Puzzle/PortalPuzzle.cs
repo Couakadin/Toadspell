@@ -36,7 +36,7 @@ namespace Game.Runtime
         [SerializeField] private int _spawnIndexInList;
         [SerializeField] private TransformListData _transformsBase;
         [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
-        [SerializeField] private Transform _TeleportPoint;
+         private Transform _TeleportPoint;
 
         #endregion
     }
