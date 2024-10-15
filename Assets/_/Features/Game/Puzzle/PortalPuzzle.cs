@@ -10,8 +10,8 @@ namespace Game.Runtime
 		
     	void Start()
     	{
+            _spawnPoints = _transformsBase.transformsList;
 	        _TeleportPoint = _spawnPoints[_spawnIndexInList];
-
         }
 
     	void Update()
@@ -34,8 +34,9 @@ namespace Game.Runtime
 
         [Tooltip("Choisir l'index de téléportation dans la liste")]
         [SerializeField] private int _spawnIndexInList;
+        [SerializeField] private TransformListData _transformsBase;
         [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
-        private Transform _TeleportPoint;
+        [SerializeField] private Transform _TeleportPoint;
 
         #endregion
     }
