@@ -28,7 +28,7 @@ namespace StateMachine.Runtime
             this._playerBlackboard = GetItemFromParameterDictionary<Blackboard>("playerBlackboard");
             this._tongueBlackboard = GetItemFromParameterDictionary<Blackboard>("tongueBlackboard");
             this._playerStats = GetItemFromParameterDictionary<PlayerStatsData>("playerStats");
-            this._thirdPersonCamera = GetItemFromParameterDictionary<CinemachineFreeLook>("thirdPersonCamera");
+            this._thirdPersonCamera = GetItemFromParameterDictionary<CinemachineVirtualCamera>("thirdPersonCamera");
             this._shoulderCamera = GetItemFromParameterDictionary<CinemachineVirtualCamera>("shoulderCamera");
             this._tongueStats = GetItemFromParameterDictionary<TongueStatsData>("tongueStats");
             this._mainCamera = Camera.main;
@@ -80,7 +80,7 @@ namespace StateMachine.Runtime
         // Cameras
         protected Camera _mainCamera;
         protected Transform _mainCameraTransform;
-        protected CinemachineFreeLook _thirdPersonCamera;
+        protected CinemachineVirtualCamera _thirdPersonCamera;
         protected CinemachineVirtualCamera _shoulderCamera;
 
         #endregion

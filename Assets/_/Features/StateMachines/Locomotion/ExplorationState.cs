@@ -60,33 +60,34 @@ namespace StateMachine.Runtime
         /// <param name="moveDirection"></param>
         private void Move(Vector2 moveDirection)
         {
-            // if there is no movement triggered, apply a deceleration
+            ApplyGravity(); // Appliquer la gravité à chaque frame
+
+            // Si aucun mouvement n'est déclenché, appliquer la décélération pour les mouvements horizontaux uniquement
             if (moveDirection == Vector2.zero)
-            {
                 ApplyDeceleration();
-                return;
+            else
+            {
+                // Direction avant par rapport à la caméra
+                _cameraForward = _cameraTransform.forward;
+                _cameraRight = _cameraTransform.right;
+
+                // Aplatir l'axe Y pour s'assurer que le joueur se déplace uniquement au sol
+                _cameraForward.y = 0;
+                _cameraRight.y = 0;
+
+                // Normaliser les vecteurs pour une vitesse de déplacement constante
+                _cameraForward.Normalize();
+                _cameraRight.Normalize();
+
+                // Convertir le Vector2 moveDirection en une direction 3D relative à la caméra
+                _cameraDirection = (_cameraForward * moveDirection.y + _cameraRight * moveDirection.x);
+
+                // Rotation fluide du joueur vers la direction cible
+                SmoothRotateTowards(_cameraDirection);
+
+                // Appliquer le mouvement avec accélération
+                ApplyMovement(_cameraDirection);
             }
-
-            // Forward direction relative to the camera
-            _cameraForward = _cameraTransform.forward;
-            _cameraRight = _cameraTransform.right;
-
-            // Flatten the y-axis to ensure the player only moves along the ground
-            _cameraForward.y = 0;
-            _cameraRight.y = 0;
-
-            // Normalize the vectors to ensure consistent movement speed
-            _cameraForward.Normalize();
-            _cameraRight.Normalize();
-
-            // Convert the Vector2 moveDirection into a 3D direction relative to the camera
-            _cameraDirection = (_cameraForward * moveDirection.y + _cameraRight * moveDirection.x);
-
-            // Smoothly rotate the player towards the target direction
-            SmoothRotateTowards(_cameraDirection);
-
-            // Apply movement with acceleration
-            ApplyMovement(_cameraDirection);
         }
 
         /// <summary>
@@ -128,16 +129,34 @@ namespace StateMachine.Runtime
         }
 
         /// <summary>
-        /// Apply a gradual deceleration when there is no movement triggered.
+        /// Applique une décélération uniquement aux mouvements horizontaux (X, Z).
         /// </summary>
         private void ApplyDeceleration()
         {
-            // When null velocity, decelerate the player
-            _playerRigidbody.velocity = Vector3.Lerp(
-                _playerRigidbody.velocity,
-                Vector3.zero,
-                _playerStats.m_deceleration * Time.fixedDeltaTime
-            );
+            // Obtenir la vélocité actuelle du joueur
+            Vector3 currentVelocity = _playerRigidbody.velocity;
+
+            // Ne ralentir que les mouvements horizontaux (X et Z)
+            Vector3 horizontalVelocity = new Vector3(currentVelocity.x, 0, currentVelocity.z);
+            Vector3 deceleratedVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, _playerStats.m_deceleration * Time.fixedDeltaTime);
+
+            // Combiner la décélération horizontale avec la vélocité verticale (Y)
+            _playerRigidbody.velocity = new Vector3(deceleratedVelocity.x, currentVelocity.y, deceleratedVelocity.z);
+        }
+
+        /// <summary>
+        /// Applique la gravité indépendamment des mouvements horizontaux.
+        /// </summary>
+        private void ApplyGravity()
+        {
+            Vector3 currentVelocity = _playerRigidbody.velocity;
+
+            // Appliquer la gravité uniquement sur l'axe Y
+            if (!_playerBlackboard.GetValue<bool>("IsGrounded"))
+                currentVelocity.y += Physics.gravity.y * _playerStats.m_fallGravityMultiplier * Time.fixedDeltaTime;
+
+            // Mettre à jour la vélocité du joueur
+            _playerRigidbody.velocity = new Vector3(currentVelocity.x, currentVelocity.y, currentVelocity.z);
         }
 
         #endregion

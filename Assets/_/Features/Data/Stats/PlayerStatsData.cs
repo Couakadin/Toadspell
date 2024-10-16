@@ -21,6 +21,8 @@ namespace Data.Runtime
         public float m_acceleration;
         [Tooltip("Deceleration when stopping move")]
         public float m_deceleration;
+        [Tooltip("Gravity settings")]
+        public float m_jumpGravityMultiplier, m_fallGravityMultiplier;
 
         // Jump Stats
         [InfoBox( "Jump Stats (Cursor on properties to show how they work)")]
