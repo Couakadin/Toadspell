@@ -24,6 +24,8 @@ namespace Data.Runtime
         public event Action PauseEvent;
         public event Action ResumeEvent;
 
+        public event Action LookEvent;
+
         #endregion
 
         #region Unity
@@ -145,6 +147,22 @@ namespace Data.Runtime
             }
             else if (context.phase == InputActionPhase.Canceled)
                 _actionStates["Tongue"] = false;
+        }
+
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                _actionStates["Look"] = true;
+                LookEvent?.Invoke();
+            }
+            else if (context.phase == InputActionPhase.Canceled)
+                _actionStates["Look"] = false;
+        }
+
+        public void OnZoom(InputAction.CallbackContext context)
+        {
+            
         }
 
         #endregion

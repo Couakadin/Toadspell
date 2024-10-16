@@ -37,14 +37,18 @@ namespace StateMachine.Runtime
 
         public void FixedTick()
         {
+            // Apply gravity throughout the entire jump (both ascending and descending)
+            ApplyGravity();
+
             // Control movements in the air
-            if (!_playerBlackboard.GetValue<bool>("IsGrounded")) 
+            if (!_playerBlackboard.GetValue<bool>("IsGrounded"))
+            {
                 AirControl(_playerBlackboard.GetValue<Vector2>("MoveDirection"));
+            }
         }
 
         public void LateTick()
         {
-
         }
 
         #endregion
@@ -82,6 +86,9 @@ namespace StateMachine.Runtime
             );
         }
 
+        /// <summary>
+        /// Calculate the camera-relative direction based on the movement input.
+        /// </summary>
         private void CameraDirection(Vector2 moveDirection)
         {
             // Get the camera's forward direction for movement
@@ -100,6 +107,17 @@ namespace StateMachine.Runtime
             _jumpDirection = jumpDirection;
         }
 
+        /// <summary>
+        /// Apply additional gravity to simulate a stronger fall throughout the jump (ascending and descending).
+        /// </summary>
+        private void ApplyGravity()
+        {
+            // Apply additional gravity force at all times when in the air (both when ascending and descending)
+            float gravityMultiplier = (_playerRigidbody.velocity.y > 0) ? _playerStats.m_jumpGravityMultiplier : _playerStats.m_fallGravityMultiplier;
+
+            _playerRigidbody.velocity += Vector3.up * Physics.gravity.y * (gravityMultiplier - 1) * Time.fixedDeltaTime;
+        }
+
         #endregion
 
         #region Privates
@@ -114,4 +132,5 @@ namespace StateMachine.Runtime
 
         #endregion
     }
+
 }

@@ -128,7 +128,7 @@ namespace Player.Runtime
         [SerializeField]
         private CinemachineVirtualCamera _shoulderCamera;
         [SerializeField]
-        private CinemachineFreeLook _thirdPersonCamera;
+        private CinemachineVirtualCamera _thirdPersonCamera;
 
         // Components
         private Rigidbody _rigidbody;

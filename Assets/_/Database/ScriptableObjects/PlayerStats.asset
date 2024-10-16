@@ -17,6 +17,8 @@ MonoBehaviour:
   m_rotationTime: 0.3
   m_acceleration: 75
   m_deceleration: 45
+  m_jumpGravityMultiplier: 1.5
+  m_fallGravityMultiplier: 2.5
   m_jumpForce: 9
   m_airControlSpeed: 15
   m_airControlRotate: 10

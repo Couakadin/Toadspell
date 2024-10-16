@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -34,7 +35,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: 
@@ -58,28 +59,10 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 1
-      Data: MaxDistance
-    - Name: $v
-      Entry: 7
-      Data: 3|System.Single, mscorlib
-    - Name: 
-      Entry: 4
-      Data: 8
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
       Data: Cooldown
     - Name: $v
       Entry: 7
-      Data: 4|System.Single, mscorlib
+      Data: 3|System.Single, mscorlib
     - Name: 
       Entry: 4
       Data: 1
@@ -97,7 +80,7 @@ MonoBehaviour:
       Data: GrabDelay
     - Name: $v
       Entry: 7
-      Data: 5|System.Single, mscorlib
+      Data: 4|System.Single, mscorlib
     - Name: 
       Entry: 4
       Data: 0.8
@@ -115,10 +98,46 @@ MonoBehaviour:
       Data: CooldownTimer
     - Name: $v
       Entry: 7
-      Data: 6|System.Single, mscorlib
+      Data: 5|System.Single, mscorlib
     - Name: 
       Entry: 4
       Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: currentLockedTarget
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TonguePosition
+    - Name: $v
+      Entry: 7
+      Data: 6|UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: -4.75520754
+    - Name: 
+      Entry: 4
+      Data: 0.0005615188
+    - Name: 
+      Entry: 4
+      Data: 5.39248466
     - Name: 
       Entry: 8
       Data: 
