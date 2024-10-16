@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Runtime
 {
-    public class PortalPuzzle : MonoBehaviour
+    public class PortalPuzzleBehaviour : MonoBehaviour
     {
         #region Unity API
 		
