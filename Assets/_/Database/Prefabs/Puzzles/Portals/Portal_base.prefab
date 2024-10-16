@@ -11711,5 +11711,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnIndexInList: 0
-  _transformsBase: {fileID: 11400000, guid: 8e633202111e49c4fb7584eacf620f25, type: 2}
-  _spawnPoints: []
+  _spawnPoints:
+  - {fileID: 854196423080353560, guid: c9e39ea3afa5ce940b155809c7ab83e1, type: 3}
+  - {fileID: 1998649516180138447, guid: af5536dc38aa2954bbfe8fda4564cbc7, type: 3}
+  - {fileID: 5061917564638364879, guid: 11cd749230e25dc479d66aebb49c9839, type: 3}
+  - {fileID: 4206690679581798034, guid: 091c36cd9443fc04494b879dcb537df8, type: 3}
+  - {fileID: 2014108648605106569, guid: 0ba89c0ab16f0d44b879ff9fa2cae33e, type: 3}
+  - {fileID: 2986150540483283523, guid: 64c76a7a635198b49982af771c1a1bcb, type: 3}
+  - {fileID: 8120037299584470072, guid: 6dd2eb5526c98354883e8a2b64287bd5, type: 3}
+  - {fileID: 8246852501112626008, guid: c0df99d107bb58b4598593f23b8e54a0, type: 3}
+  - {fileID: 6964330056470261416, guid: 5e4a00b7a026f5a488149146a16a3948, type: 3}
+  - {fileID: 2243624389266512552, guid: 99b71e840fa92ac498b9f1510add7914, type: 3}
+  - {fileID: 7929181898581305774, guid: c1c2a42449f9d6d49aae029a3d699a38, type: 3}
+  - {fileID: 6514790429695093409, guid: 34726504d5c318d4a8ccf65f8b876dc7, type: 3}
+  - {fileID: 319779518856536410, guid: b4a9d9fc5c4d0ec41b0b98c426244664, type: 3}
+  - {fileID: 6884495455747439370, guid: 0d5723f4b9d9f1446b9ee75e71f7a529, type: 3}
