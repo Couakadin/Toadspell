@@ -15,21 +15,6 @@ namespace Enemies.Runtime
         #endregion
 
 
-        #region Unity API
-
-        void Start()
-    	{
-            
-    }
-
-    	void Update()
-    	{
-	
-    	}
-
-        #endregion
-
-
         #region Main Methods
 
         public abstract void Attack();
