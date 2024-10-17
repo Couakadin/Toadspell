@@ -1,7 +1,4 @@
 using Data.Runtime;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Enemies.Runtime
@@ -18,6 +15,7 @@ namespace Enemies.Runtime
         void Start()
     	{
             _attackTimer = new Timer(_attackDelay);
+            _attackTimer.OnTimerFinished += Attack;
         }
 
 
@@ -30,12 +28,14 @@ namespace Enemies.Runtime
             {
                 transform.LookAt(playerPosition);
 
-                _attackTimer.Reset();
-                _attackTimer.Begin();
-
-                if (_attackTimer.IsRunning()) return;
-                Attack();
+                if (!_attackTimer.IsRunning())
+                {
+                    _attackTimer.Reset();
+                    _attackTimer.Begin();
+                    Debug.Log("Test Timer");
+                }
             }
+            if (_attackTimer.IsRunning()) _attackTimer.Tick();
 
         }
 
@@ -60,7 +60,7 @@ namespace Enemies.Runtime
 
         public override void Attack()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Attack");
         }
 
         #endregion
