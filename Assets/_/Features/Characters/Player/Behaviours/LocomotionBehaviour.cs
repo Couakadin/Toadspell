@@ -4,6 +4,7 @@ using Data.Runtime;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using Cinemachine;
+using UnityEngine.UI;
 
 namespace Player.Runtime
 {
@@ -22,6 +23,9 @@ namespace Player.Runtime
             _playerBlackboard.SetValue<bool>("IsAiming", false);
             _playerBlackboard.SetValue<Vector2>("MoveDirection", Vector2.zero);
 
+            // Aim image
+            _aimImage.enabled = false;
+
             // Components
             TryGetComponent<Rigidbody>(out _rigidbody);
 
@@ -32,6 +36,7 @@ namespace Player.Runtime
             _sharedParameterDictionary.Add("thirdPersonCamera", _thirdPersonCamera);
             _sharedParameterDictionary.Add("shoulderCamera", _shoulderCamera);
             _sharedParameterDictionary.Add("transform", transform);
+            _sharedParameterDictionary.Add("aimImage", _aimImage);
         }
 
         private void Start()
@@ -73,6 +78,9 @@ namespace Player.Runtime
         private void Update()
         {
             _stateMachine.Tick();
+            // Définit la position de départ et de fin de la ligne
+            Vector3 startPosition = transform.position;
+            Vector3 endPosition = transform.position + transform.forward * 10f;
         }
 
         private void FixedUpdate()
@@ -129,6 +137,8 @@ namespace Player.Runtime
         private CinemachineVirtualCamera _shoulderCamera;
         [SerializeField]
         private CinemachineVirtualCamera _thirdPersonCamera;
+        [SerializeField]
+        private Image _aimImage;
 
         // Components
         private Rigidbody _rigidbody;
