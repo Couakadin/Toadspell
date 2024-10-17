@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8372706273706809733}
-  - component: {fileID: 1925362428734566924}
+  - component: {fileID: 4280794329151887542}
   m_Layer: 0
-  m_Name: Enemy02
+  m_Name: Enemy_Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 7231608883547338751}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1925362428734566924
+--- !u!114 &4280794329151887542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,17 +43,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1460687261455715489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59874da8ea5d57e44bb7e8047d07ef6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2de89361c82e6c04d8cb79172e2a21f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
-  _lockObject: {fileID: 3392612283262688849}
-  _maxDetectionRange: 20
-  _angleDetectionRange: 1
-  _rushDistance: 10
-  _rushSpeed: 15
-  _returnSpeed: 5
-  _returnDelay: 2
+  m_blackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
+  m_projectilePool: {fileID: 0}
 --- !u!1 &3392612283262688849
 GameObject:
   m_ObjectHideFlags: 0

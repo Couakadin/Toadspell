@@ -7,7 +7,7 @@ namespace Enemies.Runtime
     {
         #region Publics 
 
-        public PoolReferenceData m_projectilePool;
+        public PoolSystem m_projectilePool;
 
         #endregion
 
@@ -60,7 +60,7 @@ namespace Enemies.Runtime
 
         public override void Attack()
         {
-            GameObject projectile = m_projectilePool.poolSystem.GetFirstAvailableObject();
+            GameObject projectile = m_projectilePool.GetFirstAvailableObject();
             projectile.SetActive(true);
             Debug.Log("Attack");
         }
