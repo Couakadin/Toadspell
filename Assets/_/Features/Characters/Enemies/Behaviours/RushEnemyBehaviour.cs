@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemies.Runtime
 {
-    public class RushEnemyBehaviour : MonoBehaviour, IAmLockable, IAmInteractable
+    public class RushEnemyBehaviour : MonoBehaviour, IAmLockable
     {
         public IAmInteractable.Size m_grapSize => _enemySize;
 
