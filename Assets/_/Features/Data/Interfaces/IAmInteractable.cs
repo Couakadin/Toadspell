@@ -20,6 +20,8 @@ namespace Data.Runtime
         /// </summary>
         Size m_grapSize { get; }
 
+        float m_offsetDistance { get; }
+
         #endregion
     }
 }

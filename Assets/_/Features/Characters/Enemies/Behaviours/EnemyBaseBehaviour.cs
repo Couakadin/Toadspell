@@ -12,6 +12,8 @@ namespace Enemies.Runtime
         public Blackboard m_blackboard;
         public IAmInteractable.Size m_grapSize => throw new System.NotImplementedException();
 
+        public float m_offsetDistance => throw new System.NotImplementedException();
+
         #endregion
 
 

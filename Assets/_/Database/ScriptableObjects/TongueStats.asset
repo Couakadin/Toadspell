@@ -15,5 +15,5 @@ MonoBehaviour:
   m_maxDistanceAim: 30
   m_maxDistanceLock: 30
   m_speed: 30
-  m_offsetDistance: 1
+  m_offsetDistance: 0.5
   m_rotationSpeed: 10

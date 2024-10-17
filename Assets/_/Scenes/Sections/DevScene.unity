@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 75542494}
   - component: {fileID: 75542493}
   - component: {fileID: 75542492}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tongue Tip
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -550,7 +550,7 @@ GameObject:
   - component: {fileID: 462605896}
   - component: {fileID: 462605891}
   - component: {fileID: 462605890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Frogmage
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 630621866}
   - component: {fileID: 630621865}
   - component: {fileID: 630621864}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,6 +815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySize: 0
+  _offsetDistance: 1
 --- !u!114 &630621865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,7 +957,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 802169330}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Target Third Person Camera
   m_TagString: Player
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -1138,7 +1139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 865450148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Target Shoulder Camera
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -1171,7 +1172,7 @@ GameObject:
   - component: {fileID: 1262374695}
   - component: {fileID: 1262374697}
   - component: {fileID: 1262374696}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1402,7 +1403,7 @@ GameObject:
   - component: {fileID: 1534897449}
   - component: {fileID: 1534897448}
   - component: {fileID: 1534897447}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1422,6 +1423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySize: 1
+  _offsetDistance: 0.5
 --- !u!114 &1534897448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,7 +1654,7 @@ GameObject:
   - component: {fileID: 1756018390}
   - component: {fileID: 1756018389}
   - component: {fileID: 1756018388}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1672,6 +1674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySize: 0
+  _offsetDistance: 1
 --- !u!114 &1756018389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1781,7 +1784,7 @@ GameObject:
   - component: {fileID: 1770241269}
   - component: {fileID: 1770241271}
   - component: {fileID: 1770241270}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground Checker
   m_TagString: Player
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -1849,7 +1852,7 @@ GameObject:
   - component: {fileID: 1821731279}
   - component: {fileID: 1821731278}
   - component: {fileID: 1821731277}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: AimCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2249,11 +2252,11 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1756018393}
   - {fileID: 2060146024}
   - {fileID: 1388844914}
   - {fileID: 699198017}
   - {fileID: 462605888}
+  - {fileID: 1756018393}
   - {fileID: 630621869}
   - {fileID: 1534897452}
   - {fileID: 483927603}

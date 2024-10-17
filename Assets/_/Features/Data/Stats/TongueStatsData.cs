@@ -15,8 +15,6 @@ namespace Data.Runtime
         public float m_maxDistanceLock;
         [Tooltip("Speed of the tongue")]
         public float m_speed;
-        [Tooltip("The final position behind the target")]
-        public float m_offsetDistance;
         [Tooltip("The speed the player turns to target")]
         public float m_rotationSpeed;
 

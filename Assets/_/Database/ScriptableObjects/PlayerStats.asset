@@ -25,4 +25,4 @@ MonoBehaviour:
   m_detectionRadius: 15
   m_detectionLayer:
     serializedVersion: 2
-    m_Bits: 127
+    m_Bits: 64
