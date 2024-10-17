@@ -5,10 +5,11 @@ namespace Enemies.Runtime
 {
     public class ArcherEnemyBehaviour : EnemyBaseBehaviour
     {
-        #region Publics
+        #region Publics 
+
+        public PoolReferenceData m_projectilePool;
 
         #endregion
-
 
         #region Unity API
 
@@ -17,7 +18,6 @@ namespace Enemies.Runtime
             _attackTimer = new Timer(_attackDelay);
             _attackTimer.OnTimerFinished += Attack;
         }
-
 
         void Update()
     	{
@@ -60,18 +60,10 @@ namespace Enemies.Runtime
 
         public override void Attack()
         {
+            GameObject projectile = m_projectilePool.poolSystem.GetFirstAvailableObject();
+            projectile.SetActive(true);
             Debug.Log("Attack");
         }
-
-        #endregion
-
-
-        #region Utils
-
-        #endregion
-
-
-        #region Privates & Protected
 
         #endregion
     }
