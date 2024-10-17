@@ -5,11 +5,6 @@ namespace Enemies.Runtime
 {
     public class ArcherEnemyBehaviour : EnemyBaseBehaviour
     {
-        #region Publics
-
-        #endregion
-
-
         #region Unity API
 
         void Start()
@@ -17,7 +12,6 @@ namespace Enemies.Runtime
             _attackTimer = new Timer(_attackDelay);
             _attackTimer.OnTimerFinished += Attack;
         }
-
 
         void Update()
     	{
@@ -62,16 +56,6 @@ namespace Enemies.Runtime
         {
             Debug.Log("Attack");
         }
-
-        #endregion
-
-
-        #region Utils
-
-        #endregion
-
-
-        #region Privates & Protected
 
         #endregion
     }

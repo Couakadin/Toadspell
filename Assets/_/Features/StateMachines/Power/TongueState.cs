@@ -91,7 +91,7 @@ namespace StateMachine.Runtime
             // Step 1: Rotate towards the target
             Vector3 direction = (target.position - _playerTransform.position).normalized;
 
-            Quaternion targetRotation = direction != Vector3.zero ? Quaternion.LookRotation(direction) : _playerTransform.rotation;
+            Quaternion targetRotation = direction != Vector3.zero ? Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z)) : _playerTransform.rotation;
 
             _playerTransform.rotation = Quaternion.Slerp(
                 _playerTransform.rotation,
@@ -178,11 +178,13 @@ namespace StateMachine.Runtime
 
         private void ReturnTongue()
         {
-            _tongueTipTransform.position = Vector3.MoveTowards(_tongueBlackboard.GetValue<Vector3>("TonguePosition"), _playerBlackboard.GetValue<Vector3>("Position"), _tongueStats.m_speed * Time.deltaTime);
+            _initialTonguePosition = _playerBlackboard.GetValue<Vector3>("Position") + new Vector3(0, .65f, 0);
+
+            _tongueTipTransform.position = Vector3.MoveTowards(_tongueBlackboard.GetValue<Vector3>("TonguePosition"), _initialTonguePosition, _tongueStats.m_speed * Time.deltaTime);
             
-            if (Vector3.Distance(_tongueBlackboard.GetValue<Vector3>("TonguePosition"), _playerBlackboard.GetValue<Vector3>("Position")) < .1f)
+            if (Vector3.Distance(_tongueBlackboard.GetValue<Vector3>("TonguePosition"), _initialTonguePosition) < .1f)
             {
-                _tongueTipTransform.position = _playerBlackboard.GetValue<Vector3>("Position");
+                _tongueTipTransform.position = _initialTonguePosition;
                 _tongueTipTransform.parent = _initialTongueParent;
                 _tongueCooldownTimer.Begin();
             }
@@ -211,6 +213,7 @@ namespace StateMachine.Runtime
         private float _distanceToMove, _distanceMaxAim, _distanceMaxLock;
 
         private RaycastHit _hit;
+        private Vector3 _initialTonguePosition;
 
         #endregion
     }

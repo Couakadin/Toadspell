@@ -27,13 +27,20 @@ namespace StateMachine.Runtime
 
         public void Tick()
         {
-            // Update lockable targets with OverlapSphere
-            UpdateLockableList();
-
             if (_inputReader.IsPerformed("Tongue"))
                 _stateMachine.SetState(_tonguetState);
 
-            _tongueBlackboard.SetValue<GameObject>("currentLockedTarget", _currentLockedTarget);
+            if (!_playerBlackboard.GetValue<bool>("IsAiming"))
+            {
+                // Update lockable targets with OverlapSphere
+                UpdateLockableList();
+                _tongueBlackboard.SetValue("currentLockedTarget", _currentLockedTarget);
+            }
+            else
+            {
+                UnlockTarget();
+                _lockingList.Clear();
+            }
         }
 
         public void FixedTick()
