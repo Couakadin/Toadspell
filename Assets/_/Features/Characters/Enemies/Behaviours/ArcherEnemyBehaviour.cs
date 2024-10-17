@@ -5,6 +5,12 @@ namespace Enemies.Runtime
 {
     public class ArcherEnemyBehaviour : EnemyBaseBehaviour
     {
+        #region Publics 
+
+        public PoolReferenceData m_projectilePool;
+
+        #endregion
+
         #region Unity API
 
         void Start()
@@ -54,6 +60,8 @@ namespace Enemies.Runtime
 
         public override void Attack()
         {
+            GameObject projectile = m_projectilePool.poolSystem.GetFirstAvailableObject();
+            projectile.SetActive(true);
             Debug.Log("Attack");
         }
 
