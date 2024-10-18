@@ -92,6 +92,7 @@ namespace Player.Runtime
         {
             _stateMachine.LateTick();
             _playerBlackboard.SetValue<Vector3>("Position", transform.position);
+            _playerBlackboard.SetValue<IAmStateMachine>("CurrentStateLocomotion", _stateMachine.GetState());
         }
 
         #endregion

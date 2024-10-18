@@ -20,6 +20,8 @@ namespace StateMachine.Runtime
             _mainCameraTransform = _shoulderCamera.transform;
         }
 
+        public string Name() => "Aim";
+
         public void Enter()
         {
             _playerRigidbody.velocity = Vector3.zero;

@@ -18,6 +18,8 @@ namespace StateMachine.Runtime
             _cameraTransform = _mainCamera.transform;
         }
 
+        public string Name() => "Exploration";
+
         public void Enter()
         {
             _thirdPersonCamera.Priority = 10;

@@ -32,6 +32,7 @@ namespace StateMachine.Runtime
             this._shoulderCamera = GetItemFromParameterDictionary<CinemachineVirtualCamera>("shoulderCamera");
             this._tongueStats = GetItemFromParameterDictionary<TongueStatsData>("tongueStats");
             this._mainCamera = Camera.main;
+            this._mainCameraTransform = _mainCamera.transform;
         }
 
         // Tools

@@ -17,6 +17,8 @@ namespace StateMachine.Runtime
             _cameraTransform = _mainCamera.transform;
         }
 
+        public string Name() => "Jump";
+
         public void Enter()
         {
             Jump(_playerBlackboard.GetValue<Vector2>("MoveDirection")); // Jump Action

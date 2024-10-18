@@ -15,6 +15,8 @@ namespace StateMachine.Runtime
             this._parameterDictionary = parameterDictionary;
         }
 
+        public string Name() => "Powerless";
+
         public void Enter()
         {
             _inputReader.LockEvent += SwitchTarget;
