@@ -2,6 +2,7 @@ using Data.Runtime;
 using Meryel.UnityCodeAssist.YamlDotNet.Core.Tokens;
 using UnityEditor;
 using UnityEngine;
+using System;
 
 namespace Enemies.Runtime
 {
@@ -12,11 +13,7 @@ namespace Enemies.Runtime
 
         void Start()
     	{
-            _attackTimer = new Timer(m_attackDelay);
-            _attackTimer.OnTimerFinished += ResetCoolDown;
 
-            _damageTimer = new Timer(_takeDamageDelay);
-            _damageTimer.OnTimerFinished += ResumeAfterDamage;
 
             _originalMaterial = _meshRenderer.material.color;
         }
@@ -24,7 +21,7 @@ namespace Enemies.Runtime
         void Update()
     	{
 
-            Vector3 playerPosition = _target.transform.position; //m_blackboard.GetValue<Vector3>("Position"); //Keeps track of player
+            Vector3 playerPosition = _targetToReplaceWithPlayer.transform.position; //m_blackboard.GetValue<Vector3>("Position"); //Keeps track of player
             var distanceWithPlayer = (playerPosition - transform.position).magnitude; //Distance with player
 
             // Only follows player on the sides, not up
@@ -45,8 +42,7 @@ namespace Enemies.Runtime
 
             if (_isCoolingDownAfterRush) CooldownAfterRush();
 
-            if (_attackTimer.IsRunning()) _attackTimer.Tick();
-            if (_damageTimer.IsRunning()) _damageTimer.Tick();
+            UpdateTimers();
         }
 
         #endregion
@@ -71,8 +67,6 @@ namespace Enemies.Runtime
             }
         }
 
-
-
         public override void OnLock()
         {
             throw new System.NotImplementedException();
@@ -90,11 +84,7 @@ namespace Enemies.Runtime
             _isFrozen = true;
             transform.position += -transform.forward * _recoilDistance;
             _meshRenderer.material.color = Color.yellow;
-            if (!_damageTimer.IsRunning())
-            {
-                _damageTimer.Reset();
-                _damageTimer.Begin();
-            }
+            SetOrResetTimer(_damageTimer);
         }
 
         [ContextMenu("Damages")]
@@ -105,7 +95,14 @@ namespace Enemies.Runtime
 
         #endregion
 
+
         #region Utils
+        
+        private void UpdateTimers()
+        {
+            if (_attackTimer.IsRunning()) _attackTimer.Tick();
+            if (_damageTimer.IsRunning()) _damageTimer.Tick();
+        }
 
         private bool IsAlignedWithPlayer(Vector3 playerPosition)
         {
@@ -118,11 +115,7 @@ namespace Enemies.Runtime
 
         private void CooldownAfterRush()
         {
-            if (!_attackTimer.IsRunning())
-            {
-                _attackTimer.Reset();
-                _attackTimer.Begin();
-            }
+            SetOrResetTimer(_attackTimer);
         }
 
         private void ResetCoolDown()
@@ -138,11 +131,11 @@ namespace Enemies.Runtime
 
         #endregion
 
+
         #region Privates & Protected
 
         [Header("References")]
-        [SerializeField] private GameObject _lockObject;
-        [SerializeField] private GameObject _target;
+        [SerializeField] private GameObject _targetToReplaceWithPlayer;
         [SerializeField] private MeshRenderer _meshRenderer;
 
         [Header("Player Detection")]
