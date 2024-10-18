@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Data.Runtime;
+using UnityEngine;
 
 namespace Enemies.Runtime
 {
@@ -9,8 +7,16 @@ namespace Enemies.Runtime
     {
         #region Publics
 
+        [Header("Enemy Specificities")]
+        public float m_attackDelay = 2;
+        public float m_lifePoints;
+        public float m_maxDetectionRange = 20f;
+        public IAmInteractable.Size _enemySize;
+
+        [Header("References")]
         public Blackboard m_blackboard;
-        public IAmInteractable.Size m_grapSize => throw new System.NotImplementedException();
+
+        public IAmInteractable.Size m_grapSize => _enemySize;
 
         public float m_offsetDistance => throw new System.NotImplementedException();
 
@@ -19,11 +25,11 @@ namespace Enemies.Runtime
 
         #region Main Methods
 
-        public abstract void Attack();
-
         public abstract void OnLock();
 
         public abstract void OnUnlock();
+
+        public abstract void Attack();
 
         public abstract void TakeDamage(float damage);
 
@@ -38,8 +44,6 @@ namespace Enemies.Runtime
         #region Privates & Protected
 
         protected Timer _attackTimer;
-        protected float _attackDelay = 2;
-        protected float _maxDetectionRange = 20f;
 
         #endregion
     }

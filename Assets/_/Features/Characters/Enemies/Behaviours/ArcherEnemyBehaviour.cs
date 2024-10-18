@@ -15,7 +15,7 @@ namespace Enemies.Runtime
 
         void Start()
     	{
-            _attackTimer = new Timer(_attackDelay);
+            _attackTimer = new Timer(m_attackDelay);
             _attackTimer.OnTimerFinished += Attack;
         }
 
@@ -24,7 +24,7 @@ namespace Enemies.Runtime
             Vector3 playerPosition = m_blackboard.GetValue<Vector3>("Position"); //Cherche constamment le player
             var distanceWithPlayer = (playerPosition - transform.position).magnitude; //distance avec le player
 
-            if (distanceWithPlayer < _maxDetectionRange)
+            if (distanceWithPlayer < m_maxDetectionRange)
             {
                 transform.LookAt(playerPosition);
 
@@ -55,7 +55,7 @@ namespace Enemies.Runtime
 
         public override void TakeDamage(float damage)
         {
-            throw new System.NotImplementedException();
+            m_lifePoints -= damage;
         }
 
         public override void Attack()
