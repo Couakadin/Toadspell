@@ -7,7 +7,7 @@ namespace Enemies.Runtime
     {
         #region Publics 
 
-        public PoolReferenceData m_projectilePool;
+        public PoolSystem m_projectilePool;
 
         #endregion
 
@@ -15,27 +15,25 @@ namespace Enemies.Runtime
 
         void Start()
     	{
-            _attackTimer = new Timer(_attackDelay);
-            _attackTimer.OnTimerFinished += Attack;
+            _attackTimer = CreateAndSubscribeTimer(m_attackDelay, Attack);
+            _damageTimer = CreateAndSubscribeTimer(_takeDamageDelay, ResumeAfterDamage);
+
+            _originalMaterial = _meshRenderer.material.color;
         }
 
         void Update()
     	{
-            Vector3 playerPosition = m_blackboard.GetValue<Vector3>("Position"); //Cherche constamment le player
-            var distanceWithPlayer = (playerPosition - transform.position).magnitude; //distance avec le player
+            Vector3 playerPosition = _targetToReplaceWithPlayer.transform.position; // m_blackboard.GetValue<Vector3>("Position"); //Keeps track of player position
+            var distanceWithPlayer = (playerPosition - transform.position).magnitude; // Distance with player
 
-            if (distanceWithPlayer < _maxDetectionRange)
+            if (distanceWithPlayer < m_maxDetectionRange && _isShooting)
             {
                 transform.LookAt(playerPosition);
 
-                if (!_attackTimer.IsRunning())
-                {
-                    _attackTimer.Reset();
-                    _attackTimer.Begin();
-                    Debug.Log("Test Timer");
-                }
+                SetOrResetTimer(_attackTimer);
             }
-            if (_attackTimer.IsRunning()) _attackTimer.Tick();
+
+            UpdateTimers();
 
         }
 
@@ -55,15 +53,49 @@ namespace Enemies.Runtime
 
         public override void TakeDamage(float damage)
         {
-            throw new System.NotImplementedException();
+            m_lifePoints -= damage;
+            _isShooting = false;
+            _meshRenderer.material.color = Color.yellow;
+            SetOrResetTimer(_damageTimer);
         }
 
         public override void Attack()
         {
-            GameObject projectile = m_projectilePool.poolSystem.GetFirstAvailableObject();
+            GameObject projectile = m_projectilePool.GetFirstAvailableObject();
             projectile.SetActive(true);
+            projectile.transform.position = transform.position;
+            projectile.transform.rotation = transform.rotation;
             Debug.Log("Attack");
         }
+
+        #endregion
+
+
+        #region Utils
+
+        private void ResumeAfterDamage()
+        {
+            _isShooting = true;
+            _meshRenderer.material.color = _originalMaterial;
+        }
+
+        private void UpdateTimers()
+        {
+            if (_attackTimer.IsRunning()) _attackTimer.Tick();
+            if (_damageTimer.IsRunning()) _damageTimer.Tick();
+        }
+
+        #endregion
+
+
+        #region Private & Protected
+
+        [SerializeField] private GameObject _targetToReplaceWithPlayer;
+        [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private float _takeDamageDelay = .5f;
+        private Color _originalMaterial;
+        private bool _isShooting = true;
+        private Timer _damageTimer;
 
         #endregion
     }

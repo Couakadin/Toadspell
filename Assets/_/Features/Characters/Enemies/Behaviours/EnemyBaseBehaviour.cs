@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Data.Runtime;
+using UnityEngine;
+using System;
 
 namespace Enemies.Runtime
 {
@@ -9,8 +8,17 @@ namespace Enemies.Runtime
     {
         #region Publics
 
+        [Header("Enemy Specificities")]
+        public float m_attackDelay = 2;
+        public float m_lifePoints;
+        public float m_maxDetectionRange = 20f;
+        public IAmInteractable.Size _enemySize;
+
+        [Header("References")]
         public Blackboard m_blackboard;
-        public IAmInteractable.Size m_grapSize => throw new System.NotImplementedException();
+        private GameObject _LockIndicator;
+
+        public IAmInteractable.Size m_grapSize => _enemySize;
 
         public float m_offsetDistance => throw new System.NotImplementedException();
 
@@ -19,18 +27,36 @@ namespace Enemies.Runtime
 
         #region Main Methods
 
-        public abstract void Attack();
-
         public abstract void OnLock();
 
         public abstract void OnUnlock();
 
+        public abstract void Attack();
+
         public abstract void TakeDamage(float damage);
+
+
 
         #endregion
 
 
         #region Utils
+
+        public Timer CreateAndSubscribeTimer(float delay, Action callback)
+        {
+            Timer timer = new Timer(delay);
+            timer.OnTimerFinished += callback;
+            return timer;
+        }
+
+        public void SetOrResetTimer(Timer timer)
+        {
+            if (!timer.IsRunning())
+            {
+                timer.Reset();
+                timer.Begin();
+            }
+        }
 
         #endregion
 
@@ -38,8 +64,6 @@ namespace Enemies.Runtime
         #region Privates & Protected
 
         protected Timer _attackTimer;
-        protected float _attackDelay = 2;
-        protected float _maxDetectionRange = 20f;
 
         #endregion
     }

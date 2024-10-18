@@ -1,37 +1,40 @@
 using Data.Runtime;
+using Meryel.UnityCodeAssist.YamlDotNet.Core.Tokens;
+using UnityEditor;
 using UnityEngine;
+using System;
 
 namespace Enemies.Runtime
 {
-    public class RushEnemyBehaviour : MonoBehaviour, IAmLockable
+    public class RushEnemyBehaviour : EnemyBaseBehaviour
     {
-        public IAmInteractable.Size m_grapSize => _enemySize;
 
         #region Unity API
 
         void Start()
     	{
-            _originPosition = transform.position;
-            _returnTimer = _returnDelay;
+            _attackTimer = CreateAndSubscribeTimer(m_attackDelay, ResetCoolDown);
+            _damageTimer = CreateAndSubscribeTimer(_takeDamageDelay, ResumeAfterDamage);
+            _originalMaterial = _meshRenderer.material.color;
         }
 
-    	void Update()
+        void Update()
     	{
 
-            Vector3 playerPosition = _blackboard.GetValue<Vector3>("Position"); //Cherche constamment le player
-            var distanceWithPlayer = (playerPosition - transform.position).magnitude; //distance avec le player
+            Vector3 playerPosition = _targetToReplaceWithPlayer.transform.position; //m_blackboard.GetValue<Vector3>("Position"); //Keeps track of player
+            var distanceWithPlayer = (playerPosition - transform.position).magnitude; //Distance with player
 
-            // L'ennemi ne suit le joueur du regard que sur les côtés, pas en l'air
+            // Only follows player on the sides, not up
             var playerFollow = new Vector3(playerPosition.x, transform.position.y, playerPosition.z);
 
-            if (distanceWithPlayer < _maxDetectionRange && !_isRushing)
+            if (distanceWithPlayer < m_maxDetectionRange && !_isRushing && !_isFrozen)
             {
                 transform.LookAt(playerFollow);
                 // We can show here that the enemy is about to rush
                 
                 if(IsAlignedWithPlayer(playerPosition) && !_isCoolingDownAfterRush)
                 {
-                    Attack(); // Lance l'attaque si le joueur est proche
+                    Attack(); // Attacks if player is aligned
                 }
             }
 
@@ -39,6 +42,7 @@ namespace Enemies.Runtime
 
             if (_isCoolingDownAfterRush) CooldownAfterRush();
 
+            UpdateTimers();
         }
 
         #endregion
@@ -47,10 +51,10 @@ namespace Enemies.Runtime
         #region Main Methods
 
         [ContextMenu("Rush")]
-        private void Attack()
+        public override void Attack()
         {
-            _isRushing = true;
             _rushStartPosition = transform.position;
+            _isRushing = true;
         }
 
         private void Rush()
@@ -63,6 +67,43 @@ namespace Enemies.Runtime
             }
         }
 
+        public override void OnLock()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void OnUnlock()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        
+        public override void TakeDamage(float damage)
+        {
+            m_lifePoints -= damage;
+            _isFrozen = true;
+            transform.position += -transform.forward * _recoilDistance;
+            _meshRenderer.material.color = Color.yellow;
+            SetOrResetTimer(_damageTimer);
+        }
+
+        [ContextMenu("Damages")]
+        private void TestDamages()
+        {
+            TakeDamage(1);
+        }
+
+        #endregion
+
+
+        #region Utils
+        
+        private void UpdateTimers()
+        {
+            if (_attackTimer.IsRunning()) _attackTimer.Tick();
+            if (_damageTimer.IsRunning()) _damageTimer.Tick();
+        }
+
         private bool IsAlignedWithPlayer(Vector3 playerPosition)
         {
             Vector3 directionToPlayer = (playerPosition - transform.position).normalized;
@@ -71,23 +112,21 @@ namespace Enemies.Runtime
 
             return angleToPlayer <= _angleDetectionRange;
         }
+
         private void CooldownAfterRush()
         {
-            _returnTimer -= Time.deltaTime;
-            if (_returnTimer <= 0)
-            {
-                _isCoolingDownAfterRush = false;
-                _returnTimer = _returnDelay;
-            }
-        }
-        public void OnLock()
-        {
-            throw new System.NotImplementedException();
+            SetOrResetTimer(_attackTimer);
         }
 
-        public void OnUnlock()
+        private void ResetCoolDown()
         {
-            throw new System.NotImplementedException();
+            _isCoolingDownAfterRush = false;
+        }
+
+        private void ResumeAfterDamage()
+        {
+            _isFrozen = false;
+            _meshRenderer.material.color = _originalMaterial;
         }
 
         #endregion
@@ -95,24 +134,26 @@ namespace Enemies.Runtime
 
         #region Privates & Protected
 
-        private IAmInteractable.Size _enemySize;
         [Header("References")]
-        [SerializeField] private Blackboard _blackboard;
-        [SerializeField] private GameObject _lockObject;
+        [SerializeField] private GameObject _targetToReplaceWithPlayer;
+        [SerializeField] private MeshRenderer _meshRenderer;
+
         [Header("Player Detection")]
-        [SerializeField] private float _maxDetectionRange = 20f;
         [SerializeField] private float _angleDetectionRange = 10f;
         
         [Header("Attack Specifics")] 
-        [SerializeField] private float _rushDistance = 5f; // Distance du rush
-        [SerializeField] private float _rushSpeed = 10f; // Vitesse du rush
-        [SerializeField] private float _returnSpeed = 5f; // Vitesse de retour à la position initiale
-        [SerializeField] private float _returnDelay = 5f; // Reinitialise le timer
-        private float _returnTimer; // Est décrémenté en Update
-        private bool _isRushing = false; // Indique si l'ennemi rush
-        private bool _isCoolingDownAfterRush = false;
+        [SerializeField] private float _rushDistance = 5f;
+        [SerializeField] private float _rushSpeed = 10f;
+        private bool _isFrozen = false;
+        private bool _isRushing = false; // Indicates if attacking
+        private bool _isCoolingDownAfterRush = false; //Indicates if cooldown is playing
         private Vector3 _rushStartPosition;
-        private Vector3 _originPosition; // Position de départ du rush
+
+        [Header("Damages")]
+        [SerializeField] private float _recoilDistance = .5f;
+        [SerializeField] private float _takeDamageDelay = .5f;
+        private Timer _damageTimer;
+        private Color _originalMaterial;
 
         #endregion
     }
