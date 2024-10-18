@@ -1,5 +1,6 @@
 using Data.Runtime;
 using UnityEngine;
+using System;
 
 namespace Enemies.Runtime
 {
@@ -15,6 +16,7 @@ namespace Enemies.Runtime
 
         [Header("References")]
         public Blackboard m_blackboard;
+        private GameObject _LockIndicator;
 
         public IAmInteractable.Size m_grapSize => _enemySize;
 
@@ -33,10 +35,28 @@ namespace Enemies.Runtime
 
         public abstract void TakeDamage(float damage);
 
+
+
         #endregion
 
 
         #region Utils
+
+        public Timer CreateAndSubscribeTimer(float delay, Action callback)
+        {
+            Timer timer = new Timer(delay);
+            timer.OnTimerFinished += callback;
+            return timer;
+        }
+
+        public void SetOrResetTimer(Timer timer)
+        {
+            if (!timer.IsRunning())
+            {
+                timer.Reset();
+                timer.Begin();
+            }
+        }
 
         #endregion
 
