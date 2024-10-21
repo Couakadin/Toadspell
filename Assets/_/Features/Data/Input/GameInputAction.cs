@@ -89,15 +89,6 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Zoom"",
-                    ""type"": ""Value"",
-                    ""id"": ""7a54f216-a2a2-45ee-940a-69baf8a177f5"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": ""Clamp(min=-0.1,max=0.1),Invert"",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -290,12 +281,12 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a427500f-c19a-4e61-aeff-9e429c824495"",
-                    ""path"": """",
+                    ""id"": ""7464f483-b477-43db-aa3b-9c8e5c96c4ca"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Zoom"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -352,7 +343,6 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
         m_Gameplay_Lock = m_Gameplay.FindAction("Lock", throwIfNotFound: true);
         m_Gameplay_Tongue = m_Gameplay.FindAction("Tongue", throwIfNotFound: true);
         m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
-        m_Gameplay_Zoom = m_Gameplay.FindAction("Zoom", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -430,7 +420,6 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Lock;
     private readonly InputAction m_Gameplay_Tongue;
     private readonly InputAction m_Gameplay_Look;
-    private readonly InputAction m_Gameplay_Zoom;
     public struct GameplayActions
     {
         private @GameInputAction m_Wrapper;
@@ -442,7 +431,6 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
         public InputAction @Lock => m_Wrapper.m_Gameplay_Lock;
         public InputAction @Tongue => m_Wrapper.m_Gameplay_Tongue;
         public InputAction @Look => m_Wrapper.m_Gameplay_Look;
-        public InputAction @Zoom => m_Wrapper.m_Gameplay_Zoom;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -473,9 +461,6 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Zoom.started += instance.OnZoom;
-            @Zoom.performed += instance.OnZoom;
-            @Zoom.canceled += instance.OnZoom;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -501,9 +486,6 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Zoom.started -= instance.OnZoom;
-            @Zoom.performed -= instance.OnZoom;
-            @Zoom.canceled -= instance.OnZoom;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -576,7 +558,6 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
         void OnLock(InputAction.CallbackContext context);
         void OnTongue(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnZoom(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

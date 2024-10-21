@@ -67,15 +67,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Zoom",
-                    "type": "Value",
-                    "id": "7a54f216-a2a2-45ee-940a-69baf8a177f5",
-                    "expectedControlType": "Axis",
-                    "processors": "Clamp(min=-0.1,max=0.1),Invert",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -268,12 +259,12 @@
                 },
                 {
                     "name": "",
-                    "id": "a427500f-c19a-4e61-aeff-9e429c824495",
-                    "path": "",
+                    "id": "7464f483-b477-43db-aa3b-9c8e5c96c4ca",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Zoom",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

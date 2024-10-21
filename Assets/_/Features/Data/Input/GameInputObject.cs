@@ -160,11 +160,6 @@ namespace Data.Runtime
                 _actionStates["Look"] = false;
         }
 
-        public void OnZoom(InputAction.CallbackContext context)
-        {
-            
-        }
-
         #endregion
 
         #region Privates
