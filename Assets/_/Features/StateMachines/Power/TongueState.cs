@@ -10,63 +10,67 @@ namespace StateMachine.Runtime
 
         public TongueState(StateMachineCore stateMachine, GameInputObject inputReader, GameObject tongueTip, Dictionary<string, object> parameterDictionary = null) : base(stateMachine, parameterDictionary)
         {
-            this._stateMachine = stateMachine;
-            this._inputReader = inputReader;
-            this._tongueTip = tongueTip;
-            this._tongueTipTransform = _tongueTip.transform;
-            this._parameterDictionary = parameterDictionary;
+            // AState Heritage
+            _stateMachine = stateMachine;
+            _inputReader = inputReader;
+            _parameterDictionary = parameterDictionary;
 
-            _mainCamera = Camera.main;
-            _mainCameraTransform = _mainCamera.transform;
 
+            // Tongue
+            _tongueTip = tongueTip;
+            _tongueTipTransform = _tongueTip.transform;
             _initialTongueParent = _tongueTipTransform.parent;
+            _tongueTip.TryGetComponent(out _tongueRigidbody);
+            _tongueTip.TryGetComponent(out _tongueCollider);
+            _tongueBounds = _tongueCollider.bounds;
 
+            // Player
+            _playerTransform.TryGetComponent(out _playerCollider);
+            _playerBounds = _playerCollider.bounds;
+
+            // Timer
             _tongueCooldownTimer = new Timer(.1f);
-            _distanceMaxAim = _tongueStats.m_maxDistanceAim;
-            _distanceMaxLock = _tongueStats.m_maxDistanceLock;
         }
 
-        public void Enter()
+        public string Name() => "Tongue";
+
+        public void Enter() 
         {
-            _tongueDistanceCovered = 0;
-            _tongueTipTransform.parent = null;
+            _tongueRigidbody.position = _playerPosition;
+            _tongueDistanceCovered = Vector3.zero;
             _tongueCooldownTimer?.Reset();
-            _goAim = false;
-            _goLock = false;
             _tongueCooldownTimer.OnTimerFinished += ReturnPowerless;
+            _currentLock = _tongueBlackboard.GetValue<GameObject>("currentLockedTarget") ?? null;
+            _tongueTip.SetActive(true);
         }
 
         public void Exit()
         {
+            _tongueTip.SetActive(false);
             _tongueCooldownTimer?.Stop();
             _tongueCooldownTimer.OnTimerFinished -= ReturnPowerless;
+            TongueStop();
+            _goTongueLock = false;
+            _goTongueAim = false;
         }
 
         public void Tick()
         {
             _tongueCooldownTimer.Tick();
-            _distanceToMove = _tongueStats.m_speed * Time.deltaTime;
 
-            if (_goAim) StartRaycastSendingTongue();
-            else if (_goLock) StartLockedSendingTongue();
-
-            if (_goAim || _goLock) return;
-
-            // Step 1: Rotate the player towards the target
-            if (_playerBlackboard.GetValue<bool>("IsAiming"))
-            {
-                if (Physics.Raycast(_mainCameraTransform.position, _mainCameraTransform.forward, out _hit, _tongueStats.m_maxDistanceAim, _playerStats.m_detectionLayer))
-                    _goAim = true;
-            }
-            else if (!_playerBlackboard.GetValue<bool>("IsAiming") && _tongueBlackboard.GetValue<GameObject>("currentLockedTarget") != null)
-            {
-                _currentLock = _tongueBlackboard.GetValue<GameObject>("currentLockedTarget");
-                _goLock = true;
-            }
-            else ReturnTongue(true);
+            if (!_playerBlackboard.GetValue<bool>("IsAiming") && _currentLock != null)
+                _goTongueLock = true;
+            else if (_playerBlackboard.GetValue<bool>("IsAiming") && Physics.Raycast(_mainCameraTransform.position, _mainCameraTransform.forward, out _hit, _tongueStats.m_maxDistanceAim/*,_playerStats.m_detectionLayer*/))
+                _goTongueAim = true;
         }
 
-        public void FixedTick() {  }
+        public void FixedTick() 
+        {
+            if (_goTongueLock && !IsMaxDistanceReached(_tongueStats.m_maxDistanceLock)) StartLockedTongue();
+            else if (_goTongueAim && !IsMaxDistanceReached(_hit.distance))
+                StartAimTongue();
+            else if (IsMaxDistanceReached(_tongueStats.m_maxDistanceLock) || IsMaxDistanceReached(_hit.distance)) TongueReturn();
+        }
 
         public void LateTick() { }
 
@@ -74,154 +78,95 @@ namespace StateMachine.Runtime
 
         #region Utils
 
-        private void RotateToTarget(Transform target)
+        private void StartLockedTongue() => TongueMoveTo(_currentLock.transform.position, _currentLock);
+
+        private void StartAimTongue() => TongueMoveTo(_hit.point, _hit.collider.gameObject);
+
+        /// <summary>
+        /// Calculate the total distance covered by the tongue.
+        /// </summary>
+        /// <returns></returns>
+        private float TongueDistanceCovered()
         {
-            // Step 1: Rotate towards the target
-            Vector3 direction = (target.position - _playerTransform.position).normalized;
-
-            Quaternion targetRotation = direction != Vector3.zero ? Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z)) : _playerTransform.rotation;
-
-            _playerTransform.rotation = Quaternion.Slerp(
-                _playerTransform.rotation,
-                targetRotation,
-                Time.deltaTime * _tongueStats.m_rotationSpeed
-            );
+            _tongueDistanceCovered += (_tongueTipTransform.forward * Time.fixedDeltaTime) * _tongueStats.m_speed;
+            return _tongueDistanceCovered.sqrMagnitude;
         }
-
-        private void StartRaycastSendingTongue()
+        /// <summary>
+        /// Compare the current distance covered with a max distance constante.
+        /// </summary>
+        /// <param name="distanceMax">The max distance to compare.</param>
+        /// <returns></returns>
+        private bool IsMaxDistanceReached(float distanceMax) => TongueDistanceCovered() >= distanceMax * distanceMax;
+        /// <summary>
+        /// Stop the tongue at its current emplacement.
+        /// </summary>
+        private void TongueStop() => _tongueRigidbody.velocity = _tongueRigidbody.angularVelocity = Vector3.zero;
+        /// <summary>
+        /// Add a force to impulse the tongue.
+        /// </summary>
+        private void TongueMoveTo(Vector3 targetPosition, GameObject targetCollider)
         {
-            RotateToTarget(_hit.transform);
-            _tongueDistanceCovered += _distanceToMove;
+            _tonguePosition = _tongueBlackboard.GetValue<Vector3>("TonguePosition");
+            _directionToTarget = targetPosition - _tonguePosition;
 
-            // Step 2: Once rotation is complete, move the tongue forward
-            _tongueTipTransform.position = Vector3.MoveTowards(
-                _tongueTipTransform.position,
-                _hit.point,
-                _distanceToMove
-            );
-            
-            // Adjust the max distance to the hit point
-            _distanceMaxAim = _hit.distance;
-            
-            // Check if the tongue has reached the target
-            if (_tongueDistanceCovered >= _distanceMaxAim)
-            {
-                // Step 4: If we hit an interactable and the tongue has reached the target, handle the interaction
-                if (_hit.collider.TryGetComponent(out _interactable))
-                    HandleInteractableHit(_hit.collider.transform);
-            }
+            targetCollider.TryGetComponent(out Collider collider);
+
+            if ((_directionToTarget).sqrMagnitude >= CombineBounds(collider.bounds))
+                _tongueRigidbody.velocity = _directionToTarget.normalized * _tongueStats.m_speed;
+            else TongueStop();
         }
-
-        private void StartLockedSendingTongue()
+        /// <summary>
+        /// Return the tongue to the player.
+        /// </summary>
+        private void TongueReturn()
         {
-            RotateToTarget(_currentLock.transform);
+            _playerPosition = _playerBlackboard.GetValue<Vector3>("Position");
 
-            // Step 2: Once rotation is complete, move the tongue towards the lock
-            _tongueTipTransform.position = Vector3.MoveTowards(
-                _tongueTipTransform.position,
-                _currentLock.transform.position,
-                _distanceToMove
-            );
+            TongueMoveTo(_playerPosition, _playerTransform.gameObject);
 
-            _distanceMaxLock = Vector3.Distance(_tongueBlackboard.GetValue<Vector3>("TonguePosition"), _currentLock.transform.position);
-
-            if (_currentLock.TryGetComponent<Collider>(out Collider targetCollider) && _tongueTipTransform.TryGetComponent<Collider>(out Collider tongueCollider))
-            {
-                // Distance totale entre la langue et la cible
-                _distanceToTarget = Vector3.Distance(_tongueTipTransform.position, _currentLock.transform.position);
-
-                // Calculer la distance de sécurité pour éviter de pénétrer dans la cible
-                _stopDistance = tongueCollider.bounds.extents.z + targetCollider.bounds.extents.z;
-            }
-
-                // Check if the tongue has reached the locked target
-                if (_distanceToTarget <= _stopDistance)
-                // Step 4: Handle interaction if the tongue has reached the locked target
-                HandleInteractableHit(_currentLock.transform);
+            if ((_tonguePosition - _playerPosition).sqrMagnitude <= CombineBounds(_playerBounds, 1f)) _tongueCooldownTimer.Begin();
         }
-
-        private void HandleInteractableHit(Transform interactableTransform)
-        {
-            if (interactableTransform.TryGetComponent(out _interactable))
-            {
-                if (_interactable.m_grapSize == IAmInteractable.Size.Small)
-                {
-                    // Move the object towards the player but stop at an offset distance in front of the player
-                    Vector3 targetPosition = _tongueTipTransform.position;
-                    Vector3 directionToPlayer = (interactableTransform.position - targetPosition).normalized;
-                    Vector3 offsetPosition = targetPosition - directionToPlayer * _interactable.m_offsetDistance;
-
-                    interactableTransform.position = Vector3.MoveTowards(
-                        interactableTransform.position,
-                        offsetPosition,
-                        _tongueStats.m_speed * Time.deltaTime
-                    );
-                    ReturnTongue(true);
-                }
-                else if (_interactable.m_grapSize == IAmInteractable.Size.Large)
-                {
-                    // Move the player towards the object but stop at an offset distance in front of the object
-                    Vector3 objectPosition = interactableTransform.position;
-                    Vector3 directionToObject = (objectPosition - _playerBlackboard.GetValue<Vector3>("Position")).normalized;
-                    Vector3 offsetPosition = objectPosition - directionToObject * _interactable.m_offsetDistance;
-
-                    _playerTransform.position = Vector3.MoveTowards(
-                        _playerBlackboard.GetValue<Vector3>("Position"),
-                        offsetPosition,
-                        _tongueStats.m_speed * Time.deltaTime
-                    );
-                    ReturnTongue();
-                }
-            }
-        }
-
-        private void ReturnTongue(bool MustTheTongueReturn = false)
-        {
-            _initialTonguePosition = _playerBlackboard.GetValue<Vector3>("Position") + new Vector3(0, .65f, 0);
-
-            if (MustTheTongueReturn || Vector3.Distance(_tongueBlackboard.GetValue<Vector3>("TonguePosition"), _initialTonguePosition) <= 1f)
-            {
-                _tongueTipTransform.position = Vector3.MoveTowards(_tongueBlackboard.GetValue<Vector3>("TonguePosition"), _initialTonguePosition, _tongueStats.m_speed * Time.deltaTime);
-            }
-
-            if (Vector3.Distance(_tongueBlackboard.GetValue<Vector3>("TonguePosition"), _initialTonguePosition) <= 1f)
-            {
-                _tongueTipTransform.position = _initialTonguePosition;
-                _tongueTipTransform.parent = _initialTongueParent;
-                _goAim = false;
-                _goLock = false;
-                _tongueCooldownTimer.Begin();
-            }
-        }
-
+        /// <summary>
+        /// Calculate collider bounds.
+        /// </summary>
+        /// <param name="boundTarget"></param>
+        /// <param name="offsetBound"></param>
+        /// <returns></returns>
+        private float CombineBounds(Bounds boundTarget, float offsetBound = 0f) => _tongueBounds.extents.magnitude + boundTarget.extents.magnitude + offsetBound;
+        /// <summary>
+        /// Go back to the Powerless State of the State Machine after the tongue logic.
+        /// </summary>
         private void ReturnPowerless() => _stateMachine.SetState(_powerlessState);
 
         #endregion
 
         #region Privates
 
-        // Interfaces
-        private IAmInteractable _interactable;
-
         // Tongue
         private GameObject _tongueTip;
-        private GameObject _currentLock;
-
         private Transform _tongueTipTransform;
         private Transform _initialTongueParent;
+        private Rigidbody _tongueRigidbody;
+        private Vector3 _tonguePosition;
+        private Vector3 _directionToTarget;
+        private Collider _tongueCollider;
+        private Bounds _tongueBounds;
 
+        // Time
         private Timer _tongueCooldownTimer;
+        private Vector3 _tongueDistanceCovered;
 
-        private float _tongueDistanceCovered;
+        // Player
+        private Vector3 _playerPosition;
+        private Vector3 _directionToPlayer;
+        private Collider _playerCollider;
+        private Bounds _playerBounds;
 
-        private float _distanceToMove, _distanceMaxAim, _distanceMaxLock;
-
+        // Target
+        private GameObject _currentLock;
+        private bool _goTongueLock;
+        private bool _goTongueAim;
         private RaycastHit _hit;
-        private Vector3 _initialTonguePosition;
-        private bool _goAim;
-        private bool _goLock;
-        private float _distanceToTarget;
-        private float _stopDistance;
 
         #endregion
     }

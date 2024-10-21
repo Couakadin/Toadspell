@@ -5,6 +5,11 @@ namespace Data.Runtime
         #region Methods
 
         /// <summary>
+        /// Name othis state.
+        /// </summary>
+        public string Name();
+
+        /// <summary>
         ///  When enter this state.
         /// </summary>
         public void Enter();

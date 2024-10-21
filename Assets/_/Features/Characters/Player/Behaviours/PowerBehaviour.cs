@@ -23,7 +23,7 @@ namespace Player.Runtime
             _sharedParameterDictionary.Add("tongueStats", _tongueStats);
         }
 
-            private void Start()
+        private void Start()
         {
             // StateMachine
             _stateMachine = new();
