@@ -323,7 +323,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 802169330}
   m_Follow: {fileID: 802169330}
@@ -821,6 +821,7 @@ GameObject:
   - component: {fileID: 630621868}
   - component: {fileID: 630621867}
   - component: {fileID: 630621866}
+  - component: {fileID: 630621870}
   - component: {fileID: 630621865}
   - component: {fileID: 630621864}
   m_Layer: 6
@@ -843,7 +844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySize: 0
-  _offsetDistance: 2
+  _offsetDistance: 1
 --- !u!114 &630621865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,6 +943,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &630621870
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630621863}
+  serializedVersion: 4
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &699198016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,6 +1457,7 @@ GameObject:
   - component: {fileID: 1534897451}
   - component: {fileID: 1534897450}
   - component: {fileID: 1534897449}
+  - component: {fileID: 1534897453}
   - component: {fileID: 1534897448}
   - component: {fileID: 1534897447}
   m_Layer: 6
@@ -1450,8 +1479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57628844d5175c48a21f9eef17c0dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySize: 1
-  _offsetDistance: 3
+  _enemySize: 2
+  _offsetDistance: 1
 --- !u!114 &1534897448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1550,6 +1579,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1534897453
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534897446}
+  serializedVersion: 4
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &1721212738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,6 +1736,7 @@ GameObject:
   - component: {fileID: 1756018392}
   - component: {fileID: 1756018391}
   - component: {fileID: 1756018390}
+  - component: {fileID: 1756018394}
   - component: {fileID: 1756018389}
   - component: {fileID: 1756018388}
   m_Layer: 6
@@ -1801,6 +1858,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1756018394
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756018387}
+  serializedVersion: 4
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &1770241268
 GameObject:
   m_ObjectHideFlags: 0

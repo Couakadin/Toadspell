@@ -27,6 +27,7 @@ namespace StateMachine.Runtime
             // Player
             _playerTransform.TryGetComponent(out _playerCollider);
             _playerBounds = _playerCollider.bounds;
+            _playerTransform.TryGetComponent(out _playerRigidbody);
 
             // Timer
             _tongueCooldownTimer = new Timer(.1f);
@@ -78,9 +79,17 @@ namespace StateMachine.Runtime
 
         #region Utils
 
-        private void StartLockedTongue() => TongueMoveTo(_currentLock.transform.position, _currentLock);
+        private void StartLockedTongue() 
+        {
+            _targetTransform = _currentLock.transform;
+            TongueMoveTo(_currentLock.transform.position, _currentLock); 
+        }
 
-        private void StartAimTongue() => TongueMoveTo(_hit.point, _hit.collider.gameObject);
+        private void StartAimTongue() 
+        {
+            _targetTransform = _hit.transform;
+            TongueMoveTo(_hit.point, _hit.collider.gameObject); 
+        }
 
         /// <summary>
         /// Calculate the total distance covered by the tongue.
@@ -111,9 +120,43 @@ namespace StateMachine.Runtime
 
             targetCollider.TryGetComponent(out Collider collider);
 
-            if ((_directionToTarget).sqrMagnitude >= CombineBounds(collider.bounds))
+            if (collider == null) return;
+
+            if (_directionToTarget.sqrMagnitude >= CombineBounds(_tongueBounds, collider.bounds))
                 _tongueRigidbody.velocity = _directionToTarget.normalized * _tongueStats.m_speed;
             else TongueStop();
+
+        }
+        private void InteractTongue(Transform target)
+        {
+            target?.TryGetComponent(out _interactable);
+            if (target == null || _interactable == null) return;
+
+            _playerPosition = _playerBlackboard.GetValue<Vector3>("Position");
+            _tonguePosition = _tongueBlackboard.GetValue<Vector3>("TonguePosition");
+
+            target.TryGetComponent(out Collider collider);
+            target.TryGetComponent(out Rigidbody rigidbody);
+
+            if (rigidbody == null || collider == null) return;
+
+            if (_interactable.m_grapSize == IAmInteractable.Size.Small)
+            {
+                _directionToTarget = _playerPosition - target.position;
+
+                if (_directionToTarget.sqrMagnitude >= CombineBounds(collider.bounds, _playerBounds, _interactable.m_offsetDistance))
+                    //rigidbody.velocity = _directionToTarget.normalized * _tongueStats.m_speed;
+                    rigidbody.MovePosition(target.position + _directionToTarget.normalized * _tongueStats.m_speed * Time.fixedDeltaTime);
+                //else rigidbody.velocity = Vector3.zero;
+            }
+            else if (_interactable.m_grapSize == IAmInteractable.Size.Large)
+            {
+                _directionToTarget = target.position - _playerPosition;
+
+                if (_directionToTarget.sqrMagnitude >= CombineBounds(_playerBounds, collider.bounds, _interactable.m_offsetDistance))
+                    _playerRigidbody.velocity = _directionToTarget.normalized * _tongueStats.m_speed;
+                else _playerRigidbody.velocity = Vector3.zero;
+            }
         }
         /// <summary>
         /// Return the tongue to the player.
@@ -124,7 +167,9 @@ namespace StateMachine.Runtime
 
             TongueMoveTo(_playerPosition, _playerTransform.gameObject);
 
-            if ((_tonguePosition - _playerPosition).sqrMagnitude <= CombineBounds(_playerBounds, 1f)) _tongueCooldownTimer.Begin();
+            InteractTongue(_targetTransform);
+
+            if ((_tonguePosition - _playerPosition).sqrMagnitude <= CombineBounds(_tongueBounds, _playerBounds, 1f)) _tongueCooldownTimer.Begin();
         }
         /// <summary>
         /// Calculate collider bounds.
@@ -132,7 +177,7 @@ namespace StateMachine.Runtime
         /// <param name="boundTarget"></param>
         /// <param name="offsetBound"></param>
         /// <returns></returns>
-        private float CombineBounds(Bounds boundTarget, float offsetBound = 0f) => _tongueBounds.extents.magnitude + boundTarget.extents.magnitude + offsetBound;
+        private float CombineBounds(Bounds boundStart, Bounds boundTarget, float offsetBound = 0f) => boundStart.extents.magnitude + boundTarget.extents.magnitude + offsetBound;
         /// <summary>
         /// Go back to the Powerless State of the State Machine after the tongue logic.
         /// </summary>
@@ -167,6 +212,8 @@ namespace StateMachine.Runtime
         private bool _goTongueLock;
         private bool _goTongueAim;
         private RaycastHit _hit;
+        private Transform _targetTransform;
+        private IAmInteractable _interactable;
 
         #endregion
     }

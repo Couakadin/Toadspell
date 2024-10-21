@@ -12,7 +12,8 @@ namespace Data.Runtime
         public enum Size
         {
             Small = 0,
-            Large = 1
+            Medium = 1,
+            Large = 2,
         }
 
         /// <summary>
