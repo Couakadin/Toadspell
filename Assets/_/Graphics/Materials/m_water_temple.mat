@@ -140,11 +140,11 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
-    - _CausticsBrightness: 3
+    - _CausticsBrightness: 9
     - _CausticsChromance: 1
-    - _CausticsDistortion: 0.15
+    - _CausticsDistortion: 0.22
     - _CausticsOn: 1
-    - _CausticsSpeed: 0.050000004
+    - _CausticsSpeed: 0.15
     - _CausticsTiling: 0.2400001
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -195,7 +195,7 @@ Material:
     - _Metallic: 0
     - _NormalMapOn: 1
     - _NormalSpeed: 1
-    - _NormalStrength: 0.135
+    - _NormalStrength: 0.114
     - _NormalSubSpeed: -0.5
     - _NormalSubTiling: 0.5
     - _OcclusionStrength: 1
@@ -217,7 +217,7 @@ Material:
     - _RefractionStrength: 0.1
     - _RiverModeOn: 0
     - _ShadingMode: 1
-    - _ShadowStrength: 1
+    - _ShadowStrength: 0.2
     - _SlopeAngleFalloff: 25
     - _SlopeAngleThreshold: 15
     - _SlopeFoam: 1
