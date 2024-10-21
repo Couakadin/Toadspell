@@ -82,12 +82,14 @@ namespace StateMachine.Runtime
         private void StartLockedTongue() 
         {
             _targetTransform = _currentLock.transform;
+            _playerTransform.LookAt(new Vector3(_targetTransform.position.x, 0f, _targetTransform.position.z));
             TongueMoveTo(_currentLock.transform.position, _currentLock); 
         }
 
         private void StartAimTongue() 
         {
             _targetTransform = _hit.transform;
+            _playerTransform.LookAt(new Vector3(_targetTransform.position.x, 0f, _targetTransform.position.z));
             TongueMoveTo(_hit.point, _hit.collider.gameObject); 
         }
 
@@ -145,9 +147,7 @@ namespace StateMachine.Runtime
                 _directionToTarget = _playerPosition - target.position;
 
                 if (_directionToTarget.sqrMagnitude >= CombineBounds(collider.bounds, _playerBounds, _interactable.m_offsetDistance))
-                    //rigidbody.velocity = _directionToTarget.normalized * _tongueStats.m_speed;
                     rigidbody.MovePosition(target.position + _directionToTarget.normalized * _tongueStats.m_speed * Time.fixedDeltaTime);
-                //else rigidbody.velocity = Vector3.zero;
             }
             else if (_interactable.m_grapSize == IAmInteractable.Size.Large)
             {
@@ -155,7 +155,6 @@ namespace StateMachine.Runtime
 
                 if (_directionToTarget.sqrMagnitude >= CombineBounds(_playerBounds, collider.bounds, _interactable.m_offsetDistance))
                     _playerRigidbody.velocity = _directionToTarget.normalized * _tongueStats.m_speed;
-                else _playerRigidbody.velocity = Vector3.zero;
             }
         }
         /// <summary>
