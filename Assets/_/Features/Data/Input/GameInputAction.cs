@@ -89,6 +89,15 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Spell"",
+                    ""type"": ""Button"",
+                    ""id"": ""69a3c4d9-a736-4447-a9dd-7516bb937cce"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -289,6 +298,28 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48ba45ae-3b5a-4ec8-86c0-da4b2d146e7b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b16c2309-4085-4e21-9bda-27ec1e46ca34"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -343,6 +374,7 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
         m_Gameplay_Lock = m_Gameplay.FindAction("Lock", throwIfNotFound: true);
         m_Gameplay_Tongue = m_Gameplay.FindAction("Tongue", throwIfNotFound: true);
         m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
+        m_Gameplay_Spell = m_Gameplay.FindAction("Spell", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -420,6 +452,7 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Lock;
     private readonly InputAction m_Gameplay_Tongue;
     private readonly InputAction m_Gameplay_Look;
+    private readonly InputAction m_Gameplay_Spell;
     public struct GameplayActions
     {
         private @GameInputAction m_Wrapper;
@@ -431,6 +464,7 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
         public InputAction @Lock => m_Wrapper.m_Gameplay_Lock;
         public InputAction @Tongue => m_Wrapper.m_Gameplay_Tongue;
         public InputAction @Look => m_Wrapper.m_Gameplay_Look;
+        public InputAction @Spell => m_Wrapper.m_Gameplay_Spell;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -461,6 +495,9 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @Spell.started += instance.OnSpell;
+            @Spell.performed += instance.OnSpell;
+            @Spell.canceled += instance.OnSpell;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -486,6 +523,9 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @Spell.started -= instance.OnSpell;
+            @Spell.performed -= instance.OnSpell;
+            @Spell.canceled -= instance.OnSpell;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -558,6 +598,7 @@ public partial class @GameInputAction: IInputActionCollection2, IDisposable
         void OnLock(InputAction.CallbackContext context);
         void OnTongue(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnSpell(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

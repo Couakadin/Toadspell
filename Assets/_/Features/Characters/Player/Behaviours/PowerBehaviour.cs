@@ -8,6 +8,21 @@ namespace Player.Runtime
 {
     public class PowerBehaviour : MonoBehaviour
     {
+        #region Publics
+
+        [EnumToggleButtons]
+        public enum Spell
+        {
+            fire,
+            water,
+            grass,
+            arcane
+        }
+
+        public Spell spell;
+
+        #endregion
+
         #region Unity
 
         private void Awake()
@@ -21,6 +36,9 @@ namespace Player.Runtime
             _sharedParameterDictionary.Add("tongueBlackboard", _tongueBlackboard);
             _sharedParameterDictionary.Add("playerStats", _playerStats);
             _sharedParameterDictionary.Add("tongueStats", _tongueStats);
+
+            spell = Spell.arcane;
+            if (_currentPool == null) _currentPool = _arcanePool;
         }
 
         private void Start()
@@ -29,9 +47,12 @@ namespace Player.Runtime
             _stateMachine = new();
             PowerlessState powerlessState = new(_stateMachine, _inputReader, _sharedParameterDictionary);
             TongueState tongueState = new(_stateMachine, _inputReader, _tongueTip, _sharedParameterDictionary);
+            SpellState spellState = new(_stateMachine, _currentPool, _sharedParameterDictionary);
 
             tongueState.SetPowerlessState(powerlessState);
+            spellState.SetPowerlessState(powerlessState);
             powerlessState.SetTongueState(tongueState);
+            powerlessState.SetSpellState(spellState);
 
             // Initial State
             _stateMachine.SetState(powerlessState);
@@ -40,6 +61,8 @@ namespace Player.Runtime
         private void Update()
         {
             _stateMachine.Tick();
+           
+            UpdateCurrentPool();
         }
 
         private void FixedUpdate()
@@ -56,6 +79,31 @@ namespace Player.Runtime
         #endregion
 
         #region Utils
+
+        /// <summary>
+        /// Updates the current active pool based on the selected spell.
+        /// </summary>
+        private void UpdateCurrentPool()
+        {
+            if (_currentSpell == spell) return;
+            _currentSpell = spell;
+
+            switch (spell)
+            {
+                case Spell.fire:
+                    _currentPool = _firePool;
+                    break;
+                case Spell.water:
+                    _currentPool = _waterPool;
+                    break;
+                case Spell.grass:
+                    _currentPool = _grassPool;
+                    break;
+                case Spell.arcane:
+                    _currentPool = _arcanePool;
+                    break;
+            }
+        }
 
         #endregion
 
@@ -86,8 +134,23 @@ namespace Player.Runtime
         private TongueStatsData _tongueStats;
 
         // GameObjects
+        [Title("Objects")]
         [SerializeField]
         private GameObject _tongueTip;
+
+        // Pools
+        [Title("Pools")]
+        [SerializeField]
+        private PoolSystem _firePool;
+        [SerializeField]
+        private PoolSystem _waterPool;
+        [SerializeField]
+        private PoolSystem _grassPool;
+        [SerializeField]
+        private PoolSystem _arcanePool;
+        [SerializeField]
+        private PoolSystem _currentPool;
+        private Spell _currentSpell;
 
         #endregion
     }

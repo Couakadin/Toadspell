@@ -21,6 +21,8 @@ namespace Data.Runtime
 
         public event Action TongueEvent;
 
+        public event Action SpellEvent;
+
         public event Action PauseEvent;
         public event Action ResumeEvent;
 
@@ -158,6 +160,17 @@ namespace Data.Runtime
             }
             else if (context.phase == InputActionPhase.Canceled)
                 _actionStates["Look"] = false;
+        }
+
+        public void OnSpell(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                _actionStates["Spell"] = true;
+                LookEvent?.Invoke();
+            }
+            else if (context.phase == InputActionPhase.Canceled)
+                _actionStates["Spell"] = false;
         }
 
         #endregion

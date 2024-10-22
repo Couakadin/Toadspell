@@ -122,6 +122,41 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &40755595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 40755596}
+  m_Layer: 0
+  m_Name: === Pools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &40755596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40755595}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 294266702}
+  - {fileID: 277675230}
+  - {fileID: 964743255}
+  - {fileID: 375381200}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &75542490
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +598,153 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &277675229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277675230}
+  - component: {fileID: 277675231}
+  m_Layer: 0
+  m_Name: Water Spell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &277675230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277675229}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 40755596}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &277675231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277675229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poolCapacity: 1
+  m_poolTransform: {fileID: 462605888}
+  m_gameObject: {fileID: 9034298060732826985, guid: fe2ddf2b9c62c884ba0b8c9f67d8ef12,
+    type: 3}
+  m_poolOfObjects: []
+--- !u!1 &294266701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 294266702}
+  - component: {fileID: 294266703}
+  m_Layer: 0
+  m_Name: Fire Spell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &294266702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294266701}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 40755596}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &294266703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294266701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poolCapacity: 1
+  m_poolTransform: {fileID: 462605888}
+  m_gameObject: {fileID: 8479936759779383326, guid: 369bf31348d524d45b6c085af63f0f56,
+    type: 3}
+  m_poolOfObjects: []
+--- !u!1 &375381199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 375381200}
+  - component: {fileID: 375381201}
+  m_Layer: 0
+  m_Name: Arcane Spell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &375381200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375381199}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 40755596}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &375381201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375381199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poolCapacity: 1
+  m_poolTransform: {fileID: 462605888}
+  m_gameObject: {fileID: 7638124327235467493, guid: 524dad1d048d83249bf2a7df7769d863,
+    type: 3}
+  m_poolOfObjects: []
 --- !u!1 &462605887
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,12 +817,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3565205bd3a6543a4468ec984f6a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spell: 0
   _inputReader: {fileID: 11400000, guid: 0bf86aa3c2f61d442b13e911b75f77ef, type: 2}
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   _tongueBlackboard: {fileID: 11400000, guid: a44069e44c2472548b75f8517e038206, type: 2}
   _playerStats: {fileID: 11400000, guid: 616242e9d383cd745bb68171f989f4de, type: 2}
   _tongueStats: {fileID: 11400000, guid: 796f3474563ab4e4eb5ffff4db2e585c, type: 2}
   _tongueTip: {fileID: 75542490}
+  _firePool: {fileID: 294266703}
+  _waterPool: {fileID: 277675231}
+  _grassPool: {fileID: 964743256}
+  _arcanePool: {fileID: 375381201}
+  _currentPool: {fileID: 0}
 --- !u!136 &462605893
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -844,6 +1032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySize: 0
+  _spellType: 0
   _offsetDistance: 1
 --- !u!114 &630621865
 MonoBehaviour:
@@ -1217,6 +1406,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 462605888}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &964743254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 964743255}
+  - component: {fileID: 964743256}
+  m_Layer: 0
+  m_Name: Grass Spell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &964743255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964743254}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 40755596}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &964743256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964743254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poolCapacity: 1
+  m_poolTransform: {fileID: 462605888}
+  m_gameObject: {fileID: 3884492845388431974, guid: 71d6af6b444fd9d4090f28c0d0cdc4fc,
+    type: 3}
+  m_poolOfObjects: []
 --- !u!1 &1262374694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,6 +1718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySize: 2
+  _spellType: 3
   _offsetDistance: 1
 --- !u!114 &1534897448
 MonoBehaviour:
@@ -1759,6 +1998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySize: 0
+  _spellType: 1
   _offsetDistance: 1
 --- !u!114 &1756018389
 MonoBehaviour:
@@ -2365,6 +2605,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2060146024}
+  - {fileID: 40755596}
   - {fileID: 1388844914}
   - {fileID: 699198017}
   - {fileID: 462605888}

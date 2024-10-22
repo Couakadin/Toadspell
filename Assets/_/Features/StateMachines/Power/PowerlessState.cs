@@ -32,6 +32,9 @@ namespace StateMachine.Runtime
             if (_inputReader.IsPerformed("Tongue"))
                 _stateMachine.SetState(_tonguetState);
 
+            if (_inputReader.IsPerformed("Spell"))
+                _stateMachine.SetState(_spellState);
+
             if (!_playerBlackboard.GetValue<bool>("IsAiming"))
             {
                 // Update lockable targets with OverlapSphere

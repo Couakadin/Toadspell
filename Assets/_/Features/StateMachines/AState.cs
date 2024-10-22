@@ -15,6 +15,7 @@ namespace StateMachine.Runtime
         public void SetExplorationState(ExplorationState explorationState) => _explorationState = explorationState;
         public void SetPowerlessState(PowerlessState powerlessState) => _powerlessState = powerlessState;
         public void SetTongueState(TongueState tongueState) => _tonguetState = tongueState;
+        public void SetSpellState(SpellState spellState) => _spellState = spellState;
 
         #endregion
 
@@ -62,6 +63,7 @@ namespace StateMachine.Runtime
         // States Power
         protected PowerlessState _powerlessState;
         protected TongueState _tonguetState;
+        protected SpellState _spellState;
 
         // Dictionary
         protected Dictionary<string, object> _parameterDictionary;

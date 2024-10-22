@@ -1,20 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
+using Data.Runtime;
 using UnityEngine;
 
 public class SpellProjectileBehaviour : MonoBehaviour
 {
     #region Unity API
 
-    private void Start()
+    private void Awake()
     {
-        Invoke(nameof(DeathAfterAWhile), 3);
+        
     }
 
-    void Update()
+    private void Start()
+    {
+    }
+
+    void FixedUpdate()
 	{
-		transform.Translate(Vector3.forward * Time.deltaTime * _speedOfProjectile);
+		transform.Translate(Time.fixedDeltaTime * _speedOfProjectile * Vector3.forward);
 	}
+
+    private void OnEnable()
+    {
+        transform.position = _playerBlackboard.GetValue<Vector3>("Position");
+        Invoke(nameof(DeathAfterAWhile), 3);
+    }
 
     #endregion
 
@@ -22,13 +31,17 @@ public class SpellProjectileBehaviour : MonoBehaviour
 
     private void DeathAfterAWhile()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     #endregion
 
     #region Privates & Protected
 
-    [SerializeField] private float _speedOfProjectile = 10f;
+    [SerializeField]
+    private Blackboard _playerBlackboard;
+
+    [SerializeField] 
+    private float _speedOfProjectile = 10f;
     #endregion
 }

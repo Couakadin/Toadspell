@@ -10,38 +10,43 @@ namespace Data.Runtime
         public int m_poolCapacity;
         public Transform m_poolTransform;
         public GameObject m_gameObject;
-        public List<GameObject> m_poolOfObjects = new List<GameObject>();
+        public List<GameObject> m_poolOfObjects = new();
         #endregion
 
 
         #region Unity API
 
-        private void Awake()
+        private void Start()
         {
-            for(int i = 0; i < m_poolCapacity; i++)
-            {
-                GameObject instance = Instantiate(m_gameObject, m_poolTransform);
-                instance.SetActive(false);
-                m_poolOfObjects.Add(instance);
-            }
+            for(int i = 0; i < m_poolCapacity; i++) InstancePool(m_gameObject);
         }
 
         #endregion
-	
 	
         #region Main Methods
 	
         public GameObject GetFirstAvailableObject()
         {
-            for (int i = 0; i < m_poolOfObjects.Count; i++)
+            foreach (GameObject obj in m_poolOfObjects)
             {
-                if(m_poolOfObjects[i].activeSelf == false) return m_poolOfObjects[i];
+                if (obj.activeSelf == true) continue; 
+                obj.SetActive(true);
+                return obj;
             }
-            GameObject instance = Instantiate(m_gameObject, m_poolTransform);
+            return InstancePool(m_gameObject);
+        }
+
+        #endregion
+
+        #region Utils
+
+        private GameObject InstancePool(GameObject prefab)
+        {
+            GameObject instance = Instantiate(m_gameObject, m_poolTransform.position, m_poolTransform.rotation, transform);
             instance.SetActive(false);
             m_poolOfObjects.Add(instance);
-            return instance;
 
+            return instance;
         }
 
         #endregion

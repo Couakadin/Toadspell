@@ -1,5 +1,6 @@
 using UnityEngine;
 using Data.Runtime;
+using Sirenix.OdinInspector;
 
 namespace Enemies.Runtime
 {
@@ -11,12 +12,16 @@ namespace Enemies.Runtime
 
         public float m_offsetDistance => _offsetDistance;
 
+        public IAmInteractable.SpellType spellType => _spellType;
+
         #endregion
 
         #region Privates
 
-        [SerializeField]
+        [SerializeField, EnumToggleButtons]
         private IAmInteractable.Size _enemySize;
+        [SerializeField, EnumToggleButtons]
+        private IAmInteractable.SpellType _spellType;
         [SerializeField]
         private float _offsetDistance;
 
