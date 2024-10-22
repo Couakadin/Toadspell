@@ -100,7 +100,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 128
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -118,5 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8744e595fd69aa742bf8430991dc5781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_powerBehaviour: {fileID: 0}
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
-  _speedOfProjectile: 10
+  _tongueBlackboard: {fileID: 11400000, guid: a44069e44c2472548b75f8517e038206, type: 2}
+  _speedOfProjectile: 20
