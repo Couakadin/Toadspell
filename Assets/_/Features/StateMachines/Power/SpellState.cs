@@ -10,6 +10,8 @@ namespace StateMachine.Runtime
         {
             this._stateMachine = stateMachine;
             this._parameterDictionary = parameterDictionary;
+
+            _timer = new Timer(1f);
         }
 
         public string Name() => "Spell";
@@ -19,7 +21,6 @@ namespace StateMachine.Runtime
         {
             _currentPool = _playerBlackboard.GetValue<PoolSystem>("CurrentSpell");
 
-            _timer = new Timer(10f);
             _timer.Begin();
             
             _timer.OnTimerFinished += SpellTrigger;
