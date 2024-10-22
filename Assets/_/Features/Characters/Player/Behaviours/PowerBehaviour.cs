@@ -39,6 +39,8 @@ namespace Player.Runtime
 
             spell = Spell.arcane;
             if (_currentPool == null) _currentPool = _arcanePool;
+
+            _playerBlackboard.SetValue<PowerBehaviour>("PowerBehaviour", this);
         }
 
         private void Start()
@@ -74,7 +76,8 @@ namespace Player.Runtime
         {
             _stateMachine.LateTick();
             _tongueBlackboard.SetValue<Vector3>("TonguePosition", _tongueTip.transform.position);
-            _playerBlackboard.SetValue<PoolSystem>("CurrentSpell", _currentPool);
+            _playerBlackboard.SetValue<PoolSystem>("CurrentPool", _currentPool);
+            _playerBlackboard.SetValue<Spell>("CurrentSpell", _currentSpell);
         }
 
         #endregion

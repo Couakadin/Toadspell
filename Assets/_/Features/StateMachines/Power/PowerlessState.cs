@@ -45,6 +45,8 @@ namespace StateMachine.Runtime
             {
                 UnlockTarget();
                 _lockingList.Clear();
+                _currentLockedTarget = null;
+                _tongueBlackboard.SetValue("currentLockedTarget", _currentLockedTarget);
             }
         }
 

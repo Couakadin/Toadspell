@@ -19,11 +19,12 @@ namespace StateMachine.Runtime
 
         public void Enter()
         {
-            _currentPool = _playerBlackboard.GetValue<PoolSystem>("CurrentSpell");
+            _currentPool = _playerBlackboard.GetValue<PoolSystem>("CurrentPool");
+            _currentPool.GetFirstAvailableObject();
 
             _timer.Begin();
             
-            _timer.OnTimerFinished += SpellTrigger;
+            //_timer.OnTimerFinished += SpellTrigger;
             _timer.OnTimerFinished += ChangeState;
         }
 
@@ -31,7 +32,7 @@ namespace StateMachine.Runtime
         {
             _timer.Reset();
 
-            _timer.OnTimerFinished -= SpellTrigger;
+            //_timer.OnTimerFinished -= SpellTrigger;
             _timer.OnTimerFinished -= ChangeState;
         }
 
