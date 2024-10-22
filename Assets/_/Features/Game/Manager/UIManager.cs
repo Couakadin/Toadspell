@@ -18,8 +18,11 @@ namespace Game.Runtime
         {
 
         }
+
         void Start()
     	{
+            _spellImage.color = _spellList[0];
+
             for (int i = 0; i < _maxLives; i++)
             {
                 Debug.Log("hello");
@@ -47,6 +50,17 @@ namespace Game.Runtime
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _teleportFadeOutDelay));
         }
 
+        [ContextMenu("update spell")]
+        private void TestColor()
+        {
+            UpdateSpellImage(_spell);
+        }
+
+        public void UpdateSpellImage(int color)
+        {
+            _spellImage.color = _spellList[color];
+        }
+
         #endregion
 
 
@@ -68,6 +82,11 @@ namespace Game.Runtime
         [SerializeField] private Transform _livesTransform;
         [SerializeField] private int _maxLives;
         [SerializeField] private List<GameObject> _livesList;
+
+        [Header("Spells")]
+        [SerializeField] private List<Color> _spellList = new List<Color>();
+        [SerializeField] private Image _spellImage;
+        [SerializeField] private int _spell;
 
         #endregion
     }
