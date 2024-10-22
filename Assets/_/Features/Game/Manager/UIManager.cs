@@ -1,23 +1,32 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.Runtime
 {
     public class UIManager : MonoBehaviour
     {
         #region Publics
-	
+
         #endregion
 
 
         #region Unity API
-		
-    	void Start()
+
+        private void Awake()
+        {
+
+        }
+        void Start()
     	{
-	
-    	}
+            for (int i = 0; i < _maxLives; i++)
+            {
+                Debug.Log("hello");
+                GameObject life = Instantiate(_livesPrefab, _livesTransform);
+                _livesList.Add(life);
+            }
+        }
 
     	void Update()
     	{
@@ -54,6 +63,11 @@ namespace Game.Runtime
         [SerializeField] private float _teleportIntervalDelay = .2f;
         [SerializeField] private float _teleportFadeOutDelay = 1.5f;
 
+        [Header("Lives")]
+        [SerializeField] private GameObject _livesPrefab;
+        [SerializeField] private Transform _livesTransform;
+        [SerializeField] private int _maxLives;
+        [SerializeField] private List<GameObject> _livesList;
 
         #endregion
     }
