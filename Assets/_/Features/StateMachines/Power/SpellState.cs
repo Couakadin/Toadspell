@@ -6,12 +6,10 @@ namespace StateMachine.Runtime
     public class SpellState : AState, IAmStateMachine
     {
         #region Methods
-        public SpellState(StateMachineCore stateMachine, PoolSystem currentPool, Dictionary<string, object> parameterDictionary = null) : base(stateMachine, parameterDictionary)
+        public SpellState(StateMachineCore stateMachine, Dictionary<string, object> parameterDictionary = null) : base(stateMachine, parameterDictionary)
         {
             this._stateMachine = stateMachine;
             this._parameterDictionary = parameterDictionary;
-
-            this._currentPool = currentPool;
         }
 
         public string Name() => "Spell";
@@ -19,6 +17,8 @@ namespace StateMachine.Runtime
 
         public void Enter()
         {
+            _currentPool = _playerBlackboard.GetValue<PoolSystem>("CurrentSpell");
+
             _timer = new Timer(10f);
             _timer.Begin();
             

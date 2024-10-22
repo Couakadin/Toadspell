@@ -47,7 +47,7 @@ namespace Player.Runtime
             _stateMachine = new();
             PowerlessState powerlessState = new(_stateMachine, _inputReader, _sharedParameterDictionary);
             TongueState tongueState = new(_stateMachine, _inputReader, _tongueTip, _sharedParameterDictionary);
-            SpellState spellState = new(_stateMachine, _currentPool, _sharedParameterDictionary);
+            SpellState spellState = new(_stateMachine, _sharedParameterDictionary);
 
             tongueState.SetPowerlessState(powerlessState);
             spellState.SetPowerlessState(powerlessState);
@@ -74,6 +74,7 @@ namespace Player.Runtime
         {
             _stateMachine.LateTick();
             _tongueBlackboard.SetValue<Vector3>("TonguePosition", _tongueTip.transform.position);
+            _playerBlackboard.SetValue<PoolSystem>("CurrentSpell", _currentPool);
         }
 
         #endregion
