@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24cd8284dafef74a977ab172c5feba3, type: 3}
+  m_Name: FirstLine
+  m_EditorClassIdentifier: 
+  m_image: {fileID: 21300000, guid: 8df6a07b169ad2943a74b796b8c1e2a2, type: 3}
+  m_lines:
+  - m_sentence: "Il \xE9tait une fois"
+    m_screenTime: 0.5
+  - m_sentence: Un magicien trop ordinaire.
+    m_screenTime: 0.8
+  - m_sentence: "Son r\xEAve \xE9tait d'acc\xE9der au domaine c\xE9leste"
+    m_screenTime: 1
+  - m_sentence: "mais il n'\xE9tait accessible qu'aux sorciers extraordinaires. "
+    m_screenTime: 1
