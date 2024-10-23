@@ -23,7 +23,7 @@ public class SpellProjectileBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        gameObject.SetActive(false);
+        DeathAfterAWhile();
     }
 
     #endregion

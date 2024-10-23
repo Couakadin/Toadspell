@@ -53,8 +53,6 @@ namespace StateMachine.Runtime
 
         #region Utils
 
-        private void SpellTrigger() => _currentPool.GetFirstAvailableObject();
-
         private void ChangeState() => _stateMachine.SetState(_powerlessState);
 
         #endregion
