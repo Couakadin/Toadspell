@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3565205bd3a6543a4468ec984f6a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spell: 0
+  m_spell: 0
   _inputReader: {fileID: 11400000, guid: 0bf86aa3c2f61d442b13e911b75f77ef, type: 2}
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   _tongueBlackboard: {fileID: 11400000, guid: a44069e44c2472548b75f8517e038206, type: 2}
@@ -1012,6 +1012,7 @@ GameObject:
   - component: {fileID: 630621870}
   - component: {fileID: 630621865}
   - component: {fileID: 630621864}
+  - component: {fileID: 630621871}
   m_Layer: 6
   m_Name: Cube Left
   m_TagString: Untagged
@@ -1032,7 +1033,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySize: 0
-  _spellType: 0
   _offsetDistance: 1
 --- !u!114 &630621865
 MonoBehaviour:
@@ -1159,6 +1159,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &630621871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630621863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce32c68ee392b4a439ca55b515245c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spell: 0
 --- !u!1 &699198016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,7 +1731,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySize: 2
-  _spellType: 3
   _offsetDistance: 1
 --- !u!114 &1534897448
 MonoBehaviour:
@@ -1978,6 +1990,7 @@ GameObject:
   - component: {fileID: 1756018394}
   - component: {fileID: 1756018389}
   - component: {fileID: 1756018388}
+  - component: {fileID: 1756018395}
   m_Layer: 6
   m_Name: Cube Right
   m_TagString: Untagged
@@ -1998,7 +2011,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemySize: 0
-  _spellType: 1
   _offsetDistance: 1
 --- !u!114 &1756018389
 MonoBehaviour:
@@ -2125,6 +2137,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1756018395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756018387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce32c68ee392b4a439ca55b515245c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spell: 1
 --- !u!1 &1770241268
 GameObject:
   m_ObjectHideFlags: 0

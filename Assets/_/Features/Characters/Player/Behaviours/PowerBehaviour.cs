@@ -3,23 +3,18 @@ using Sirenix.OdinInspector;
 using StateMachine.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
+using static Data.Runtime.IAmSpellGiver;
 
 namespace Player.Runtime
 {
-    public class PowerBehaviour : MonoBehaviour
+    public class PowerBehaviour : MonoBehaviour, IAmSpellGiver
     {
         #region Publics
 
         [EnumToggleButtons]
-        public enum Spell
-        {
-            fire,
-            water,
-            grass,
-            arcane
-        }
+        public Spell spell => m_spell;
 
-        public Spell spell;
+        public Spell m_spell;
 
         #endregion
 
@@ -37,10 +32,8 @@ namespace Player.Runtime
             _sharedParameterDictionary.Add("playerStats", _playerStats);
             _sharedParameterDictionary.Add("tongueStats", _tongueStats);
 
-            spell = Spell.arcane;
+            m_spell = Spell.arcane;
             if (_currentPool == null) _currentPool = _arcanePool;
-
-            _playerBlackboard.SetValue<PowerBehaviour>("PowerBehaviour", this);
         }
 
         private void Start()
@@ -77,7 +70,15 @@ namespace Player.Runtime
             _stateMachine.LateTick();
             _tongueBlackboard.SetValue<Vector3>("TonguePosition", _tongueTip.transform.position);
             _playerBlackboard.SetValue<PoolSystem>("CurrentPool", _currentPool);
-            _playerBlackboard.SetValue<Spell>("CurrentSpell", _currentSpell);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.TryGetComponent(out IAmSpellGiver interact))
+            {
+                m_spell = interact.spell;
+                collision.gameObject.SetActive(false);
+            }
         }
 
         #endregion

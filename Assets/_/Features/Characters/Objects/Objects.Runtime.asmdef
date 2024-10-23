@@ -1,0 +1,17 @@
+{
+    "name": "Objects.Runtime",
+    "rootNamespace": "Objects.Runtime",
+    "references": [
+        "GUID:3cb0a49d909bcb440a975aa3b393c26b",
+        "GUID:74777c3f5ef4bfe4e8cc12178336ec04"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
