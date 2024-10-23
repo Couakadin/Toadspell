@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_cristal
+  m_Name: m_cristal_fire
   m_Shader: {fileID: -6465566751694194690, guid: f96d24399852634419306ce863d3d7e9,
     type: 3}
   m_Parent: {fileID: 0}
@@ -40,16 +40,18 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _bottom_line: 0.43
-    - _fresnal_power: 4.03
-    - _metalic: 0.9
+    - _bottom_line: 0.615
+    - _fresnal_power: 11.28
+    - _metalic: 0.658
+    - _scale_noise: 50
     - _smoothness: 0.7
-    - _top_line: 0.615
+    - _top_line: 0.366
+    - _transparency: 0.9
     m_Colors:
-    - _base_color: {r: 0, g: 0, b: 0, a: 1}
-    - _bottom_color: {r: 11.984311, g: 2.2046614, b: 10.806614, a: 0}
+    - _base_color: {r: 2, g: 0, b: 0, a: 1}
+    - _bottom_color: {r: 23.968624, g: 4.409323, b: 21.61323, a: 1}
     - _fresnel_color: {r: 0.049318135, g: 9.631496, b: 11.984313, a: 0}
-    - _top_color: {r: 0, g: 35.46827, b: 47.93726, a: 0}
+    - _top_color: {r: 0, g: 141.87308, b: 191.74904, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3383002873015604426
 MonoBehaviour:
