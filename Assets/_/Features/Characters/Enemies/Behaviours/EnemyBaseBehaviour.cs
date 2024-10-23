@@ -22,8 +22,6 @@ namespace Enemies.Runtime
 
         public float m_offsetDistance => throw new System.NotImplementedException();
 
-        public IAmInteractable.SpellType spellType => throw new NotImplementedException();
-
         #endregion
 
 

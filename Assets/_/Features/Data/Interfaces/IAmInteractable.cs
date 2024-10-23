@@ -21,16 +21,6 @@ namespace Data.Runtime
         /// </summary>
         Size m_grapSize { get; }
 
-        public enum SpellType
-        {
-            fire,
-            water,
-            grass,
-            arcane
-        }
-
-        SpellType spellType { get; }
-
         float m_offsetDistance { get; }
 
         #endregion

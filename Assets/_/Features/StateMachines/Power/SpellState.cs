@@ -24,7 +24,6 @@ namespace StateMachine.Runtime
 
             _timer.Begin();
             
-            //_timer.OnTimerFinished += SpellTrigger;
             _timer.OnTimerFinished += ChangeState;
         }
 
@@ -32,7 +31,6 @@ namespace StateMachine.Runtime
         {
             _timer.Reset();
 
-            //_timer.OnTimerFinished -= SpellTrigger;
             _timer.OnTimerFinished -= ChangeState;
         }
 
