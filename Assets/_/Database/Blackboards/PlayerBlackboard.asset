@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -34,7 +35,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 7
     - Name: 
       Entry: 7
       Data: 
@@ -103,7 +104,7 @@ MonoBehaviour:
       Data: 5|System.Boolean, mscorlib
     - Name: 
       Entry: 5
-      Data: false
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -121,16 +122,43 @@ MonoBehaviour:
       Data: 6|UnityEngine.Vector3, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 223.658783
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 104.487549
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 76.4998245
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: CurrentStateLocomotion
+    - Name: $v
+      Entry: 7
+      Data: 7|StateMachine.Runtime.ExplorationState, StateMachine.Runtime
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: CurrentPool
+    - Name: $v
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
