@@ -2,6 +2,6 @@
 
 namespace Data.Runtime
 {
-    [CreateAssetMenu(fileName = nameof(MyEvent), menuName = Consts.SCRIPTABLES_SUBMENU + nameof(MyEvent))]
+    [CreateAssetMenu(fileName = nameof(GameObjectEvent), menuName = Consts.SCRIPTABLES_SUBMENU_EVENTS + nameof(GameObjectEvent))]
     public class GameObjectEvent : GenericScriptableEvent<GameObject> { }
 }

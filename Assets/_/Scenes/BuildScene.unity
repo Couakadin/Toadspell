@@ -389,6 +389,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &37427341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -551,6 +552,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &41575109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -713,6 +715,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &44355676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -875,6 +878,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &78349303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1037,6 +1041,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &94099923
 GameObject:
   m_ObjectHideFlags: 0
@@ -6147,6 +6152,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &189746557
 GameObject:
   m_ObjectHideFlags: 0
@@ -6429,6 +6435,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &261584741
 GameObject:
   m_ObjectHideFlags: 0
@@ -7233,6 +7240,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &309088136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7395,6 +7403,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &309332863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7557,6 +7566,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &329297120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7719,6 +7729,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &360495207
 GameObject:
   m_ObjectHideFlags: 0
@@ -8251,6 +8262,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &398544739
 GameObject:
   m_ObjectHideFlags: 0
@@ -9519,6 +9531,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &529671264
 GameObject:
   m_ObjectHideFlags: 0
@@ -10585,6 +10598,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &629584725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10747,6 +10761,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &639101372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11542,6 +11557,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &668521362
 GameObject:
   m_ObjectHideFlags: 0
@@ -12817,6 +12833,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &758054005
 GameObject:
   m_ObjectHideFlags: 0
@@ -13395,6 +13412,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &785718844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13557,6 +13575,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &796785816
 GameObject:
   m_ObjectHideFlags: 0
@@ -13890,6 +13909,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &816219566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14052,6 +14072,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &844915702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14214,6 +14235,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &863275467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14487,6 +14509,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &889510617
 GameObject:
   m_ObjectHideFlags: 0
@@ -15021,6 +15044,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &932125264
 GameObject:
   m_ObjectHideFlags: 0
@@ -15324,6 +15348,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &951342430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15486,6 +15511,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &962301326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20572,6 +20598,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!43 &979916967
 Mesh:
   m_ObjectHideFlags: 0
@@ -22048,6 +22075,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1081151434
 GameObject:
   m_ObjectHideFlags: 0
@@ -22346,6 +22374,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1117805488
 GameObject:
   m_ObjectHideFlags: 0
@@ -22863,6 +22892,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1130382906
 GameObject:
   m_ObjectHideFlags: 0
@@ -23594,6 +23624,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &1181896203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23983,6 +24014,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &1239364004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24145,6 +24177,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1257613336
 GameObject:
   m_ObjectHideFlags: 0
@@ -29230,6 +29263,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &1273449628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29392,6 +29426,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &1289281656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29554,6 +29589,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1300731554
 GameObject:
   m_ObjectHideFlags: 0
@@ -30613,6 +30649,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1360970066
 GameObject:
   m_ObjectHideFlags: 0
@@ -30975,6 +31012,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!43 &1430877185
 Mesh:
   m_ObjectHideFlags: 0
@@ -32591,6 +32629,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &1569848611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32753,6 +32792,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1573987598
 GameObject:
   m_ObjectHideFlags: 0
@@ -33637,74 +33677,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1001 &1648363498
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 56.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 28.68
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 25.27
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 3a69f772a0527174fbb612fc6088393c,
-        type: 3}
-      propertyPath: m_Name
-      value: geo_character_LP
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3a69f772a0527174fbb612fc6088393c, type: 3}
 --- !u!1 &1648578937
 GameObject:
   m_ObjectHideFlags: 0
@@ -33916,6 +33888,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1676289674
 GameObject:
   m_ObjectHideFlags: 0
@@ -35047,6 +35020,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &1755095049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35209,6 +35183,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1762239507
 GameObject:
   m_ObjectHideFlags: 0
@@ -35676,6 +35651,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1793524564
 GameObject:
   m_ObjectHideFlags: 0
@@ -41052,6 +41028,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1001 &1849158809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41214,6 +41191,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1873862528
 GameObject:
   m_ObjectHideFlags: 0
@@ -41861,6 +41839,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1927227777
 GameObject:
   m_ObjectHideFlags: 0
@@ -42378,6 +42357,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1948660850
 GameObject:
   m_ObjectHideFlags: 0
@@ -43032,6 +43012,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!1 &1966738677
 GameObject:
   m_ObjectHideFlags: 0
@@ -43435,6 +43416,7 @@ MonoBehaviour:
   - {fileID: 551081119}
   - {fileID: 717660323}
   - {fileID: 529671265}
+  _onTeleportPointVoidEvent: {fileID: 0}
 --- !u!43 &2077584780
 Mesh:
   m_ObjectHideFlags: 0
@@ -44589,7 +44571,6 @@ SceneRoots:
   - {fileID: 1374268235}
   - {fileID: 1717040394}
   - {fileID: 1071540986}
-  - {fileID: 1648363498}
   - {fileID: 2132617193}
   - {fileID: 591003252}
   - {fileID: 1560455499}

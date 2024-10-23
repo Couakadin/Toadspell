@@ -23,6 +23,7 @@ namespace Game.Runtime
         {
             if(other.gameObject.TryGetComponent(out ICanTeleport player))
             {
+                if(_onTeleportPointVoidEvent != null) _onTeleportPointVoidEvent.Raise();
                 player.Teleport(_TeleportPoint);
             }
         }
@@ -36,7 +37,10 @@ namespace Game.Runtime
         [SerializeField] private int _spawnIndexInList;
         //[SerializeField] private TransformListData _transformsBase;
         [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
-         private Transform _TeleportPoint;
+        private Transform _TeleportPoint;
+
+        [Header("Teleport Event")]
+        [SerializeField] private VoidEvent _onTeleportPointVoidEvent;
 
         #endregion
     }
