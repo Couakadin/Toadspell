@@ -1,8 +1,14 @@
 fileFormatVersion: 2
-guid: 56001413cfe86de4c80561ac5a04ad65
+<<<<<<<< HEAD:Assets/_/Features/Characters/Objects/Behaviours.meta
+guid: d6099dffd9ed43b428abfd1ff85455f1
 folderAsset: yes
 DefaultImporter:
+========
+guid: e21a91407b72153489ed2d4264778e5d
+NativeFormatImporter:
+>>>>>>>> feature/tree:Assets/_/Graphics/Materials/m_foliage.mat.meta
   externalObjects: {}
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

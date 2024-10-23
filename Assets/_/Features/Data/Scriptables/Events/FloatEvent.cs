@@ -2,6 +2,6 @@
 
 namespace Data.Runtime
 {
-    [CreateAssetMenu(fileName = nameof(MyEvent), menuName = Consts.SCRIPTABLES_SUBMENU + nameof(MyEvent))]
+    [CreateAssetMenu(fileName = nameof(FloatEvent), menuName = Consts.SCRIPTABLES_SUBMENU_EVENTS + nameof(FloatEvent))]
     public class FloatEvent : GenericScriptableEvent<float> { }
 }
