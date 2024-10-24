@@ -337,7 +337,8 @@ GameObject:
   - component: {fileID: 219596253}
   - component: {fileID: 219596252}
   - component: {fileID: 219596251}
-  m_Layer: 0
+  - component: {fileID: 219596255}
+  m_Layer: 6
   m_Name: Fire Small Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,6 +431,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 502508085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &219596255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219596250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6c17eecf5e9a4595c7ffa91bd1c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_size: 1
 --- !u!1 &502508084
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +706,8 @@ GameObject:
   - component: {fileID: 1372430532}
   - component: {fileID: 1372430531}
   - component: {fileID: 1372430530}
-  m_Layer: 0
+  - component: {fileID: 1372430534}
+  m_Layer: 6
   m_Name: Water Small Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -785,6 +800,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 502508085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1372430534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372430529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6c17eecf5e9a4595c7ffa91bd1c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_size: 1
 --- !u!1 &1388844913
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +1026,8 @@ GameObject:
   - component: {fileID: 1581388859}
   - component: {fileID: 1581388858}
   - component: {fileID: 1581388857}
-  m_Layer: 0
+  - component: {fileID: 1581388861}
+  m_Layer: 6
   m_Name: Arcane Large Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1091,6 +1120,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 502508085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1581388861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581388856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6c17eecf5e9a4595c7ffa91bd1c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_size: 3
 --- !u!1 &1721212738
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,9 +8,12 @@ public class MoveBehaviour : MonoBehaviour
 
     public float m_jump;
     public float m_speed;
+    public float m_gravity;
     public float m_rotation;
-    public float m_acceleration;
-    public float m_deceleration;
+    public float m_fallMultiplier;
+    public float m_jumpMultiplier;
+    public float m_speedAcceleration;
+    public float m_speedDeceleration;
 
     #endregion
 
@@ -25,7 +28,6 @@ public class MoveBehaviour : MonoBehaviour
         _moveInput = _gameplayInput.Move;
         _jumpInput = _gameplayInput.Jump;
 
-        _gravity = Physics.gravity.y;
         _cameraTransform = Camera.main.transform;
     }
 
@@ -57,9 +59,11 @@ public class MoveBehaviour : MonoBehaviour
 
         if (_isGrounded && _velocity.y < 0) _velocity.y = 0f;
 
-        if (_jumpInput.triggered && _isGrounded) _velocity.y = Mathf.Sqrt(m_jump * -2f * _gravity);
-
-        _velocity.y += Time.deltaTime * _gravity;
+        if (_jumpInput.triggered && _isGrounded) _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
+        else if (_velocity.y < 0 && !_isGrounded) _velocity.y += Time.deltaTime * m_gravity * m_fallMultiplier;
+        else if (_velocity.y < 0 && _isGrounded) _velocity.y = 0;
+        else if (_velocity.y > 0 && !_jumpInput.triggered) _velocity.y += Time.deltaTime * m_gravity * m_jumpMultiplier;
+        else _velocity.y += Time.deltaTime * m_gravity;
 
         if (_direction.magnitude > 0.1f) RotateTowards(_direction);
 
@@ -76,12 +80,12 @@ public class MoveBehaviour : MonoBehaviour
 
         if (targetSpeed > _currentSpeed)
         {
-            _currentSpeed += Time.deltaTime * m_acceleration;
+            _currentSpeed += Time.deltaTime * m_speedAcceleration;
             _currentSpeed = Mathf.Min(_currentSpeed, targetSpeed);
         }
         else if (targetSpeed < _currentSpeed)
         {
-            _currentSpeed -= Time.deltaTime * m_deceleration;
+            _currentSpeed -= Time.deltaTime * m_speedDeceleration;
             _currentSpeed = Mathf.Max(_currentSpeed, targetSpeed);
         }
     }
@@ -131,7 +135,6 @@ public class MoveBehaviour : MonoBehaviour
 
     private bool _isGrounded;
 
-    private float _gravity;
     private float _currentSpeed;
 
     #endregion
