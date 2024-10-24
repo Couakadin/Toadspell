@@ -5,7 +5,7 @@ public class PowerBehaviour : MonoBehaviour
 {
     #region Publics
 
-    public InputAction m_lockInput { get; private set; }
+    public InputAction m_lockInput;
 
     #endregion
 
@@ -22,6 +22,16 @@ public class PowerBehaviour : MonoBehaviour
     {
         _stateMachine = new(this);
         _stateMachine.ChangeState(_stateMachine.m_lockState);
+    }
+
+    private void OnEnable()
+    {
+        _gameInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _gameInput.Disable();
     }
 
     private void Update()

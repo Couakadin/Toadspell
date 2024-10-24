@@ -57,7 +57,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Lock"",
                     ""type"": ""Button"",
-                    ""id"": ""b80399d0-5247-4cec-b900-2e1e1cd9a3e3"",
+                    ""id"": ""c5074ca8-36d4-4fb5-b103-9281b710fa11"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -177,7 +177,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f5b8fbbb-999c-47f2-b2e6-eaf6d97401be"",
+                    ""id"": ""85bf89c8-f19a-4433-ba0c-25b0dcdfcf9d"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -188,7 +188,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""834a0738-17ac-44e6-9448-4c153da46cf9"",
+                    ""id"": ""754f296b-bfcb-40ac-994a-6782aac5d138"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",

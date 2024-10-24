@@ -39,8 +39,7 @@ public class LockState : IState
 
     public void HandleInput()
     {
-        Debug.Log(1);
-        if (m_stateMachine.m_powerBehaviour.m_lockInput.triggered) { Debug.Log(2); SwitchTarget(); }
+        if (m_stateMachine.m_powerBehaviour.m_lockInput.triggered) SwitchTarget();
     }
 
     #endregion
