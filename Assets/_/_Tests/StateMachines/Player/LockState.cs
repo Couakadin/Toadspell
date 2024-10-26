@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LockState : IState
 {
@@ -10,6 +11,17 @@ public class LockState : IState
     public LockState(StateMachine stateMachine)
     {
         m_stateMachine = stateMachine;
+
+        // Player
+        _playerTransform = m_stateMachine.m_powerBehaviour.transform;
+
+        // Input
+        _lockInput = m_stateMachine.m_powerBehaviour.m_lockInput;
+
+        // Lock
+        _detectionAngle = m_stateMachine.m_powerBehaviour.m_detectionAngle;
+        _detectionRadius = m_stateMachine.m_powerBehaviour.m_detectionRadius;
+        _detectionLayer = m_stateMachine.m_powerBehaviour.m_detectionLayer;
     }
 
     public void Enter()
@@ -39,7 +51,7 @@ public class LockState : IState
 
     public void HandleInput()
     {
-        if (m_stateMachine.m_powerBehaviour.m_lockInput.triggered) SwitchTarget();
+        if (_lockInput.triggered) SwitchTarget();
     }
 
     #endregion
@@ -47,23 +59,37 @@ public class LockState : IState
     #region Utils
 
     /// <summary>
-    /// Update the list of lockable objects within the detection radius using OverlapSphere.
+    /// Update the list of lockable objects within the detection radius and a 45-degree cone in front of the player.
     /// </summary>
     private void UpdateLockableList()
     {
         // Get all colliders within the detection radius
-        Collider[] hitColliders = Physics.OverlapSphere(m_stateMachine.m_powerBehaviour.transform.position, _detectionRadius, _detectionLayer);
+        Collider[] hitColliders = Physics.OverlapSphere(_playerTransform.position, _detectionRadius, _detectionLayer);
 
         // Clear the existing list
         _lockingList.Clear();
 
+        // Get the forward direction of the player
+        Vector3 playerForward = _playerTransform.forward;
+
         // Loop through detected colliders
         foreach (Collider hitCollider in hitColliders)
         {
-            // Check if the object has the IAmLockable component
-            if (hitCollider.TryGetComponent<ILockable>(out ILockable lockable))
-                // Add the gameObject of the MonoBehaviour that implements IAmLockable
-                _lockingList.Add(hitCollider.gameObject);
+            // Calculate the direction from the player to the target
+            Vector3 directionToTarget = (hitCollider.transform.position - _playerTransform.position).normalized;
+
+            // Check if the target is within the 45-degree cone in front of the player
+            float angleToTarget = Vector3.Angle(playerForward, directionToTarget);
+
+            if (angleToTarget <= _detectionAngle)
+            {
+                // Check if the object has the IAmLockable component
+                if (hitCollider.TryGetComponent<ILockable>(out ILockable lockable))
+                {
+                    // Add the gameObject of the MonoBehaviour that implements IAmLockable
+                    _lockingList.Add(hitCollider.gameObject);
+                }
+            }
         }
 
         // If no targets are found, unlock the current locked target
@@ -75,6 +101,7 @@ public class LockState : IState
             _currentTargetIndex = 0;
         }
     }
+
 
     /// <summary>
     /// Switch to the next target in the locking list when Tab is pressed.
@@ -136,9 +163,16 @@ public class LockState : IState
     private GameObject _currentLockedTarget = null;
     private int _currentTargetIndex = -1; // Index of the currently locked target in the list
 
-    private float _detectionRadius = 30f;
+    // Player
+    private Transform _playerTransform;
 
-    private LayerMask _detectionLayer = LayerMask.GetMask("Interactable");
+    // Input
+    private InputAction _lockInput;
+    
+    // Lock
+    private float _detectionAngle;
+    private float _detectionRadius;
+    private LayerMask _detectionLayer;
 
     #endregion
 }

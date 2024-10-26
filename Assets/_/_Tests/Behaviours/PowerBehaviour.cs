@@ -5,7 +5,15 @@ public class PowerBehaviour : MonoBehaviour
 {
     #region Publics
 
-    public InputAction m_lockInput;
+    [Header("Lock Params")]
+    [Tooltip("The sideview delimiter to catch lockable targets.")]
+    public float m_detectionAngle;
+    [Tooltip("The range to detect lockable targets.")]
+    public float m_detectionRadius;
+    [Tooltip("The layer of lockable targets.")]
+    public LayerMask m_detectionLayer;
+
+    public InputAction m_lockInput { get; private set; }
 
     #endregion
 

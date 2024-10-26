@@ -282,12 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c18e8b889503394583f0a841892c2a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lockInput:
-    m_Name: Lock Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 2fc51e54-68d6-4945-9e5c-4bc3cdaed310
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  m_detectionAngle: 90
+  m_detectionRadius: 30
+  m_detectionLayer:
+    serializedVersion: 2
+    m_Bits: 64
