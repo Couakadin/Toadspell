@@ -287,3 +287,4 @@ MonoBehaviour:
   m_detectionLayer:
     serializedVersion: 2
     m_Bits: 64
+  m_tongueMaxDidtsance: 30

@@ -8,6 +8,8 @@ public class LockState : IState
 
     public StateMachine m_stateMachine { get; }
 
+    public GameObject m_currentLockTarget { get; private set; }
+
     public LockState(StateMachine stateMachine)
     {
         m_stateMachine = stateMachine;
@@ -17,6 +19,7 @@ public class LockState : IState
 
         // Input
         _lockInput = m_stateMachine.m_powerBehaviour.m_lockInput;
+        _tongueInput = m_stateMachine.m_powerBehaviour.m_tongueInput;
 
         // Lock
         _detectionAngle = m_stateMachine.m_powerBehaviour.m_detectionAngle;
@@ -31,7 +34,7 @@ public class LockState : IState
 
     public void Exit()
     {
-        
+        m_currentLockTarget = _currentLockedTarget;
     }
 
     public void Tick()
@@ -52,6 +55,7 @@ public class LockState : IState
     public void HandleInput()
     {
         if (_lockInput.triggered) SwitchTarget();
+        if (_tongueInput.triggered) m_stateMachine.ChangeState(m_stateMachine.m_tongueState);
     }
 
     #endregion
@@ -168,6 +172,7 @@ public class LockState : IState
 
     // Input
     private InputAction _lockInput;
+    private InputAction _tongueInput;
     
     // Lock
     private float _detectionAngle;

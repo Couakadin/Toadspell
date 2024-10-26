@@ -13,7 +13,12 @@ public class PowerBehaviour : MonoBehaviour
     [Tooltip("The layer of lockable targets.")]
     public LayerMask m_detectionLayer;
 
+    [Header("Tongue Params")]
+    [Tooltip("Max distance the tongue can go.")]
+    public float m_tongueMaxDidtsance;
+
     public InputAction m_lockInput { get; private set; }
+    public InputAction m_tongueInput { get; private set; }
 
     #endregion
 
@@ -24,6 +29,7 @@ public class PowerBehaviour : MonoBehaviour
         _gameInput = new GameInput();
         _gameplayInput = _gameInput.Gameplay;
         m_lockInput = _gameplayInput.Lock;
+        m_tongueInput = _gameplayInput.Tongue;
     }
 
     private void Start()

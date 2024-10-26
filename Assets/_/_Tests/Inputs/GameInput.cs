@@ -62,6 +62,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tongue"",
+                    ""type"": ""Button"",
+                    ""id"": ""59ccc289-25d2-48a6-b915-bef9330934f2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,6 +205,28 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Lock"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a87ab73d-48c0-4d81-bc2b-9c5234886bde"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tongue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef8338f5-8f27-4127-bc1d-f0ac5050832d"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tongue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +239,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
         m_Gameplay_Lock = m_Gameplay.FindAction("Lock", throwIfNotFound: true);
+        m_Gameplay_Tongue = m_Gameplay.FindAction("Tongue", throwIfNotFound: true);
     }
 
     ~@GameInput()
@@ -278,6 +310,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Look;
     private readonly InputAction m_Gameplay_Lock;
+    private readonly InputAction m_Gameplay_Tongue;
     public struct GameplayActions
     {
         private @GameInput m_Wrapper;
@@ -286,6 +319,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Look => m_Wrapper.m_Gameplay_Look;
         public InputAction @Lock => m_Wrapper.m_Gameplay_Lock;
+        public InputAction @Tongue => m_Wrapper.m_Gameplay_Tongue;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -307,6 +341,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Lock.started += instance.OnLock;
             @Lock.performed += instance.OnLock;
             @Lock.canceled += instance.OnLock;
+            @Tongue.started += instance.OnTongue;
+            @Tongue.performed += instance.OnTongue;
+            @Tongue.canceled += instance.OnTongue;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -323,6 +360,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Lock.started -= instance.OnLock;
             @Lock.performed -= instance.OnLock;
             @Lock.canceled -= instance.OnLock;
+            @Tongue.started -= instance.OnTongue;
+            @Tongue.performed -= instance.OnTongue;
+            @Tongue.canceled -= instance.OnTongue;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -346,5 +386,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnLock(InputAction.CallbackContext context);
+        void OnTongue(InputAction.CallbackContext context);
     }
 }
