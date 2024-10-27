@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0552efb83e0fca94d9f15f2bc062d6ed, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  m_moveSpeed: 15
-  m_rotationSpeed: 6
-  m_rotationTime: 0.3
-  m_acceleration: 75
-  m_deceleration: 45
-  m_jumpGravityMultiplier: 1.5
-  m_fallGravityMultiplier: 2.5
-  m_jumpForce: 9
-  m_airControlSpeed: 15
-  m_airControlRotate: 10
-  m_detectionRadius: 15
+  m_moveSpeed: 12
+  m_rotationSpeed: 7
+  m_rotationTime: 0.5
+  m_acceleration: 70
+  m_deceleration: 40
+  m_jumpGravityMultiplier: 3
+  m_fallGravityMultiplier: 3
+  m_jumpForce: 14
+  m_airControlSpeed: 20
+  m_airControlRotate: 15
+  m_detectionRadius: 30
   m_detectionLayer:
     serializedVersion: 2
     m_Bits: 64

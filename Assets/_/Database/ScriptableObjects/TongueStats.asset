@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TongueStats
   m_EditorClassIdentifier: 
   m_maxDistanceAim: 30
-  m_maxDistanceLock: 15
+  m_maxDistanceLock: 25
   m_speed: 50
   m_rotationSpeed: 10
