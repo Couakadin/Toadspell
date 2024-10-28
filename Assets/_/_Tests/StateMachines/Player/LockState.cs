@@ -22,9 +22,12 @@ public class LockState : IState
         _tongueInput = m_stateMachine.m_powerBehaviour.m_tongueInput;
 
         // Lock
-        _detectionAngle = m_stateMachine.m_powerBehaviour.m_detectionAngle;
         _detectionRadius = m_stateMachine.m_powerBehaviour.m_detectionRadius;
         _detectionLayer = m_stateMachine.m_powerBehaviour.m_detectionLayer;
+
+        // Camera
+        _cameraMain = Camera.main;
+        _cameraTransform = _cameraMain.transform;
     }
 
     public void Enter()
@@ -67,45 +70,36 @@ public class LockState : IState
     /// </summary>
     private void UpdateLockableList()
     {
-        // Get all colliders within the detection radius
-        Collider[] hitColliders = Physics.OverlapSphere(_playerTransform.position, _detectionRadius, _detectionLayer);
+        // Obtenir tous les colliders dans le rayon de détection
+        _hitColliders = Physics.OverlapSphere(_playerTransform.position, _detectionRadius, _detectionLayer);
 
-        // Clear the existing list
+        // Effacer la liste existante
         _lockingList.Clear();
 
-        // Get the forward direction of the player
-        Vector3 playerForward = _playerTransform.forward;
-
-        // Loop through detected colliders
-        foreach (Collider hitCollider in hitColliders)
+        // Boucle à travers les colliders détectés
+        foreach (Collider hitCollider in _hitColliders)
         {
-            // Calculate the direction from the player to the target
-            Vector3 directionToTarget = (hitCollider.transform.position - _playerTransform.position).normalized;
+            // Vérifie si l'objet est visible dans l'écran de la caméra
+            _viewportPoint = _cameraMain.WorldToViewportPoint(hitCollider.transform.position);
 
-            // Check if the target is within the 45-degree cone in front of the player
-            float angleToTarget = Vector3.Angle(playerForward, directionToTarget);
+            // Vérifie si le point est dans le champ de vision (dans les limites de l’écran)
+            _isInView = _viewportPoint.z > 0 &&
+                            _viewportPoint.x > 0 && _viewportPoint.x < 1 &&
+                            _viewportPoint.y > 0 && _viewportPoint.y < 1;
 
-            if (angleToTarget <= _detectionAngle)
-            {
-                // Check if the object has the IAmLockable component
-                if (hitCollider.TryGetComponent<ILockable>(out ILockable lockable))
-                {
-                    // Add the gameObject of the MonoBehaviour that implements IAmLockable
-                    _lockingList.Add(hitCollider.gameObject);
-                }
-            }
+            // Si l'objet est visible à l'écran et implémente ILockable, ajoute-le à la liste
+            if (_isInView && hitCollider.TryGetComponent<ILockable>(out ILockable lockable)) _lockingList.Add(hitCollider.gameObject);
         }
 
-        // If no targets are found, unlock the current locked target
+        // Si aucune cible n'est trouvée, déverrouille la cible actuellement verrouillée
         if (_lockingList.Count == 0) UnlockTarget();
-        // If there are targets, ensure the first one is locked if none is currently locked
+        // Si des cibles sont disponibles, verrouille la première si aucune cible n'est verrouillée
         else if (_currentLockedTarget == null)
         {
             LockTarget(_lockingList[0]);
             _currentTargetIndex = 0;
         }
     }
-
 
     /// <summary>
     /// Switch to the next target in the locking list when Tab is pressed.
@@ -169,15 +163,21 @@ public class LockState : IState
 
     // Player
     private Transform _playerTransform;
+    private Collider[] _hitColliders;
 
     // Input
     private InputAction _lockInput;
     private InputAction _tongueInput;
     
     // Lock
-    private float _detectionAngle;
     private float _detectionRadius;
     private LayerMask _detectionLayer;
+
+    // Camera
+    private Camera _cameraMain;
+    private Transform _cameraTransform;
+    private bool _isInView;
+    private Vector3 _viewportPoint;
 
     #endregion
 }

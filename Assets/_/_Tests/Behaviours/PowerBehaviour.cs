@@ -6,19 +6,20 @@ public class PowerBehaviour : MonoBehaviour
     #region Publics
 
     [Header("Lock Params")]
-    [Tooltip("The sideview delimiter to catch lockable targets.")]
-    public float m_detectionAngle;
     [Tooltip("The range to detect lockable targets.")]
     public float m_detectionRadius;
     [Tooltip("The layer of lockable targets.")]
     public LayerMask m_detectionLayer;
 
     [Header("Tongue Params")]
-    [Tooltip("Max distance the tongue can go.")]
-    public float m_tongueMaxDidtsance;
+    [Tooltip("The GameObject of the tongue.")]
+    public GameObject m_tongue;
+    [Tooltip("The speed of the tongue.")]
+    public float m_tongueSpeed;
 
     public InputAction m_lockInput { get; private set; }
     public InputAction m_tongueInput { get; private set; }
+    public InputAction m_moveInput {  get; private set; }
 
     #endregion
 
@@ -30,6 +31,7 @@ public class PowerBehaviour : MonoBehaviour
         _gameplayInput = _gameInput.Gameplay;
         m_lockInput = _gameplayInput.Lock;
         m_tongueInput = _gameplayInput.Tongue;
+        m_moveInput = _gameplayInput.Move;
     }
 
     private void Start()
