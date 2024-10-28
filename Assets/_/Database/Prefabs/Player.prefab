@@ -290,14 +290,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b16d8d4990dd34419379a73398ede12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_jump: 20
+  m_jump: 10
   m_speed: 20
   m_gravity: -18
   m_rotation: 20
   m_fallMultiplier: 2.5
   m_jumpMultiplier: 2
   m_speedAcceleration: 18
-  m_speedDeceleration: 22
+  m_speedDeceleration: 100
 --- !u!114 &8334425831744867161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c18e8b889503394583f0a841892c2a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_detectionRadius: 30
+  m_detectionRadius: 50
   m_detectionLayer:
     serializedVersion: 2
     m_Bits: 64
