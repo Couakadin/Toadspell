@@ -60,8 +60,6 @@ namespace Player.Runtime
         {
             _isGrounded = _characterController.isGrounded;
 
-            if (_isGrounded && _velocity.y < 0) _velocity.y = 0f;
-
             if (_jumpInput.triggered && _isGrounded) _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
             else if (_velocity.y < 0 && !_isGrounded) _velocity.y += Time.deltaTime * m_gravity * m_fallMultiplier;
             else if (_velocity.y < 0 && _isGrounded) _velocity.y = 0;
