@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: m_water_swamp
+  m_Shader: {fileID: -6465566751694194690, guid: d7b0192b9bf19c949900035fa781fdc4,
+    type: 3}
+  m_Parent: {fileID: 2100000, guid: 755a79aa04f6c4549b3f2f93d205dd26, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _ADVANCED_SHADING
+  - _DISTANCE_NORMALS
+  - _FOAM
+  - _NORMALMAP
+  - _REFRACTION
+  - _SMOOTH_INTERSECTION
+  - _TRANSLUCENCY
+  - _WAVES
+  m_InvalidKeywords:
+  - _RECEIVEDYNAMICEFFECTS_ON
+  - _ZCLIP_ON
+  - _ZWRITE_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _CausticsOn: 0
+    - _ColorAbsorption: 0.001
+    - _DepthExp: 0
+    - _FoamBaseAmount: 0.62
+    - _FoamClipping: 0.354
+    - _FoamDistortion: 0
+    - _FoamOn: 1
+    - _FoamSpeed: 1.1000001
+    - _FoamSubSpeed: 0.25
+    - _FoamSubTiling: 0.32999998
+    - _FoamWaveAmount: 0.25
+    - _IntersectionDistortion: 0.303
+    - _IntersectionFalloff: 0.297
+    - _IntersectionLength: 2.95
+    - _IntersectionSpeed: 0.2
+    - _IntersectionTiling: 0.3
+    - _LightingOn: 1
+    - _PointSpotLightReflectionSize: 0
+    - _ReceiveShadows: 1
+    - _ReflectionLighting: 0.712
+    - _ReflectionStrength: 0.446
+    - _SparkleIntensity: 0
+    - _SpecularReflectionsOn: 1
+    - _Speed: 1
+    - _SunReflectionDistortion: 2
+    - _SunReflectionSize: 0
+    - _SunReflectionStrength: 1
+    - _WaveCount: 3
+    - _WaveDistance: 0.719
+    - _WaveHeight: 4
+    - _WaveNormalStr: 22.6
+    - _WaveSpeed: 1
+    - _WaveSteepness: 1.91
+    m_Colors:
+    - _BaseColor: {r: 0.0124822, g: 0.051886797, b: 0.018135194, a: 1}
+    - _FoamColor: {r: 0.1622195, g: 0.16981131, b: 0.010412962, a: 1}
+    - _FoamTiling: {r: 0.060000025, g: 0.060000025, b: 0, a: 0}
+    - _HorizonColor: {r: 0.13633586, g: 0.07271271, b: 0.3584906, a: 0.15}
+    - _IntersectionColor: {r: 0, g: 0.014150947, b: 0.0014858058, a: 1}
+    - _ShallowColor: {r: 0.058428053, g: 0.09433961, b: 0.008454963, a: 0.02}
+    - _WaveFadeDistance: {r: 150, g: 300, b: 0, a: 0}
+  m_BuildTextureStacks: []

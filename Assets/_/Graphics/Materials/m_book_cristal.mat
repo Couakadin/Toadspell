@@ -45,7 +45,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _cristal_color: {r: 4, g: 0.106469885, b: 0.05660367, a: 0}
+    - _cristal_color: {r: 7.129739, g: 0.1681542, b: 0.1681542, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5996561094688915298
 MonoBehaviour:
