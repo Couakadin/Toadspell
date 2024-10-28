@@ -11,9 +11,15 @@ namespace Game.Runtime
 
         #region Unity API
 
-    	void Update()
+        private void Start()
+        {
+            _typingTimer = new Timer(_typingSpeed);
+            StartDialogue(_firstExchange[_currentExchangeIndex]);
+        }
+
+        void Update()
     	{
-	
+
     	}
 
         #endregion
@@ -21,21 +27,46 @@ namespace Game.Runtime
 
         #region Main Methods
 
+        [ContextMenu("start conversation")]
+        private void testDialogues() 
+        {
+            StartDialogue(_firstExchange[_currentExchangeIndex]);
+        }
+
         public void StartDialogue(Dialogue dialogue)
         {
             _currentDialogue = dialogue;
             _currentLineIndex = 0;
 
             _speakerImage.sprite = dialogue.m_image;
+            _characterName.text = dialogue.m_speakerName;
             DisplayNextLines();
         }
 
-        private void DisplayNextLines()
+        public void DisplayNextLines()
         {
             if (_currentLineIndex < _currentDialogue.m_lines.Count)
             {
+
                 _typingSpeed = _currentDialogue.m_lines[_currentLineIndex].m_screenTime;
+                //_linesOfDialogue.text = _currentDialogue.m_lines[_currentLineIndex].m_sentence;
                 _linesOfDialogue.text = _currentDialogue.m_lines[_currentLineIndex].m_sentence;
+
+
+                _currentLineIndex++;
+            }
+            else
+            {
+                if (_currentExchangeIndex < _firstExchange.Count -1)
+                {
+                    Debug.Log("Next person");
+                    _currentExchangeIndex++;
+                    StartDialogue(_firstExchange[_currentExchangeIndex]);
+                }
+                else
+                {
+                    Debug.Log("Dialogue Has Ended");
+                }
             }
 
         }
@@ -51,16 +82,23 @@ namespace Game.Runtime
         #region Privates & Protected
 
         private Dialogue _currentDialogue;
-        private float _typingSpeed;
-        private int _currentLineIndex;
+        private int _currentExchangeIndex = 0;
+        private int _currentLineIndex = 0;
+        private int _currentCharacterIndex = 0;
+        private bool _isTyping = false;
+
+        private Timer _typingTimer;
+
+        private string _writer;
 
         [Header("Dialogues Specifics")]
-        [SerializeField] private List<Dialogue> _firstExchange;
+        [SerializeField] private List<Dialogue> _firstExchange = new List<Dialogue>();
         [SerializeField] private Image _speakerImage;
+        [SerializeField] private float _typingSpeed;
 
         [Header("Text Specifics")]
-        [SerializeField] private TMP_Text _linesOfDialogue;
         [SerializeField] private TMP_Text _characterName;
+        [SerializeField] private TMP_Text _linesOfDialogue;
 
         #endregion
     }
