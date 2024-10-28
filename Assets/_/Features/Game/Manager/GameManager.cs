@@ -10,14 +10,14 @@ namespace Game.Runtime
 
         private void OnEnable()
         {
-            _inputReader.PauseEvent += HandlePause;
-            _inputReader.ResumeEvent += HandleResume;
+            //_inputReader.PauseEvent += HandlePause;
+            //_inputReader.ResumeEvent += HandleResume;
         }
 
         private void OnDisable()
         {
-            _inputReader.PauseEvent -= HandlePause;
-            _inputReader.ResumeEvent -= HandleResume;
+            //_inputReader.PauseEvent -= HandlePause;
+            //_inputReader.ResumeEvent -= HandleResume;
         }
 
         #endregion
@@ -34,7 +34,7 @@ namespace Game.Runtime
 
         [Title("Input")]
         [SerializeField]
-        private GameInputObject _inputReader;
+        private GameInput _inputReader;
         [SerializeField]
         private GameObject _pauseMenu;
 

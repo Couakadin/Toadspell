@@ -18,7 +18,7 @@ namespace Objects.Runtime
         {
             if (collision.gameObject.TryGetComponent(out PowerBehaviour interact))
             {
-                interact.m_spell = _spell;
+               // interact.m_spell = _spell;
                 Invoke(nameof(RespawnAfterAWhile), 3);
                 gameObject.SetActive(false);
             }

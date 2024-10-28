@@ -4,7 +4,7 @@ using System;
 
 namespace Enemies.Runtime
 {
-    public abstract class EnemyBaseBehaviour : MonoBehaviour, IAmLockable, IAmInteractable, ICanBeHurt
+    public abstract class EnemyBaseBehaviour : MonoBehaviour, IAmLockable, ICanBeHurt
     {
         #region Publics
 
@@ -12,13 +12,10 @@ namespace Enemies.Runtime
         public float m_attackDelay = 2;
         public float m_lifePoints;
         public float m_maxDetectionRange = 20f;
-        public IAmInteractable.Size _enemySize;
 
         [Header("References")]
         public Blackboard m_blackboard;
         private GameObject _LockIndicator;
-
-        public IAmInteractable.Size m_grapSize => _enemySize;
 
         public float m_offsetDistance => throw new System.NotImplementedException();
 
