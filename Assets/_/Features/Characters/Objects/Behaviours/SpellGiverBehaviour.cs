@@ -14,11 +14,11 @@ namespace Objects.Runtime
             _initialPosition = transform.position;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider collision)
         {
             if (collision.gameObject.TryGetComponent(out PowerBehaviour interact))
             {
-               // interact.m_spell = _spell;
+                interact.m_spell = _spell;
                 Invoke(nameof(RespawnAfterAWhile), 3);
                 gameObject.SetActive(false);
             }

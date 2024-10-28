@@ -73,6 +73,15 @@ namespace Data.Runtime
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spell"",
+                    ""type"": ""Button"",
+                    ""id"": ""8523e19b-d1e5-4875-8883-532de06ed3eb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -229,6 +238,28 @@ namespace Data.Runtime
                     ""action"": ""Tongue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21f97b28-3aeb-427d-8e07-ca58d3b5a73e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd869167-96c5-4840-b79a-deb99e6d7ba0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -242,6 +273,7 @@ namespace Data.Runtime
             m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
             m_Gameplay_Lock = m_Gameplay.FindAction("Lock", throwIfNotFound: true);
             m_Gameplay_Tongue = m_Gameplay.FindAction("Tongue", throwIfNotFound: true);
+            m_Gameplay_Spell = m_Gameplay.FindAction("Spell", throwIfNotFound: true);
         }
 
         ~@GameInput()
@@ -313,6 +345,7 @@ namespace Data.Runtime
         private readonly InputAction m_Gameplay_Look;
         private readonly InputAction m_Gameplay_Lock;
         private readonly InputAction m_Gameplay_Tongue;
+        private readonly InputAction m_Gameplay_Spell;
         public struct GameplayActions
         {
             private @GameInput m_Wrapper;
@@ -322,6 +355,7 @@ namespace Data.Runtime
             public InputAction @Look => m_Wrapper.m_Gameplay_Look;
             public InputAction @Lock => m_Wrapper.m_Gameplay_Lock;
             public InputAction @Tongue => m_Wrapper.m_Gameplay_Tongue;
+            public InputAction @Spell => m_Wrapper.m_Gameplay_Spell;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -346,6 +380,9 @@ namespace Data.Runtime
                 @Tongue.started += instance.OnTongue;
                 @Tongue.performed += instance.OnTongue;
                 @Tongue.canceled += instance.OnTongue;
+                @Spell.started += instance.OnSpell;
+                @Spell.performed += instance.OnSpell;
+                @Spell.canceled += instance.OnSpell;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -365,6 +402,9 @@ namespace Data.Runtime
                 @Tongue.started -= instance.OnTongue;
                 @Tongue.performed -= instance.OnTongue;
                 @Tongue.canceled -= instance.OnTongue;
+                @Spell.started -= instance.OnSpell;
+                @Spell.performed -= instance.OnSpell;
+                @Spell.canceled -= instance.OnSpell;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -389,6 +429,7 @@ namespace Data.Runtime
             void OnLook(InputAction.CallbackContext context);
             void OnLock(InputAction.CallbackContext context);
             void OnTongue(InputAction.CallbackContext context);
+            void OnSpell(InputAction.CallbackContext context);
         }
     }
 }

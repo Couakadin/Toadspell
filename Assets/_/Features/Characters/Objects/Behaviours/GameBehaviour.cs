@@ -1,4 +1,7 @@
 using Cinemachine;
+using Data.Runtime;
+using Player.Runtime;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Objects.Runtime
@@ -17,6 +20,10 @@ namespace Objects.Runtime
         [Tooltip("The Third Person Camere to init.")]
         public CinemachineVirtualCamera m_camera;
 
+        [Header("Init Pools")]
+        [Tooltip("The spell pool to init.")]
+        public List<PoolSystem> m_spellPools;
+
         #endregion
 
         #region Unity
@@ -30,9 +37,16 @@ namespace Objects.Runtime
         private void Start()
         {
             _player = Instantiate(m_player, m_position);
+            _player.TryGetComponent(out _powerBehaviour);
 
             m_camera.Follow = _player.transform;
             m_camera.LookAt = _player.transform;
+
+            foreach (PoolSystem pool in m_spellPools)
+            {
+                pool.m_poolTransform = _player.transform;
+                _powerBehaviour.m_spellPools.Add(pool);
+            }
         }
 
         #endregion
@@ -40,6 +54,7 @@ namespace Objects.Runtime
         #region Privates
 
         private GameObject _player;
+        private PowerBehaviour _powerBehaviour;
 
         #endregion
     }

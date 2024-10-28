@@ -1,10 +1,12 @@
 using Data.Runtime;
+using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player.Runtime
 {
-    public class PowerBehaviour : MonoBehaviour
+    public class PowerBehaviour : MonoBehaviour, IAmSpellGiver
     {
         #region Publics
 
@@ -23,6 +25,13 @@ namespace Player.Runtime
         public InputAction m_lockInput { get; private set; }
         public InputAction m_tongueInput { get; private set; }
         public InputAction m_moveInput { get; private set; }
+        public InputAction m_spellInput { get; private set; }
+
+        [Header("Spell Params")]
+        [EnumToggleButtons]
+        public IAmSpellGiver.Spell m_spell;
+        public PoolSystem m_currentPool;
+        public List<PoolSystem> m_spellPools;
 
         #endregion
 
@@ -35,12 +44,15 @@ namespace Player.Runtime
             m_lockInput = _gameplayInput.Lock;
             m_tongueInput = _gameplayInput.Tongue;
             m_moveInput = _gameplayInput.Move;
+            m_spellInput = _gameplayInput.Spell;
         }
 
         private void Start()
         {
             _stateMachine = new(this);
             _stateMachine.ChangeState(_stateMachine.m_lockState);
+
+            m_spell = IAmSpellGiver.Spell.arcane;
         }
 
         private void OnEnable()
@@ -57,6 +69,19 @@ namespace Player.Runtime
         {
             _stateMachine.HandleInput();
             _stateMachine.Tick();
+
+            switch(spell)
+            {
+                case (IAmSpellGiver.Spell.arcane):
+                    m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Arcane Pool");
+                    break;
+                case (IAmSpellGiver.Spell.fire):
+                    m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Fire Pool");
+                    break;
+                case (IAmSpellGiver.Spell.water):
+                    m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Water Pool");
+                    break;
+            }
         }
 
         private void FixedUpdate()
@@ -68,6 +93,12 @@ namespace Player.Runtime
         {
             _stateMachine.FinalTick();
         }
+
+        #endregion
+
+        #region Methods
+
+        public IAmSpellGiver.Spell spell => m_spell;
 
         #endregion
 

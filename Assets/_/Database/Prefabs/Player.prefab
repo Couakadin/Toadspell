@@ -316,3 +316,6 @@ MonoBehaviour:
     m_Bits: 64
   m_tongue: {fileID: 5384183950017905746}
   m_tongueSpeed: 50
+  m_spell: 0
+  m_currentPool: {fileID: 0}
+  _spellPools: []
