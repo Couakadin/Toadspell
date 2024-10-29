@@ -12,11 +12,12 @@ namespace Objects.Runtime
 
         private void OnEnable()
         {
-            meshRenderer.enabled = true;
+            //meshRenderer.enabled = true;
         }
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log($"collect + {_pointsToSend}");
             Collect();
         }
 
@@ -27,7 +28,8 @@ namespace Objects.Runtime
 
         public void Collect()
         {
-            _onCollectionEvent.Raise(_livesToAdd);
+            
+            _onCollectionEvent.Raise(_pointsToSend);
             Disappear();
         }
 
@@ -36,7 +38,7 @@ namespace Objects.Runtime
             //meshRenderer.enabled = false;
             //_audioSource.PlayOneShot(_collectionSound);
             //_collectionParticles.Play();
-            if (!_audioSource.isPlaying || _collectionParticles.isPlaying) return;
+            //if (!_audioSource.isPlaying || _collectionParticles.isPlaying) return;
             gameObject.SetActive(false);
         }
 
@@ -45,9 +47,9 @@ namespace Objects.Runtime
 
         #region Privates & Protected
 
-        [SerializeField] private int _livesToAdd;
-        [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private int _pointsToSend;
         [SerializeField] private IntEvent _onCollectionEvent;
+        [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private ParticleSystem _collectionParticles;
         [SerializeField] private AudioClip _collectionSound;
         [SerializeField] private AudioSource _audioSource;
