@@ -36,7 +36,7 @@ namespace Objects.Runtime
 
         private void Start()
         {
-            _player = Instantiate(m_player, m_position);
+            _player = Instantiate(m_player, m_position.position, Quaternion.identity, null);
             _player.TryGetComponent(out _powerBehaviour);
 
             m_camera.Follow = _player.transform;

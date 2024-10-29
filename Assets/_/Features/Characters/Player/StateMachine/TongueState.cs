@@ -59,7 +59,8 @@ namespace Player.Runtime
 
         public void FinalTick()
         {
-
+            if (_hit.collider == null) return;
+            _playerTransform.LookAt(new Vector3(_hit.point.x, _playerTransform.position.y, _hit.point.z));
         }
 
         public void HandleInput()
@@ -82,7 +83,6 @@ namespace Player.Runtime
                 _hit.collider?.TryGetComponent(out _sizeable);
                 _hit.collider?.TryGetComponent(out _fixedJoint);
 
-                _playerTransform.LookAt(new Vector3(_hit.point.x, _playerTransform.position.y, _hit.point.z));
             }
         }
 

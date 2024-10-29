@@ -780,6 +780,7 @@ Transform:
   - {fileID: 525643502}
   - {fileID: 19849001}
   - {fileID: 116278177}
+  - {fileID: 1922966893}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &838569926
@@ -1257,6 +1258,7 @@ MonoBehaviour:
   - {fileID: 525643503}
   - {fileID: 19849002}
   - {fileID: 116278178}
+  - {fileID: 1922966894}
 --- !u!1 &1581388856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,6 +1496,55 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1922966892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922966893}
+  - component: {fileID: 1922966894}
+  m_Layer: 0
+  m_Name: Grass Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1922966893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922966892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 721278777}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1922966894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922966892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poolCapacity: 0
+  m_poolTransform: {fileID: 0}
+  m_gameObject: {fileID: 3884492845388431974, guid: 71d6af6b444fd9d4090f28c0d0cdc4fc,
+    type: 3}
+  m_poolOfObjects: []
 --- !u!1 &1998187667
 GameObject:
   m_ObjectHideFlags: 0
