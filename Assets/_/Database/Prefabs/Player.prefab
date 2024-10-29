@@ -397,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c18e8b889503394583f0a841892c2a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   m_tongueBlackboard: {fileID: 11400000, guid: a44069e44c2472548b75f8517e038206, type: 2}
   m_detectionRadius: 50
   m_detectionLayer:
@@ -407,7 +408,6 @@ MonoBehaviour:
   m_spell: 0
   m_currentPool: {fileID: 0}
   m_spellPools: []
-  _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
 --- !u!1 &7584402360576696916
 GameObject:
   m_ObjectHideFlags: 0

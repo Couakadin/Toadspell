@@ -45,13 +45,18 @@ namespace Player.Runtime
 
         public void Tick()
         {
+            if (_isTongueReturned)
+            {
+                TongueReturn();
+                return;
+            }
+
             if (!_isTongueExtended) DetectTarget();
             if (_hit.collider == null) return;
             if (!_isTongueInteract) TongueExtend();
             if (_isTongueControl) TongueControl();
             if (_isPlayerAttract) PlayerAttract();
 
-            if (_isTongueReturned) TongueReturn();
         }
 
         public void PhysicsTick()
@@ -62,7 +67,8 @@ namespace Player.Runtime
         public void FinalTick()
         {
             if (_hit.collider == null) return;
-            _playerTransform.LookAt(new Vector3(_hit.point.x, _playerTransform.position.y, _hit.point.z));
+
+            _playerTransform.LookAt(new Vector3(_tongueRigidbody.position.x, _playerTransform.position.y, _tongueRigidbody.position.z));
         }
 
         public void HandleInput()
@@ -132,9 +138,11 @@ namespace Player.Runtime
             _tongueMaxDistance = 15f;
             _distanceToTarget = _tongueRigidbody.position - _playerTransform.position;
 
-            if (_distanceToTarget.sqrMagnitude < _tongueMaxDistance * _tongueMaxDistance) return;
-            _limitedPosition = _playerTransform.position + _distanceToTarget.normalized * _tongueMaxDistance;
-            _tongueRigidbody.MovePosition(_limitedPosition);
+            if (_distanceToTarget.sqrMagnitude > _tongueMaxDistance * _tongueMaxDistance)
+            {
+                _limitedPosition = _playerTransform.position + _distanceToTarget.normalized * _tongueMaxDistance;
+                _tongueRigidbody.MovePosition(_limitedPosition);
+            }
 
             if (m_stateMachine.m_powerBehaviour.m_tongueInput.triggered)
             {
@@ -147,7 +155,7 @@ namespace Player.Runtime
         {
             _distanceToTarget = _tongueRigidbody.transform.position - new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z);
 
-            if (_distanceToTarget.sqrMagnitude > 2f)
+            if (_distanceToTarget.sqrMagnitude > 2f && m_stateMachine.m_powerBehaviour.m_tongueInput.IsPressed())
             {
                 _moveBehaviour.enabled = false;
                 _characterController.Move(Time.deltaTime * _tongueSpeed * _distanceToTarget.normalized);
