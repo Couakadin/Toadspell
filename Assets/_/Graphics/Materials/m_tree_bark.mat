@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2255240734975847600
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_rock
+  m_Name: m_tree_bark
   m_Shader: {fileID: 4800000, guid: 6459b2db96a08ca41b0f9b39dc7ad59e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -45,7 +32,6 @@ Material:
   - _LIGHTFALLOFFAFFECTSHADOWT_OFF
   - _LIGIGNOYNORDIR_OFF
   - _MCIALO_OFF
-  - _METALLICSPECGLOSSMAP
   - _MIXMAINTEXTOOUTLINE_OFF
   - _MVCOL_OFF
   - _OUTLINEWIDTHAFFECTEDBYVIEWDISTANCE_OFF
@@ -71,11 +57,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 6d25157a45e8a9c468ac24d1753f23a1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4f7ab59a9e8e71a46bf331fa8207a083, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 814843a3a96029b43aa5aeba6a8b8443, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1c6113c21d425804eb92d84bb8599506, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -111,7 +97,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c5ae49e58d07a9d41a3e4482fb744c32, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4f7ab59a9e8e71a46bf331fa8207a083, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskGloss:
@@ -131,11 +117,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: c26d3c47efa0a00478a73813b90cb364, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 814843a3a96029b43aa5aeba6a8b8443, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1c6113c21d425804eb92d84bb8599506, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -217,14 +203,14 @@ Material:
     - _GIFlatShade: 0
     - _GIShadeThreshold: 0
     - _GlossColorPower: 10
-    - _GlossIntensity: 0.01
+    - _GlossIntensity: 0.02
     - _GlossMapScale: 0
-    - _GlossSoftness: 0.96
+    - _GlossSoftness: 0.4
     - _GlossTextureFollowLight: 0
     - _GlossTextureFollowObjectRotation: 0
     - _GlossTextureRotate: 0
     - _GlossTextureSoftness: 0
-    - _Glossiness: 0.35
+    - _Glossiness: 0.27
     - _GlossyReflections: 0
     - _Glow_Edge_Width: 1
     - _HighlightColorPower: 1
@@ -238,7 +224,7 @@ Material:
     - _MCIALO: 0
     - _MCapIntensity: 1
     - _MVCOL: 0
-    - _MaiColPo: 0.85
+    - _MaiColPo: 0.8
     - _MaxFadDistance: 2
     - _Metallic: 0
     - _MinFadDistance: 0
@@ -280,15 +266,15 @@ Material:
     - _N_F_TP: 0
     - _NoiseSize: 100
     - _NoisyOutlineIntensity: 0
-    - _NormalMapIntensity: 1
+    - _NormalMapIntensity: 0.98
     - _OcclusionStrength: 1
     - _Opacity: 1
     - _Oper: 0
     - _OutlineExtrudeMethod: 0
-    - _OutlineWidth: 1.2
+    - _OutlineWidth: 1.26
     - _OutlineWidthAffectedByViewDistance: 0
-    - _OutlineZPostionInCamera: -0.84
-    - _OverallShadowColorPower: 1.46
+    - _OutlineZPostionInCamera: -0.86
+    - _OverallShadowColorPower: 1.11
     - _PADist: 0
     - _PASize: 0.5
     - _PASmooTrans: 1
@@ -300,7 +286,7 @@ Material:
     - _QueueOffset: 0
     - _RELG: 1
     - _ReceiveShadows: 1
-    - _ReduSha: 0.55
+    - _ReduSha: 2
     - _RefMetallic: 0
     - _RefVal: 0
     - _ReflectionIntensity: 0
@@ -318,7 +304,7 @@ Material:
     - _SelfLitIntensity: 0
     - _SelfLitPower: 2
     - _SelfShadowAffectedByLightShadowStrength: 0
-    - _SelfShadowHardness: 0.78
+    - _SelfShadowHardness: 0.55
     - _SelfShadowRealTimeShadowColorPower: 1
     - _SelfShadowRealtimeShadowIntensity: 1
     - _SelfShadowShadowTAtViewDirection: 0
@@ -362,14 +348,14 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CustomLightDirection: {r: 0, g: 0, b: 10, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GlossColor: {r: 0.22390813, g: 0.44313726, b: 0.12941179, a: 1}
+    - _GlossColor: {r: 0.22696589, g: 0.10702311, b: 0.023153365, a: 1}
     - _Glow_Color: {r: 1, g: 1, b: 1, a: 1}
     - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 0.7781309, g: 0.701068, b: 0.8867924, a: 1}
+    - _MainColor: {r: 0.36553225, g: 0.5670982, b: 0.5924529, a: 1}
     - _ObjPosi: {r: 0, g: 0, b: 0, a: 0}
-    - _OutlineColor: {r: 0.030566031, g: 0.03913591, b: 0.10188681, a: 1}
-    - _OutlineOffset: {r: 0.88, g: 0, b: 0, a: 1}
-    - _OverallShadowColor: {r: 0.27028117, g: 0.3792887, b: 0.4490565, a: 1}
+    - _OutlineColor: {r: 0.06415099, g: 0.023393007, b: 0.006657171, a: 1}
+    - _OutlineOffset: {r: -0.83, g: 0, b: 0, a: 1}
+    - _OverallShadowColor: {r: 0.24528301, g: 0.19772983, b: 0.06803132, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
     - _PrevPosition: {r: 0, g: 0, b: 0, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
@@ -380,3 +366,16 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _XYZPosition: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+--- !u!114 &9040278136308194592
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
