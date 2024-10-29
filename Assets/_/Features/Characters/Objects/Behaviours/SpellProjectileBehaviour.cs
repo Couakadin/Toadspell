@@ -7,14 +7,31 @@ namespace Objects.Runtime
     {
         #region Unity API
 
-        private void FixedUpdate() => transform.Translate(Time.fixedDeltaTime * _speedOfProjectile * Vector3.forward);
-
         private void OnEnable()
         {
-            transform.position = _playerBlackboard.GetValue<Vector3>("Position");
-            //transform.LookAt(_tongueBlackboard.GetValue<GameObject>("currentLockedTarget").transform.position);
+            _target = _tongueBlackboard.GetValue<GameObject>("currentLockedTarget");
 
-            Invoke(nameof(DeathAfterAWhile), 3);
+            if (_target == null) DeathAfterAWhile();
+            else 
+            {
+                transform.position = _playerBlackboard.GetValue<Vector3>("Position");
+                Invoke(nameof(DeathAfterAWhile), 10);
+            }
+        }
+
+        private void OnDisable()
+        {
+            _target = null;
+        }
+
+        private void Update()
+        {
+            if (_target == null) return;
+
+            transform.LookAt(_target.transform.position);
+            _distanceToTarget = _target.transform.position - transform.position;
+
+            transform.position += Time.deltaTime * _speedOfProjectile * _distanceToTarget.normalized;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -38,7 +55,12 @@ namespace Objects.Runtime
         private Blackboard _tongueBlackboard;
 
         [SerializeField]
-        private float _speedOfProjectile = 10f;
+        private float _speedOfProjectile;
+
+        private GameObject _target;
+
+        private Vector3 _distanceToTarget;
+
         #endregion
     }
 }

@@ -60,6 +60,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Culling: 2
     - _GlossIntensity: 0.01
     - _N_F_CA: 0
     - _N_F_GLO: 1

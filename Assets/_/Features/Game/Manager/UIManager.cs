@@ -25,7 +25,6 @@ namespace Game.Runtime
 
             for (int i = 0; i < _maxLives; i++)
             {
-                Debug.Log("hello");
                 GameObject life = Instantiate(_livesPrefab, _livesTransform);
                 _livesList.Add(life);
             }

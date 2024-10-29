@@ -15,7 +15,7 @@ namespace Player.Runtime
         public SpellState(StateMachine stateMachine) 
         {
             m_stateMachine = stateMachine;
-            _timer = new Timer(1f);
+            _timer = new Timer(.5f);
         }
 
         public void Enter()

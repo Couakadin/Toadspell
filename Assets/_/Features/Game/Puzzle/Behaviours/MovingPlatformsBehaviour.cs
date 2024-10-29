@@ -14,6 +14,26 @@ namespace Game.Runtime
             Move();
         }
 
+        //private void OnCollisionStay(Collision collision)
+        //{
+        //    collision.transform.position = transform.position;
+        //}
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.layer == 7)
+            {
+               other.gameObject.transform.parent = transform;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.layer == 7)
+            {
+                other.gameObject.transform.parent = null;
+            }
+        }
         #endregion
 
 
