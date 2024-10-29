@@ -10,6 +10,9 @@ namespace Player.Runtime
     {
         #region Publics
 
+        [Header("Blackboards")]
+        public Blackboard m_tongueBlackboard;
+
         [Header("Lock Params")]
         [Tooltip("The range to detect lockable targets.")]
         public float m_detectionRadius;

@@ -52,6 +52,11 @@ namespace Player.Runtime
             HandleMove();
         }
 
+        private void LateUpdate()
+        {
+            _playerBlackboard.SetValue<Vector3>("Position", transform.position);
+        }
+
         #endregion
 
         #region Utils
@@ -60,9 +65,10 @@ namespace Player.Runtime
         {
             _isGrounded = _characterController.isGrounded;
 
+            //if (_velocity.y < 0 && _isGrounded) _velocity.y = 0;
+
             if (_jumpInput.triggered && _isGrounded) _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
             else if (_velocity.y < 0 && !_isGrounded) _velocity.y += Time.deltaTime * m_gravity * m_fallMultiplier;
-            else if (_velocity.y < 0 && _isGrounded) _velocity.y = 0;
             else if (_velocity.y > 0 && !_jumpInput.triggered) _velocity.y += Time.deltaTime * m_gravity * m_jumpMultiplier;
             else _velocity.y += Time.deltaTime * m_gravity;
 
@@ -118,6 +124,10 @@ namespace Player.Runtime
         #endregion
 
         #region Privates
+
+        [Header("Blackboards")]
+        [SerializeField]
+        private Blackboard _playerBlackboard;
 
         private CharacterController _characterController;
 
