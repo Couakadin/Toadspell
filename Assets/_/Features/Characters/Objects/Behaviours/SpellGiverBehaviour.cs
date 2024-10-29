@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Objects.Runtime
 {
+    [RequireComponent(typeof(FixedJoint))]
     public class SpellGiverBehaviour : MonoBehaviour
     {
         #region Unity
@@ -12,6 +13,8 @@ namespace Objects.Runtime
         private void Awake()
         {
             _initialPosition = transform.position;
+            TryGetComponent(out _initialJoint);
+            _initialJoint.anchor = _initialPosition;
         }
 
         private void OnTriggerEnter(Collider collision)
@@ -27,6 +30,7 @@ namespace Objects.Runtime
         private void OnEnable()
         {
             transform.position = _initialPosition;
+            _initialJoint.anchor = _initialPosition;
         }
 
         #endregion
@@ -49,6 +53,7 @@ namespace Objects.Runtime
         private IAmSpellGiver.Spell _spell;
 
         private Vector3 _initialPosition;
+        private FixedJoint _initialJoint;
 
         #endregion
     }
