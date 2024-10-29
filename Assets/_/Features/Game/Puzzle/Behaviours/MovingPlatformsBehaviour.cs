@@ -21,9 +21,7 @@ namespace Game.Runtime
 
         public void Move()
         {
-            testMovement.Append(transform.DOMove(_desiredPosition.position, _durationOfMovement));
-            testMovement.Append(transform.DOMove(_originPosition, _durationOfMovement));
-
+            testMovement.Append(transform.DOMove(_desiredPosition.position, _durationOfMovement).SetEase(Ease.Linear));
             testMovement.SetLoops(-1, LoopType.Yoyo);
         }
 

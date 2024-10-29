@@ -76,6 +76,6 @@ Material:
     - _FoamTiling: {r: 0.060000025, g: 0.060000025, b: 0, a: 0}
     - _HorizonColor: {r: 0.13633586, g: 0.07271271, b: 0.3584906, a: 0.15}
     - _IntersectionColor: {r: 0, g: 0.014150947, b: 0.0014858058, a: 1}
-    - _ShallowColor: {r: 0.058428053, g: 0.09433961, b: 0.008454963, a: 0.02}
+    - _ShallowColor: {r: 0.007843136, g: 0.09411765, b: 0.056097884, a: 0.02}
     - _WaveFadeDistance: {r: 150, g: 300, b: 0, a: 0}
   m_BuildTextureStacks: []
