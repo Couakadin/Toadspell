@@ -44,12 +44,13 @@ namespace Player.Runtime
 
         public void Exit()
         {
-            m_currentLockTarget = _currentLockedTarget;
+
         }
 
         public void Tick()
         {
             UpdateLockableList();
+            m_currentLockTarget = _currentLockedTarget;
         }
 
         public void PhysicsTick()

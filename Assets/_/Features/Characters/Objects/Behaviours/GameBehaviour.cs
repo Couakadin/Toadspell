@@ -41,6 +41,7 @@ namespace Objects.Runtime
 
             m_camera.Follow = _player.transform;
             m_camera.LookAt = _player.transform;
+            m_camera.transform.forward = _player.transform.forward;
 
             foreach (PoolSystem pool in m_spellPools)
             {
