@@ -4,10 +4,10 @@ namespace Data.Runtime
     {
         public enum Spell
         {
+            arcane,
             fire,
             water,
             grass,
-            arcane
         }
 
         Spell spell { get; }
