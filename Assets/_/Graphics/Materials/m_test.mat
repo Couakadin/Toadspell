@@ -72,5 +72,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
+    - _tilling_tex1: {r: 2, g: 2, b: 0, a: 0}
+    - _tilling_tex2: {r: 2, g: 2, b: 0, a: 0}
+    - _tilling_tex3: {r: 2, g: 2, b: 0, a: 0}
     - _tilling_tex4: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
