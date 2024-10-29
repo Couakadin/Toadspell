@@ -84,6 +84,9 @@ namespace Player.Runtime
                 case (IAmSpellGiver.Spell.water):
                     m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Water Pool");
                     break;
+                case (IAmSpellGiver.Spell.grass):
+                    m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Grass Pool");
+                    break;
             }
         }
 
