@@ -6,7 +6,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass Patch01-Grass LOD 0
+  m_Name: -Grass LOD 0
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
