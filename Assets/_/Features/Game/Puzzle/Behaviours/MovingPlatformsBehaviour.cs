@@ -21,7 +21,7 @@ namespace Game.Runtime
 
         public void Move()
         {
-            testMovement.Append(transform.DOMove(_desiredPosition, _durationOfMovement));
+            testMovement.Append(transform.DOMove(_desiredPosition.position, _durationOfMovement));
             testMovement.Append(transform.DOMove(_originPosition, _durationOfMovement));
 
             testMovement.SetLoops(-1, LoopType.Yoyo);
@@ -33,7 +33,7 @@ namespace Game.Runtime
         #region Privates & Protected
 
         [Header("Movement Information")]
-        [SerializeField] private Vector3 _desiredPosition;
+        [SerializeField] private Transform _desiredPosition;
         [SerializeField] private float _durationOfMovement;
         private Vector3 _originPosition;
         private Sequence testMovement;
