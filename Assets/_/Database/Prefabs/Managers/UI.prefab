@@ -118,6 +118,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2929353244341912558}
+  - {fileID: 9093903648653641342}
   - {fileID: 610139522347988868}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -223,6 +224,66 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &5159575985783138950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9093903648653641342}
+  - component: {fileID: 1797389178574201024}
+  m_Layer: 0
+  m_Name: Listener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9093903648653641342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159575985783138950}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2111168857915741096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1797389178574201024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159575985783138950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ae85d1e0f97d44fa14e5b40ed7e2d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6391735082752207183}
+        m_TargetAssemblyTypeName: Game.Runtime.UIManager, Game.Runtime
+        m_MethodName: UpdateLives
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_listerner: {fileID: 11400000, guid: a43ca84d82409974593937f3f111d241, type: 2}
 --- !u!1 &5739515843761695086
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1956b1a5830cd746ba427eb92034f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   _teleportBlackScreen: {fileID: 5978635037228917074}
   _teleportFadeInDelay: 1
   _teleportIntervalDelay: 0.2
@@ -498,7 +560,6 @@ MonoBehaviour:
   _livesPrefab: {fileID: 7372596661763423861, guid: b2c05bec5bcb9c94ea034e2fdc39ea0d,
     type: 3}
   _livesTransform: {fileID: 2932149223100325075}
-  _maxLives: 4
   _livesList: []
   _spellList:
   - {r: 0.7312024, g: 0.6084906, b: 1, a: 1}
