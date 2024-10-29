@@ -17,6 +17,9 @@ namespace Player.Runtime
         {
             m_stateMachine = stateMachine;
 
+            // Blackboards
+            _tongueBlackboard = m_stateMachine.m_powerBehaviour.m_tongueBlackboard;
+
             // Player
             _playerTransform = m_stateMachine.m_powerBehaviour.transform;
 
@@ -56,7 +59,7 @@ namespace Player.Runtime
 
         public void FinalTick()
         {
-
+            _tongueBlackboard.SetValue<GameObject>("currentLockedTarget", m_currentLockTarget);
         }
 
         public void HandleInput()
@@ -159,6 +162,9 @@ namespace Player.Runtime
         #endregion
 
         #region Privates
+
+        // Blackboards
+        private Blackboard _tongueBlackboard;
 
         // Lists
         private List<GameObject> _lockingList = new(); // List of detected lockable objects
