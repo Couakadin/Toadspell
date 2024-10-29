@@ -74,8 +74,6 @@ namespace Player.Runtime
             _stateMachine.HandleInput();
             _stateMachine.Tick();
 
-            if (spell == m_spell) return;
-
             switch(spell)
             {
                 case (IAmSpellGiver.Spell.arcane):
