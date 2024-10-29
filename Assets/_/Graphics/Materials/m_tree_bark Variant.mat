@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: m_tree_bark Variant
+  m_Shader: {fileID: 4800000, guid: 6459b2db96a08ca41b0f9b39dc7ad59e, type: 3}
+  m_Parent: {fileID: 2100000, guid: 50a6075824abbd3489b5ff2de2bd6077, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - N_F_EAL_ON
+  - N_F_GLO_ON
+  - N_F_NM_ON
+  - N_F_O_ON
+  - N_F_RDC_ON
+  - N_F_RELGI_ON
+  - N_F_SS_ON
+  - N_F_TRANSAFFSHA_ON
+  m_InvalidKeywords:
+  - _CUSTOMLIGHTDIRECTIONFOLLOWOBJECTROTATION_OFF
+  - _GIFLATSHADE_OFF
+  - _GLOSSTEXTUREFOLLOWOBJECTROTATION_OFF
+  - _LIGHTAFFECTOUTLINECOLOR_OFF
+  - _LIGHTAFFECTRIMLIGHTCOLOR_OFF
+  - _LIGHTAFFECTSHADOW_OFF
+  - _LIGHTFALLOFFAFFECTSHADOWT_OFF
+  - _LIGIGNOYNORDIR_OFF
+  - _MCIALO_OFF
+  - _MIXMAINTEXTOOUTLINE_OFF
+  - _MVCOL_OFF
+  - _OUTLINEWIDTHAFFECTEDBYVIEWDISTANCE_OFF
+  - _PSGLOTEX_OFF
+  - _SELFSHADOWAFFECTEDBYLIGHTSHADOWSTRENGTH_OFF
+  - _SELFSHADOWSHADOWTATVIEWDIRECTION_OFF
+  - _SHOWNORMAL_OFF
+  - _SPECMODE_OFF
+  - _STIL_OFF
+  - _TEXTUREPATTERNSTYLE_OFF
+  - _USESECONDARYCUTOUT_OFF
+  - _VERTEXCOLORBLUEAFFECTOUTLINEWITDH_OFF
+  - _VERTEXCOLORGREENCONTROLSELFSHADOWTHRESHOLD_OFF
+  - _VERTEXCOLORREDCONTROLSMOOTHOBJECTNORMAL_OFF
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 39e69dde3ab6cdf4480561ac65f0db46, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _GlossIntensity: 0.01
+    - _N_F_CA: 0
+    - _N_F_GLO: 1
+    - _OutlineWidth: 2.56
+    - _OutlineZPostionInCamera: -1.75
+    m_Colors:
+    - _GlossColor: {r: 0.23018861, g: 0.051224303, b: 0.015201102, a: 1}
+    - _MainColor: {r: 0.46780342, g: 0.6488084, b: 0.6830188, a: 1}
+    - _OutlineColor: {r: 0.04150939, g: 0.020316103, b: 0.0061872443, a: 1}
+  m_BuildTextureStacks: []

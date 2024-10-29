@@ -384,6 +384,7 @@ MonoBehaviour:
   m_jumpMultiplier: 2
   m_speedAcceleration: 18
   m_speedDeceleration: 100
+  _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
 --- !u!114 &8334425831744867161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,12 +397,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c18e8b889503394583f0a841892c2a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_tongueBlackboard: {fileID: 11400000, guid: a44069e44c2472548b75f8517e038206, type: 2}
   m_detectionRadius: 50
   m_detectionLayer:
     serializedVersion: 2
     m_Bits: 64
   m_tongue: {fileID: 5384183950017905746}
   m_tongueSpeed: 50
+  m_spell: 0
+  m_currentPool: {fileID: 0}
+  m_spellPools: []
 --- !u!1 &7584402360576696916
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +574,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
-  m_spell: 0
-  m_currentPool: {fileID: 0}
-  _spellPools: []
