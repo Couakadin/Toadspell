@@ -402,6 +402,9 @@ MonoBehaviour:
     m_Bits: 64
   m_tongue: {fileID: 5384183950017905746}
   m_tongueSpeed: 50
+  m_spell: 0
+  m_currentPool: {fileID: 0}
+  m_spellPools: []
 --- !u!1 &7584402360576696916
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +572,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
-  m_spell: 0
-  m_currentPool: {fileID: 0}
-  _spellPools: []
