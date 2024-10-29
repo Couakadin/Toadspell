@@ -407,6 +407,7 @@ MonoBehaviour:
   m_spell: 0
   m_currentPool: {fileID: 0}
   m_spellPools: []
+  _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
 --- !u!1 &7584402360576696916
 GameObject:
   m_ObjectHideFlags: 0

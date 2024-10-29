@@ -11,6 +11,7 @@ namespace Player.Runtime
         #region Publics
 
         [Header("Blackboards")]
+        public Blackboard _playerBlackboard;
         public Blackboard m_tongueBlackboard;
 
         [Header("Lock Params")]
@@ -73,6 +74,8 @@ namespace Player.Runtime
             _stateMachine.HandleInput();
             _stateMachine.Tick();
 
+            if (spell == m_spell) return;
+
             switch(spell)
             {
                 case (IAmSpellGiver.Spell.arcane):
@@ -88,6 +91,8 @@ namespace Player.Runtime
                     m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Grass Pool");
                     break;
             }
+
+            _playerBlackboard.SetValue("Spell", (int)m_spell);
         }
 
         private void FixedUpdate()
