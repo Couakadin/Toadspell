@@ -8,6 +8,7 @@
         small = 1,
         medium = 2,
         large = 3,
+        platform = 4,
     }
 
     public Size size { get; }

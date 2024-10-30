@@ -59,6 +59,18 @@ namespace Player.Runtime
 
         #endregion
 
+        #region Methods
+
+        public void JumpTrigger()
+        {
+            _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
+            Vector3 movement = new Vector3(0, _velocity.y, 0);
+
+            _characterController.Move(Time.deltaTime * movement);
+        }
+
+        #endregion
+
         #region Utils
 
         private void HandleMove()
