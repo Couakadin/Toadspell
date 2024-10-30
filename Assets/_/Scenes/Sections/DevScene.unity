@@ -600,6 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spell: 1
+  _onSpellChange: {fileID: 0}
 --- !u!1 &502508084
 GameObject:
   m_ObjectHideFlags: 0

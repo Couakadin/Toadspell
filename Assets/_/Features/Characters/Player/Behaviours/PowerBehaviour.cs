@@ -32,6 +32,8 @@ namespace Player.Runtime
         public InputAction m_spellInput { get; private set; }
 
         [Header("Spell Params")]
+        [Tooltip("The GameObject where spells are launched.")]
+        public GameObject m_spellSpawner;
         [EnumToggleButtons]
         public IAmSpellGiver.Spell m_spell;
         public PoolSystem m_currentPool;
@@ -99,6 +101,7 @@ namespace Player.Runtime
         private void LateUpdate()
         {
             _stateMachine.FinalTick();
+            _playerBlackboard.SetValue("SpellPosition", m_spellSpawner.transform.position);
         }
 
         #endregion
