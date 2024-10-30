@@ -40,11 +40,10 @@ namespace Game.Runtime
 
         #endregion
 
-
+        
         #region Privates & Protected
 
         [Header("Movement Information")]
-        [SerializeField] private Transform _desiredPosition;
         [SerializeField] private float _durationOfMovement;
 
         [Header("Platforms Waypoints")]
