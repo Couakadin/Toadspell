@@ -89,8 +89,6 @@ namespace Player.Runtime
                     m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Grass Pool");
                     break;
             }
-
-            _playerBlackboard.SetValue("Spell", (int)m_spell);
         }
 
         private void FixedUpdate()
