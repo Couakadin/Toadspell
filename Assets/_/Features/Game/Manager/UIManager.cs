@@ -57,6 +57,7 @@ namespace Game.Runtime
         public void UpdateLives()
         {
             _currentLives = (int)_playerBlackboard.GetValue<float>("Lives");
+            if (_currentLives < 0) { _currentLives = 0; }
             for (int i = 0; i < _livesList.Count; i++)
             {
                 _livesList[i].SetActive(false);
