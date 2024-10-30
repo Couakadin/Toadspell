@@ -234,6 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9093903648653641342}
   - component: {fileID: 1797389178574201024}
+  - component: {fileID: 3089544108626426566}
   m_Layer: 0
   m_Name: Listener
   m_TagString: Untagged
@@ -283,7 +284,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_listerner: {fileID: 11400000, guid: a43ca84d82409974593937f3f111d241, type: 2}
+  m_listerner: {fileID: 11400000, guid: de12f9e79d56c95439ff6fa73e6d558e, type: 2}
+--- !u!114 &3089544108626426566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159575985783138950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 873639abf14ba6d4d87530f3d0127362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6391735082752207183}
+        m_TargetAssemblyTypeName: Game.Runtime.UIManager, Game.Runtime
+        m_MethodName: UpdateSpellImage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_listerner: {fileID: 11400000, guid: b2e369174ad6f97479f2e56808c4591a, type: 2}
 --- !u!1 &5739515843761695086
 GameObject:
   m_ObjectHideFlags: 0

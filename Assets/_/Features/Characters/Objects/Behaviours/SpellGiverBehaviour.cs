@@ -22,6 +22,7 @@ namespace Objects.Runtime
             if (collision.gameObject.TryGetComponent(out PowerBehaviour interact))
             {
                 interact.m_spell = _spell;
+                _onSpellChange.Raise((int)_spell);
                 Invoke(nameof(RespawnAfterAWhile), 3);
                 gameObject.SetActive(false);
             }
@@ -51,6 +52,9 @@ namespace Objects.Runtime
 
         [SerializeField, EnumToggleButtons]
         private IAmSpellGiver.Spell _spell;
+
+        [SerializeField]
+        private IntEvent _onSpellChange;
 
         private Vector3 _initialPosition;
         private FixedJoint _initialJoint;
