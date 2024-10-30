@@ -33,7 +33,7 @@ namespace Game.Runtime
 
     	void Update()
     	{
-	
+
     	}
 
         #endregion
@@ -50,15 +50,9 @@ namespace Game.Runtime
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _teleportFadeOutDelay));
         }
 
-        [ContextMenu("update spell")]
-        private void TestColor()
+        public void UpdateSpellImage(int spell)
         {
-            UpdateSpellImage(_spell);
-        }
-
-        public void UpdateSpellImage(int color)
-        {
-            _spellImage.color = _spellList[color];
+            _spellImage.color = _spellList[spell];
         }
 
         public void UpdateLives()
