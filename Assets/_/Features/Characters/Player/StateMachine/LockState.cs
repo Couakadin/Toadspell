@@ -60,7 +60,7 @@ namespace Player.Runtime
 
         public void FinalTick()
         {
-            _tongueBlackboard.SetValue<GameObject>("currentLockedTarget", m_currentLockTarget);
+            _tongueBlackboard.SetValue("currentLockedTarget", m_currentLockTarget);
         }
 
         public void HandleInput()
@@ -75,38 +75,57 @@ namespace Player.Runtime
         #region Utils
 
         /// <summary>
-        /// Update the list of lockable objects within the detection radius and a 45-degree cone in front of the player.
+        /// Updates the list of lockable objects within the detection radius and a 45-degree cone in front of the player.
+        /// If the currently locked target exits the detection radius, it will automatically lock onto a new target in the list.
         /// </summary>
         private void UpdateLockableList()
         {
-            // Obtenir tous les colliders dans le rayon de détection
-            _hitColliders = Physics.OverlapSphere(_playerTransform.position, _detectionRadius, _detectionLayer);
-
-            // Effacer la liste existante
+            // Clear the existing list of lockable targets
             _lockingList.Clear();
 
-            // Boucle à travers les colliders détectés
+            // Get all colliders within the detection radius
+            _hitColliders = Physics.OverlapSphere(_playerTransform.position, _detectionRadius, _detectionLayer);
+
+            // Loop through the detected colliders
             foreach (Collider hitCollider in _hitColliders)
             {
-                // Vérifie si l'objet est visible dans l'écran de la caméra
+                // Check if the object is visible on the camera screen
                 _viewportPoint = _cameraMain.WorldToViewportPoint(hitCollider.transform.position);
 
-                // Vérifie si le point est dans le champ de vision (dans les limites de l’écran)
+                // Check if the point is within the camera's view (inside screen bounds)
                 _isInView = _viewportPoint.z > 0 &&
-                                _viewportPoint.x > 0 && _viewportPoint.x < 1 &&
-                                _viewportPoint.y > 0 && _viewportPoint.y < 1;
+                            _viewportPoint.x > 0 && _viewportPoint.x < 1 &&
+                            _viewportPoint.y > 0 && _viewportPoint.y < 1;
 
-                // Si l'objet est visible à l'écran et implémente ILockable, ajoute-le à la liste
-                if (_isInView && hitCollider.TryGetComponent<IAmLockable>(out IAmLockable lockable)) _lockingList.Add(hitCollider.gameObject);
+                // If the object is visible on screen and implements ILockable, add it to the list
+                if (_isInView && hitCollider.TryGetComponent(out IAmLockable lockable))
+                {
+                    _lockingList.Add(hitCollider.gameObject);
+                }
             }
 
-            // Si aucune cible n'est trouvée, déverrouille la cible actuellement verrouillée
-            if (_lockingList.Count == 0) UnlockTarget();
-            // Si des cibles sont disponibles, verrouille la première si aucune cible n'est verrouillée
-            else if (_currentLockedTarget == null)
+            // If the current locked target is outside the detection radius or not in the list, auto-lock the first available target
+            if (_currentLockedTarget != null && !_lockingList.Contains(_currentLockedTarget))
             {
+                UnlockTarget();
+
+                // If there are targets available, lock onto the first one in the list
+                if (_lockingList.Count > 0)
+                {
+                    LockTarget(_lockingList[0]);
+                    _currentTargetIndex = 0;
+                }
+            }
+            else if (_lockingList.Count > 0 && _currentLockedTarget == null)
+            {
+                // If no target is currently locked, lock the first available target
                 LockTarget(_lockingList[0]);
                 _currentTargetIndex = 0;
+            }
+            else if (_lockingList.Count == 0)
+            {
+                // If no targets are found, unlock the currently locked target
+                UnlockTarget();
             }
         }
 
@@ -138,7 +157,7 @@ namespace Player.Runtime
 
             // Set the new target and lock it
             _currentLockedTarget = target;
-            target.TryGetComponent<IAmLockable>(out IAmLockable lockable);
+            target.TryGetComponent(out IAmLockable lockable);
             if (lockable == null) return;
             lockable.OnLock(); // Call the lock behavior (e.g., change material to red)
         }
@@ -152,7 +171,7 @@ namespace Player.Runtime
             if (_currentLockedTarget == null) return;
 
             // Call the OnUnlock method of the currently locked target
-            _currentLockedTarget.TryGetComponent<IAmLockable>(out IAmLockable lockable);
+            _currentLockedTarget.TryGetComponent(out IAmLockable lockable);
             if (lockable == null) return;
             lockable.OnUnlock(); // Call the unlock behavior (e.g., revert material to default)
 
