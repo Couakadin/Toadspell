@@ -53,8 +53,8 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _star_power: 12
-    - _star_scale: 1000
+    - _star_power: 11
+    - _star_scale: 700
     m_Colors:
     - _star_color: {r: 28.717133, g: 47.214325, b: 47.93726, a: 0}
     - _star_color1: {r: 7.4562864, g: 24.116325, b: 42.722507, a: 0}

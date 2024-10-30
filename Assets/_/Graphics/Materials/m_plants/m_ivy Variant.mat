@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: m_ivy Variant
+  m_Shader: {fileID: 4800000, guid: 6459b2db96a08ca41b0f9b39dc7ad59e, type: 3}
+  m_Parent: {fileID: 2100000, guid: 1a47a4b6047d1244eb2dd3b2b38e6cf0, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - N_F_CO_ON
+  - N_F_EAL_ON
+  - N_F_GLO_ON
+  - N_F_NM_ON
+  - N_F_O_ON
+  - N_F_RDC_ON
+  - N_F_RELGI_ON
+  - N_F_SS_ON
+  - N_F_TRANSAFFSHA_ON
+  - N_F_TRANS_ON
+  m_InvalidKeywords:
+  - _CUSTOMLIGHTDIRECTIONFOLLOWOBJECTROTATION_OFF
+  - _GIFLATSHADE_OFF
+  - _GLOSSTEXTUREFOLLOWOBJECTROTATION_OFF
+  - _LIGHTAFFECTOUTLINECOLOR_OFF
+  - _LIGHTAFFECTRIMLIGHTCOLOR_OFF
+  - _LIGHTAFFECTSHADOW_OFF
+  - _LIGHTFALLOFFAFFECTSHADOWT_OFF
+  - _LIGIGNOYNORDIR_OFF
+  - _MCIALO_OFF
+  - _MIXMAINTEXTOOUTLINE_OFF
+  - _MVCOL_OFF
+  - _OUTLINEWIDTHAFFECTEDBYVIEWDISTANCE_OFF
+  - _PSGLOTEX_OFF
+  - _SELFSHADOWAFFECTEDBYLIGHTSHADOWSTRENGTH_OFF
+  - _SELFSHADOWSHADOWTATVIEWDIRECTION_OFF
+  - _SHOWNORMAL_OFF
+  - _SPECMODE_OFF
+  - _STIL_OFF
+  - _TEXTUREPATTERNSTYLE_OFF
+  - _USESECONDARYCUTOUT_OFF
+  - _VERTEXCOLORBLUEAFFECTOUTLINEWITDH_OFF
+  - _VERTEXCOLORGREENCONTROLSELFSHADOWTHRESHOLD_OFF
+  - _VERTEXCOLORREDCONTROLSMOOTHOBJECTNORMAL_OFF
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 0f7f538df229c9d42a117f5c6fb3fdf7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _GlossSoftness: 1
+    - _Glossiness: 0.3
+    - _MaiColPo: 1.03
+    - _N_F_O: 1
+    - _OverallShadowColorPower: 1.28
+    - _ReduSha: 1.01
+    - _SelfShadowHardness: 0.66
+    - _SelfShadowRealTimeShadowColorPower: 1.34
+    - _SelfShadowThreshold: 0.95
+    m_Colors:
+    - _GlossColor: {r: 0.11351368, g: 0.5622641, b: 0.38133213, a: 1}
+    - _MainColor: {r: 0.6280455, g: 0.7035144, b: 0.9169811, a: 1}
+    - _OverallShadowColor: {r: 0.31523663, g: 0.37686867, b: 0.9547169, a: 1}
+  m_BuildTextureStacks: []

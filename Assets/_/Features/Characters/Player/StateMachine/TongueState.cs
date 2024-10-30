@@ -17,7 +17,6 @@ namespace Player.Runtime
             m_stateMachine.m_powerBehaviour.TryGetComponent(out _moveBehaviour);
             m_stateMachine.m_powerBehaviour.TryGetComponent(out _characterController);
             _playerTransform = m_stateMachine.m_powerBehaviour.transform;
-            _tongueMaxDistance = m_stateMachine.m_powerBehaviour.m_detectionRadius;
 
             // Tongue
             m_stateMachine.m_powerBehaviour.m_tongue.TryGetComponent(out _tongueRigidbody);
@@ -29,6 +28,7 @@ namespace Player.Runtime
 
         public void Enter()
         {
+            _tongueMaxDistance = m_stateMachine.m_powerBehaviour.m_detectionRadius;
             _currentLockTarget = m_stateMachine.m_lockState.m_currentLockTarget?.transform;
             if (_currentLockTarget == null) m_stateMachine.ChangeState(m_stateMachine.m_lockState);
         }
@@ -39,17 +39,24 @@ namespace Player.Runtime
             _isTongueExtended = false;
             _isTongueInteract = false;
             _isTongueReturned = false;
+            _isTongueControl = false;
             _isPlayerAttract = false;
         }
 
         public void Tick()
         {
+            if (_isTongueReturned)
+            {
+                TongueReturn();
+                return;
+            }
+
             if (!_isTongueExtended) DetectTarget();
             if (_hit.collider == null) return;
             if (!_isTongueInteract) TongueExtend();
+            if (_isTongueControl) TongueControl();
             if (_isPlayerAttract) PlayerAttract();
 
-            if (_isTongueReturned) TongueReturn();
         }
 
         public void PhysicsTick()
@@ -60,7 +67,8 @@ namespace Player.Runtime
         public void FinalTick()
         {
             if (_hit.collider == null) return;
-            _playerTransform.LookAt(new Vector3(_hit.point.x, _playerTransform.position.y, _hit.point.z));
+
+            _playerTransform.LookAt(new Vector3(_tongueRigidbody.position.x, _playerTransform.position.y, _tongueRigidbody.position.z));
         }
 
         public void HandleInput()
@@ -82,7 +90,6 @@ namespace Player.Runtime
             {
                 _hit.collider?.TryGetComponent(out _sizeable);
                 _hit.collider?.TryGetComponent(out _fixedJoint);
-
             }
         }
 
@@ -118,14 +125,37 @@ namespace Player.Runtime
                 _fixedJoint.connectedBody = _tongueRigidbody;
                 _isTongueReturned = true;
             }
+            else if (_sizeable.size == ISizeable.Size.medium)
+            {
+                _fixedJoint.connectedBody = _tongueRigidbody;
+                _isTongueControl = true;
+            }
             else if (_sizeable.size == ISizeable.Size.large) _isPlayerAttract = true;
+        }
+
+        private void TongueControl()
+        {
+            _tongueMaxDistance = 15f;
+            _distanceToTarget = _tongueRigidbody.position - _playerTransform.position;
+
+            if (_distanceToTarget.sqrMagnitude > _tongueMaxDistance * _tongueMaxDistance)
+            {
+                _limitedPosition = _playerTransform.position + _distanceToTarget.normalized * _tongueMaxDistance;
+                _tongueRigidbody.MovePosition(_limitedPosition);
+            }
+
+            if (m_stateMachine.m_powerBehaviour.m_tongueInput.triggered)
+            {
+                _fixedJoint.connectedBody = null;
+                _isTongueReturned = true;
+            }
         }
 
         private void PlayerAttract()
         {
             _distanceToTarget = _tongueRigidbody.transform.position - new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z);
 
-            if (_distanceToTarget.sqrMagnitude > 2f)
+            if (_distanceToTarget.sqrMagnitude > 2f && m_stateMachine.m_powerBehaviour.m_tongueInput.IsPressed())
             {
                 _moveBehaviour.enabled = false;
                 _characterController.Move(Time.deltaTime * _tongueSpeed * _distanceToTarget.normalized);
@@ -170,8 +200,9 @@ namespace Player.Runtime
         // Tongue
         private Rigidbody _tongueRigidbody;
         private float _tongueSpeed;
-        private bool _isTongueExtended, _isTongueInteract, _isTongueReturned;
+        private bool _isTongueExtended, _isTongueInteract, _isTongueControl, _isTongueReturned;
         private Vector3 _distanceToTarget;
+        private Vector3 _limitedPosition;
 
         // Lock
         private Transform _currentLockTarget;

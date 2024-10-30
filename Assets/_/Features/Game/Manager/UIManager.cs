@@ -1,3 +1,4 @@
+using Data.Runtime;
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Game.Runtime
 
         private void Awake()
         {
-
+            _maxLives = (int) _playerBlackboard.GetValue<float>("Lives");
         }
 
         void Start()
@@ -60,6 +61,19 @@ namespace Game.Runtime
             _spellImage.color = _spellList[color];
         }
 
+        public void UpdateLives()
+        {
+            _currentLives = (int)_playerBlackboard.GetValue<float>("Lives");
+            for (int i = 0; i < _livesList.Count; i++)
+            {
+                _livesList[i].SetActive(false);
+            }
+            for(int i = 0; i < _currentLives; i++)
+            {
+                _livesList[i].SetActive(true);
+            }
+        }
+
         #endregion
 
 
@@ -70,6 +84,9 @@ namespace Game.Runtime
 
         #region Privates & Protected
 
+        [Header("References")]
+        [SerializeField] private Blackboard _playerBlackboard;
+
         [Header("Teleport Black Screen Settings")]
         [SerializeField] private CanvasGroup _teleportBlackScreen;
         [SerializeField] private float _teleportFadeInDelay = 1f;
@@ -79,7 +96,8 @@ namespace Game.Runtime
         [Header("Lives")]
         [SerializeField] private GameObject _livesPrefab;
         [SerializeField] private Transform _livesTransform;
-        [SerializeField] private int _maxLives;
+        private int _maxLives;
+        private int _currentLives;
         [SerializeField] private List<GameObject> _livesList;
 
         [Header("Spells")]
