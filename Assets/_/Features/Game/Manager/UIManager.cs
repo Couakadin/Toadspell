@@ -41,8 +41,7 @@ namespace Game.Runtime
 
         #region Main Methods
 
-        [ContextMenu("Test Fade In and Out")]
-        private void FadeOnTeleportation()
+        public void FadeOnTeleportation()
         {
             Sequence fadeSequence = DOTween.Sequence();
             fadeSequence.Append(_teleportBlackScreen.DOFade(1, _teleportFadeInDelay));

@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 5900306697030292303}
   - component: {fileID: 1108333247918472257}
   - component: {fileID: 8334425831744867161}
+  - component: {fileID: 4999980185799314858}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -440,6 +441,22 @@ MonoBehaviour:
   m_spell: 0
   m_currentPool: {fileID: 0}
   m_spellPools: []
+--- !u!114 &4999980185799314858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7438835405556700007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2788a93bcfcd58748a57f1fdefffe320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startLives: 4
+  _currentLives: 0
+  _onUpdatingLife: {fileID: 11400000, guid: de12f9e79d56c95439ff6fa73e6d558e, type: 2}
+  _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
 --- !u!1 &7584402360576696916
 GameObject:
   m_ObjectHideFlags: 0

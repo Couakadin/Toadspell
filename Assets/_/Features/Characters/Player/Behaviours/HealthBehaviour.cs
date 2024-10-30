@@ -5,11 +5,6 @@ namespace Player.Runtime
 {
     public class HealthBehaviour : MonoBehaviour, ICanBeHurt
     {
-        #region Publics
-
-        #endregion
-
-
         #region Unity API
 
         private void Awake()
@@ -17,12 +12,6 @@ namespace Player.Runtime
             _currentLives = _startLives;
             _playerBlackboard.SetValue("Lives", _currentLives);
         }
-
-    	void Update()
-    	{
-	
-    	}
-
 
         #endregion
 
@@ -41,17 +30,6 @@ namespace Player.Runtime
             _onUpdatingLife.Raise();
         }
 
-        [ContextMenu("test losing lives")]
-        public void HurtByEnvironment()
-        {
-            UpdateLives(-1);
-        }
-
-        #endregion
-
-
-        #region Utils
-
         #endregion
 
 
@@ -61,7 +39,6 @@ namespace Player.Runtime
         [SerializeField] private float _currentLives;
         [SerializeField] private VoidEvent _onUpdatingLife;
         [SerializeField] private Blackboard _playerBlackboard;
-
 
         #endregion
     }
