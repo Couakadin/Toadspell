@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Runtime
@@ -7,11 +8,15 @@ namespace Game.Runtime
     {
         #region Unity API
 
-        private void Start()
+        private void Awake()
         {
-            testMovement = DOTween.Sequence();
-            _originPosition = transform.position;
-            Move();
+            transform.position = _waypointsList[_waypointIndex].position;
+            _waypointIndex++;
+        }
+
+        private void FixedUpdate()
+        {
+            MovePlatform();
         }
 
         #endregion
@@ -19,10 +24,18 @@ namespace Game.Runtime
 
         #region Main Methods
 
-        public void Move()
+        public void MovePlatform()
         {
-            testMovement.Append(transform.DOMove(_desiredPosition.position, _durationOfMovement).SetEase(Ease.Linear));
-            testMovement.SetLoops(-1, LoopType.Yoyo);
+            _distanceToTarget = Vector3.Distance(transform.position, _waypointsList[_waypointIndex].position);
+            if (_distanceToTarget < .1f)
+            {
+                _waypointIndex++;
+                if (_waypointIndex >= _waypointsList.Count) _waypointIndex = 0;
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, _waypointsList[_waypointIndex].position, _durationOfMovement * Time.deltaTime);
+            }
         }
 
         #endregion
@@ -33,8 +46,11 @@ namespace Game.Runtime
         [Header("Movement Information")]
         [SerializeField] private Transform _desiredPosition;
         [SerializeField] private float _durationOfMovement;
-        private Vector3 _originPosition;
-        private Sequence testMovement;
+
+        [Header("Platforms Waypoints")]
+        [SerializeField] private List<Transform> _waypointsList;
+        private int _waypointIndex = 0;
+        private float _distanceToTarget;
 
         #endregion
     }
