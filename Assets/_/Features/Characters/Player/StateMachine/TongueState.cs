@@ -41,6 +41,7 @@ namespace Player.Runtime
             _isTongueReturned = false;
             _isTongueControl = false;
             _isPlayerAttract = false;
+            _isPlayerPlatform = false;
         }
 
         public void Tick()
@@ -56,19 +57,19 @@ namespace Player.Runtime
             if (!_isTongueInteract) TongueExtend();
             if (_isTongueControl) TongueControl();
             if (_isPlayerAttract) PlayerAttract();
-
+            if (_isPlayerPlatform) PlayerPlateform();
         }
 
         public void PhysicsTick()
         {
-
+            
         }
 
         public void FinalTick()
         {
-            if (_hit.collider == null) return;
+            ForceTongueReturn();
 
-            _playerTransform.LookAt(new Vector3(_tongueRigidbody.position.x, _playerTransform.position.y, _tongueRigidbody.position.z));
+            if (_hit.collider != null) _playerTransform.LookAt(new Vector3(_tongueRigidbody.position.x, _playerTransform.position.y, _tongueRigidbody.position.z));
         }
 
         public void HandleInput()
@@ -131,6 +132,7 @@ namespace Player.Runtime
                 _isTongueControl = true;
             }
             else if (_sizeable.size == ISizeable.Size.large) _isPlayerAttract = true;
+            else if (_sizeable.size == ISizeable.Size.platform) _isPlayerPlatform = true;
         }
 
         private void TongueControl()
@@ -167,6 +169,24 @@ namespace Player.Runtime
             }
         }
 
+        private void PlayerPlateform()
+        {
+            _distanceToTarget = _tongueRigidbody.transform.position - new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z);
+
+            if (_distanceToTarget.sqrMagnitude > 5f)
+            {
+                _moveBehaviour.enabled = false;
+                _characterController.Move(Time.deltaTime * _tongueSpeed * _distanceToTarget.normalized);
+            }
+            else
+            {
+                _moveBehaviour.enabled = true;
+                _moveBehaviour.JumpTrigger();
+
+                _isTongueReturned = true;
+            }
+        }
+
         private void TongueReturn()
         {
             _distanceToTarget = new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z) - _tongueRigidbody.position;
@@ -186,6 +206,39 @@ namespace Player.Runtime
             }
         }
 
+        private void ForceTongueReturn()
+        {
+            if (m_stateMachine.m_powerBehaviour.m_tongueInput.triggered)
+            {
+                if (_isFirstPress && _doublePressTimer < _doublePressThreshold)
+                {
+                    TongueReturn();
+                    ResetDoublePress();
+                }
+                else
+                {
+                    _isFirstPress = true;
+                    _doublePressTimer = 0f;
+                }
+            }
+
+            if (_isFirstPress)
+            {
+                _doublePressTimer += Time.deltaTime;
+
+                if (_doublePressTimer >= _doublePressThreshold)
+                {
+                    ResetDoublePress();
+                }
+            }
+        }
+
+        private void ResetDoublePress()
+        {
+            _isFirstPress = false;
+            _doublePressTimer = 0f;
+        }
+
         #endregion
 
         #region Privates
@@ -195,7 +248,9 @@ namespace Player.Runtime
         private MoveBehaviour _moveBehaviour;
         private Transform _playerTransform;
         private float _tongueMaxDistance;
-        private bool _isPlayerAttract;
+        private bool _isPlayerAttract, _isPlayerPlatform;
+        private float _velocityY;
+        private Vector3 _movement;
 
         // Tongue
         private Rigidbody _tongueRigidbody;
@@ -215,6 +270,11 @@ namespace Player.Runtime
         // Interact
         private ISizeable _sizeable;
         private FixedJoint _fixedJoint;
+
+        // Timer
+        private bool _isFirstPress = false;
+        private float _doublePressTimer = 0f;
+        private float _doublePressThreshold = 0.3f;
 
         #endregion
     }
