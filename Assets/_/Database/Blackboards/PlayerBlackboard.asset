@@ -34,7 +34,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -46,6 +46,31 @@ MonoBehaviour:
       Data: 2|UnityEngine.Vector3, UnityEngine.CoreModule
     - Name: 
       Entry: 4
+      Data: -36.22
+    - Name: 
+      Entry: 4
+      Data: 11.98
+    - Name: 
+      Entry: 4
+      Data: 1.8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Lives
+    - Name: $v
+      Entry: 7
+      Data: 3|System.Single, mscorlib
+    - Name: 
+      Entry: 4
+      Data: 4
       Data: -5.71596432
     - Name: 
       Entry: 4

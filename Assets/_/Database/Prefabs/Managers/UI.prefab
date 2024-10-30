@@ -613,7 +613,7 @@ MonoBehaviour:
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   _teleportBlackScreen: {fileID: 5978635037228917074}
   _teleportFadeInDelay: 1
-  _teleportIntervalDelay: 0.2
+  _teleportIntervalDelay: 1
   _teleportFadeOutDelay: 1.5
   _livesPrefab: {fileID: 7372596661763423861, guid: b2c05bec5bcb9c94ea034e2fdc39ea0d,
     type: 3}
