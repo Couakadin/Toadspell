@@ -8,11 +8,6 @@ namespace Game.Runtime
 {
     public class FellOutOfMapBehaviour : MonoBehaviour
     {
-        #region Publics
-
-        #endregion
-
-
         #region Unity API
 
         private void OnTriggerEnter(Collider other)
@@ -20,10 +15,6 @@ namespace Game.Runtime
             _onOutOfMapEvent.Raise();
             other.TryGetComponent(out ICanBeHurt component);
             component.TakeDamage(_damages);
-
-            Transform lastPosition = _playerBlackboard.GetValue<Transform>("Checkpoint");
-            other.TryGetComponent(out ICanTeleport player);
-            player.Teleport(lastPosition);
         }
 
         #endregion
