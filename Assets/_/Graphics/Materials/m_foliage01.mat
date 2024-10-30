@@ -27,7 +27,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - BILLBOARD_FACE_CAMERA_POSITION_ON
-  - BILLBOARD_ROTATION_EACH_FACE
+  - BILLBOARD_ROTATION_NOTHING
   - _WIND
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -41,11 +41,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Fill_Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: dc0d560eece922545ba84f7afa8fb7db, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Shape_Texture:
-        m_Texture: {fileID: 2800000, guid: 369834c49a97b4e22b4e56e015c1d05b, type: 3}
+        m_Texture: {fileID: 2800000, guid: dc0d560eece922545ba84f7afa8fb7db, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -111,18 +111,18 @@ Material:
     m_Ints: []
     m_Floats:
     - BILLBOARD_FACE_CAMERA_POSITION: 1
-    - BILLBOARD_ROTATION: 1
-    - Billboard_Scale: 1
-    - Clip_Threshold: 0.5
+    - BILLBOARD_ROTATION: 0
+    - Billboard_Scale: 2
+    - Clip_Threshold: 0.32
     - Fill_Impact: 0.5
-    - Fill_Scale: 1
+    - Fill_Scale: 0
     - Fresnel_Power: 4.53
-    - Fresnel_Sharpness: 0.5
+    - Fresnel_Sharpness: 0
     - Offset_Along_Normal: 0
     - Wind: 0
-    - Wind_Speed: 0.1
-    - Wind_Strength: 0.1
-    - Wind_Turbulence: 0.6
+    - Wind_Speed: 0.222
+    - Wind_Strength: 0.421
+    - Wind_Turbulence: 0.39
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -143,14 +143,14 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LightContrib: 0.526
+    - _LightContrib: 0.391
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: -1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ShadowStrength: 0.569
+    - _ShadowStrength: 0.723
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -162,7 +162,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Fresnel_Color: {r: 0, g: 0.27328634, b: 1, a: 0.57254905}
+    - Fresnel_Color: {r: 0, g: 0.2732863, b: 1, a: 0.33333334}
     - Wind_Direction: {r: 1, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

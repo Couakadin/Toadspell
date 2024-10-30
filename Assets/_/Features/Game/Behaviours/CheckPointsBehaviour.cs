@@ -11,7 +11,7 @@ namespace Game.Runtime
         {
             if(other.gameObject.layer == 7)
             {
-                _playerBlackboard.SetValue<Transform>("Checkpoint", _spawnPoint);
+                _playerBlackboard.SetValue<Vector3>("Checkpoint", _spawnPoint.position);
             }
         }
 

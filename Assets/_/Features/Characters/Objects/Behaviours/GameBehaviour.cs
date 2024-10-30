@@ -1,6 +1,7 @@
 using Cinemachine;
 using Data.Runtime;
 using Player.Runtime;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ namespace Objects.Runtime
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            _teleportTimer = new Timer(_teleportDelay);
         }
 
         private void Start()
@@ -50,12 +52,48 @@ namespace Objects.Runtime
             }
         }
 
+        private void OnEnable()
+        {
+            _teleportTimer.OnTimerFinished += TeleportMove;
+        }
+
+        private void OnDisable()
+        {
+            _teleportTimer.OnTimerFinished -= TeleportMove;
+        }
+
+        private void Update()
+        {
+            _teleportTimer.Tick();
+        }
+
+        #region Main Methods
+
+        private void TeleportMove()
+        {
+            _player.transform.position = _playerBlackboard.GetValue<Vector3>("Checkpoint");
+            _player.SetActive(true);
+        }
+
+        #endregion
+
+        [ContextMenu("disable")]
+        public void DisablePlayer()
+        {
+            _teleportTimer.Reset();
+            _teleportTimer.Begin();
+            _player.SetActive(false);
+        }
+
         #endregion
 
         #region Privates
 
         private GameObject _player;
         private PowerBehaviour _powerBehaviour;
+        [SerializeField] private Blackboard _playerBlackboard;
+        [SerializeField] private float _teleportDelay = 1f;
+        private Timer _teleportTimer;
 
         #endregion
     }

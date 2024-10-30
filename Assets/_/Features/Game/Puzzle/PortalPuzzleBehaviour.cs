@@ -24,7 +24,7 @@ namespace Game.Runtime
             if(other.gameObject.TryGetComponent(out ICanTeleport player))
             {
                 if(_onTeleportPointVoidEvent != null) _onTeleportPointVoidEvent.Raise();
-                player.Teleport(_TeleportPoint);
+                player.Teleport(_TeleportPoint.position);
             }
         }
 

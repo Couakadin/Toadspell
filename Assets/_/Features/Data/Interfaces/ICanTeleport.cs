@@ -4,6 +4,6 @@ namespace Data.Runtime
 {
     public interface ICanTeleport
     {
-        public void Teleport(Transform teleportPoint);
+        public void Teleport(Vector3 teleportPoint);
     }
 }

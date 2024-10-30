@@ -121,3 +121,4 @@ MonoBehaviour:
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   _tongueBlackboard: {fileID: 11400000, guid: a44069e44c2472548b75f8517e038206, type: 2}
   _speedOfProjectile: 50
+  _durationOfProjectile: 5
