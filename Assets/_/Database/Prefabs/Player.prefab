@@ -382,7 +382,7 @@ MonoBehaviour:
   m_rotation: 20
   m_fallMultiplier: 2.5
   m_jumpMultiplier: 2
-  m_speedAcceleration: 18
+  m_speedAcceleration: 200
   m_speedDeceleration: 100
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
 --- !u!114 &8334425831744867161

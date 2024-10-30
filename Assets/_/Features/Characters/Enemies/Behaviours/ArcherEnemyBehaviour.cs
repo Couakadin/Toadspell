@@ -23,7 +23,7 @@ namespace Enemies.Runtime
 
         void Update()
     	{
-            Vector3 playerPosition = _targetToReplaceWithPlayer.transform.position; // m_blackboard.GetValue<Vector3>("Position"); //Keeps track of player position
+            Vector3 playerPosition = m_blackboard.GetValue<Vector3>("Position") + new Vector3(0,_ShootInTheAir, 0); //Keeps track of player position
             var distanceWithPlayer = (playerPosition - transform.position).magnitude; // Distance with player
 
             if (distanceWithPlayer < m_maxDetectionRange && _isShooting)
@@ -35,6 +35,12 @@ namespace Enemies.Runtime
 
             UpdateTimers();
 
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, m_maxDetectionRange);
         }
 
         #endregion
@@ -90,9 +96,9 @@ namespace Enemies.Runtime
 
         #region Private & Protected
 
-        [SerializeField] private GameObject _targetToReplaceWithPlayer;
         [SerializeField] private MeshRenderer _meshRenderer;
         [SerializeField] private float _takeDamageDelay = .5f;
+        [SerializeField] private float _ShootInTheAir = 2f;
         private Color _originalMaterial;
         private bool _isShooting = true;
         private Timer _damageTimer;
