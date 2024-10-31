@@ -21,7 +21,7 @@ namespace Player.Runtime
         public void Enter()
         {
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
-            _currentPool.GetFirstAvailableObject();
+            _currentPool?.GetFirstAvailableObject();
 
             _timer.Begin();
             _timer.OnTimerFinished += ChangeState;

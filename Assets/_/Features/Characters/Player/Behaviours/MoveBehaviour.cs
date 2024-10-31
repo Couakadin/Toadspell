@@ -64,7 +64,7 @@ namespace Player.Runtime
         public void JumpTrigger()
         {
             _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-            Vector3 movement = new Vector3(0, _velocity.y, 0);
+            Vector3 movement = new Vector3(_cameraDirection.x * _velocity.y * _currentSpeed, _velocity.y, _cameraDirection.z * _velocity.y * _currentSpeed);
 
             _characterController.Move(Time.deltaTime * movement);
         }
@@ -77,15 +77,33 @@ namespace Player.Runtime
         {
             _isGrounded = _characterController.isGrounded;
 
-            //if (_velocity.y < 0 && _isGrounded) _velocity.y = 0;
+            // Reset vertical velocity only if grounded and not jumping
+            if (_isGrounded && !_isJumping && _velocity.y < 0) _velocity.y = 0;
 
-            if (_jumpInput.triggered && _isGrounded) _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-            else if (_velocity.y < 0 && !_isGrounded) _velocity.y += Time.deltaTime * m_gravity * m_fallMultiplier;
-            else if (_velocity.y > 0 && !_jumpInput.triggered) _velocity.y += Time.deltaTime * m_gravity * m_jumpMultiplier;
-            else _velocity.y += Time.deltaTime;
+            // Jump logic
+            if (_jumpInput.triggered && _isGrounded)
+            {
+                _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
+                _isJumping = true;
+            }
+            else if (_velocity.y <= 0 && !_isGrounded)
+            {
+                // Apply stronger gravity when falling
+                _velocity.y += Time.deltaTime * m_gravity * m_fallMultiplier;
+            }
+            else if (_velocity.y > 0 && !_jumpInput.triggered)
+            {
+                // Apply weaker gravity while rising
+                _velocity.y += Time.deltaTime * m_gravity * m_jumpMultiplier;
+            }
 
+            // If grounded, reset jump state
+            if (_isGrounded && _velocity.y <= 0) _isJumping = false;
+
+            // Handle rotation
             if (_direction.magnitude > 0.1f) RotateTowards(_direction);
 
+            // Calculate movement
             Vector3 movement = new Vector3(_cameraDirection.x * _currentSpeed, _velocity.y, _cameraDirection.z * _currentSpeed);
             _characterController.Move(Time.deltaTime * movement);
         }
@@ -156,7 +174,7 @@ namespace Player.Runtime
         private Vector3 _cameraDirection;
         private Transform _cameraTransform;
 
-        private bool _isGrounded;
+        private bool _isGrounded, _isJumping;
 
         private float _currentSpeed;
 
