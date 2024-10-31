@@ -1,4 +1,5 @@
 using Data.Runtime;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,14 +10,20 @@ namespace Player.Runtime
     {
         #region Publics
 
-        public float m_jump;
+        [Header("Move Params")]
         public float m_speed;
-        public float m_gravity;
         public float m_rotation;
-        public float m_fallMultiplier;
-        public float m_jumpMultiplier;
         public float m_speedAcceleration;
         public float m_speedDeceleration;
+
+        [Header("Jump Params")]
+        public float m_jump;
+        public float m_gravity;
+        public float m_fallMultiplier;
+        public float m_jumpMultiplier;
+
+        [Header("Cameras"), Required]
+        public GameObject m_cameraTarget;
 
         #endregion
 
@@ -50,6 +57,7 @@ namespace Player.Runtime
 
             UpdateMovementSpeed();
             HandleMove();
+            MoveAction();
         }
 
         private void LateUpdate()
@@ -75,37 +83,35 @@ namespace Player.Runtime
 
         private void HandleMove()
         {
-            _isGrounded = _characterController.isGrounded;
-
             // Reset vertical velocity only if grounded and not jumping
-            if (_isGrounded && !_isJumping && _velocity.y < 0) _velocity.y = 0;
+            if (_isGrounded && _velocity.y < 0) _velocity.y = 0;
 
-            // Jump logic
-            if (_jumpInput.triggered && _isGrounded)
+            if (_isGrounded)
             {
-                _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-                _isJumping = true;
-            }
-            else if (_velocity.y <= 0 && !_isGrounded)
-            {
-                // Apply stronger gravity when falling
-                _velocity.y += Time.deltaTime * m_gravity * m_fallMultiplier;
-            }
-            else if (_velocity.y > 0 && !_jumpInput.triggered)
-            {
-                // Apply weaker gravity while rising
-                _velocity.y += Time.deltaTime * m_gravity * m_jumpMultiplier;
+                if (_jumpInput.triggered)
+                {
+                    // trigger jump
+                    _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
+                    _isGrounded = false;
+                }
+                return;
             }
 
-            // If grounded, reset jump state
-            if (_isGrounded && _velocity.y <= 0) _isJumping = false;
+            bool isFalling = _velocity.y <= 0;
+            float multiplier = isFalling ? m_fallMultiplier : m_jumpMultiplier;
+            _velocity.y += Time.deltaTime * m_gravity * multiplier;
+        }
 
+        private void MoveAction()
+        {
             // Handle rotation
             if (_direction.magnitude > 0.1f) RotateTowards(_direction);
 
             // Calculate movement
             Vector3 movement = new Vector3(_cameraDirection.x * _currentSpeed, _velocity.y, _cameraDirection.z * _currentSpeed);
             _characterController.Move(Time.deltaTime * movement);
+            // Thanks Lead devs <3
+            _isGrounded |= _characterController.isGrounded;
         }
 
         /// <summary>
@@ -155,7 +161,7 @@ namespace Player.Runtime
 
         #region Privates
 
-        [Header("Blackboards")]
+        [Header("Blackboards"), Required]
         [SerializeField]
         private Blackboard _playerBlackboard;
 
@@ -174,7 +180,7 @@ namespace Player.Runtime
         private Vector3 _cameraDirection;
         private Transform _cameraTransform;
 
-        private bool _isGrounded, _isJumping;
+        private bool _isGrounded;
 
         private float _currentSpeed;
 
