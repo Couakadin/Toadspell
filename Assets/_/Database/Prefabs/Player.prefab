@@ -309,7 +309,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_listerner: {fileID: 11400000, guid: 625df00b86105e149975c16dcd903031, type: 2}
+  m_listerner: {fileID: 11400000, guid: a9aed23f086d91f45bebe128437a182d, type: 2}
 --- !u!1 &6894619066729241621
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   m_tongue: {fileID: 5384183950017905746}
-  m_tongueSpeed: 50
+  m_tongueSpeed: 100
   m_spellSpawner: {fileID: 2973302727276828244}
   m_spell: 0
   m_currentPool: {fileID: 0}
