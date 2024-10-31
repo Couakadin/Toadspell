@@ -189,7 +189,7 @@ namespace Data.Runtime
                     ""id"": ""e40662ac-0ca5-41bf-9913-e091d9c3442a"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=7.5,y=7.5)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,

@@ -53,10 +53,11 @@ namespace Objects.Runtime
         {
             _player = Instantiate(m_player, m_position.position, Quaternion.identity, null);
             _player.TryGetComponent(out _powerBehaviour);
+            _player.TryGetComponent(out _moveBehaviour);
 
-            m_camera.Follow = _player.transform;
-            m_camera.LookAt = _player.transform;
-            m_camera.transform.forward = _player.transform.forward;
+            m_camera.Follow = _moveBehaviour.m_cameraTarget.transform;
+            m_camera.LookAt = _moveBehaviour.m_cameraTarget.transform;
+            m_camera.transform.forward = _moveBehaviour.m_cameraTarget.transform.forward;
 
             foreach (PoolSystem pool in m_spellPools)
             {
@@ -112,6 +113,7 @@ namespace Objects.Runtime
 
         private GameObject _player;
         private PowerBehaviour _powerBehaviour;
+        private MoveBehaviour _moveBehaviour;
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private float _teleportDelay = 1f;
         [SerializeField] private float _disablingDelay = .5f;
