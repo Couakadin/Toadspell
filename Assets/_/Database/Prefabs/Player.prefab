@@ -417,7 +417,6 @@ MonoBehaviour:
   m_speedAcceleration: 200
   m_speedDeceleration: 100
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
-  _teleportDelay: 1
 --- !u!114 &8334425831744867161
 MonoBehaviour:
   m_ObjectHideFlags: 0
