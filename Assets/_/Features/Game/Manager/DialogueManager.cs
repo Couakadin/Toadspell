@@ -1,4 +1,5 @@
 using Data.Runtime;
+using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -30,6 +31,7 @@ namespace Game.Runtime
         [ContextMenu("start conversation")]
         private void testDialogues() 
         {
+            _dialoguePanel.DOFade(1, _panelFadeIn);
             StartDialogue(_firstExchange[_currentExchangeIndex]);
         }
 
@@ -65,7 +67,9 @@ namespace Game.Runtime
                 }
                 else
                 {
+                    _dialoguePanel.DOFade(0, _panelFadeOut);
                     Debug.Log("Dialogue Has Ended");
+
                 }
             }
 
@@ -90,6 +94,11 @@ namespace Game.Runtime
         private Timer _typingTimer;
 
         private string _writer;
+
+        [Header("Panel Fade in/out")]
+        [SerializeField] private CanvasGroup _dialoguePanel;
+        [SerializeField] private float _panelFadeIn;
+        [SerializeField] private float _panelFadeOut;
 
         [Header("Dialogues Specifics")]
         [SerializeField] private List<Dialogue> _firstExchange = new List<Dialogue>();
