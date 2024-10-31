@@ -49,7 +49,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7236339954745906341}
         m_TargetAssemblyTypeName: Objects.Runtime.GameBehaviour, Objects.Runtime
-        m_MethodName: DisablePlayer
+        m_MethodName: ReactToTeleportEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -109,6 +109,11 @@ MonoBehaviour:
     type: 3}
   m_position: {fileID: 0}
   m_camera: {fileID: 0}
-  m_spellPools: []
+  m_spellPools:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   _teleportDelay: 1
+  _disablingDelay: 0.5
