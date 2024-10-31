@@ -45,8 +45,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7464925733653585607}
+  - component: {fileID: 8759200973511280161}
   m_Layer: 0
-  m_Name: Spell Grass
+  m_Name: Water Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,6 +68,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2679761566533977806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8759200973511280161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368501588140543276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poolCapacity: 0
+  m_poolTransform: {fileID: 0}
+  m_gameObject: {fileID: 9034298060732826985, guid: fe2ddf2b9c62c884ba0b8c9f67d8ef12,
+    type: 3}
+  m_poolOfObjects: []
 --- !u!1 &1747296571491868543
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,8 +94,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5138112664677252662}
+  - component: {fileID: 1508761137810628432}
   m_Layer: 0
-  m_Name: Thorns
+  m_Name: Grass Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,6 +117,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2679761566533977806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1508761137810628432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747296571491868543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poolCapacity: 0
+  m_poolTransform: {fileID: 0}
+  m_gameObject: {fileID: 3884492845388431974, guid: 71d6af6b444fd9d4090f28c0d0cdc4fc,
+    type: 3}
+  m_poolOfObjects: []
 --- !u!1 &2816034290360488647
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,8 +143,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1830265710747398282}
+  - component: {fileID: 4774544475458565083}
   m_Layer: 0
-  m_Name: Spell Fire
+  m_Name: Arcane Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,6 +166,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2679761566533977806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4774544475458565083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816034290360488647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poolCapacity: 0
+  m_poolTransform: {fileID: 0}
+  m_gameObject: {fileID: 7638124327235467493, guid: 524dad1d048d83249bf2a7df7769d863,
+    type: 3}
+  m_poolOfObjects: []
 --- !u!1 &3192309548984746909
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,8 +241,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4073673083963430637}
+  - component: {fileID: 5771717814266994764}
   m_Layer: 0
-  m_Name: Spell Water
+  m_Name: Fire Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,3 +264,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2679761566533977806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5771717814266994764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9131076606612437873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_poolCapacity: 0
+  m_poolTransform: {fileID: 0}
+  m_gameObject: {fileID: 8479936759779383326, guid: 369bf31348d524d45b6c085af63f0f56,
+    type: 3}
+  m_poolOfObjects: []
