@@ -1,7 +1,6 @@
 using Cinemachine;
 using Data.Runtime;
 using Player.Runtime;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +26,7 @@ namespace Objects.Runtime
 
         #endregion
 
+
         #region Unity
 
         private void Awake()
@@ -34,6 +34,19 @@ namespace Objects.Runtime
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _teleportTimer = new Timer(_teleportDelay);
+            _disablingTimer = new Timer(_disablingDelay);
+        }
+
+        private void OnEnable()
+        {
+            _teleportTimer.OnTimerFinished += TeleportMove;
+            _disablingTimer.OnTimerFinished += DisablePlayer;
+        }
+
+        private void OnDisable()
+        {
+            _teleportTimer.OnTimerFinished -= TeleportMove;
+            _disablingTimer.OnTimerFinished -= DisablePlayer;
         }
 
         private void Start()
@@ -52,37 +65,45 @@ namespace Objects.Runtime
             }
         }
 
-        private void OnEnable()
-        {
-            _teleportTimer.OnTimerFinished += TeleportMove;
-        }
-
-        private void OnDisable()
-        {
-            _teleportTimer.OnTimerFinished -= TeleportMove;
-        }
-
         private void Update()
         {
-            _teleportTimer.Tick();
+            _teleportTimer?.Tick();
+            _disablingTimer?.Tick();
         }
+
+        #endregion
+
 
         #region Main Methods
 
+        public void ReactToTeleportEvent()
+        {
+            SetOrResetTimer(_teleportTimer);
+            SetOrResetTimer(_disablingTimer);
+        }
+
+        #endregion
+
+
+        #region Utils
         private void TeleportMove()
         {
             _player.transform.position = _playerBlackboard.GetValue<Vector3>("Checkpoint");
             _player.SetActive(true);
         }
 
-        #endregion
-
-        [ContextMenu("disable")]
-        public void DisablePlayer()
+        private void DisablePlayer()
         {
-            _teleportTimer.Reset();
-            _teleportTimer.Begin();
             _player.SetActive(false);
+        }
+
+        public void SetOrResetTimer(Timer timer)
+        {
+            if (!timer.IsRunning())
+            {
+                timer.Reset();
+                timer.Begin();
+            }
         }
 
         #endregion
@@ -93,7 +114,9 @@ namespace Objects.Runtime
         private PowerBehaviour _powerBehaviour;
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private float _teleportDelay = 1f;
+        [SerializeField] private float _disablingDelay = .5f;
         private Timer _teleportTimer;
+        private Timer _disablingTimer;
 
         #endregion
     }
