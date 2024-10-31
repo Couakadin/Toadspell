@@ -9,22 +9,12 @@ namespace Game.Runtime
 {
     public class Intro : MonoBehaviour
     {
-        #region Publics
-	
-        #endregion
-
-
         #region Unity API
 		
     	void Start()
     	{
-	
-    	}
-
-    	void Update()
-    	{
-	
-    	}
+            ShowIntro();
+        }
 
         #endregion
 
@@ -42,7 +32,7 @@ namespace Game.Runtime
                 _textDialogue = _introDialogues[i];
                 _introText.text = _introDialogues[i].m_lines[_textIndex].m_sentence;
 
-                _intro.Append(_canvasGroup.DOFade(1, _fadeInTime));
+                _intro.Append(_introCanvasGroup.DOFade(1, _fadeInTime));
                 for(int j = 0; j < _introDialogues[i].m_lines.Count; j++)
                 {
                     _intro.Append(_introTextAlpha.DOFade(1, _textfadeIn));
@@ -51,7 +41,8 @@ namespace Game.Runtime
                     _intro.AppendInterval(_intervalBetweenTexts);
                 }
 
-                _intro.Append(_canvasGroup.DOFade(0, _fadeOutTime));
+                _intro.Append(_introCanvasGroup.DOFade(0, _fadeOutTime));
+                _intro.Append(_backgroundCanvasGroup.DOFade(0, _backgroundFadeOut));
             }
         }
 
@@ -59,12 +50,7 @@ namespace Game.Runtime
         {
             _textIndex++;
             _introText.text = _textDialogue.m_lines[_textIndex].m_sentence;
-
         }
-        #endregion
-
-
-        #region Utils
 
         #endregion
 
@@ -78,8 +64,10 @@ namespace Game.Runtime
         [Header("Background Image Specifics")]
         [SerializeField] private float _fadeInTime;
         [SerializeField] private float _fadeOutTime;
+        [SerializeField] private float _backgroundFadeOut;
         [SerializeField] private Image _introImage;
-        [SerializeField] private CanvasGroup _canvasGroup;
+        [SerializeField] private CanvasGroup _introCanvasGroup;
+        [SerializeField] private CanvasGroup _backgroundCanvasGroup;
 
         [Header("Text Specifics")]
         [SerializeField] private TMP_Text _introText;
