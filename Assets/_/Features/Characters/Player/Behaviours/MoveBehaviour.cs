@@ -1,4 +1,5 @@
 using Data.Runtime;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,14 +10,20 @@ namespace Player.Runtime
     {
         #region Publics
 
-        public float m_jump;
+        [Header("Move Params")]
         public float m_speed;
-        public float m_gravity;
         public float m_rotation;
-        public float m_fallMultiplier;
-        public float m_jumpMultiplier;
         public float m_speedAcceleration;
         public float m_speedDeceleration;
+
+        [Header("Jump Params")]
+        public float m_jump;
+        public float m_gravity;
+        public float m_fallMultiplier;
+        public float m_jumpMultiplier;
+
+        [Header("Cameras"), Required]
+        public GameObject m_cameraTarget;
 
         #endregion
 
@@ -155,7 +162,7 @@ namespace Player.Runtime
 
         #region Privates
 
-        [Header("Blackboards")]
+        [Header("Blackboards"), Required]
         [SerializeField]
         private Blackboard _playerBlackboard;
 
