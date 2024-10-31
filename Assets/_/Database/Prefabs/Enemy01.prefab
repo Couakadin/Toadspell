@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8372706273706809733
 Transform:
   m_ObjectHideFlags: 0
@@ -49,14 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_attackDelay: 2
   m_lifePoints: 0
-  m_maxDetectionRange: 20
-  _enemySize: 0
+  m_maxDetectionRange: 30
   m_blackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
-  _targetToReplaceWithPlayer: {fileID: 0}
   _meshRenderer: {fileID: 0}
   _angleDetectionRange: 1
-  _rushDistance: 10
-  _rushSpeed: 15
+  _rushDistance: 25
+  _rushSpeed: 50
   _recoilDistance: 0.5
   _takeDamageDelay: 0.5
 --- !u!1 &3392612283262688849

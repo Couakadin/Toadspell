@@ -32,6 +32,7 @@ namespace Enemies.Runtime
                 
                 if(IsAlignedWithPlayer(playerPosition) && !_isCoolingDownAfterRush)
                 {
+
                     Attack(); // Attacks if player is aligned
                 }
             }
