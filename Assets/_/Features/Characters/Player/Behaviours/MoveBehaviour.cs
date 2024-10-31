@@ -97,8 +97,8 @@ namespace Player.Runtime
                 return;
             }
 
-            var isFalling = _velocity.y <= 0;
-            var multiplier = isFalling ? m_fallMultiplier : m_jumpMultiplier;
+            bool isFalling = _velocity.y <= 0;
+            float multiplier = isFalling ? m_fallMultiplier : m_jumpMultiplier;
             _velocity.y += Time.deltaTime * m_gravity * multiplier;
         }
 
