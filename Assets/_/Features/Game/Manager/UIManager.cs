@@ -62,6 +62,11 @@ namespace Game.Runtime
             {
                 _livesList[i].SetActive(false);
             }
+            if(_currentLives > _livesList.Count)
+            {
+                GameObject life = Instantiate(_livesPrefab, _livesTransform);
+                _livesList.Add(life);
+            }
             for(int i = 0; i < _currentLives; i++)
             {
                 _livesList[i].SetActive(true);
