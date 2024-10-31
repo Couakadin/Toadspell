@@ -47,8 +47,8 @@ namespace Objects.Runtime
 
         #region Privates & Protected
 
-        [SerializeField] private int _pointsToSend;
-        [SerializeField] private IntEvent _onCollectionEvent;
+        [SerializeField] private float _pointsToSend;
+        [SerializeField] private FloatEvent _onCollectionEvent;
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private ParticleSystem _collectionParticles;
         [SerializeField] private AudioClip _collectionSound;
