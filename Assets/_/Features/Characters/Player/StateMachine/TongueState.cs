@@ -28,7 +28,7 @@ namespace Player.Runtime
 
         public void Enter()
         {
-            _tongueMaxDistance = m_stateMachine.m_powerBehaviour.m_detectionRadius;
+            _tongueMaxDistance = m_stateMachine.m_powerBehaviour.m_maxDetectionRadius;
             _currentLockTarget = m_stateMachine.m_lockState.m_currentLockTarget?.transform;
             if (_currentLockTarget == null) m_stateMachine.ChangeState(m_stateMachine.m_lockState);
         }
@@ -40,7 +40,7 @@ namespace Player.Runtime
             _isTongueInteract = false;
             _isTongueReturned = false;
             _isTongueControl = false;
-            _isPlayerAttract = false;
+            _isTongueAttract = false;
             _isPlayerPlatform = false;
         }
 
@@ -56,8 +56,7 @@ namespace Player.Runtime
             if (_hit.collider == null) return;
             if (!_isTongueInteract) TongueExtend();
             if (_isTongueControl) TongueControl();
-            if (_isPlayerAttract) PlayerAttract();
-            if (_isPlayerPlatform) PlayerPlateform();
+            if (_isTongueAttract) TongueAttract();
         }
 
         public void PhysicsTick()
@@ -131,8 +130,7 @@ namespace Player.Runtime
                 _fixedJoint.connectedBody = _tongueRigidbody;
                 _isTongueControl = true;
             }
-            else if (_sizeable.size == ISizeable.Size.large) _isPlayerAttract = true;
-            else if (_sizeable.size == ISizeable.Size.platform) _isPlayerPlatform = true;
+            else if (_sizeable.size == ISizeable.Size.large || _sizeable.size == ISizeable.Size.platform) _isTongueAttract = true;
         }
 
         private void TongueControl()
@@ -153,23 +151,7 @@ namespace Player.Runtime
             }
         }
 
-        private void PlayerAttract()
-        {
-            _distanceToTarget = _tongueRigidbody.transform.position - new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z);
-
-            if (_distanceToTarget.sqrMagnitude > 2f && m_stateMachine.m_powerBehaviour.m_tongueInput.IsPressed())
-            {
-                _moveBehaviour.enabled = false;
-                _characterController.Move(Time.deltaTime * _tongueSpeed * _distanceToTarget.normalized);
-            }
-            else
-            {
-                _moveBehaviour.enabled = true;
-                _isTongueReturned = true;
-            }
-        }
-
-        private void PlayerPlateform()
+        private void TongueAttract()
         {
             _distanceToTarget = _tongueRigidbody.transform.position - new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z);
 
@@ -248,7 +230,7 @@ namespace Player.Runtime
         private MoveBehaviour _moveBehaviour;
         private Transform _playerTransform;
         private float _tongueMaxDistance;
-        private bool _isPlayerAttract, _isPlayerPlatform;
+        private bool _isTongueAttract, _isPlayerPlatform;
         private float _velocityY;
         private Vector3 _movement;
 

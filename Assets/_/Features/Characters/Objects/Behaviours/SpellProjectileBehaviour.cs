@@ -14,7 +14,7 @@ namespace Objects.Runtime
 
         private void OnEnable()
         {
-            _target = _tongueBlackboard.GetValue<GameObject>("currentLockedTarget");
+            _target = _tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
 
             if (_target == null) DeathAfterAWhile();
             else 

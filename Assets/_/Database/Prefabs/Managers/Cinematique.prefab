@@ -100,8 +100,9 @@ GameObject:
   - component: {fileID: 6445568674987910986}
   - component: {fileID: 2488671224437484546}
   - component: {fileID: 4967876511529971454}
+  - component: {fileID: 1068530470107818482}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Intro_DarkBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,6 +165,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &1068530470107818482
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3250470101874071616}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4439637694867579467
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,8 +442,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeInTime: 1
   _fadeOutTime: 0.6
+  _backgroundFadeOut: 1
   _introImage: {fileID: 2663641254097683546}
-  _canvasGroup: {fileID: 3028308834529243803}
+  _introCanvasGroup: {fileID: 3028308834529243803}
+  _backgroundCanvasGroup: {fileID: 1068530470107818482}
   _introText: {fileID: 5152012539416952825}
   _introTextAlpha: {fileID: 2000048139198233843}
   _textfadeIn: 0.8
