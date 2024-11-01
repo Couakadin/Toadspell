@@ -21,6 +21,8 @@ namespace Player.Runtime
         public float m_gravity;
         public float m_fallMultiplier;
         public float m_jumpMultiplier;
+        [Required]
+        public GroundBehaviour m_groundChecker;
 
         [Header("Cameras"), Required]
         public GameObject m_cameraTarget;
@@ -83,16 +85,16 @@ namespace Player.Runtime
 
         private void HandleMove()
         {
-            // Reset vertical velocity only if grounded and not jumping
-            if (_isGrounded && _velocity.y < 0) _velocity.y = 0;
-
-            if (_isGrounded)
+            if (m_groundChecker.m_isGrounded)
             {
                 if (_jumpInput.triggered)
                 {
                     // trigger jump
                     _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-                    _isGrounded = false;
+                }
+                else if (_velocity.y <= 0)
+                {
+                    _velocity.y = 0;
                 }
                 return;
             }
@@ -110,8 +112,6 @@ namespace Player.Runtime
             // Calculate movement
             Vector3 movement = new Vector3(_cameraDirection.x * _currentSpeed, _velocity.y, _cameraDirection.z * _currentSpeed);
             _characterController.Move(Time.deltaTime * movement);
-            // Thanks Lead devs <3
-            _isGrounded |= _characterController.isGrounded;
         }
 
         /// <summary>
