@@ -74,7 +74,7 @@ namespace Player.Runtime
         public void JumpTrigger()
         {
             _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-            Vector3 movement = new Vector3(_cameraDirection.x * _velocity.y * _currentSpeed, _velocity.y, _cameraDirection.z * _velocity.y * _currentSpeed);
+            Vector3 movement = new Vector3(_cameraDirection.x * _velocity.y * _currentSpeed, _velocity.y * _currentSpeed, _cameraDirection.z * _velocity.y * _currentSpeed);
 
             _characterController.Move(Time.deltaTime * movement);
         }

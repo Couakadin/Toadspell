@@ -29,7 +29,8 @@ namespace Player.Runtime
             _spellInput = m_stateMachine.m_powerBehaviour.m_spellInput;
 
             // Lock
-            _detectionRadius = m_stateMachine.m_powerBehaviour.m_detectionRadius;
+            _maxDetectionRadius = m_stateMachine.m_powerBehaviour.m_maxDetectionRadius;
+            _minDetectionRadius = m_stateMachine.m_powerBehaviour.m_minDetectionRadius;
             _detectionLayer = m_stateMachine.m_powerBehaviour.m_detectionLayer;
 
             // Camera
@@ -60,7 +61,7 @@ namespace Player.Runtime
 
         public void FinalTick()
         {
-            _tongueBlackboard.SetValue("currentLockedTarget", m_currentLockTarget);
+            _tongueBlackboard.SetValue("CurrentLockedTarget", m_currentLockTarget);
         }
 
         public void HandleInput()
@@ -84,23 +85,35 @@ namespace Player.Runtime
             _lockingList.Clear();
 
             // Get all colliders within the detection radius
-            _hitColliders = Physics.OverlapSphere(_playerTransform.position, _detectionRadius, _detectionLayer);
+            _hitColliders = Physics.OverlapSphere(_playerTransform.position, _maxDetectionRadius, _detectionLayer);
 
             // Loop through the detected colliders
             foreach (Collider hitCollider in _hitColliders)
             {
-                // Check if the object is visible on the camera screen
-                _viewportPoint = _cameraMain.WorldToViewportPoint(hitCollider.transform.position);
+                Vector3 hitPosition = new Vector3(hitCollider.transform.position.x, 0, hitCollider.transform.position.z);
+                Vector3 playerPosition = new Vector3(_playerTransform.position.x, 0, _playerTransform.position.z);
+                Vector3 distanceToTarget = hitPosition - playerPosition;
 
-                // Check if the point is within the camera's view (inside screen bounds)
-                _isInView = _viewportPoint.z > 0 &&
-                            _viewportPoint.x > 0 && _viewportPoint.x < 1 &&
-                            _viewportPoint.y > 0 && _viewportPoint.y < 1;
+                // Square the minimum and maximum detection radii for comparison
+                float minRadiusSqr = _minDetectionRadius * _minDetectionRadius;
+                float maxRadiusSqr = _maxDetectionRadius * _maxDetectionRadius;
+                float distanceSqr = distanceToTarget.sqrMagnitude;
 
-                // If the object is visible on screen and implements ILockable, add it to the list
-                if (_isInView && hitCollider.TryGetComponent(out IAmLockable lockable))
+                if (distanceSqr >= minRadiusSqr && distanceSqr <= maxRadiusSqr)
                 {
-                    _lockingList.Add(hitCollider.gameObject);
+                    // Check if the object is visible on the camera screen
+                    _viewportPoint = _cameraMain.WorldToViewportPoint(hitCollider.transform.position);
+
+                    // Check if the point is within the camera's view (inside screen bounds)
+                    _isInView = _viewportPoint.z > 0 &&
+                                _viewportPoint.x > 0 && _viewportPoint.x < 1 &&
+                                _viewportPoint.y > 0 && _viewportPoint.y < 1;
+
+                    // If the object is visible on screen and implements ILockable, add it to the list
+                    if (_isInView && hitCollider.TryGetComponent(out IAmLockable lockable))
+                    {
+                        _lockingList.Add(hitCollider.gameObject);
+                    }
                 }
             }
 
@@ -202,7 +215,8 @@ namespace Player.Runtime
         private InputAction _spellInput;
 
         // Lock
-        private float _detectionRadius;
+        private float _maxDetectionRadius;
+        private float _minDetectionRadius;
         private LayerMask _detectionLayer;
 
         // Camera

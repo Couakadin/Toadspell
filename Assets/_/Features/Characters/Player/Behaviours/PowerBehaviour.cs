@@ -15,8 +15,10 @@ namespace Player.Runtime
         public Blackboard m_tongueBlackboard;
 
         [Header("Lock Params")]
-        [Tooltip("The range to detect lockable targets.")]
-        public float m_detectionRadius;
+        [Tooltip("The max range to detect lockable targets.")]
+        public float m_maxDetectionRadius;
+        [Tooltip("The min range to detect lockable targets.")]
+        public float m_minDetectionRadius;
         [Tooltip("The layer of lockable targets.")]
         public LayerMask m_detectionLayer;
 
