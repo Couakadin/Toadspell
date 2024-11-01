@@ -87,15 +87,8 @@ namespace Player.Runtime
         {
             if (m_groundChecker.m_isGrounded)
             {
-                if (_jumpInput.triggered)
-                {
-                    // trigger jump
-                    _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-                }
-                else if (_velocity.y <= 0)
-                {
-                    _velocity.y = 0;
-                }
+                if (_jumpInput.triggered) _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
+                else if (_velocity.y < 0) _velocity.y = 0;
                 return;
             }
 
@@ -107,7 +100,7 @@ namespace Player.Runtime
         private void MoveAction()
         {
             // Handle rotation
-            if (_direction.magnitude > 0.1f) RotateTowards(_direction);
+            if (_direction.magnitude > .1f) RotateTowards(_direction);
 
             // Calculate movement
             Vector3 movement = new Vector3(_cameraDirection.x * _currentSpeed, _velocity.y, _cameraDirection.z * _currentSpeed);
