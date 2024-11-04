@@ -49,6 +49,7 @@ namespace Player.Runtime
             _isTongueReturned = false;
             _isTongueControl = false;
             _isTongueAttract = false;
+            _isTonguePlateform = false;
         }
 
         public void Tick()
@@ -142,6 +143,7 @@ namespace Player.Runtime
             {
                 _timerReturn.Begin();
 
+                if (_sizeable.size == ISizeable.Size.platform) _isTonguePlateform = true;
                 _isTongueAttract = true;
             }
         }
@@ -176,7 +178,8 @@ namespace Player.Runtime
             else
             {
                 _moveBehaviour.enabled = true;
-                _moveBehaviour.m_tongueAttract = true;
+
+                if (_isTonguePlateform) _moveBehaviour.m_tonguePlateform = true;
                 _moveBehaviour.m_velocity.y = Mathf.Sqrt(_moveBehaviour.m_jump * -4f * _moveBehaviour.m_gravity);
 
                 _isTongueReturned = true;
@@ -243,7 +246,7 @@ namespace Player.Runtime
         private MoveBehaviour _moveBehaviour;
         private Transform _playerTransform;
         private float _tongueMaxDistance;
-        private bool _isTongueAttract;
+        private bool _isTongueAttract, _isTonguePlateform;
         private float _velocityY;
         private Vector3 _movement;
 
@@ -270,7 +273,6 @@ namespace Player.Runtime
         private bool _isFirstPress = false;
         private float _doublePressTimer = 0f;
         private float _doublePressThreshold = 0.3f;
-
         private Timer _timerReturn;
 
         #endregion

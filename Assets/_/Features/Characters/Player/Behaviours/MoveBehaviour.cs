@@ -28,7 +28,7 @@ namespace Player.Runtime
         [Header("Cameras"), Required]
         public GameObject m_cameraTarget;
 
-        public bool m_tongueAttract;
+        public bool m_tonguePlateform;
         public Vector3 m_velocity;
 
         #endregion
@@ -68,7 +68,7 @@ namespace Player.Runtime
 
         private void LateUpdate()
         {
-            if (!m_tongueAttract) _movement = new Vector3(_cameraDirection.x * _currentSpeed, m_velocity.y, _cameraDirection.z * _currentSpeed);
+            if (!m_tonguePlateform) _movement = new Vector3(_cameraDirection.x * _currentSpeed, m_velocity.y, _cameraDirection.z * _currentSpeed);
             else _movement = new Vector3(_characterController.transform.forward.x * m_jumpPlateform, m_velocity.y, _characterController.transform.forward.z * m_jumpPlateform);
 
             _playerBlackboard.SetValue<Vector3>("Position", transform.position);
@@ -84,7 +84,7 @@ namespace Player.Runtime
             {
                 if (_jumpInput.triggered) m_velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
                 else if (m_velocity.y < 0) m_velocity.y = 0;
-                m_tongueAttract = false;
+                m_tonguePlateform = false;
                 return;
             }
 
