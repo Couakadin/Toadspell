@@ -8,11 +8,6 @@ namespace Game.Runtime
 {
     public class UIManager : MonoBehaviour
     {
-        #region Publics
-
-        #endregion
-
-
         #region Unity API
 
         private void Awake()
@@ -30,11 +25,6 @@ namespace Game.Runtime
                 _livesList.Add(life);
             }
         }
-
-    	void Update()
-    	{
-
-    	}
 
         #endregion
 
@@ -73,11 +63,22 @@ namespace Game.Runtime
             }
         }
 
+        [ContextMenu("tutorial")]
+        public void ShowTutorial()
+        {
+            if (_tutorialIndex >= _tutorialPanels.Count) return;
+            Sequence tutorialSequence = DOTween.Sequence();
+            tutorialSequence.Append(_tutorialPanels[_tutorialIndex].DOFade(1, _tutorialFadeIn));
+            tutorialSequence.AppendInterval(_tutorialTimeOnScreen);
+            tutorialSequence.Append(_tutorialPanels[_tutorialIndex].DOFade(0, _tutorialFadeOut)).OnComplete(UpdateTutorialIndex);   
+        }
+
         #endregion
 
 
         #region Utils
 
+        private void UpdateTutorialIndex() => _tutorialIndex++;
         #endregion
 
 
@@ -103,6 +104,16 @@ namespace Game.Runtime
         [SerializeField] private List<Color> _spellList = new List<Color>();
         [SerializeField] private Image _spellImage;
         [SerializeField] private int _spell;
+
+        [Header("Tutorial")]
+        private List<CanvasGroup> _tutorialPanels;
+        [SerializeField] private List<CanvasGroup> _keyboardTutorial;
+        [SerializeField] private List<CanvasGroup> _joyStickTutorial;
+        [SerializeField] private float _tutorialTimeOnScreen;
+        [SerializeField] private float _tutorialFadeIn;
+        [SerializeField] private float _tutorialFadeOut;
+        [SerializeField] private int _tutorialIndex = 0;
+
 
         #endregion
     }
