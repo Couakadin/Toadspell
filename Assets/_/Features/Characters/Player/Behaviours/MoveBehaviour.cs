@@ -71,10 +71,10 @@ namespace Player.Runtime
 
         #region Methods
 
-        public void JumpTrigger()
+        public void JumpTrigger(Vector3 direction)
         {
             _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-            Vector3 movement = new Vector3(_cameraDirection.x * _velocity.y * _currentSpeed, _velocity.y * _currentSpeed, _cameraDirection.z * _velocity.y * _currentSpeed);
+            Vector3 movement = new Vector3(direction.x * _velocity.y, direction.y * _velocity.y, direction.z * _velocity.y);
 
             _characterController.Move(Time.deltaTime * movement);
         }
