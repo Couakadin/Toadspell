@@ -16,20 +16,23 @@ namespace Game.Runtime
         {
             _typingTimer = new Timer(_typingSpeed);
             StartDialogue(_firstExchange[_currentExchangeIndex]);
+            _typingTimer.OnTimerFinished += OnCharacterTyping;
         }
 
-        void Update()
-    	{
-
-    	}
-
+        private void Update()
+        {
+            if (_isTyping)
+            {
+                _typingTimer.Tick();
+            }
+        }
         #endregion
 
 
         #region Main Methods
 
         [ContextMenu("start conversation")]
-        private void testDialogues() 
+        private void LaunchNewDialogueExchange() 
         {
             _dialoguePanel.DOFade(1, _panelFadeIn);
             StartDialogue(_firstExchange[_currentExchangeIndex]);
@@ -49,13 +52,14 @@ namespace Game.Runtime
         {
             if (_currentLineIndex < _currentDialogue.m_lines.Count)
             {
+                //_typingSpeed = _currentDialogue.m_lines[_currentLineIndex].m_screenTime;
+                _currentCharacterIndex = 0;
+                _linesOfDialogue.text = "";
+                _isTyping = true;
+                _writer = _currentDialogue.m_lines[_currentLineIndex].m_sentence;
 
-                _typingSpeed = _currentDialogue.m_lines[_currentLineIndex].m_screenTime;
-                //_linesOfDialogue.text = _currentDialogue.m_lines[_currentLineIndex].m_sentence;
-                _linesOfDialogue.text = _currentDialogue.m_lines[_currentLineIndex].m_sentence;
-
-
-                _currentLineIndex++;
+                _typingTimer.Reset();
+                _typingTimer.Begin();
             }
             else
             {
@@ -79,6 +83,22 @@ namespace Game.Runtime
 
 
         #region Utils
+
+        private void OnCharacterTyping()
+        {
+            if(_currentCharacterIndex < _writer.Length)
+            {
+                _linesOfDialogue.text += _writer[_currentCharacterIndex];
+                _currentCharacterIndex++;
+                _typingTimer.Reset();
+                _typingTimer.Begin();
+            }
+            else
+            {
+                _isTyping = false;
+                DisplayNextLines();
+            }
+        }
 
         #endregion
 
