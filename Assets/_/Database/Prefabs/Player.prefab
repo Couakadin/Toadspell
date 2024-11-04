@@ -477,8 +477,11 @@ MonoBehaviour:
   m_gravity: -18
   m_fallMultiplier: 2.5
   m_jumpMultiplier: 2
+  m_jumpPlateform: 10
   m_groundChecker: {fileID: 2743566424125352481}
   m_cameraTarget: {fileID: 8313961862797647093}
+  m_tongueAttract: 0
+  m_velocity: {x: 0, y: 0, z: 0}
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
 --- !u!114 &8334425831744867161
 MonoBehaviour:
@@ -653,7 +656,7 @@ MonoBehaviour:
   groundCheckRadius: 0.1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
 --- !u!1 &8313961862797647093
 GameObject:
   m_ObjectHideFlags: 0

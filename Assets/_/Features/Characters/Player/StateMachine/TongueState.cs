@@ -176,7 +176,8 @@ namespace Player.Runtime
             else
             {
                 _moveBehaviour.enabled = true;
-                _moveBehaviour.JumpTrigger(Time.deltaTime * _tongueSpeed * _distanceToTarget.normalized);
+                _moveBehaviour.m_tongueAttract = true;
+                _moveBehaviour.m_velocity.y = Mathf.Sqrt(_moveBehaviour.m_jump * -4f * _moveBehaviour.m_gravity);
 
                 _isTongueReturned = true;
             }
