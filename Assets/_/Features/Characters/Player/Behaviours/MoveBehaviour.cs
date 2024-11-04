@@ -21,6 +21,8 @@ namespace Player.Runtime
         public float m_gravity;
         public float m_fallMultiplier;
         public float m_jumpMultiplier;
+        [Required]
+        public GroundBehaviour m_groundChecker;
 
         [Header("Cameras"), Required]
         public GameObject m_cameraTarget;
@@ -72,7 +74,7 @@ namespace Player.Runtime
         public void JumpTrigger()
         {
             _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-            Vector3 movement = new Vector3(_cameraDirection.x * _velocity.y * _currentSpeed, _velocity.y, _cameraDirection.z * _velocity.y * _currentSpeed);
+            Vector3 movement = new Vector3(_cameraDirection.x * _velocity.y * _currentSpeed, _velocity.y * _currentSpeed, _cameraDirection.z * _velocity.y * _currentSpeed);
 
             _characterController.Move(Time.deltaTime * movement);
         }
@@ -83,17 +85,10 @@ namespace Player.Runtime
 
         private void HandleMove()
         {
-            // Reset vertical velocity only if grounded and not jumping
-            if (_isGrounded && _velocity.y < 0) _velocity.y = 0;
-
-            if (_isGrounded)
+            if (m_groundChecker.m_isGrounded)
             {
-                if (_jumpInput.triggered)
-                {
-                    // trigger jump
-                    _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-                    _isGrounded = false;
-                }
+                if (_jumpInput.triggered) _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
+                else if (_velocity.y < 0) _velocity.y = 0;
                 return;
             }
 
@@ -105,13 +100,11 @@ namespace Player.Runtime
         private void MoveAction()
         {
             // Handle rotation
-            if (_direction.magnitude > 0.1f) RotateTowards(_direction);
+            if (_direction.magnitude > .1f) RotateTowards(_direction);
 
             // Calculate movement
             Vector3 movement = new Vector3(_cameraDirection.x * _currentSpeed, _velocity.y, _cameraDirection.z * _currentSpeed);
             _characterController.Move(Time.deltaTime * movement);
-            // Thanks Lead devs <3
-            _isGrounded |= _characterController.isGrounded;
         }
 
         /// <summary>

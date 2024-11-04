@@ -3,6 +3,7 @@ using Data.Runtime;
 
 namespace Objects.Runtime
 {
+    [RequireComponent(typeof(FixedJoint))]
     public class InteractBehaviour : MonoBehaviour, ISizeable, IAmLockable
     {
         #region Publics
