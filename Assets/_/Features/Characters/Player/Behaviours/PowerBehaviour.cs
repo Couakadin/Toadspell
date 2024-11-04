@@ -28,18 +28,22 @@ namespace Player.Runtime
         [Tooltip("The speed of the tongue.")]
         public float m_tongueSpeed;
 
-        public InputAction m_lockInput { get; private set; }
-        public InputAction m_tongueInput { get; private set; }
-        public InputAction m_moveInput { get; private set; }
-        public InputAction m_spellInput { get; private set; }
-
         [Header("Spell Params")]
         [Tooltip("The GameObject where spells are launched.")]
         public GameObject m_spellSpawner;
+        [Tooltip("The speed at spells are launched.")]
+        public float m_speedOfProjectile;
+        [Tooltip("The duration of spells.")]
+        public float m_durationOfProjectile;
         [EnumToggleButtons]
         public IAmSpellGiver.Spell m_spell;
         public PoolSystem m_currentPool;
         public List<PoolSystem> m_spellPools;
+
+        public InputAction m_lockInput { get; private set; }
+        public InputAction m_tongueInput { get; private set; }
+        public InputAction m_moveInput { get; private set; }
+        public InputAction m_spellInput { get; private set; }
 
         #endregion
 

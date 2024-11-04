@@ -24,10 +24,16 @@ namespace Player.Runtime
 
             // Lock
             _detectionLayer = m_stateMachine.m_powerBehaviour.m_detectionLayer;
+
+            // Timer
+            _timerReturn = new Timer(1.5f);
         }
 
         public void Enter()
         {
+            _timerReturn.OnTimerFinished += TongueReturn;
+            _timerReturn?.Reset();
+
             _tongueMaxDistance = m_stateMachine.m_powerBehaviour.m_maxDetectionRadius;
             _currentLockTarget = m_stateMachine.m_lockState.m_currentLockTarget?.transform;
             if (_currentLockTarget == null) m_stateMachine.ChangeState(m_stateMachine.m_lockState);
@@ -35,17 +41,20 @@ namespace Player.Runtime
 
         public void Exit()
         {
+            _timerReturn.OnTimerFinished -= TongueReturn;
+
             // Bools reset
             _isTongueExtended = false;
             _isTongueInteract = false;
             _isTongueReturned = false;
             _isTongueControl = false;
             _isTongueAttract = false;
-            _isPlayerPlatform = false;
         }
 
         public void Tick()
         {
+            _timerReturn?.Tick();
+
             if (_isTongueReturned)
             {
                 TongueReturn();
@@ -66,8 +75,6 @@ namespace Player.Runtime
 
         public void FinalTick()
         {
-            ForceTongueReturn();
-
             if (_hit.collider != null) _playerTransform.LookAt(new Vector3(_tongueRigidbody.position.x, _playerTransform.position.y, _tongueRigidbody.position.z));
         }
 
@@ -116,6 +123,7 @@ namespace Player.Runtime
 
         private void TongueInteract()
         {
+
             _isTongueInteract = true;
 
             if (_sizeable == null) return;
@@ -130,7 +138,12 @@ namespace Player.Runtime
                 _fixedJoint.connectedBody = _tongueRigidbody;
                 _isTongueControl = true;
             }
-            else if (_sizeable.size == ISizeable.Size.large || _sizeable.size == ISizeable.Size.platform) _isTongueAttract = true;
+            else if (_sizeable.size == ISizeable.Size.large || _sizeable.size == ISizeable.Size.platform)
+            {
+                _timerReturn.Begin();
+
+                _isTongueAttract = true;
+            }
         }
 
         private void TongueControl()
@@ -146,7 +159,7 @@ namespace Player.Runtime
 
             if (m_stateMachine.m_powerBehaviour.m_tongueInput.triggered)
             {
-                _fixedJoint.connectedBody = null;
+                if (_fixedJoint) _fixedJoint.connectedBody = null;
                 _isTongueReturned = true;
             }
         }
@@ -163,7 +176,7 @@ namespace Player.Runtime
             else
             {
                 _moveBehaviour.enabled = true;
-                _moveBehaviour.JumpTrigger();
+                _moveBehaviour.JumpTrigger(Time.deltaTime * _tongueSpeed * _distanceToTarget.normalized);
 
                 _isTongueReturned = true;
             }
@@ -179,7 +192,6 @@ namespace Player.Runtime
             {
                 // Params reset
                 if (_fixedJoint) _fixedJoint.connectedBody = null;
-
                 _tongueRigidbody.velocity = Vector3.zero;
                 _tongueRigidbody.transform.parent = _playerTransform;
                 _tongueRigidbody.gameObject.SetActive(false);
@@ -230,7 +242,7 @@ namespace Player.Runtime
         private MoveBehaviour _moveBehaviour;
         private Transform _playerTransform;
         private float _tongueMaxDistance;
-        private bool _isTongueAttract, _isPlayerPlatform;
+        private bool _isTongueAttract;
         private float _velocityY;
         private Vector3 _movement;
 
@@ -257,6 +269,8 @@ namespace Player.Runtime
         private bool _isFirstPress = false;
         private float _doublePressTimer = 0f;
         private float _doublePressThreshold = 0.3f;
+
+        private Timer _timerReturn;
 
         #endregion
     }
