@@ -21,11 +21,15 @@ namespace Player.Runtime
         public float m_gravity;
         public float m_fallMultiplier;
         public float m_jumpMultiplier;
+        public float m_jumpPlateform;
         [Required]
         public GroundBehaviour m_groundChecker;
 
         [Header("Cameras"), Required]
         public GameObject m_cameraTarget;
+
+        public bool m_tonguePlateform;
+        public Vector3 m_velocity;
 
         #endregion
 
@@ -64,19 +68,10 @@ namespace Player.Runtime
 
         private void LateUpdate()
         {
+            if (!m_tonguePlateform) _movement = new Vector3(_cameraDirection.x * _currentSpeed, m_velocity.y, _cameraDirection.z * _currentSpeed);
+            else _movement = new Vector3(_characterController.transform.forward.x * m_jumpPlateform, m_velocity.y, _characterController.transform.forward.z * m_jumpPlateform);
+
             _playerBlackboard.SetValue<Vector3>("Position", transform.position);
-        }
-
-        #endregion
-
-        #region Methods
-
-        public void JumpTrigger()
-        {
-            _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-            Vector3 movement = new Vector3(_cameraDirection.x * _velocity.y * _currentSpeed, _velocity.y * _currentSpeed, _cameraDirection.z * _velocity.y * _currentSpeed);
-
-            _characterController.Move(Time.deltaTime * movement);
         }
 
         #endregion
@@ -87,14 +82,15 @@ namespace Player.Runtime
         {
             if (m_groundChecker.m_isGrounded)
             {
-                if (_jumpInput.triggered) _velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
-                else if (_velocity.y < 0) _velocity.y = 0;
+                if (_jumpInput.triggered) m_velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
+                else if (m_velocity.y < 0) m_velocity.y = 0;
+                m_tonguePlateform = false;
                 return;
             }
 
-            bool isFalling = _velocity.y <= 0;
+            bool isFalling = m_velocity.y <= 0;
             float multiplier = isFalling ? m_fallMultiplier : m_jumpMultiplier;
-            _velocity.y += Time.deltaTime * m_gravity * multiplier;
+            m_velocity.y += Time.deltaTime * m_gravity * multiplier;
         }
 
         private void MoveAction()
@@ -103,8 +99,7 @@ namespace Player.Runtime
             if (_direction.magnitude > .1f) RotateTowards(_direction);
 
             // Calculate movement
-            Vector3 movement = new Vector3(_cameraDirection.x * _currentSpeed, _velocity.y, _cameraDirection.z * _currentSpeed);
-            _characterController.Move(Time.deltaTime * movement);
+            _characterController.Move(Time.deltaTime * _movement);
         }
 
         /// <summary>
@@ -165,7 +160,6 @@ namespace Player.Runtime
         private InputAction _moveInput;
         private InputAction _jumpInput;
 
-        private Vector3 _velocity;
         private Vector2 _direction;
 
         private Vector3 _cameraRight;
@@ -176,6 +170,7 @@ namespace Player.Runtime
         private bool _isGrounded;
 
         private float _currentSpeed;
+        private Vector3 _movement;
 
         #endregion
     }

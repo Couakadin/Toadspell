@@ -1,4 +1,5 @@
 using Data.Runtime;
+using UnityEngine;
 
 namespace Player.Runtime
 {
@@ -15,28 +16,49 @@ namespace Player.Runtime
         public SpellState(StateMachine stateMachine) 
         {
             m_stateMachine = stateMachine;
-            _timer = new Timer(.5f);
+            _timer = new Timer(m_stateMachine.m_powerBehaviour.m_durationOfProjectile);
         }
 
         public void Enter()
         {
-            _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
-            _currentPool?.GetFirstAvailableObject();
+            // Target
+            _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
+            if (_target == null)
+            {
+                ChangeState();
+                return;
+            }
 
-            _timer.Begin();
+            // Pool
+            _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
+            _projectile = _currentPool?.GetFirstAvailableObject();
+            _projectile.transform.position = m_stateMachine.m_powerBehaviour._playerBlackboard.GetValue<Vector3>("SpellPosition");
+            _projectile.TryGetComponent(out _projectileRigidbody);
+            _projectile.SetActive(true);
+
+            // Timer
             _timer.OnTimerFinished += ChangeState;
+            _timer.Begin();
         }
 
         public void Exit()
         {
-            _timer.Reset();
+            _projectile?.SetActive(false);
 
+            _timer?.Reset();
             _timer.OnTimerFinished -= ChangeState;
         }
 
         public void Tick()
         {
             _timer.Tick();
+
+            _distanceToTarget = _target.transform.position - _projectile.transform.position;
+
+            if (_distanceToTarget.sqrMagnitude > .5f * .5f)
+                _projectileRigidbody.velocity = m_stateMachine.m_powerBehaviour.m_speedOfProjectile * _distanceToTarget;
+            else
+                ChangeState();
         }
 
         public void PhysicsTick()
@@ -65,7 +87,12 @@ namespace Player.Runtime
         #region Privates
 
         private PoolSystem _currentPool;
+        private GameObject _projectile;
+        private Rigidbody _projectileRigidbody;
+        private GameObject _target;
         private Timer _timer;
+
+        private Vector3 _distanceToTarget;
 
         #endregion
     }
