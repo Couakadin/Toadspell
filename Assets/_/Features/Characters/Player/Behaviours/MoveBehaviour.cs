@@ -28,7 +28,9 @@ namespace Player.Runtime
         [Header("Cameras"), Required]
         public GameObject m_cameraTarget;
 
+        [HideInInspector]
         public bool m_tonguePlateform;
+        [HideInInspector]
         public Vector3 m_velocity;
 
         #endregion
@@ -64,6 +66,11 @@ namespace Player.Runtime
             UpdateMovementSpeed();
             HandleMove();
             MoveAction();
+
+            _playerAnimator.SetFloat("VelocityX", _direction.x);
+            _playerAnimator.SetFloat("VelocityZ", _direction.y);
+            _playerAnimator.SetFloat("VelocityY", m_velocity.y);
+            _playerAnimator.SetFloat("Speed", m_speed);
         }
 
         private void LateUpdate()
@@ -71,7 +78,7 @@ namespace Player.Runtime
             if (!m_tonguePlateform) _movement = new Vector3(_cameraDirection.x * _currentSpeed, m_velocity.y, _cameraDirection.z * _currentSpeed);
             else _movement = new Vector3(_characterController.transform.forward.x * m_jumpPlateform, m_velocity.y, _characterController.transform.forward.z * m_jumpPlateform);
 
-            _playerBlackboard.SetValue<Vector3>("Position", transform.position);
+            _playerBlackboard.SetValue("Position", transform.position);
         }
 
         #endregion
@@ -85,12 +92,14 @@ namespace Player.Runtime
                 if (_jumpInput.triggered) m_velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
                 else if (m_velocity.y < 0) m_velocity.y = 0;
                 m_tonguePlateform = false;
+                _playerAnimator.SetBool("IsJump", false);
                 return;
             }
 
             bool isFalling = m_velocity.y <= 0;
             float multiplier = isFalling ? m_fallMultiplier : m_jumpMultiplier;
             m_velocity.y += Time.deltaTime * m_gravity * multiplier;
+            _playerAnimator.SetBool("IsJump", true);
         }
 
         private void MoveAction()
@@ -107,7 +116,8 @@ namespace Player.Runtime
         /// </summary>
         private void UpdateMovementSpeed()
         {
-            float targetSpeed = _direction.magnitude > 0 ? m_speed : 0f;
+            float directionSqrMagnitude = _direction.sqrMagnitude;
+            float targetSpeed = directionSqrMagnitude > 0 ? Mathf.Sqrt(directionSqrMagnitude) * m_speed : 0f;
 
             if (targetSpeed > _currentSpeed)
             {
@@ -152,6 +162,10 @@ namespace Player.Runtime
         [Header("Blackboards"), Required]
         [SerializeField]
         private Blackboard _playerBlackboard;
+
+        [Header("Components")]
+        [SerializeField]
+        private Animator _playerAnimator;
 
         private CharacterController _characterController;
 
