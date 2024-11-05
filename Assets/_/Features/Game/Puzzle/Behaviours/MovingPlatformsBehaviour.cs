@@ -18,9 +18,13 @@ namespace Game.Runtime
             _waitTimer.OnTimerFinished += RestartMovement;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             _waitTimer.Tick();
+        }
+
+        private void FixedUpdate()
+        {
             if (!_isMoving) MovePlatform();
         }
 
