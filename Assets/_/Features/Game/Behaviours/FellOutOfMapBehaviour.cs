@@ -1,7 +1,4 @@
 using Data.Runtime;
-using Sirenix.Utilities;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Runtime
@@ -16,16 +13,6 @@ namespace Game.Runtime
             other.TryGetComponent(out ICanBeHurt component);
             component.TakeDamage(_damages);
         }
-
-        #endregion
-
-
-        #region Main Methods
-
-        #endregion
-
-
-        #region Utils
 
         #endregion
 
