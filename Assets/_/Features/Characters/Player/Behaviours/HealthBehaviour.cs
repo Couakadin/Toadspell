@@ -10,6 +10,10 @@ namespace Player.Runtime
         private void Awake()
         {
             _currentLives = _startLives;
+        }
+
+        private void Start()
+        {
             _playerBlackboard.SetValue("Lives", _currentLives);
         }
 

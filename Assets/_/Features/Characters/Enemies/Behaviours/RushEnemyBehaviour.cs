@@ -1,6 +1,5 @@
 using Data.Runtime;
 using UnityEngine;
-using System;
 
 namespace Enemies.Runtime
 {
@@ -13,27 +12,24 @@ namespace Enemies.Runtime
     	{
             _attackTimer = CreateAndSubscribeTimer(m_attackDelay, ResetCoolDown);
             _damageTimer = CreateAndSubscribeTimer(_takeDamageDelay, ResumeAfterDamage);
-            //_originalMaterial = _meshRenderer.material.color;
         }
 
         void Update()
     	{
+            Vector3 playerPosition = m_blackboard.GetValue<Vector3>("Position");
+            Vector3 distanceWithPlayer = playerPosition - transform.position;
+            float sqrDistance = Vector3.SqrMagnitude(distanceWithPlayer);
 
-            Vector3 playerPosition = m_blackboard.GetValue<Vector3>("Position"); //Keeps track of player
-            var distanceWithPlayer = (playerPosition - transform.position).magnitude; //Distance with player
-
-            // Only follows player on the sides, not up
             var playerFollow = new Vector3(playerPosition.x, transform.position.y, playerPosition.z);
 
-            if (distanceWithPlayer < m_maxDetectionRange && !_isRushing && !_isFrozen)
+            if (sqrDistance < m_maxDetectionRange * m_maxDetectionRange && !_isRushing && !_isFrozen)
             {
                 transform.LookAt(playerFollow);
                 // We can show here that the enemy is about to rush
                 
                 if(IsAlignedWithPlayer(playerPosition) && !_isCoolingDownAfterRush)
                 {
-
-                    Attack(); // Attacks if player is aligned
+                    Attack();
                 }
             }
 
@@ -44,10 +40,15 @@ namespace Enemies.Runtime
             UpdateTimers();
         }
 
-        private void OnDrawGizmos()
+        private void OnTriggerEnter(Collider other)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, m_maxDetectionRange);
+            if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
+            {
+                Recoil();
+                _isRushing = false;
+                _isCoolingDownAfterRush = true;
+                hurt.TakeDamage(_damages);
+            }
         }
 
         #endregion
@@ -74,35 +75,51 @@ namespace Enemies.Runtime
 
         public override void OnLock()
         {
-            throw new System.NotImplementedException();
+            //need to show lock
         }
 
         public override void OnUnlock()
         {
-            throw new System.NotImplementedException();
+            //need to hide lock
         }
-
         
         public override void TakeDamage(float damage)
         {
             m_lifePoints -= damage;
+            Recoil();
+            if (m_lifePoints <= 0)
+            {
+                //_meshRenderer.enabled = false;
+                //_particleSystem.Play();
+                //Sound
+
+            }
+            //_meshRenderer.material.color = Color.yellow;
+
+        }
+
+        private void Recoil()
+        {
             _isFrozen = true;
             transform.position += -transform.forward * _recoilDistance;
-            _meshRenderer.material.color = Color.yellow;
             SetOrResetTimer(_damageTimer);
         }
 
-        [ContextMenu("Damages")]
-        private void TestDamages()
+        public void DieWhenFalling()
         {
-            TakeDamage(1);
+            gameObject.SetActive(false);
         }
 
         #endregion
 
 
         #region Utils
-        
+        [ContextMenu("Damages")]
+        private void TestDamages()
+        {
+            TakeDamage(1);
+        }
+
         private void UpdateTimers()
         {
             if (_attackTimer.IsRunning()) _attackTimer.Tick();
@@ -131,7 +148,14 @@ namespace Enemies.Runtime
         private void ResumeAfterDamage()
         {
             _isFrozen = false;
-            _meshRenderer.material.color = _originalMaterial;
+            if (m_lifePoints <= 0) gameObject.SetActive(false);
+            //_meshRenderer.material.color = _originalMaterial;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, m_maxDetectionRange);
         }
 
         #endregion
@@ -140,22 +164,27 @@ namespace Enemies.Runtime
         #region Privates & Protected
 
         [Header("References")]
-        [SerializeField] private MeshRenderer _meshRenderer;
+        //[SerializeField] private MeshRenderer _meshRenderer;
+        //[SerializeField] private ParticleSystem _particleSystem;
+        //[SerializeField] private AudioClip _damagedAudio;
 
         [Header("Player Detection")]
         [SerializeField] private float _angleDetectionRange = 10f;
-        
-        [Header("Attack Specifics")] 
-        [SerializeField] private float _rushDistance = 5f;
+
+        [Header("Attack Specifics")]
+        [SerializeField] private float _damages = 1;
         [SerializeField] private float _rushSpeed = 10f;
+        [SerializeField] private float _rushDistance = 5f;
+
         private bool _isFrozen = false;
-        private bool _isRushing = false; // Indicates if attacking
-        private bool _isCoolingDownAfterRush = false; //Indicates if cooldown is playing
+        private bool _isRushing = false;
+        private bool _isCoolingDownAfterRush = false;
         private Vector3 _rushStartPosition;
 
         [Header("Damages")]
         [SerializeField] private float _recoilDistance = .5f;
         [SerializeField] private float _takeDamageDelay = .5f;
+
         private Timer _damageTimer;
         private Color _originalMaterial;
 

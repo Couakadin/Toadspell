@@ -12,11 +12,12 @@ namespace Game.Runtime
 
         private void Awake()
         {
-            _maxLives = (int) _playerBlackboard.GetValue<float>("Lives");
+           
         }
 
         void Start()
     	{
+            _maxLives = (int)_playerBlackboard.GetValue<float>("Lives");
             _spellImage.color = _spellList[0];
 
             for (int i = 0; i < _maxLives; i++)
