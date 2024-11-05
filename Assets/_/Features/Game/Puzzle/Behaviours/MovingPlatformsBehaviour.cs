@@ -1,6 +1,8 @@
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
+using Data.Runtime;
+using System;
 
 namespace Game.Runtime
 {
@@ -12,11 +14,14 @@ namespace Game.Runtime
         {
             transform.position = _waypointsList[_waypointIndex].position;
             _waypointIndex++;
+            _waitTimer = new Timer(_platformWaitDelay);
+            _waitTimer.OnTimerFinished += RestartMovement;
         }
 
         private void FixedUpdate()
         {
-            MovePlatform();
+            _waitTimer.Tick();
+            if (!_isMoving) MovePlatform();
         }
 
         #endregion
@@ -31,16 +36,29 @@ namespace Game.Runtime
             {
                 _waypointIndex++;
                 if (_waypointIndex >= _waypointsList.Count) _waypointIndex = 0;
+                _isMoving = true;
+                _waitTimer.Reset();
+                _waitTimer.Begin();
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, _waypointsList[_waypointIndex].position, _durationOfMovement * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, _waypointsList[_waypointIndex].position, _moveSpeed * _durationOfMovement * Time.deltaTime);
             }
         }
 
         #endregion
 
-        
+
+        #region Utils
+
+        private void RestartMovement()
+        {
+            _isMoving = false;
+        }
+
+        #endregion
+
+
         #region Privates & Protected
 
         [Header("Movement Information")]
@@ -48,8 +66,12 @@ namespace Game.Runtime
 
         [Header("Platforms Waypoints")]
         [SerializeField] private List<Transform> _waypointsList;
+        [SerializeField] private float _platformWaitDelay = 1f;
+        [SerializeField] private float _moveSpeed = 10f;
         private int _waypointIndex = 0;
         private float _distanceToTarget;
+        private bool _isMoving;
+        private Timer _waitTimer;
 
         #endregion
     }
