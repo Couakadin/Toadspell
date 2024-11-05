@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_/Database/Prefabs/Arts/Tiles/geo_tiles_round02.prefab.meta
 guid: 1eeec4a85b9231c4388fa219cbf092aa
 PrefabImporter:
+========
+guid: 63306fb4ff5a7fb4b90d4d982de1b762
+NativeFormatImporter:
+>>>>>>>> develop:Assets/_/Database/Events/onTutorialTriggeredVoidEvent.asset.meta
   externalObjects: {}
+  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
