@@ -45,8 +45,8 @@ namespace Game.Runtime
             }
             else
             {
-                _lerpProgress += Time.deltaTime / _durationOfMovement;
-                transform.position = Vector3.Lerp(transform.position, _waypointsList[_waypointIndex].position, _lerpProgress);
+                //lerpProgress += Time.deltaTime / _durationOfMovement;
+                transform.position = Vector3.Slerp(transform.position, _waypointsList[_waypointIndex].position, _moveSpeed* Time.deltaTime);
             }
         }
 
@@ -71,7 +71,7 @@ namespace Game.Runtime
         [Header("Platforms Waypoints")]
         [SerializeField] private List<Transform> _waypointsList;
         [SerializeField] private float _platformWaitDelay = 1f;
-        //[SerializeField] private float _moveSpeed = 10f;
+        [SerializeField] private float _moveSpeed = 10f;
         private int _waypointIndex = 0;
         private float _distanceToTarget;
         private bool _isMoving;
