@@ -71,7 +71,9 @@ namespace Player.Runtime
             if (!m_tonguePlateform) _movement = new Vector3(_cameraDirection.x * _currentSpeed, m_velocity.y, _cameraDirection.z * _currentSpeed);
             else _movement = new Vector3(_characterController.transform.forward.x * m_jumpPlateform, m_velocity.y, _characterController.transform.forward.z * m_jumpPlateform);
 
-            _playerBlackboard.SetValue<Vector3>("Position", transform.position);
+            _playerBlackboard.SetValue("Position", transform.position);
+            _playerAnimator.SetFloat("VelocityX", _direction.x);
+            _playerAnimator.SetFloat("VelocityY", _direction.y);
         }
 
         #endregion
@@ -152,6 +154,10 @@ namespace Player.Runtime
         [Header("Blackboards"), Required]
         [SerializeField]
         private Blackboard _playerBlackboard;
+
+        [Header("Components")]
+        [SerializeField]
+        private Animator _playerAnimator;
 
         private CharacterController _characterController;
 
