@@ -42,7 +42,7 @@ namespace Game.Runtime
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, _waypointsList[_waypointIndex].position, _durationOfMovement * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, _waypointsList[_waypointIndex].position, _moveSpeed * _durationOfMovement * Time.deltaTime);
             }
         }
 
@@ -67,6 +67,7 @@ namespace Game.Runtime
         [Header("Platforms Waypoints")]
         [SerializeField] private List<Transform> _waypointsList;
         [SerializeField] private float _platformWaitDelay = 1f;
+        [SerializeField] private float _moveSpeed = 10f;
         private int _waypointIndex = 0;
         private float _distanceToTarget;
         private bool _isMoving;
