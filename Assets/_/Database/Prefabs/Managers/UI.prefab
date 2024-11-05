@@ -2973,8 +2973,8 @@ RectTransform:
   m_Children:
   - {fileID: 6253441078854989440}
   - {fileID: 2920500294323778315}
-  - {fileID: 3738946891084774995}
   - {fileID: 921819181619869026}
+  - {fileID: 3738946891084774995}
   m_Father: {fileID: 2111168857915741096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3073,10 +3073,9 @@ MonoBehaviour:
   - {r: 0.45865938, g: 0.990566, b: 0.43454072, a: 1}
   _spellImage: {fileID: 2591650939250271127}
   _spell: 0
-  _tutorialPanels:
-  - {fileID: 4509608783796222030}
-  - {fileID: 0}
-  - {fileID: 0}
+  _tutorial: {fileID: 0}
+  _keyboardTutorial: []
+  _joyStickTutorial: []
   _tutorialTimeOnScreen: 3
   _tutorialFadeIn: 0.8
   _tutorialFadeOut: 0.5
