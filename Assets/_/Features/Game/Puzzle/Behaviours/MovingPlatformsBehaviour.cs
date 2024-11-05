@@ -1,4 +1,3 @@
-using Data.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,18 +11,25 @@ namespace Game.Runtime
         {
             transform.position = _waypointsList[_waypointIndex].position;
             _waypointIndex++;
-            _waitTimer = new Timer(_platformWaitDelay);
-            _waitTimer.OnTimerFinished += RestartMovement;
         }
 
-        private void Update()
+        private void Start()
         {
-            _waitTimer.Tick();
+            TargetNextWayPoint();
         }
 
         private void FixedUpdate()
         {
-            if (!_isMoving) MovePlatform();
+            _elapsedTime += Time.deltaTime;
+
+            float elapsedPercentage = _elapsedTime / _timeToWaypoint;
+            elapsedPercentage = Mathf.SmoothStep(0,1,elapsedPercentage);
+            transform.position = Vector3.Lerp(_previousWaypoint.position, _targetWayPoint.position, elapsedPercentage);
+
+            if(elapsedPercentage >= 1)
+            {
+                TargetNextWayPoint();
+            }
         }
 
         #endregion
@@ -31,33 +37,18 @@ namespace Game.Runtime
 
         #region Main Methods
 
-        public void MovePlatform()
+        public void TargetNextWayPoint()
         {
-            _distanceToTarget = Vector3.Distance(transform.position, _waypointsList[_waypointIndex].position);
-            if (_distanceToTarget < .1f)
-            {
-                _waypointIndex++;
-                if (_waypointIndex >= _waypointsList.Count) _waypointIndex = 0;
-                _isMoving = true;
-                _waitTimer.Reset();
-                _waitTimer.Begin();
-                _lerpProgress = 0f;
-            }
-            else
-            {
-                //lerpProgress += Time.deltaTime / _durationOfMovement;
-                transform.position = Vector3.Slerp(transform.position, _waypointsList[_waypointIndex].position, _moveSpeed* Time.deltaTime);
-            }
-        }
-
-        #endregion
+            _previousWaypoint = _waypointsList[_waypointIndex];
+            _waypointIndex++;
+            if (_waypointIndex >= _waypointsList.Count) _waypointIndex = 0;
+            _targetWayPoint = _waypointsList[_waypointIndex];
 
 
-        #region Utils
+            _elapsedTime = 0;
 
-        private void RestartMovement()
-        {
-            _isMoving = false;
+            float distanceToWaypoint = Vector3.Distance(_previousWaypoint.position, _targetWayPoint.position);
+            _timeToWaypoint = distanceToWaypoint / _moveSpeed;
         }
 
         #endregion
@@ -66,18 +57,19 @@ namespace Game.Runtime
         #region Privates & Protected
 
         [Header("Movement Information")]
-        [SerializeField] private float _durationOfMovement;
+        [SerializeField] private float _moveSpeed = 10f;
+
 
         [Header("Platforms Waypoints")]
         [SerializeField] private List<Transform> _waypointsList;
-        [SerializeField] private float _platformWaitDelay = 1f;
-        [SerializeField] private float _moveSpeed = 10f;
-        private int _waypointIndex = 0;
-        private float _distanceToTarget;
-        private bool _isMoving;
-        private Timer _waitTimer;
+       
+        private float _timeToWaypoint;
+        private float _elapsedTime;
 
-        private float _lerpProgress;
+        private Transform _previousWaypoint;
+        private Transform _targetWayPoint;
+
+        private int _waypointIndex = 0;
 
         #endregion
     }
