@@ -32,7 +32,7 @@ namespace Game.Runtime
         #region Main Methods
 
         [ContextMenu("start conversation")]
-        public void LaunchNewDialogueExchange() 
+        private void LaunchNewDialogueExchange() 
         {
             _dialoguePanel.DOFade(1, _panelFadeIn);
             StartDialogue(_firstExchange[_currentExchangeIndex]);
@@ -50,14 +50,6 @@ namespace Game.Runtime
 
         public void DisplayNextLines()
         {
-            if(_isTyping) 
-            { 
-              _isTyping = false;
-              _linesOfDialogue.text = _currentDialogue.m_lines[_currentLineIndex].m_sentence;
-              _currentLineIndex++;
-              return;
-            
-            }
             if (_currentLineIndex < _currentDialogue.m_lines.Count)
             {
                 //_typingSpeed = _currentDialogue.m_lines[_currentLineIndex].m_screenTime;
@@ -104,7 +96,7 @@ namespace Game.Runtime
             else
             {
                 _isTyping = false;
-                _currentLineIndex++;
+                DisplayNextLines();
             }
         }
 

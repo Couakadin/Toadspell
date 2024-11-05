@@ -17,7 +17,6 @@ namespace Game.Runtime
 
         void Start()
     	{
-            _tutorial.SetActive(true);
             _spellImage.color = _spellList[0];
 
             for (int i = 0; i < _maxLives; i++)
@@ -67,7 +66,7 @@ namespace Game.Runtime
         [ContextMenu("tutorial")]
         public void ShowTutorial()
         {
-            if (_tutorialIndex >= _tutorialPanels.Count) _tutorial.SetActive(false);
+            if (_tutorialIndex >= _tutorialPanels.Count) return;
             Sequence tutorialSequence = DOTween.Sequence();
             tutorialSequence.Append(_tutorialPanels[_tutorialIndex].DOFade(1, _tutorialFadeIn));
             tutorialSequence.AppendInterval(_tutorialTimeOnScreen);
@@ -108,7 +107,6 @@ namespace Game.Runtime
 
         [Header("Tutorial")]
         private List<CanvasGroup> _tutorialPanels;
-        [SerializeField] private GameObject _tutorial;
         [SerializeField] private List<CanvasGroup> _keyboardTutorial;
         [SerializeField] private List<CanvasGroup> _joyStickTutorial;
         [SerializeField] private float _tutorialTimeOnScreen;
