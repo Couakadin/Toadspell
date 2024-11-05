@@ -1,8 +1,6 @@
-using DG.Tweening;
+using Data.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
-using Data.Runtime;
-using System;
 
 namespace Game.Runtime
 {
@@ -43,10 +41,12 @@ namespace Game.Runtime
                 _isMoving = true;
                 _waitTimer.Reset();
                 _waitTimer.Begin();
+                _lerpProgress = 0f;
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, _waypointsList[_waypointIndex].position, _moveSpeed * _durationOfMovement * Time.deltaTime);
+                _lerpProgress += Time.deltaTime / _durationOfMovement;
+                transform.position = Vector3.Lerp(transform.position, _waypointsList[_waypointIndex].position, _lerpProgress);
             }
         }
 
@@ -71,11 +71,13 @@ namespace Game.Runtime
         [Header("Platforms Waypoints")]
         [SerializeField] private List<Transform> _waypointsList;
         [SerializeField] private float _platformWaitDelay = 1f;
-        [SerializeField] private float _moveSpeed = 10f;
+        //[SerializeField] private float _moveSpeed = 10f;
         private int _waypointIndex = 0;
         private float _distanceToTarget;
         private bool _isMoving;
         private Timer _waitTimer;
+
+        private float _lerpProgress;
 
         #endregion
     }
