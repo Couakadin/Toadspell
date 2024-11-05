@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6233921893094765621}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: waypoint01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3861450351124219483}
   - component: {fileID: 4556749068906998041}
-  - component: {fileID: 3339454113028208540}
+  - component: {fileID: 3320811509778314215}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -77,8 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parent: {fileID: 1554949094924581902}
---- !u!135 &3339454113028208540
-SphereCollider:
+--- !u!65 &3320811509778314215
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,8 +96,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 9.318956
-  m_Center: {x: 0.058847427, y: 2.774929, z: 0.039295197}
+  m_Size: {x: 20, y: 1.54, z: 17}
+  m_Center: {x: 0, y: 3.88, z: 0}
 --- !u!1 &7615313333601532866
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3748515795446905657}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlateformeM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4895868484899523109}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: waypoint02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 7810551089933688139}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 54.600002, y: 0, z: 71.3}
+  m_LocalPosition: {x: -54.7, y: 27.2, z: 71.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 2677286887995576731}
   - component: {fileID: 6090152541131249993}
   - component: {fileID: 197145169392663289}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plateforme
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,10 +261,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3ae96028fa5274a9b9d80fbdc2170f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _durationOfMovement: 10
+  _durationOfMovement: 2
   _waypointsList:
   - {fileID: 6233921893094765621}
   - {fileID: 4895868484899523109}
+  _platformWaitDelay: 1
 --- !u!64 &197145169392663289
 MeshCollider:
   m_ObjectHideFlags: 0

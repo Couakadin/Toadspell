@@ -17,8 +17,11 @@ namespace Objects.Runtime
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log($"collect + {_pointsToSend}");
-            Collect();
+            if(other.gameObject.layer == 7)
+            {
+                Debug.Log($"collect + {_pointsToSend}");
+                Collect();
+            }
         }
 
         #endregion
