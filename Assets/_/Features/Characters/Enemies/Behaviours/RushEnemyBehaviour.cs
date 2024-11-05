@@ -13,7 +13,7 @@ namespace Enemies.Runtime
     	{
             _attackTimer = CreateAndSubscribeTimer(m_attackDelay, ResetCoolDown);
             _damageTimer = CreateAndSubscribeTimer(_takeDamageDelay, ResumeAfterDamage);
-            _originalMaterial = _meshRenderer.material.color;
+            //_originalMaterial = _meshRenderer.material.color;
         }
 
         void Update()
