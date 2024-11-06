@@ -70,7 +70,7 @@ namespace Player.Runtime
             _playerAnimator.SetFloat("VelocityX", _direction.x);
             _playerAnimator.SetFloat("VelocityZ", _direction.y);
             _playerAnimator.SetFloat("VelocityY", m_velocity.y);
-            _playerAnimator.SetFloat("Speed", m_speed);
+            _playerAnimator.SetFloat("Speed", _currentSpeed);
         }
 
         private void LateUpdate()
