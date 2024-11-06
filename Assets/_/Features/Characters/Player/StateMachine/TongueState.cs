@@ -180,7 +180,7 @@ namespace Player.Runtime
                 _moveBehaviour.enabled = true;
 
                 if (_isTonguePlateform) _moveBehaviour.m_tonguePlateform = true;
-                _moveBehaviour.m_velocity.y = Mathf.Sqrt(_moveBehaviour.m_jump * -4f * _moveBehaviour.m_gravity);
+                _moveBehaviour.m_velocity.y = Mathf.Sqrt(_moveBehaviour.m_jump * -3f * _moveBehaviour.m_gravity);
 
                 _isTongueReturned = true;
             }

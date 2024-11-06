@@ -931,7 +931,7 @@ MonoBehaviour:
   m_gravity: -18
   m_fallMultiplier: 2.5
   m_jumpMultiplier: 2
-  m_jumpPlateform: 1.5
+  m_jumpPlateform: 5
   m_groundChecker: {fileID: 7191161188620654643}
   m_cameraTarget: {fileID: 4851235081336771114}
   m_tonguePlateform: 0
