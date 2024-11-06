@@ -1,8 +1,8 @@
 namespace Data.Runtime
 {
-    public interface IAmSpellGiver
+    public interface IAmElement
     {
-        public enum Spell
+        public enum Element
         {
             arcane,
             fire,
@@ -10,6 +10,6 @@ namespace Data.Runtime
             grass,
         }
 
-        Spell spell { get; }
+        Element spell { get; }
     }
 }
