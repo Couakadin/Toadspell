@@ -50,6 +50,7 @@ namespace Player.Runtime
         public InputAction m_tongueInput { get; private set; }
         public InputAction m_moveInput { get; private set; }
         public InputAction m_spellInput { get; private set; }
+        public InputAction m_parryInput { get; private set; }
 
         #endregion
 
@@ -63,6 +64,7 @@ namespace Player.Runtime
             m_tongueInput = _gameplayInput.Tongue;
             m_moveInput = _gameplayInput.Move;
             m_spellInput = _gameplayInput.Spell;
+            m_parryInput = _gameplayInput.Parry;
         }
 
         private void Start()
