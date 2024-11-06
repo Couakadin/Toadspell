@@ -70,7 +70,8 @@ namespace Player.Runtime
             _playerAnimator.SetFloat("VelocityX", _direction.x);
             _playerAnimator.SetFloat("VelocityZ", _direction.y);
             _playerAnimator.SetFloat("VelocityY", m_velocity.y);
-            _playerAnimator.SetFloat("Speed", _currentSpeed);
+            _playerAnimator.SetFloat("CurrentSpeed", _currentSpeed);
+            _playerAnimator.SetFloat("SpeedMultiplier", Mathf.Abs(_direction.x * _direction.y) == 0 ? 2 : 3);
         }
 
         private void LateUpdate()

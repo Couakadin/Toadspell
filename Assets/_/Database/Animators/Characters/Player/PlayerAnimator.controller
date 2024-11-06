@@ -50,7 +50,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.15
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
@@ -218,7 +218,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Speed
+  - m_Name: CurrentSpeed
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: SpeedMultiplier
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -367,8 +373,8 @@ AnimatorStateTransition:
     m_ConditionEvent: IsJump
     m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: Speed
-    m_EventTreshold: 0.5
+    m_ConditionEvent: CurrentSpeed
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5995655464230913022}
   m_Solo: 0
@@ -400,16 +406,16 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: -5599924232536695596}
   m_Tag: 
-  m_SpeedParameter: Speed
+  m_SpeedParameter: SpeedMultiplier
   m_MirrorParameter: 
   m_CycleOffsetParameter: VelocityX
-  m_TimeParameter: Speed
+  m_TimeParameter: SpeedMultiplier
 --- !u!1101 &6127510076598035827
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -443,9 +449,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: IsJump
-    m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: VelocityY
     m_EventTreshold: 0
@@ -475,8 +478,8 @@ AnimatorStateTransition:
     m_ConditionEvent: IsJump
     m_EventTreshold: 0.5
   - m_ConditionMode: 4
-    m_ConditionEvent: Speed
-    m_EventTreshold: 0.5
+    m_ConditionEvent: CurrentSpeed
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4089558478178555087}
   m_Solo: 0
