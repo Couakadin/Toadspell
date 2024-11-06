@@ -7,6 +7,7 @@ namespace Player.Runtime
         public LockState m_lockState { get; }
         public TongueState m_tongueState { get; }
         public SpellState m_spellState { get; }
+        public ParryState m_parryState { get; }
 
         public StateMachine(PowerBehaviour powerBehaviour)
         {
@@ -15,6 +16,7 @@ namespace Player.Runtime
             m_lockState = new(this);
             m_tongueState = new(this);
             m_spellState = new(this);
+            m_parryState = new(this);
         }
     }
 }

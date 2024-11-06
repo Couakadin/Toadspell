@@ -82,6 +82,15 @@ namespace Data.Runtime
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0b2de34-bc65-4210-ba3e-73a76dab21de"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -242,7 +251,7 @@ namespace Data.Runtime
                 {
                     ""name"": """",
                     ""id"": ""21f97b28-3aeb-427d-8e07-ca58d3b5a73e"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -253,11 +262,33 @@ namespace Data.Runtime
                 {
                     ""name"": """",
                     ""id"": ""cd869167-96c5-4840-b79a-deb99e6d7ba0"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49bcb5bb-a20f-4025-a8c1-4ef93f288117"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7784a24-0f6d-4b61-8330-4f697d25f9ab"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -274,6 +305,7 @@ namespace Data.Runtime
             m_Gameplay_Lock = m_Gameplay.FindAction("Lock", throwIfNotFound: true);
             m_Gameplay_Tongue = m_Gameplay.FindAction("Tongue", throwIfNotFound: true);
             m_Gameplay_Spell = m_Gameplay.FindAction("Spell", throwIfNotFound: true);
+            m_Gameplay_Parry = m_Gameplay.FindAction("Parry", throwIfNotFound: true);
         }
 
         ~@GameInput()
@@ -346,6 +378,7 @@ namespace Data.Runtime
         private readonly InputAction m_Gameplay_Lock;
         private readonly InputAction m_Gameplay_Tongue;
         private readonly InputAction m_Gameplay_Spell;
+        private readonly InputAction m_Gameplay_Parry;
         public struct GameplayActions
         {
             private @GameInput m_Wrapper;
@@ -356,6 +389,7 @@ namespace Data.Runtime
             public InputAction @Lock => m_Wrapper.m_Gameplay_Lock;
             public InputAction @Tongue => m_Wrapper.m_Gameplay_Tongue;
             public InputAction @Spell => m_Wrapper.m_Gameplay_Spell;
+            public InputAction @Parry => m_Wrapper.m_Gameplay_Parry;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -383,6 +417,9 @@ namespace Data.Runtime
                 @Spell.started += instance.OnSpell;
                 @Spell.performed += instance.OnSpell;
                 @Spell.canceled += instance.OnSpell;
+                @Parry.started += instance.OnParry;
+                @Parry.performed += instance.OnParry;
+                @Parry.canceled += instance.OnParry;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -405,6 +442,9 @@ namespace Data.Runtime
                 @Spell.started -= instance.OnSpell;
                 @Spell.performed -= instance.OnSpell;
                 @Spell.canceled -= instance.OnSpell;
+                @Parry.started -= instance.OnParry;
+                @Parry.performed -= instance.OnParry;
+                @Parry.canceled -= instance.OnParry;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -430,6 +470,7 @@ namespace Data.Runtime
             void OnLock(InputAction.CallbackContext context);
             void OnTongue(InputAction.CallbackContext context);
             void OnSpell(InputAction.CallbackContext context);
+            void OnParry(InputAction.CallbackContext context);
         }
     }
 }

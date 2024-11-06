@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace Player.Runtime
 {
-    public class PowerBehaviour : MonoBehaviour, IAmSpellGiver
+    public class PowerBehaviour : MonoBehaviour, IAmElement
     {
         #region Publics
 
@@ -28,7 +28,7 @@ namespace Player.Runtime
         [Tooltip("The speed of the tongue.")]
         public float m_tongueSpeed;
 
-        [Header("Spell Params")]
+        [Header("Element Params")]
         [Tooltip("The GameObject where spells are launched.")]
         public GameObject m_spellSpawner;
         [Tooltip("The speed at spells are launched.")]
@@ -36,14 +36,21 @@ namespace Player.Runtime
         [Tooltip("The duration of spells.")]
         public float m_durationOfProjectile;
         [EnumToggleButtons]
-        public IAmSpellGiver.Spell m_spell;
+        public IAmElement.Element m_spell;
         public PoolSystem m_currentPool;
         public List<PoolSystem> m_spellPools;
+
+        [Header("Parry Params")]
+        [Tooltip("Timer of parrying.")]
+        public float m_durationOfParry;
+        [Tooltip("The GameObject of parrying.")]
+        public GameObject m_parryObject;
 
         public InputAction m_lockInput { get; private set; }
         public InputAction m_tongueInput { get; private set; }
         public InputAction m_moveInput { get; private set; }
         public InputAction m_spellInput { get; private set; }
+        public InputAction m_parryInput { get; private set; }
 
         #endregion
 
@@ -57,6 +64,7 @@ namespace Player.Runtime
             m_tongueInput = _gameplayInput.Tongue;
             m_moveInput = _gameplayInput.Move;
             m_spellInput = _gameplayInput.Spell;
+            m_parryInput = _gameplayInput.Parry;
         }
 
         private void Start()
@@ -64,7 +72,7 @@ namespace Player.Runtime
             _stateMachine = new(this);
             _stateMachine.ChangeState(_stateMachine.m_lockState);
 
-            m_spell = IAmSpellGiver.Spell.arcane;
+            m_spell = IAmElement.Element.arcane;
         }
 
         private void OnEnable()
@@ -84,16 +92,16 @@ namespace Player.Runtime
 
             switch(spell)
             {
-                case (IAmSpellGiver.Spell.arcane):
+                case (IAmElement.Element.arcane):
                     m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Arcane Pool");
                     break;
-                case (IAmSpellGiver.Spell.fire):
+                case (IAmElement.Element.fire):
                     m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Fire Pool");
                     break;
-                case (IAmSpellGiver.Spell.water):
+                case (IAmElement.Element.water):
                     m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Water Pool");
                     break;
-                case (IAmSpellGiver.Spell.grass):
+                case (IAmElement.Element.grass):
                     m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Grass Pool");
                     break;
             }
@@ -114,7 +122,7 @@ namespace Player.Runtime
 
         #region Methods
 
-        public IAmSpellGiver.Spell spell => m_spell;
+        public IAmElement.Element spell => m_spell;
 
         #endregion
 

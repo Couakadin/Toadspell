@@ -27,6 +27,7 @@ namespace Player.Runtime
             _lockInput = m_stateMachine.m_powerBehaviour.m_lockInput;
             _tongueInput = m_stateMachine.m_powerBehaviour.m_tongueInput;
             _spellInput = m_stateMachine.m_powerBehaviour.m_spellInput;
+            _parryInput = m_stateMachine.m_powerBehaviour.m_parryInput;
 
             // Lock
             _maxDetectionRadius = m_stateMachine.m_powerBehaviour.m_maxDetectionRadius;
@@ -69,6 +70,7 @@ namespace Player.Runtime
             if (_lockInput.triggered) SwitchTarget();
             if (_tongueInput.triggered) m_stateMachine.ChangeState(m_stateMachine.m_tongueState);
             if (_spellInput.triggered) m_stateMachine.ChangeState(m_stateMachine.m_spellState);
+            if (_parryInput.triggered) m_stateMachine.ChangeState(m_stateMachine.m_parryState);
         }
 
         #endregion
@@ -213,6 +215,7 @@ namespace Player.Runtime
         private InputAction _lockInput;
         private InputAction _tongueInput;
         private InputAction _spellInput;
+        private InputAction _parryInput;
 
         // Lock
         private float _maxDetectionRadius;
