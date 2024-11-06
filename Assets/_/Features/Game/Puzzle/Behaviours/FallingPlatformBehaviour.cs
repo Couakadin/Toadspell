@@ -10,12 +10,17 @@ namespace Game.Runtime
         private void Start () 
         {
             _originPosition = transform.position;
-            _meshRenderer = GetComponent<MeshRenderer>();
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("collifion");
             StartFallingSequence();
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+
         }
 
         #endregion
@@ -70,9 +75,7 @@ namespace Game.Runtime
         [SerializeField] private float _fallingDuration = 1f;
 
         [Header("Platform Disappear")]
-        [SerializeField] 
-        private float _HideMaterialAplha = 0f;
-        [SerializeField]
+        private float _HideMaterialAplha = 0.5f;
         private float _ShowMaterialAlpha = 1f;
         [SerializeField]
         private float _durationOfFadeOut = .5f;
