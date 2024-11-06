@@ -8,14 +8,16 @@ namespace Enemies.Runtime
     {
         #region Publics
 
+        [Header("References")]
+        public Blackboard m_blackboard;
+        public Animator m_animator;
+        private GameObject _LockIndicator;
+
         [Header("Enemy Specificities")]
         public float m_attackDelay = 2;
         public float m_lifePoints;
+        public float m_damages = 1;
         public float m_maxDetectionRange = 20f;
-
-        [Header("References")]
-        public Blackboard m_blackboard;
-        private GameObject _LockIndicator;
 
         public float m_offsetDistance => throw new System.NotImplementedException();
 
@@ -31,8 +33,6 @@ namespace Enemies.Runtime
         public abstract void Attack();
 
         public abstract void TakeDamage(float damage);
-
-
 
         #endregion
 

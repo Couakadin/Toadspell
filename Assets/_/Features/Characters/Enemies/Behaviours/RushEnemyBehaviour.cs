@@ -22,14 +22,21 @@ namespace Enemies.Runtime
 
             var playerFollow = new Vector3(playerPosition.x, transform.position.y, playerPosition.z);
 
-            if (sqrDistance < m_maxDetectionRange * m_maxDetectionRange && !_isRushing && !_isFrozen)
+            float detectionRange = m_maxDetectionRange * m_maxDetectionRange;
+            float rageRange = _rushDistance * _rushDistance;
+
+            if (sqrDistance < detectionRange && !_isRushing && !_isFrozen)
             {
                 transform.LookAt(playerFollow);
                 // We can show here that the enemy is about to rush
-                
-                if(IsAlignedWithPlayer(playerPosition) && !_isCoolingDownAfterRush)
+
+                if (IsAlignedWithPlayer(playerPosition) && sqrDistance < rageRange && !_isCoolingDownAfterRush)
                 {
-                    Attack();
+                    m_animator.SetBool("isRaging", true);
+                    if (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+                    {
+                        Attack();
+                    }
                 }
             }
 
@@ -47,7 +54,7 @@ namespace Enemies.Runtime
                 Recoil();
                 _isRushing = false;
                 _isCoolingDownAfterRush = true;
-                hurt.TakeDamage(_damages);
+                hurt.TakeDamage(m_damages);
             }
         }
 
@@ -59,19 +66,12 @@ namespace Enemies.Runtime
         [ContextMenu("Rush")]
         public override void Attack()
         {
+            //m_animator.SetBool("isRunning", true);
             _rushStartPosition = transform.position;
             _isRushing = true;
         }
 
-        private void Rush()
-        {
-            transform.position += transform.forward * _rushSpeed * Time.deltaTime;
-            if (Vector3.Distance(_rushStartPosition, transform.position) >= _rushDistance)
-            {
-                _isRushing = false;
-                _isCoolingDownAfterRush = true;
-            }
-        }
+
 
         public override void OnLock()
         {
@@ -105,25 +105,40 @@ namespace Enemies.Runtime
             SetOrResetTimer(_damageTimer);
         }
 
-        public void DieWhenFalling()
-        {
-            gameObject.SetActive(false);
-        }
 
         #endregion
 
 
         #region Utils
+
+        private void Rush()
+        {
+            transform.position += transform.forward * _rushSpeed * Time.deltaTime;
+            if (Vector3.Distance(_rushStartPosition, transform.position) >= _rushDistance)
+            {
+                _isCoolingDownAfterRush = true;
+            }
+        }
+
+        private void CooldownAfterRush()
+        {
+            SetOrResetTimer(_attackTimer);
+           // m_animator.SetBool("isRunning", false);
+            m_animator.SetBool("isAttacking", true);
+            m_animator.SetBool("isRaging", false);
+        }
+
+        private void ResetCoolDown()
+        {
+            m_animator.SetBool("isAttacking", false);
+            _isCoolingDownAfterRush = false;
+        }
+
+
         [ContextMenu("Damages")]
         private void TestDamages()
         {
             TakeDamage(1);
-        }
-
-        private void UpdateTimers()
-        {
-            if (_attackTimer.IsRunning()) _attackTimer.Tick();
-            if (_damageTimer.IsRunning()) _damageTimer.Tick();
         }
 
         private bool IsAlignedWithPlayer(Vector3 playerPosition)
@@ -135,16 +150,6 @@ namespace Enemies.Runtime
             return angleToPlayer <= _angleDetectionRange;
         }
 
-        private void CooldownAfterRush()
-        {
-            SetOrResetTimer(_attackTimer);
-        }
-
-        private void ResetCoolDown()
-        {
-            _isCoolingDownAfterRush = false;
-        }
-
         private void ResumeAfterDamage()
         {
             _isFrozen = false;
@@ -152,10 +157,19 @@ namespace Enemies.Runtime
             //_meshRenderer.material.color = _originalMaterial;
         }
 
+        private void UpdateTimers()
+        {
+            if (_attackTimer.IsRunning()) _attackTimer.Tick();
+            if (_damageTimer.IsRunning()) _damageTimer.Tick();
+        }
+
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, m_maxDetectionRange);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, _rushDistance);
         }
 
         #endregion
@@ -163,18 +177,11 @@ namespace Enemies.Runtime
 
         #region Privates & Protected
 
-        [Header("References")]
-        //[SerializeField] private MeshRenderer _meshRenderer;
-        //[SerializeField] private ParticleSystem _particleSystem;
-        //[SerializeField] private AudioClip _damagedAudio;
-
-        [Header("Player Detection")]
         [SerializeField] private float _angleDetectionRange = 10f;
 
         [Header("Attack Specifics")]
-        [SerializeField] private float _damages = 1;
-        [SerializeField] private float _rushSpeed = 10f;
         [SerializeField] private float _rushDistance = 5f;
+        [SerializeField] private float _rushSpeed = 10f;
 
         private bool _isFrozen = false;
         private bool _isRushing = false;
@@ -184,6 +191,12 @@ namespace Enemies.Runtime
         [Header("Damages")]
         [SerializeField] private float _recoilDistance = .5f;
         [SerializeField] private float _takeDamageDelay = .5f;
+
+        [Header("References")]
+        //[SerializeField] private MeshRenderer _meshRenderer;
+        //[SerializeField] private ParticleSystem _particleSystem;
+        //[SerializeField] private AudioClip _damagedAudio;
+
 
         private Timer _damageTimer;
         private Color _originalMaterial;
