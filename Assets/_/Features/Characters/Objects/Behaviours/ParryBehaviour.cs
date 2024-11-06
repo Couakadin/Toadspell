@@ -6,18 +6,7 @@ namespace Objects.Runtime
     {
         #region Unity
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.layer == _layersToParry)
-                collision.gameObject.SetActive(false);
-        }
-
-        #endregion
-
-        #region Privates
-
-        [SerializeField]
-        private LayerMask _layersToParry;
+        private void OnTriggerEnter(Collider other) => other.gameObject.SetActive(false);
 
         #endregion
 

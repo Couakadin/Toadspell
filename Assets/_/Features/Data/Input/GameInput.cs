@@ -75,7 +75,7 @@ namespace Data.Runtime
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Element"",
+                    ""name"": ""Spell"",
                     ""type"": ""Button"",
                     ""id"": ""8523e19b-d1e5-4875-8883-532de06ed3eb"",
                     ""expectedControlType"": """",
@@ -255,7 +255,7 @@ namespace Data.Runtime
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Element"",
+                    ""action"": ""Spell"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -266,7 +266,7 @@ namespace Data.Runtime
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Element"",
+                    ""action"": ""Spell"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -304,7 +304,7 @@ namespace Data.Runtime
             m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
             m_Gameplay_Lock = m_Gameplay.FindAction("Lock", throwIfNotFound: true);
             m_Gameplay_Tongue = m_Gameplay.FindAction("Tongue", throwIfNotFound: true);
-            m_Gameplay_Spell = m_Gameplay.FindAction("Element", throwIfNotFound: true);
+            m_Gameplay_Spell = m_Gameplay.FindAction("Spell", throwIfNotFound: true);
             m_Gameplay_Parry = m_Gameplay.FindAction("Parry", throwIfNotFound: true);
         }
 
