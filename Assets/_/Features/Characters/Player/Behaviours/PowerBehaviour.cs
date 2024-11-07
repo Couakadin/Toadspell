@@ -27,6 +27,8 @@ namespace Player.Runtime
         public GameObject m_tongue;
         [Tooltip("The speed of the tongue.")]
         public float m_tongueSpeed;
+        [Tooltip("Bool if frog can eat this frame.")]
+        public bool m_canEat;
 
         [Header("Element Params")]
         [Tooltip("The GameObject where spells are launched.")]
