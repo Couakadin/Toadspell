@@ -13,12 +13,17 @@ namespace Enemies.Runtime
 
         #region Unity API
 
+        private void Awake()
+        {
+            TryGetComponent(out _plantAnimator);
+        }
+
         void Start()
     	{
             _attackTimer = CreateAndSubscribeTimer(m_attackDelay, Attack);
             _damageTimer = CreateAndSubscribeTimer(_takeDamageDelay, ResumeAfterDamage);
 
-            _originalMaterial = _meshRenderer.material.color;
+            //_originalMaterial = _meshRenderer.material.color;
         }
 
         void Update()
@@ -34,7 +39,6 @@ namespace Enemies.Runtime
             }
 
             UpdateTimers();
-
         }
 
         private void OnDrawGizmos()
@@ -49,19 +53,19 @@ namespace Enemies.Runtime
         #region Main Methods
         public override void OnLock()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void OnUnlock()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void TakeDamage(float damage)
         {
             m_lifePoints -= damage;
             _isShooting = false;
-            _meshRenderer.material.color = Color.yellow;
+            //_meshRenderer.material.color = Color.yellow;
             SetOrResetTimer(_damageTimer);
         }
 
@@ -72,6 +76,7 @@ namespace Enemies.Runtime
             projectile.transform.position = transform.position;
             projectile.transform.rotation = transform.rotation;
             Debug.Log("Attack");
+            _plantAnimator.SetTrigger("Attack");
         }
 
         #endregion
@@ -82,7 +87,7 @@ namespace Enemies.Runtime
         private void ResumeAfterDamage()
         {
             _isShooting = true;
-            _meshRenderer.material.color = _originalMaterial;
+            //_meshRenderer.material.color = _originalMaterial;
         }
 
         private void UpdateTimers()
@@ -96,12 +101,14 @@ namespace Enemies.Runtime
 
         #region Private & Protected
 
-        [SerializeField] private MeshRenderer _meshRenderer;
+        //[SerializeField] private MeshRenderer _meshRenderer;
         [SerializeField] private float _takeDamageDelay = .5f;
         [SerializeField] private float _ShootInTheAir = 2f;
         private Color _originalMaterial;
         private bool _isShooting = true;
         private Timer _damageTimer;
+
+        private Animator _plantAnimator;
 
         #endregion
     }
