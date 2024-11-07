@@ -29,7 +29,6 @@ Material:
   - N_F_EAL_ON
   - N_F_GLO_ON
   - N_F_NM_ON
-  - N_F_O_ON
   - N_F_RDC_ON
   - N_F_RELGI_ON
   - N_F_SS_ON
@@ -66,7 +65,8 @@ Material:
   m_CustomRenderQueue: 2450
   stringTagMap:
     RenderType: TransparentCutout
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - SRPDEFAULTUNLIT
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -203,7 +203,7 @@ Material:
     - _CustomLightDirectionFollowObjectRotation: 0
     - _CustomLightDirectionIntensity: 0
     - _Cutoff: 0.5
-    - _Cutout: 0.47
+    - _Cutout: 0.5
     - _DepthThreshold: 900
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -239,7 +239,7 @@ Material:
     - _MCIALO: 0
     - _MCapIntensity: 1
     - _MVCOL: 0
-    - _MaiColPo: 0.8
+    - _MaiColPo: 0.89
     - _MaxFadDistance: 2
     - _Metallic: 0
     - _MinFadDistance: 0
@@ -262,7 +262,7 @@ Material:
     - _N_F_NFD: 0
     - _N_F_NLASOBF: 0
     - _N_F_NM: 1
-    - _N_F_O: 1
+    - _N_F_O: 0
     - _N_F_OFLMB: 0
     - _N_F_PA: 0
     - _N_F_PT: 0
@@ -285,8 +285,8 @@ Material:
     - _OcclusionStrength: 1
     - _Opacity: 1
     - _Oper: 0
-    - _OutlineExtrudeMethod: 0
-    - _OutlineWidth: 0.5
+    - _OutlineExtrudeMethod: 1
+    - _OutlineWidth: 0
     - _OutlineWidthAffectedByViewDistance: 0
     - _OutlineZPostionInCamera: 0
     - _OverallShadowColorPower: 1
@@ -301,7 +301,7 @@ Material:
     - _QueueOffset: 0
     - _RELG: 1
     - _ReceiveShadows: 1
-    - _ReduSha: 0.5
+    - _ReduSha: 2.25
     - _RefMetallic: 0
     - _RefVal: 0
     - _ReflectionIntensity: 0
@@ -363,13 +363,13 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CustomLightDirection: {r: 0, g: 0, b: 10, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GlossColor: {r: 0.081131995, g: 0.66267586, b: 1, a: 1}
+    - _GlossColor: {r: 0, g: 0.32927465, b: 1, a: 1}
     - _Glow_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HighlightColor: {r: 0.87358487, g: 1, b: 0.9832697, a: 1}
+    - _MainColor: {r: 0.7607843, g: 0.7682346, b: 1, a: 1}
     - _ObjPosi: {r: 0, g: 0, b: 0, a: 0}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.010644347, g: 0.014281396, b: 0.04905659, a: 1}
+    - _OutlineOffset: {r: 0, g: 0, b: 0.97, a: 0.76}
     - _OverallShadowColor: {r: 0, g: 0.31197035, b: 0.3584906, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
     - _PrevPosition: {r: 0, g: 0, b: 0, a: 0}
