@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Game.Runtime
@@ -42,7 +43,7 @@ namespace Game.Runtime
                 }
 
                 _intro.Append(_introCanvasGroup.DOFade(0, _fadeOutTime));
-                _intro.Append(_backgroundCanvasGroup.DOFade(0, _backgroundFadeOut));
+                _intro.Append(_backgroundCanvasGroup.DOFade(0, _backgroundFadeOut)).OnComplete(LoadMainScene);
             }
         }
 
@@ -50,6 +51,11 @@ namespace Game.Runtime
         {
             _textIndex++;
             _introText.text = _textDialogue.m_lines[_textIndex].m_sentence;
+        }
+
+        private void LoadMainScene()
+        {
+            SceneManager.LoadScene(1);
         }
 
         #endregion

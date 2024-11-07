@@ -12,7 +12,7 @@ namespace Game.Runtime
 
         private void Awake()
         {
-           
+
         }
 
         void Start()
@@ -114,7 +114,8 @@ namespace Game.Runtime
         [SerializeField] private float _tutorialFadeIn;
         [SerializeField] private float _tutorialFadeOut;
 
-        [SerializeField] private int _tutorialIndex = 0;
+        private bool _isKeyboard;
+        private int _tutorialIndex = 0;
         [SerializeField] private List<CanvasGroup> _tutorialPanels = new();
         [SerializeField] private List<CanvasGroup> _keyboardTutorial;
         [SerializeField] private List<CanvasGroup> _joyStickTutorial;
