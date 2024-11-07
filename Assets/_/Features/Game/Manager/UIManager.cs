@@ -78,6 +78,12 @@ namespace Game.Runtime
             tutorialSequence.Append(_tutorialPanels[_tutorialIndex].DOFade(0, _tutorialFadeOut)).OnComplete(UpdateTutorialIndex);   
         }
 
+        [ContextMenu("switch test")]
+        private void SwitchList()
+        {
+            _tutorialPanels = _joyStickTutorial;
+        }
+
         #endregion
 
 
@@ -121,7 +127,6 @@ namespace Game.Runtime
         [SerializeField] private List<CanvasGroup> _tutorialPanels = new();
         [SerializeField] private List<CanvasGroup> _keyboardTutorial;
         [SerializeField] private List<CanvasGroup> _joyStickTutorial;
-
 
         #endregion
     }

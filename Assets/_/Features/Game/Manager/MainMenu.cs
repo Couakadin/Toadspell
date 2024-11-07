@@ -1,13 +1,15 @@
+using Data.Runtime;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 namespace Game.Runtime
 {
     public class MainMenu : MonoBehaviour
     {
         #region Main Methods
-	
+
         public void LoadCinematique()
         {
             Sequence cinematique = DOTween.Sequence();
