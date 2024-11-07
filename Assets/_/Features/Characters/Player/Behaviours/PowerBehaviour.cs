@@ -54,6 +54,8 @@ namespace Player.Runtime
         public InputAction m_spellInput { get; private set; }
         public InputAction m_parryInput { get; private set; }
 
+        public Animator m_playerAnimator { get; private set; }
+
         #endregion
 
         #region Unity
@@ -69,6 +71,7 @@ namespace Player.Runtime
             m_parryInput = _gameplayInput.Parry;
 
             TryGetComponent(out _animator);
+            m_playerAnimator = _animator;
         }
 
         private void Start()
@@ -94,10 +97,7 @@ namespace Player.Runtime
             _stateMachine.HandleInput();
             _stateMachine.Tick();
 
-            _animator.SetBool("IsAttack", m_parryInput.triggered);
-            _animator.SetBool("IsAttack", m_spellInput.triggered);
-
-            switch (spell)
+            switch(spell)
             {
                 case (IAmElement.Element.arcane):
                     m_currentPool = m_spellPools.Find(spell => spell.gameObject.name == "Arcane Pool");

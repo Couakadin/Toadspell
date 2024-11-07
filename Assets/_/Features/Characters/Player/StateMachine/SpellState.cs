@@ -29,6 +29,8 @@ namespace Player.Runtime
                 return;
             }
 
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetTrigger("Attack");
+
             // Pool
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
             _projectile = _currentPool?.GetFirstAvailableObject();
