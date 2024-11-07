@@ -131,6 +131,7 @@ namespace Player.Runtime
 
             if (_sizeable.size == ISizeable.Size.small)
             {
+                m_stateMachine.m_powerBehaviour.m_canEat = true;
                 _fixedJoint.connectedBody = _tongueRigidbody;
                 _isTongueReturned = true;
             }
@@ -190,7 +191,7 @@ namespace Player.Runtime
         {
             _distanceToTarget = new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z) - _tongueRigidbody.position;
 
-            if (_distanceToTarget.sqrMagnitude > 3f)
+            if (_distanceToTarget.sqrMagnitude > .5f)
                 _tongueRigidbody.velocity = _tongueSpeed * _distanceToTarget.normalized;
             else
             {

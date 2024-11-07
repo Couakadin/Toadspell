@@ -21,10 +21,13 @@ namespace Objects.Runtime
         {
             if (collision.gameObject.TryGetComponent(out PowerBehaviour interact))
             {
+                if (!interact.m_canEat) return;
+
                 interact.m_spell = _spell;
                 _onSpellChange.Raise((int)_spell);
                 Invoke(nameof(RespawnAfterAWhile), 3);
                 gameObject.SetActive(false);
+                interact.m_canEat = false;
             }
         }
 
