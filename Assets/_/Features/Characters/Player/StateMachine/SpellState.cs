@@ -29,6 +29,9 @@ namespace Player.Runtime
                 return;
             }
 
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, 1f); // Attack Layer
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetTrigger("Attack");
+
             // Pool
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
             _projectile = _currentPool?.GetFirstAvailableObject();
