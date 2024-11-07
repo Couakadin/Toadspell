@@ -18,6 +18,7 @@ namespace Game.Runtime
         void Start()
     	{
             _tutorialPanels = _keyboardTutorial;
+            _tutorialIndex = 0;
             _maxLives = (int)_playerBlackboard.GetValue<float>("Lives");
             _spellImage.color = _spellList[0];
 
@@ -107,14 +108,16 @@ namespace Game.Runtime
         [SerializeField] private Image _spellImage;
         [SerializeField] private int _spell;
 
+        [Space(8)]
         [Header("Tutorial")]
-        [SerializeField] private List<CanvasGroup> _tutorialPanels = new();
-        [SerializeField] private List<CanvasGroup> _keyboardTutorial;
-        [SerializeField] private List<CanvasGroup> _joyStickTutorial;
         [SerializeField] private float _tutorialTimeOnScreen;
         [SerializeField] private float _tutorialFadeIn;
         [SerializeField] private float _tutorialFadeOut;
+
         [SerializeField] private int _tutorialIndex = 0;
+        [SerializeField] private List<CanvasGroup> _tutorialPanels = new();
+        [SerializeField] private List<CanvasGroup> _keyboardTutorial;
+        [SerializeField] private List<CanvasGroup> _joyStickTutorial;
 
 
         #endregion
