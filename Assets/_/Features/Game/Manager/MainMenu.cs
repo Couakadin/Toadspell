@@ -1,8 +1,6 @@
-using Data.Runtime;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 namespace Game.Runtime
 {

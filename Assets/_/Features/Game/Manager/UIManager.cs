@@ -1,7 +1,9 @@
 using Data.Runtime;
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Game.Runtime
@@ -12,9 +14,13 @@ namespace Game.Runtime
 
         private void Awake()
         {
-
+            InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
         }
 
+        private void OnEnable()
+        {
+           
+        }
         void Start()
     	{
             _tutorialIndex = 0;
@@ -88,6 +94,27 @@ namespace Game.Runtime
         #region Utils
 
         private void UpdateTutorialIndex() => _tutorialIndex++;
+
+        private void OnDeviceChangeAdjustUI(InputDevice device, InputDeviceChange change)
+        {
+            if (change == InputDeviceChange.Added || change == InputDeviceChange.Enabled)
+            {
+                SwitchUIWithDevice(device);
+            }
+        }
+
+        private void SwitchUIWithDevice(InputDevice device)
+        {
+            if (device is Gamepad)
+            {
+                _tutorialPanels = _joyStickTutorial;
+            }
+            else if (device is Keyboard || device is Mouse)
+            {
+                _tutorialPanels = _keyboardTutorial;
+            }
+        }
+
         #endregion
 
 

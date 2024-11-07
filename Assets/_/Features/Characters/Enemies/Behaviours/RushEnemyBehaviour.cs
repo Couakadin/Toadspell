@@ -25,12 +25,12 @@ namespace Enemies.Runtime
             float detectionRange = m_maxDetectionRange * m_maxDetectionRange;
             float rageRange = _rushDistance * _rushDistance;
 
-            if (sqrDistance < detectionRange && !_isRushing && !_isFrozen)
+            if (sqrDistance < detectionRange && !_isRushing && !_isCoolingDownAfterRush)
             {
                 transform.LookAt(playerFollow);
                 // We can show here that the enemy is about to rush
 
-                if (IsAlignedWithPlayer(playerPosition) && sqrDistance < rageRange && !_isCoolingDownAfterRush)
+                if (IsAlignedWithPlayer(playerPosition) && sqrDistance < rageRange)
                 {
                     m_animator.SetBool("isRaging", true);
                     if (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
@@ -42,7 +42,7 @@ namespace Enemies.Runtime
 
             if(_isRushing) Rush();
 
-            if (_isCoolingDownAfterRush) CooldownAfterRush();
+            //if (_isCoolingDownAfterRush) CooldownAfterRush();
 
             UpdateTimers();
         }
@@ -51,7 +51,8 @@ namespace Enemies.Runtime
         {
             if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
             {
-                Recoil();
+                //Recoil();
+                m_animator.SetBool("isAttacking", true);
                 _isRushing = false;
                 _isCoolingDownAfterRush = true;
                 hurt.TakeDamage(m_damages);
@@ -75,12 +76,13 @@ namespace Enemies.Runtime
 
         public override void OnLock()
         {
-            //need to show lock
+            Debug.Log("ShowYourself");
+            _LockIndicator.SetActive(true);
         }
 
         public override void OnUnlock()
         {
-            //need to hide lock
+            _LockIndicator.SetActive(false);
         }
         
         public override void TakeDamage(float damage)
@@ -92,19 +94,10 @@ namespace Enemies.Runtime
                 //_meshRenderer.enabled = false;
                 //_particleSystem.Play();
                 //Sound
-
             }
             //_meshRenderer.material.color = Color.yellow;
 
         }
-
-        private void Recoil()
-        {
-            _isFrozen = true;
-            transform.position += -transform.forward * _recoilDistance;
-            SetOrResetTimer(_damageTimer);
-        }
-
 
         #endregion
 
@@ -114,19 +107,20 @@ namespace Enemies.Runtime
         private void Rush()
         {
             transform.position += transform.forward * _rushSpeed * Time.deltaTime;
-            if (Vector3.Distance(_rushStartPosition, transform.position) >= _rushDistance)
+            if (Vector3.Distance(_rushStartPosition, transform.position) >= _rushDistance - 1)
             {
+                m_animator.SetBool("isRaging", false);
+                m_animator.SetBool("isAttacking", true);
+                SetOrResetTimer(_attackTimer);
                 _isCoolingDownAfterRush = true;
+                _isRushing = false;
             }
         }
 
-        private void CooldownAfterRush()
-        {
-            SetOrResetTimer(_attackTimer);
-           // m_animator.SetBool("isRunning", false);
-            m_animator.SetBool("isAttacking", true);
-            m_animator.SetBool("isRaging", false);
-        }
+        //private void CooldownAfterRush()
+        //{
+        //   // m_animator.SetBool("isRunning", false);
+        //}
 
         private void ResetCoolDown()
         {
@@ -134,6 +128,12 @@ namespace Enemies.Runtime
             _isCoolingDownAfterRush = false;
         }
 
+        private void Recoil()
+        {
+            _isCoolingDownAfterRush = true;
+            SetOrResetTimer(_damageTimer);
+            transform.position += -transform.forward * _recoilDistance;
+        }
 
         [ContextMenu("Damages")]
         private void TestDamages()
@@ -152,7 +152,7 @@ namespace Enemies.Runtime
 
         private void ResumeAfterDamage()
         {
-            _isFrozen = false;
+            _isCoolingDownAfterRush = false;
             if (m_lifePoints <= 0) gameObject.SetActive(false);
             //_meshRenderer.material.color = _originalMaterial;
         }
