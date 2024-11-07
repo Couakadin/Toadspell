@@ -40,6 +40,7 @@ namespace Player.Runtime
         private void Awake()
         {
             TryGetComponent(out _characterController);
+            TryGetComponent(out _playerAnimator);
 
             _gameInput = new GameInput();
             _gameplayInput = _gameInput.Gameplay;
@@ -164,8 +165,6 @@ namespace Player.Runtime
         [SerializeField]
         private Blackboard _playerBlackboard;
 
-        [Header("Components")]
-        [SerializeField]
         private Animator _playerAnimator;
 
         private CharacterController _characterController;
