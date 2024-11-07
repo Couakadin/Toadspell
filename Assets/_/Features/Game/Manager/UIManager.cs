@@ -17,8 +17,8 @@ namespace Game.Runtime
 
         void Start()
     	{
-            _tutorialPanels = _keyboardTutorial;
             _tutorialIndex = 0;
+            _tutorialPanels = _keyboardTutorial;
             _maxLives = (int)_playerBlackboard.GetValue<float>("Lives");
             _spellImage.color = _spellList[0];
 
