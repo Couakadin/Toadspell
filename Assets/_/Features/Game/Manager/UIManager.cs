@@ -12,12 +12,14 @@ namespace Game.Runtime
 
         private void Awake()
         {
-           
+
         }
 
         void Start()
     	{
-            _tutorialPanels = _keyboardTutorial;
+            if(_isKeyboard) _tutorialPanels = _keyboardTutorial;
+            else _tutorialPanels = _joyStickTutorial;
+
             _tutorialIndex = 0;
             _maxLives = (int)_playerBlackboard.GetValue<float>("Lives");
             _spellImage.color = _spellList[0];
@@ -114,7 +116,8 @@ namespace Game.Runtime
         [SerializeField] private float _tutorialFadeIn;
         [SerializeField] private float _tutorialFadeOut;
 
-        [SerializeField] private int _tutorialIndex = 0;
+        private bool _isKeyboard;
+        private int _tutorialIndex = 0;
         [SerializeField] private List<CanvasGroup> _tutorialPanels = new();
         [SerializeField] private List<CanvasGroup> _keyboardTutorial;
         [SerializeField] private List<CanvasGroup> _joyStickTutorial;
