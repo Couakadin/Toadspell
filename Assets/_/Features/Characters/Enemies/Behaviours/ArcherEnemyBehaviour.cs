@@ -71,12 +71,13 @@ namespace Enemies.Runtime
 
         public override void Attack()
         {
+            _plantAnimator.SetTrigger("Attack");
+
             GameObject projectile = m_projectilePool.GetFirstAvailableObject();
             projectile.SetActive(true);
             projectile.transform.position = transform.position;
             projectile.transform.rotation = transform.rotation;
             Debug.Log("Attack");
-            _plantAnimator.SetTrigger("Attack");
         }
 
         #endregion
