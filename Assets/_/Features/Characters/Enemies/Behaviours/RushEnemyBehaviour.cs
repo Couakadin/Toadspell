@@ -49,10 +49,13 @@ namespace Enemies.Runtime
 
         private void OnTriggerEnter(Collider other)
         {
+            if (_isCoolingDownAfterRush) return;
             if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
             {
                 //Recoil();
+                m_animator.SetBool("isRaging", false);
                 m_animator.SetBool("isAttacking", true);
+                SetOrResetTimer(_attackTimer);
                 _isRushing = false;
                 _isCoolingDownAfterRush = true;
                 hurt.TakeDamage(m_damages);
@@ -109,6 +112,7 @@ namespace Enemies.Runtime
             transform.position += transform.forward * _rushSpeed * Time.deltaTime;
             if (Vector3.Distance(_rushStartPosition, transform.position) >= _rushDistance - 1)
             {
+                Debug.Log("attack");
                 m_animator.SetBool("isRaging", false);
                 m_animator.SetBool("isAttacking", true);
                 SetOrResetTimer(_attackTimer);
@@ -152,6 +156,7 @@ namespace Enemies.Runtime
 
         private void ResumeAfterDamage()
         {
+            m_animator.SetBool("isAttacking", false);
             _isCoolingDownAfterRush = false;
             if (m_lifePoints <= 0) gameObject.SetActive(false);
             //_meshRenderer.material.color = _originalMaterial;
