@@ -14,7 +14,7 @@ namespace Game.Runtime
 		
     	void Start()
     	{
-            ShowIntro();
+            TestWithImage();
         }
 
         #endregion
@@ -22,36 +22,95 @@ namespace Game.Runtime
 
         #region Main Methods
 
-        [ContextMenu("test Intro")]
-        public void ShowIntro()
+        [ContextMenu("test IMG")]
+        private void TestWithImage()
         {
-            for (int i = 0; i < _introDialogues.Count; i++)
+            _intro = DOTween.Sequence();
+            for (int i = 0; i < _testDialogueImg.Count; i++)
             {
-                _textIndex = 0;
-                _intro = DOTween.Sequence();
-                _introImage.sprite = _introDialogues[i].m_image;
-                _textDialogue = _introDialogues[i];
-                _introText.text = _introDialogues[i].m_lines[_textIndex].m_sentence;
+                Dialogue _currentDialogue = _testDialogueImg[i];
+                _intro.AppendCallback(() =>
+                {
+                    _textIndex = 0;
+                    _introImage.sprite = _currentDialogue.m_image;
+                    _textImg.sprite = _currentDialogue.m_lines[_textIndex].m_image;
+                });
+
 
                 _intro.Append(_introCanvasGroup.DOFade(1, _fadeInTime));
-                for(int j = 0; j < _introDialogues[i].m_lines.Count; j++)
+
+                for (int j = 0; j < _currentDialogue.m_lines.Count; j++)
                 {
-                    _intro.Append(_introTextAlpha.DOFade(1, _textfadeIn));
-                    _intro.AppendInterval(_introDialogues[i].m_lines[j].m_screenTime);
-                    _intro.Append(_introTextAlpha.DOFade(0, _textFadeOut).OnComplete(UpdateText));
+                    int currentIndex = j;
+
+                    _intro.AppendCallback(() =>
+                    {
+                        if (_textIndex < _currentDialogue.m_lines.Count)
+                        {
+                            _textImg.sprite = _currentDialogue.m_lines[_textIndex].m_image;
+                        }
+                    });
+
+                    _intro.Append(_imgIntroTextAlpha.DOFade(1, _textfadeIn));
+                    _intro.AppendInterval(_currentDialogue.m_lines[currentIndex].m_screenTime);
+                    _intro.Append(_imgIntroTextAlpha.DOFade(0, _textFadeOut).OnComplete(() =>
+                    {
+                        _textIndex++;
+                    }));
+
                     _intro.AppendInterval(_intervalBetweenTexts);
                 }
-
                 _intro.Append(_introCanvasGroup.DOFade(0, _fadeOutTime));
-                _intro.Append(_backgroundCanvasGroup.DOFade(0, _backgroundFadeOut)).OnComplete(LoadMainScene);
             }
+
+            _intro.Append(_backgroundCanvasGroup.DOFade(0, _backgroundFadeOut)).OnComplete(LoadMainScene);
         }
 
-        private void UpdateText()
-        {
-            _textIndex++;
-            _introText.text = _textDialogue.m_lines[_textIndex].m_sentence;
-        }
+        //[ContextMenu("test Intro")]
+        //public void ShowIntro()
+        //{
+        //    _intro = DOTween.Sequence();
+
+        //    for (int i = 0; i < _introDialogues.Count; i++)
+        //    {
+        //        Dialogue _currentDialogue = _introDialogues[i];
+
+        //        _intro.AppendCallback(() =>
+        //        {
+        //            _textIndex = 0;
+        //            _introImage.sprite = _currentDialogue.m_image;
+        //            _introText.text = _currentDialogue.m_lines[_textIndex].m_sentence;
+
+        //        });
+            
+        //        _intro.Append(_introCanvasGroup.DOFade(1, _fadeInTime));
+
+        //        for(int j = 0; j < _currentDialogue.m_lines.Count; j++)
+        //        {
+        //            int currentIndex = j;
+
+        //            _intro.AppendCallback(() =>
+        //            {
+        //                if (_textIndex < _currentDialogue.m_lines.Count)
+        //                {
+        //                    _introText.text = _currentDialogue.m_lines[_textIndex].m_sentence;
+        //                }
+        //            });
+
+        //            _intro.Append(_introTextAlpha.DOFade(1, _textfadeIn));
+        //            _intro.AppendInterval(_currentDialogue.m_lines[currentIndex].m_screenTime);
+        //            _intro.Append(_introTextAlpha.DOFade(0, _textFadeOut).OnComplete(() =>
+        //            {
+        //                _textIndex++;
+        //            }));
+
+        //            _intro.AppendInterval(_intervalBetweenTexts);
+        //        }
+
+        //        _intro.Append(_introCanvasGroup.DOFade(0, _fadeOutTime));
+        //    }
+        //    _intro.Append(_backgroundCanvasGroup.DOFade(0, _backgroundFadeOut)).OnComplete(LoadMainScene);
+        //}
 
         private void LoadMainScene()
         {
@@ -65,7 +124,7 @@ namespace Game.Runtime
 
         private Sequence _intro;
         private int _textIndex = 0;
-        private Dialogue _textDialogue;
+        //private Dialogue _currentDialogue;
 
         [Header("Background Image Specifics")]
         [SerializeField] private float _fadeInTime;
@@ -76,14 +135,18 @@ namespace Game.Runtime
         [SerializeField] private CanvasGroup _backgroundCanvasGroup;
 
         [Header("Text Specifics")]
-        [SerializeField] private TMP_Text _introText;
-        [SerializeField] private CanvasGroup _introTextAlpha;
+        //[SerializeField] private TMP_Text _introText;
+        //[SerializeField] private CanvasGroup _introTextAlpha;
         [SerializeField] private float _textfadeIn;
         [SerializeField] private float _textFadeOut;
         [SerializeField] private float _intervalBetweenTexts;
 
         [Header("Story Specifics")]
-        [SerializeField] private List<Dialogue> _introDialogues;
+        //[SerializeField] private List<Dialogue> _introDialogues;
+
+        [SerializeField] private List<Dialogue> _testDialogueImg;
+        [SerializeField] private Image _textImg;
+        [SerializeField] private CanvasGroup _imgIntroTextAlpha;
 
         #endregion
     }

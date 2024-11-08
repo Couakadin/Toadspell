@@ -133,7 +133,7 @@ MonoBehaviour:
   m_damages: 1
   m_maxDetectionRange: 50
   _angleDetectionRange: 10
-  _rushDistance: 40
+  _rushDistance: 50
   _rushSpeed: 50
   _recoilDistance: 10
   _takeDamageDelay: 3
@@ -184,7 +184,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 4.53, y: 8.49, z: 2.11}
-  m_Center: {x: 0, y: 3.31, z: 4.62}
+  m_Center: {x: 0, y: 3.92, z: 4.62}
 --- !u!65 &4480438632064739162
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -27,7 +27,6 @@ namespace Game.Runtime
         private void StartIntro()
         {
             _introPanel.SetActive(true);
-            _intro.ShowIntro();
         }
 
         #endregion

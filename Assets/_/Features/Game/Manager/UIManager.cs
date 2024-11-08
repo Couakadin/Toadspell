@@ -23,6 +23,7 @@ namespace Game.Runtime
         }
         void Start()
     	{
+            FirstFadeIn();
             _tutorialIndex = 0;
             _tutorialPanels = _keyboardTutorial;
             _maxLives = (int)_playerBlackboard.GetValue<float>("Lives");
@@ -39,6 +40,12 @@ namespace Game.Runtime
 
 
         #region Main Methods
+        private void FirstFadeIn()
+        {
+            Sequence fadeSequence = DOTween.Sequence();
+            fadeSequence.AppendInterval(1f);
+            fadeSequence.Append(_teleportBlackScreen.DOFade(0, 1.5f));
+        }
 
         public void FadeOnTeleportation()
         {
@@ -70,6 +77,11 @@ namespace Game.Runtime
             {
                 _livesList[i].SetActive(true);
             }
+        }
+
+        public void TriggerTutorial(int index)
+        {
+
         }
 
         [ContextMenu("tutorial")]

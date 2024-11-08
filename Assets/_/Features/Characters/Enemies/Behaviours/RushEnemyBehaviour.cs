@@ -12,10 +12,16 @@ namespace Enemies.Runtime
     	{
             _attackTimer = CreateAndSubscribeTimer(m_attackDelay, ResetCoolDown);
             _damageTimer = CreateAndSubscribeTimer(_takeDamageDelay, ResumeAfterDamage);
+            ResetAnimations();
         }
 
         void Update()
     	{
+            if(!_isRushing && !_isCoolingDownAfterRush)
+            {
+                ResetAnimations();
+            }
+
             Vector3 playerPosition = m_blackboard.GetValue<Vector3>("Position");
             Vector3 distanceWithPlayer = playerPosition - transform.position;
             float sqrDistance = Vector3.SqrMagnitude(distanceWithPlayer);
@@ -41,10 +47,13 @@ namespace Enemies.Runtime
             }
 
             if(_isRushing) Rush();
-
-            //if (_isCoolingDownAfterRush) CooldownAfterRush();
-
             UpdateTimers();
+        }
+
+        private void ResetAnimations()
+        {
+            m_animator.SetBool("isAttacking", false);
+            m_animator.SetBool("isRaging", false);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -52,12 +61,7 @@ namespace Enemies.Runtime
             if (_isCoolingDownAfterRush) return;
             if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
             {
-                //Recoil();
-                m_animator.SetBool("isRaging", false);
-                m_animator.SetBool("isAttacking", true);
-                SetOrResetTimer(_attackTimer);
-                _isRushing = false;
-                _isCoolingDownAfterRush = true;
+                TouchedPlayer();
                 hurt.TakeDamage(m_damages);
             }
         }
@@ -67,15 +71,11 @@ namespace Enemies.Runtime
 
         #region Main Methods
 
-        [ContextMenu("Rush")]
         public override void Attack()
         {
-            //m_animator.SetBool("isRunning", true);
             _rushStartPosition = transform.position;
             _isRushing = true;
         }
-
-
 
         public override void OnLock()
         {
@@ -98,8 +98,6 @@ namespace Enemies.Runtime
                 //_particleSystem.Play();
                 //Sound
             }
-            //_meshRenderer.material.color = Color.yellow;
-
         }
 
         #endregion
@@ -112,24 +110,17 @@ namespace Enemies.Runtime
             transform.position += transform.forward * _rushSpeed * Time.deltaTime;
             if (Vector3.Distance(_rushStartPosition, transform.position) >= _rushDistance - 1)
             {
-                Debug.Log("attack");
-                m_animator.SetBool("isRaging", false);
-                m_animator.SetBool("isAttacking", true);
-                SetOrResetTimer(_attackTimer);
-                _isCoolingDownAfterRush = true;
-                _isRushing = false;
+                TouchedPlayer();
             }
         }
 
-        //private void CooldownAfterRush()
-        //{
-        //   // m_animator.SetBool("isRunning", false);
-        //}
-
-        private void ResetCoolDown()
+        private void TouchedPlayer()
         {
-            m_animator.SetBool("isAttacking", false);
-            _isCoolingDownAfterRush = false;
+            _isRushing = false;
+            _isCoolingDownAfterRush = true;
+            m_animator.SetBool("isRaging", false);
+            m_animator.SetBool("isAttacking", true);
+            SetOrResetTimer(_attackTimer);
         }
 
         private void Recoil()
@@ -139,20 +130,12 @@ namespace Enemies.Runtime
             transform.position += -transform.forward * _recoilDistance;
         }
 
-        [ContextMenu("Damages")]
-        private void TestDamages()
+        private void ResetCoolDown()
         {
-            TakeDamage(1);
+            m_animator.SetBool("isAttacking", false);
+            _isCoolingDownAfterRush = false;
         }
 
-        private bool IsAlignedWithPlayer(Vector3 playerPosition)
-        {
-            Vector3 directionToPlayer = (playerPosition - transform.position).normalized;
-
-            float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
-
-            return angleToPlayer <= _angleDetectionRange;
-        }
 
         private void ResumeAfterDamage()
         {
@@ -168,6 +151,14 @@ namespace Enemies.Runtime
             if (_damageTimer.IsRunning()) _damageTimer.Tick();
         }
 
+        private bool IsAlignedWithPlayer(Vector3 playerPosition)
+        {
+            Vector3 directionToPlayer = (playerPosition - transform.position).normalized;
+
+            float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
+
+            return angleToPlayer <= _angleDetectionRange;
+        }
 
         private void OnDrawGizmos()
         {
