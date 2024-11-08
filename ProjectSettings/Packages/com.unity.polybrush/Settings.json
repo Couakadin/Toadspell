@@ -69,7 +69,7 @@
             {
                 "type": "UnityEngine.Polybrush.MirrorCoordinateSpace, Unity.Polybrush, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "Brush.MirrorSpace",
-                "value": "{\"m_Value\":0}"
+                "value": "{\"m_Value\":1}"
             },
             {
                 "type": "UnityEngine.Polybrush.PolyDirection, Unity.Polybrush, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -114,7 +114,7 @@
             {
                 "type": "UnityEditor.Polybrush.PrefabLoadout, Unity.Polybrush.Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ScatteringEditor.userLoadout",
-                "value": "{\"m_Value\":{\"infos\":[]}}"
+                "value": "{\"m_Value\":{\"infos\":[{\"palette\":{\"fileID\":11400000,\"guid\":\"4609521ca00256f4a95e495c48770556\",\"type\":2},\"prefab\":{\"fileID\":6708877548469535870,\"guid\":\"7a3a3cc1069dac94ab74a7eeaa66d595\",\"type\":3}},{\"palette\":{\"fileID\":11400000,\"guid\":\"4609521ca00256f4a95e495c48770556\",\"type\":2},\"prefab\":{\"fileID\":5385857419324189605,\"guid\":\"4d36831a1bf521b4596eb8b938337857\",\"type\":3}},{\"palette\":{\"fileID\":11400000,\"guid\":\"4609521ca00256f4a95e495c48770556\",\"type\":2},\"prefab\":{\"fileID\":7434673112330318796,\"guid\":\"9553b9da1f3b05d48aafe1e42b5fa6b0\",\"type\":3}}]}}"
             }
         ]
     }

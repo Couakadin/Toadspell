@@ -7,7 +7,7 @@ namespace Game.Runtime
     public class MainMenu : MonoBehaviour
     {
         #region Main Methods
-	
+
         public void LoadCinematique()
         {
             Sequence cinematique = DOTween.Sequence();
