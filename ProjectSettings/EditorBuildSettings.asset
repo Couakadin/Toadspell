@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_/Scenes/BuildScene.unity
     guid: 400b65ae60012ec4ca7b408a24a1ad3b
-  - enabled: 1
+  - enabled: 0
     path: Assets/_/Scenes/ForMain/BlockingMapsTuto.unity
     guid: 800a6d652168f4f4e9bfba382b5d50c6
+  - enabled: 1
+    path: Assets/_/Scenes/MainGame.unity
+    guid: 1d7d7c993e614c042b2beea499cac773
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 086adcc1757cfbf4cb741d1a541369d0,
       type: 3}

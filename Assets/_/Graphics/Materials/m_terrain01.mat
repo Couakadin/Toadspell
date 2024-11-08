@@ -38,19 +38,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AlbedoTexture1:
-        m_Texture: {fileID: 2800000, guid: cc78904a1c9eb8f45baffd058af53fc0, type: 3}
+        m_Texture: {fileID: 2800000, guid: b5532f7c905ab7948b74540c5744d94e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlbedoTexture2:
-        m_Texture: {fileID: 2800000, guid: 31c887ac1b47be84d961281b902bb5ec, type: 3}
+        m_Texture: {fileID: 2800000, guid: b9b5834b293f2714bbad2b64805d029c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlbedoTexture3:
-        m_Texture: {fileID: 2800000, guid: 63b7be05b7dfb134b828a8285c7f9d3b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8359d2c66dd5b5c4b97b4aaf1b0197ea, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlbedoTexture4:
-        m_Texture: {fileID: 2800000, guid: 0e6d3a2ed99eb3440a66b809ecb5e18f, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -72,8 +72,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _tilling_tex1: {r: 2, g: 2, b: 0, a: 0}
-    - _tilling_tex2: {r: 2, g: 2, b: 0, a: 0}
-    - _tilling_tex3: {r: 2, g: 2, b: 0, a: 0}
+    - _tilling_tex1: {r: 1, g: 1, b: 0, a: 0}
+    - _tilling_tex2: {r: 1, g: 1, b: 0, a: 0}
+    - _tilling_tex3: {r: 1, g: 1, b: 0, a: 0}
     - _tilling_tex4: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
