@@ -1,7 +1,9 @@
 using Data.Runtime;
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Game.Runtime
@@ -12,9 +14,13 @@ namespace Game.Runtime
 
         private void Awake()
         {
-
+            InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
         }
 
+        private void OnEnable()
+        {
+           
+        }
         void Start()
     	{
             _tutorialIndex = 0;
@@ -76,12 +82,39 @@ namespace Game.Runtime
             tutorialSequence.Append(_tutorialPanels[_tutorialIndex].DOFade(0, _tutorialFadeOut)).OnComplete(UpdateTutorialIndex);   
         }
 
+        [ContextMenu("switch test")]
+        private void SwitchList()
+        {
+            _tutorialPanels = _joyStickTutorial;
+        }
+
         #endregion
 
 
         #region Utils
 
         private void UpdateTutorialIndex() => _tutorialIndex++;
+
+        private void OnDeviceChangeAdjustUI(InputDevice device, InputDeviceChange change)
+        {
+            if (change == InputDeviceChange.Added || change == InputDeviceChange.Enabled)
+            {
+                SwitchUIWithDevice(device);
+            }
+        }
+
+        private void SwitchUIWithDevice(InputDevice device)
+        {
+            if (device is Gamepad)
+            {
+                _tutorialPanels = _joyStickTutorial;
+            }
+            else if (device is Keyboard || device is Mouse)
+            {
+                _tutorialPanels = _keyboardTutorial;
+            }
+        }
+
         #endregion
 
 
@@ -119,7 +152,6 @@ namespace Game.Runtime
         [SerializeField] private List<CanvasGroup> _tutorialPanels = new();
         [SerializeField] private List<CanvasGroup> _keyboardTutorial;
         [SerializeField] private List<CanvasGroup> _joyStickTutorial;
-
 
         #endregion
     }

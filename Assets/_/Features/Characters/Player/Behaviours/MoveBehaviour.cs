@@ -94,6 +94,9 @@ namespace Player.Runtime
                 if (_jumpInput.triggered) m_velocity.y = Mathf.Sqrt(m_jump * -2f * m_gravity);
                 else if (m_velocity.y < 0) m_velocity.y = 0;
                 m_tonguePlateform = false;
+
+                _playerAnimator.SetLayerWeight(0, 1f); // Move Layer
+                _playerAnimator.SetLayerWeight(1, 0f); // Jump Layer
                 _playerAnimator.SetBool("IsJump", false);
                 return;
             }
@@ -101,6 +104,9 @@ namespace Player.Runtime
             bool isFalling = m_velocity.y <= 0;
             float multiplier = isFalling ? m_fallMultiplier : m_jumpMultiplier;
             m_velocity.y += Time.deltaTime * m_gravity * multiplier;
+
+            _playerAnimator.SetLayerWeight(0, 0f); // Move Layer
+            _playerAnimator.SetLayerWeight(1, .7f); // Jump Layer
             _playerAnimator.SetBool("IsJump", true);
         }
 

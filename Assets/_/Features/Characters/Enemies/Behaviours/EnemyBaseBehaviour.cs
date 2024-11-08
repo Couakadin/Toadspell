@@ -11,7 +11,7 @@ namespace Enemies.Runtime
         [Header("References")]
         public Blackboard m_blackboard;
         public Animator m_animator;
-        private GameObject _LockIndicator;
+        public GameObject _LockIndicator;
 
         [Header("Enemy Specificities")]
         public float m_attackDelay = 2;
