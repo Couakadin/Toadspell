@@ -5,28 +5,12 @@ using Data.Runtime;
 
 namespace Objects.Runtime
 {
-    public class ObstacleBehaviour : MonoBehaviour, IAmLockable, IAmElement
+    public class ObstacleBehaviour : MonoBehaviour, IAmLockable, IAmElement, IAmObstacle
     {
         #region Publics
 
         public IAmElement.Element spell => m_element;
         public IAmElement.Element m_element;
-
-        #endregion
-
-
-        #region Unity API
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if(other.TryGetComponent(out IAmElement element))
-            {
-                if(element.spell == m_element)
-                {
-                    ReactToSpell();
-                }
-            }
-        }
 
         #endregion
 
@@ -49,14 +33,9 @@ namespace Objects.Runtime
 
         #region Utils
 
-        private void ReactToSpell()
+        public void ReactToSpell()
         {
-            DestroySelf();
-        }
-
-        private void DestroySelf()
-        {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         #endregion
