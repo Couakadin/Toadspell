@@ -119,5 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 3061861058794080587}
-  _endOfLife: 2
-  _speedOfProjectile: 10
+  _endOfLife: 3
+  _speedOfProjectile: 20

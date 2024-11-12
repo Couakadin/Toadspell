@@ -1,5 +1,6 @@
 using Data.Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Enemies.Runtime
 {
@@ -10,6 +11,8 @@ namespace Enemies.Runtime
 
         void Start()
     	{
+            _healthBar.maxValue = m_lifePoints;
+            _healthBar.value = m_lifePoints;
             _attackTimer = CreateAndSubscribeTimer(m_attackDelay, ResetCoolDown);
             _damageTimer = CreateAndSubscribeTimer(_takeDamageDelay, ResumeAfterDamage);
             ResetAnimations();
@@ -79,7 +82,6 @@ namespace Enemies.Runtime
 
         public override void OnLock()
         {
-            Debug.Log("ShowYourself");
             _LockIndicator.SetActive(true);
         }
 
@@ -91,6 +93,7 @@ namespace Enemies.Runtime
         public override void TakeDamage(float damage)
         {
             m_lifePoints -= damage;
+            _healthBar.value = m_lifePoints;
             Recoil();
             if (m_lifePoints <= 0)
             {
@@ -187,6 +190,7 @@ namespace Enemies.Runtime
         [Header("Damages")]
         [SerializeField] private float _recoilDistance = .5f;
         [SerializeField] private float _takeDamageDelay = .5f;
+        [SerializeField] private Slider _healthBar; 
 
         [Header("References")]
         //[SerializeField] private MeshRenderer _meshRenderer;
