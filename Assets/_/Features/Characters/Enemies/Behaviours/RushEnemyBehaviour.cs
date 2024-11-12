@@ -11,6 +11,7 @@ namespace Enemies.Runtime
 
         void Start()
     	{
+            _rigidbody = GetComponent<Rigidbody>();
             _healthBar.maxValue = m_lifePoints;
             _healthBar.value = m_lifePoints;
             _attackTimer = CreateAndSubscribeTimer(m_attackDelay, ResetCoolDown);
@@ -62,6 +63,9 @@ namespace Enemies.Runtime
         private void OnTriggerEnter(Collider other)
         {
             if (_isCoolingDownAfterRush) return;
+            _rigidbody.isKinematic = true;
+            _rigidbody.velocity = Vector3.zero;
+
             if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
             {
                 TouchedPlayer();
@@ -108,15 +112,22 @@ namespace Enemies.Runtime
 
         #region Utils
 
-        private void Rush()
+<        private void Rush()
         {
-            transform.position += transform.forward * _rushSpeed * Time.deltaTime;
+            _rigidbody.isKinematic = false;
+            _rigidbody.velocity = Vector3.zero;
+
+            Vector3 rushForce = transform.forward * _rushSpeed * _rushDistance; // Augmenter la force pour une meilleure collision
+            _rigidbody.AddForce(rushForce, ForceMode.Impulse);
+
             if (Vector3.Distance(_rushStartPosition, transform.position) >= _rushDistance - 1)
             {
                 TouchedPlayer();
+                _rigidbody.velocity = Vector3.zero;
+                _rigidbody.isKinematic = true;
             }
         }
-
+>
         private void TouchedPlayer()
         {
             _isRushing = false;
@@ -182,7 +193,6 @@ namespace Enemies.Runtime
         [SerializeField] private float _rushDistance = 5f;
         [SerializeField] private float _rushSpeed = 10f;
 
-        private bool _isFrozen = false;
         private bool _isRushing = false;
         private bool _isCoolingDownAfterRush = false;
         private Vector3 _rushStartPosition;
@@ -190,9 +200,10 @@ namespace Enemies.Runtime
         [Header("Damages")]
         [SerializeField] private float _recoilDistance = .5f;
         [SerializeField] private float _takeDamageDelay = .5f;
-        [SerializeField] private Slider _healthBar; 
+        [SerializeField] private Slider _healthBar;
 
         [Header("References")]
+        [SerializeField] private Rigidbody _rigidbody;
         //[SerializeField] private MeshRenderer _meshRenderer;
         //[SerializeField] private ParticleSystem _particleSystem;
         //[SerializeField] private AudioClip _damagedAudio;

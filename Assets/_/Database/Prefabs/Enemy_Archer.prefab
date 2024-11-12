@@ -57,8 +57,8 @@ MonoBehaviour:
   m_damages: 1
   m_maxDetectionRange: 20
   _takeDamageDelay: 0.5
-  _ShootInTheAir: 2
   _shootDelay: 10
+  _healthBar: {fileID: 3349654778904888095}
 --- !u!65 &4205286666078323747
 BoxCollider:
   m_ObjectHideFlags: 0
