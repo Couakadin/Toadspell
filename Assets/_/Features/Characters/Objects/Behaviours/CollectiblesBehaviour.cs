@@ -15,14 +15,14 @@ namespace Objects.Runtime
             //meshRenderer.enabled = true;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if(other.gameObject.layer == 7)
-            {
-                Debug.Log($"collect + {_pointsToSend}");
-                Collect();
-            }
-        }
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    if(other.gameObject.layer == 7)
+        //    {
+        //        Debug.Log($"collect + {_pointsToSend}");
+        //        Collect();
+        //    }
+        //}
 
         #endregion
 
