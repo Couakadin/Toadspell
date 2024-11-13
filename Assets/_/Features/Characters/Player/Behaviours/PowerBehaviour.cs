@@ -25,9 +25,12 @@ namespace Player.Runtime
         [Header("Tongue Params")]
         [Tooltip("The GameObject of the tongue.")]
         public GameObject m_tongue;
+        [Tooltip("The mesh of the tongue.")]
+        public Transform m_tongueMesh;
+        public Transform m_tongueContainer;
         [Tooltip("The speed of the tongue.")]
         public float m_tongueSpeed;
-        [Tooltip("Bool if frog can eat this frame.")]
+        [Tooltip("Bool if frog can eat this frame."), HideInInspector]
         public bool m_canEat;
 
         [Header("Element Params")]

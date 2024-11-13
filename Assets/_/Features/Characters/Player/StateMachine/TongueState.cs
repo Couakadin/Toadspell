@@ -21,6 +21,8 @@ namespace Player.Runtime
             // Tongue
             m_stateMachine.m_powerBehaviour.m_tongue.TryGetComponent(out _tongueRigidbody);
             _tongueSpeed = m_stateMachine.m_powerBehaviour.m_tongueSpeed;
+            _tongueMesh = m_stateMachine.m_powerBehaviour.m_tongueMesh;
+            _tongueContainer = m_stateMachine.m_powerBehaviour.m_tongueContainer;
 
             // Lock
             _detectionLayer = m_stateMachine.m_powerBehaviour.m_detectionLayer;
@@ -69,20 +71,14 @@ namespace Player.Runtime
             if (_isTongueAttract) TongueAttract();
         }
 
-        public void PhysicsTick()
-        {
-            
-        }
+        public void PhysicsTick() { }
 
         public void FinalTick()
         {
-            if (_hit.collider != null) _playerTransform.LookAt(new Vector3(_tongueRigidbody.position.x, _playerTransform.position.y, _tongueRigidbody.position.z));
+            if (_hit.collider != null) _playerTransform.LookAt(new Vector3(_hit.collider.gameObject.transform.position.x, _playerTransform.position.y, _hit.collider.gameObject.transform.position.z));
         }
 
-        public void HandleInput()
-        {
-
-        }
+        public void HandleInput() { }
 
         #endregion
 
@@ -105,15 +101,19 @@ namespace Player.Runtime
         {
             _isTongueExtended = true;
             _tongueRigidbody.transform.parent = null;
-            _tongueRigidbody.gameObject.SetActive(true);
 
             // Calculate the vector from the tongue to the target point
             _distanceToTarget = _hit.point - _tongueRigidbody.position;
 
             // Check if the tongue is close enough to stop at the target point using sqrMagnitude
             if (_distanceToTarget.sqrMagnitude > 1f)
+            {
                 // Move towards the target point by setting the velocity directly to avoid excessive force accumulation
                 _tongueRigidbody.velocity = _tongueSpeed * _distanceToTarget.normalized;
+
+                _tongueContainer.LookAt(_hit.point);
+                TongueMesh(Vector3.Distance(_hit.point, _tongueContainer.position));
+            }
             else
             {
                 // Stop the tongue when close enough to the target
@@ -124,7 +124,6 @@ namespace Player.Runtime
 
         private void TongueInteract()
         {
-
             _isTongueInteract = true;
 
             if (_sizeable == null) return;
@@ -154,6 +153,8 @@ namespace Player.Runtime
             _tongueMaxDistance = 15f;
             _distanceToTarget = _tongueRigidbody.position - _playerTransform.position;
 
+            TongueMesh(Vector3.Distance(_tongueRigidbody.position, _tongueContainer.position));
+
             if (_distanceToTarget.sqrMagnitude > _tongueMaxDistance * _tongueMaxDistance)
             {
                 _limitedPosition = _playerTransform.position + _distanceToTarget.normalized * _tongueMaxDistance;
@@ -175,6 +176,8 @@ namespace Player.Runtime
             {
                 _moveBehaviour.enabled = false;
                 _characterController.Move(Time.deltaTime * _tongueSpeed * _distanceToTarget.normalized);
+
+                TongueMesh(Vector3.Distance(_tongueRigidbody.position, _tongueContainer.position));
             }
             else
             {
@@ -191,51 +194,36 @@ namespace Player.Runtime
         {
             _distanceToTarget = new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z) - _tongueRigidbody.position;
 
-            if (_distanceToTarget.sqrMagnitude > .5f)
+            if (_distanceToTarget.sqrMagnitude > 1f)
+            {
+                TongueMesh(Vector3.Distance(_tongueRigidbody.position, _tongueContainer.position));
+
                 _tongueRigidbody.velocity = _tongueSpeed * _distanceToTarget.normalized;
+            }
             else
             {
                 // Params reset
                 if (_fixedJoint) _fixedJoint.connectedBody = null;
                 _tongueRigidbody.velocity = Vector3.zero;
                 _tongueRigidbody.transform.parent = _playerTransform;
-                _tongueRigidbody.gameObject.SetActive(false);
+                _tongueMesh.localScale = new Vector3(_tongueMesh.localScale.x, _tongueMesh.localScale.y, .01f);
 
                 m_stateMachine.ChangeState(m_stateMachine.m_lockState);
             }
         }
 
-        private void ForceTongueReturn()
+        private void TongueMesh(float totalDistance)
         {
-            if (m_stateMachine.m_powerBehaviour.m_tongueInput.triggered)
-            {
-                if (_isFirstPress && _doublePressTimer < _doublePressThreshold)
-                {
-                    TongueReturn();
-                    ResetDoublePress();
-                }
-                else
-                {
-                    _isFirstPress = true;
-                    _doublePressTimer = 0f;
-                }
-            }
+            float normalizeDistance = totalDistance / totalDistance;
 
-            if (_isFirstPress)
-            {
-                _doublePressTimer += Time.deltaTime;
-
-                if (_doublePressTimer >= _doublePressThreshold)
-                {
-                    ResetDoublePress();
-                }
-            }
-        }
-
-        private void ResetDoublePress()
-        {
-            _isFirstPress = false;
-            _doublePressTimer = 0f;
+            _tongueMesh.localScale = Vector3.Lerp(_tongueMesh.localScale,
+                new Vector3(
+                    _tongueMesh.localScale.x,
+                    _tongueMesh.localScale.y,
+                    totalDistance * .035f
+                ),
+                normalizeDistance
+            );
         }
 
         #endregion
@@ -257,6 +245,8 @@ namespace Player.Runtime
         private bool _isTongueExtended, _isTongueInteract, _isTongueControl, _isTongueReturned;
         private Vector3 _distanceToTarget;
         private Vector3 _limitedPosition;
+        private Transform _tongueMesh;
+        private Transform _tongueContainer;
 
         // Lock
         private Transform _currentLockTarget;
