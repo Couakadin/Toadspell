@@ -112,7 +112,7 @@ namespace Enemies.Runtime
 
         #region Utils
 
-<        private void Rush()
+        private void Rush()
         {
             _rigidbody.isKinematic = false;
             _rigidbody.velocity = Vector3.zero;
@@ -127,7 +127,7 @@ namespace Enemies.Runtime
                 _rigidbody.isKinematic = true;
             }
         }
->
+
         private void TouchedPlayer()
         {
             _isRushing = false;
