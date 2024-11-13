@@ -115,7 +115,6 @@ namespace Enemies.Runtime
         //[SerializeField] private MeshRenderer _meshRenderer;
         [SerializeField] private float _takeDamageDelay = .5f;
         //[SerializeField] private float _ShootInTheAir = 2f;
-        [SerializeField] private float _shootDelay = 10f;
 
         [SerializeField] private Slider _healthBar;
         private Color _originalMaterial;
