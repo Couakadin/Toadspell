@@ -23,7 +23,9 @@ namespace Player.Runtime
         {
             // Target
             _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
-            if (_target == null)
+            _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
+
+            if (_target == null || _projectile == null || _currentPool == null)
             {
                 ChangeState();
                 return;
@@ -33,7 +35,6 @@ namespace Player.Runtime
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetTrigger("Attack");
 
             // Pool
-            _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
             _projectile = _currentPool?.GetFirstAvailableObject();
             _projectile.transform.position = m_stateMachine.m_powerBehaviour._playerBlackboard.GetValue<Vector3>("SpellPosition");
             _projectile.TryGetComponent(out _projectileRigidbody);
@@ -56,7 +57,7 @@ namespace Player.Runtime
         {
             _timer.Tick();
 
-            _distanceToTarget = _target.transform.position - _projectile.transform.position;
+            if (_target &&  _projectile) _distanceToTarget = _target.transform.position - _projectile.transform.position;
 
             if (_distanceToTarget.sqrMagnitude > .5f * .5f)
                 _projectileRigidbody.velocity = m_stateMachine.m_powerBehaviour.m_speedOfProjectile * _distanceToTarget;
@@ -64,20 +65,11 @@ namespace Player.Runtime
                 ChangeState();
         }
 
-        public void PhysicsTick()
-        {
-            
-        }
+        public void PhysicsTick() { }
 
-        public void FinalTick()
-        {
-            
-        }
+        public void FinalTick() { }
 
-        public void HandleInput()
-        {
-            
-        }
+        public void HandleInput() { }
 
         #endregion
 
