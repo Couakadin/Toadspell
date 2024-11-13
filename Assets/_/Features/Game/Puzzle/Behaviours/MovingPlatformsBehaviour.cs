@@ -1,9 +1,10 @@
+using Data.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Runtime
 {
-    public class MovingPlatformsBehaviour : MonoBehaviour
+    public class MovingPlatformsBehaviour : MonoBehaviour, ICanBeImmobilized
     {
         #region Unity API
 
@@ -20,6 +21,7 @@ namespace Game.Runtime
 
         private void FixedUpdate()
         {
+            if (_isFrozen) return;
             _elapsedTime += Time.deltaTime;
 
             float elapsedPercentage = _elapsedTime / _timeToWaypoint;
@@ -51,6 +53,16 @@ namespace Game.Runtime
             _timeToWaypoint = distanceToWaypoint / _moveSpeed;
         }
 
+        public void FreezePosition()
+        {
+            _isFrozen = true;
+        }
+
+        public void UnFreezePosition()
+        {
+            _isFrozen = false;
+        }
+
         #endregion
 
 
@@ -71,6 +83,7 @@ namespace Game.Runtime
 
         private int _waypointIndex = 0;
 
+        [SerializeField] private bool _isFrozen;
         #endregion
     }
 }

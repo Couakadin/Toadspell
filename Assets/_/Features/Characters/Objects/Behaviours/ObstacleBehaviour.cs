@@ -105,6 +105,7 @@ namespace Objects.Runtime
             }
         }
 
+        [ContextMenu("test ground")]
         private void GroundReaction()
         {
             _freezeObject.FreezePosition();
