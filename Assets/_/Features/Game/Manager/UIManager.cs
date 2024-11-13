@@ -43,8 +43,9 @@ namespace Game.Runtime
         private void FirstFadeIn()
         {
             Sequence fadeSequence = DOTween.Sequence();
-            fadeSequence.AppendInterval(1f);
-            fadeSequence.Append(_teleportBlackScreen.DOFade(0, 1.5f));
+            fadeSequence.AppendInterval(_spawnFadeInterval);
+            fadeSequence.Append(_teleportBlackScreen.DOFade(0, _spawnFadeOut));
+            fadeSequence.OnComplete(() => _onPlayerHasSpawned.Raise());
         }
 
         public void FadeOnTeleportation()
@@ -134,6 +135,12 @@ namespace Game.Runtime
 
         [Header("References")]
         [SerializeField] private Blackboard _playerBlackboard;
+
+        [Header("On Start Fade In")]
+        [SerializeField] private float _spawnFadeInterval = .5f;
+        [SerializeField] private float _spawnFadeOut = 1f;
+        [SerializeField] private VoidEvent _onPlayerHasSpawned;
+
 
         [Header("Teleport Black Screen Settings")]
         [SerializeField] private CanvasGroup _teleportBlackScreen;
