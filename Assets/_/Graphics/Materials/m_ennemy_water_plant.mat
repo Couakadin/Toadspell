@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_ennemy_plant
+  m_Name: m_ennemy_water_plant
   m_Shader: {fileID: 4800000, guid: 6459b2db96a08ca41b0f9b39dc7ad59e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -96,7 +96,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fc6b959027ddac24db812243d416465a, type: 3}
+        m_Texture: {fileID: 2800000, guid: be7c5234965610643ba0c52a6c3a0740, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskGloss:
@@ -112,7 +112,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTransparency:
-        m_Texture: {fileID: 2800000, guid: fc6b959027ddac24db812243d416465a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0f857cccd4d7ff942a10e95c3b35bd3e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -267,7 +267,7 @@ Material:
     - _NoisyOutlineIntensity: 0
     - _NormalMapIntensity: 1
     - _OcclusionStrength: 1
-    - _Opacity: 1
+    - _Opacity: 0
     - _Oper: 0
     - _OutlineExtrudeMethod: 0
     - _OutlineWidth: 0.5
