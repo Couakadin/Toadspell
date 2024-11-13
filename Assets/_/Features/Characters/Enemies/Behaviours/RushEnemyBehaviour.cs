@@ -62,15 +62,21 @@ namespace Enemies.Runtime
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_isCoolingDownAfterRush) return;
-            _rigidbody.isKinematic = true;
             _rigidbody.velocity = Vector3.zero;
-
+            _rigidbody.isKinematic = true;
+            TouchedPlayer();
+            if (_isCoolingDownAfterRush) return;
             if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
             {
-                TouchedPlayer();
                 hurt.TakeDamage(m_damages);
             }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.isKinematic = true;
+            TouchedPlayer();
         }
 
         #endregion
@@ -117,8 +123,12 @@ namespace Enemies.Runtime
             _rigidbody.isKinematic = false;
             _rigidbody.velocity = Vector3.zero;
 
-            Vector3 rushForce = transform.forward * _rushSpeed * _rushDistance; // Augmenter la force pour une meilleure collision
-            _rigidbody.AddForce(rushForce, ForceMode.Impulse);
+            Vector3 rushForce = transform.forward * _rushSpeed; // Augmenter la force pour une meilleure collision
+            _rigidbody.AddForce(rushForce, ForceMode.VelocityChange);
+
+            Vector3 clampedVelocity = _rigidbody.velocity;
+            clampedVelocity.y = 0;
+            _rigidbody.velocity = clampedVelocity;
 
             if (Vector3.Distance(_rushStartPosition, transform.position) >= _rushDistance - 1)
             {

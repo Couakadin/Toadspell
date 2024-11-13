@@ -25,12 +25,15 @@ namespace Objects.Runtime
 
         public void OnLock()
         {
-            _meshRenderer.material.color = Color.red;
+            Debug.Log("Show Yourself");
+            if (_lockIndicator == null) return;
+            _lockIndicator.SetActive(true);
         }
 
         public void OnUnlock()
         {
-            _meshRenderer.material.color = Color.grey;
+            if (_lockIndicator == null) return;
+            _lockIndicator.SetActive(false);
         }
 
         #endregion
@@ -38,6 +41,7 @@ namespace Objects.Runtime
         #region Privates
 
         private MeshRenderer _meshRenderer;
+        [SerializeField] private GameObject _lockIndicator;
 
         #endregion
     }
