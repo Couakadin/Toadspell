@@ -201,7 +201,7 @@ Material:
     - _FarDistanceMaxWidth: 10
     - _GIFlatShade: 0
     - _GIShadeThreshold: 0
-    - _GlossColorPower: 8.4
+    - _GlossColorPower: 10
     - _GlossIntensity: 1
     - _GlossMapScale: 0
     - _GlossSoftness: 1
@@ -347,7 +347,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CustomLightDirection: {r: 0, g: 0, b: 10, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GlossColor: {r: 10.680627, g: 0, b: 7.355429, a: 1}
+    - _GlossColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Glow_Color: {r: 1, g: 1, b: 1, a: 1}
     - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
