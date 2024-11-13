@@ -5,16 +5,18 @@ namespace Player.Runtime
 {
     public class HealthBehaviour : MonoBehaviour, ICanBeHurt
     {
+        #region Publics
+
+        public int m_startLives;
+
+        #endregion
+
+
         #region Unity API
 
         private void Awake()
         {
-            _currentLives = _startLives;
-        }
-
-        private void Start()
-        {
-            _playerBlackboard.SetValue("Lives", _currentLives);
+            _currentLives = m_startLives;
         }
 
         #endregion
@@ -22,16 +24,25 @@ namespace Player.Runtime
 
         #region Main Methods
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(int damage)
         {
             UpdateLives(damage);
         }
 
-        public void UpdateLives(float lives)
+        public void UpdateLives(int lives)
         {
             _currentLives += lives;
-            _playerBlackboard.SetValue("Lives", _currentLives);
-            _onUpdatingLife.Raise();
+            if(_currentLives > 0)
+            {
+                _playerBlackboard.SetValue("Lives", _currentLives);
+                _onUpdatingLife.Raise();
+            }
+            if(_currentLives == 0)
+            {
+                _playerBlackboard.SetValue("Lives", _currentLives);
+                _onUpdatingLife.Raise();
+                _onPlayerDeath.Raise();
+            }
         }
 
         #endregion
@@ -39,10 +50,12 @@ namespace Player.Runtime
 
         #region Privates & Protected
 
-        [SerializeField] private float _startLives;
-        [SerializeField] private float _currentLives;
-        [SerializeField] private VoidEvent _onUpdatingLife;
+        [SerializeField] private int _currentLives;
         [SerializeField] private Blackboard _playerBlackboard;
+
+        [Header("life Events")]
+        [SerializeField] private VoidEvent _onUpdatingLife;
+        [SerializeField] private VoidEvent _onPlayerDeath;
 
         #endregion
     }

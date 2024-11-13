@@ -778,13 +778,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: dc0931c895bb7e9458a75501cafd2e75,
         type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'c_middle2.l'\n\tTransform 'hand.l'\n\tTransform
-        'c_thumb2.l'\n\tTransform 'c_thumb3.l'\n\tTransform 'spine_01.x'\n\tTransform
-        'c_thumb3.r'\n\tTransform 'arm_stretch.r'\n\tTransform 'root.x'\n\tTransform
-        'c_index2.r'\n\tTransform 'Hat_01'\n\tand more ...\n\tFrom animation clip
-        'attack'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5882457516557801740, guid: dc0931c895bb7e9458a75501cafd2e75,
         type: 3}
@@ -992,8 +986,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startLives: 4
   _currentLives: 0
-  _onUpdatingLife: {fileID: 11400000, guid: de12f9e79d56c95439ff6fa73e6d558e, type: 2}
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
+  _onUpdatingLife: {fileID: 11400000, guid: de12f9e79d56c95439ff6fa73e6d558e, type: 2}
+  _onPlayerDeath: {fileID: 11400000, guid: 7a0b7751bf936f4409f4cd070b6c750e, type: 2}
 --- !u!4 &2368243033551588536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6838429127929745560, guid: dc0931c895bb7e9458a75501cafd2e75,

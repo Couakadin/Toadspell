@@ -8,7 +8,7 @@ namespace Data.Runtime
     {
         #region Main Methods
 
-        void TakeDamage(float damage);
+        void TakeDamage(int damage);
 
         #endregion
     }
