@@ -21,11 +21,12 @@ namespace Player.Runtime
 
         public void Enter()
         {
+            Debug.Log("I can cast a spell");
             // Target
             _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
 
-            if (_target == null || _projectile == null || _currentPool == null)
+            if (_target == null || _currentPool == null)
             {
                 ChangeState();
                 return;
@@ -57,7 +58,7 @@ namespace Player.Runtime
         {
             _timer.Tick();
 
-            if (_target &&  _projectile) _distanceToTarget = _target.transform.position - _projectile.transform.position;
+            if (_target && _projectile) _distanceToTarget = _target.transform.position - _projectile.transform.position;
 
             if (_distanceToTarget.sqrMagnitude > .5f * .5f)
                 _projectileRigidbody.velocity = m_stateMachine.m_powerBehaviour.m_speedOfProjectile * _distanceToTarget;
