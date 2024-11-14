@@ -7,34 +7,46 @@ using UnityEngine.UI;
 
 namespace Game.Runtime
 {
-    public class DialogueManager : MonoBehaviour
+    public class ExchangeManager : MonoBehaviour
     {
 
         #region Unity API
 
         private void Start()
         {
+            _typingSpeed = _typingSpeed / 100;
+            Debug.Log(_typingSpeed);
             _typingTimer = new Timer(_typingSpeed);
             _typingTimer.OnTimerFinished += OnCharacterTyping;
-            LaunchNewDialogueExchange();
+            _LineOnScreenTimer = new Timer(_timeOnScreenDelay);
+            _LineOnScreenTimer.OnTimerFinished += DisplayNextLines;
+            LaunchFirstDialogue();
         }
 
         private void Update()
         {
-            if (_isTyping)
-            {
-                _typingTimer.Tick();
-            }
+            if (_isTyping)  _typingTimer.Tick();
+            if(_LineOnScreenTimer.IsRunning()) _LineOnScreenTimer.Tick();
         }
+
         #endregion
 
 
         #region Main Methods
 
+        private void LaunchFirstDialogue()
+        {
+            Sequence firstExchange = DOTween.Sequence();
+            Dialogue currentExchange = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
+            firstExchange.Append(_dialoguePanel.DOFade(1, _panelFadeIn));
+            firstExchange.AppendCallback(() => StartDialogue(currentExchange));
+        }
+
         private void LaunchNewDialogueExchange() 
         {
             _dialoguePanel.DOFade(1, _panelFadeIn);
-            StartDialogue(_firstExchange[_currentExchangeIndex]);
+            Dialogue currentExchange = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
+            StartDialogue(currentExchange);
         }
 
         public void StartDialogue(Dialogue dialogue)
@@ -62,15 +74,16 @@ namespace Game.Runtime
             }
             else
             {
-                if (_currentExchangeIndex < _firstExchange.Count -1)
+                if (_currentExchangeIndex < _exchanges[_currentExchangeInStoryIndex].m_Dialogues.Count - 1)
                 {
                     Debug.Log("Next person");
                     _currentExchangeIndex++;
-                    StartDialogue(_firstExchange[_currentExchangeIndex]);
+                    StartDialogue(_exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex]);
                 }
                 else
                 {
                     _dialoguePanel.DOFade(0, _panelFadeOut);
+                    if (_exchanges[0]) _onFirstExchangeFinished.Raise();
                     Debug.Log("Dialogue Has Ended");
                 }
             }
@@ -94,7 +107,9 @@ namespace Game.Runtime
             {
                 _currentLineIndex++;
                 _isTyping = false;
-                DisplayNextLines();
+                _LineOnScreenTimer.Reset();
+                _LineOnScreenTimer.Begin();
+                //DisplayNextLines();
             }
         }
 
@@ -104,13 +119,14 @@ namespace Game.Runtime
         #region Privates & Protected
 
         private Dialogue _currentDialogue;
-       [SerializeField] private int _currentExchangeIndex = 0;
-        [SerializeField] private int _currentLineIndex = 0;
-        [SerializeField] private int _currentCharacterIndex = 0;
-        [SerializeField] private bool _isTyping = false;
+        private int _currentExchangeIndex = 0;
+        private int _currentExchangeInStoryIndex = 0;
+        private int _currentLineIndex = 0;
+        private int _currentCharacterIndex = 0;
+        private bool _isTyping = false;
 
         private Timer _typingTimer;
-
+        private Timer _LineOnScreenTimer;
         private string _writer;
 
         [Header("Panel Fade in/out")]
@@ -119,13 +135,17 @@ namespace Game.Runtime
         [SerializeField] private float _panelFadeOut;
 
         [Header("Dialogues Specifics")]
-        [SerializeField] private List<Dialogue> _firstExchange = new List<Dialogue>();
+        [SerializeField] private List<DialoguesExchanges> _exchanges = new List<DialoguesExchanges>();
         [SerializeField] private Image _speakerImage;
         [SerializeField] private float _typingSpeed;
+        [SerializeField] private float _timeOnScreenDelay;
 
         [Header("Text Specifics")]
         [SerializeField] private TMP_Text _characterName;
         [SerializeField] private TMP_Text _linesOfDialogue;
+
+        [Header("Events")]
+        [SerializeField] private VoidEvent _onFirstExchangeFinished;
 
         #endregion
     }
