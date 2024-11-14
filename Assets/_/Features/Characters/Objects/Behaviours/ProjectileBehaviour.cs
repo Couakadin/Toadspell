@@ -37,7 +37,7 @@ namespace Objects.Runtime
 
         #region Private and Protected
 
-        [SerializeField] private float _damages;
+        [SerializeField] private int _damages;
         #endregion
     }
 }

@@ -19,7 +19,7 @@ namespace Game.Runtime
 
         #region Privates & Protected
 
-        [SerializeField] private float _damages = -1;
+        [SerializeField] private int _damages = -1;
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private VoidEvent _onOutOfMapEvent;
 

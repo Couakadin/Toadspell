@@ -66,7 +66,7 @@ namespace Enemies.Runtime
             _LockIndicator.SetActive(false);
         }
 
-        public override void TakeDamage(float damage)
+        public override void TakeDamage(int damage)
         {
             _isShooting = false;
             m_animator.SetBool("Attacking", false);
