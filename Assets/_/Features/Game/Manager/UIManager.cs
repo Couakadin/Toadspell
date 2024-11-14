@@ -1,9 +1,9 @@
 using Data.Runtime;
 using DG.Tweening;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Game.Runtime
@@ -17,16 +17,12 @@ namespace Game.Runtime
             InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
         }
 
-        private void OnEnable()
-        {
-           
-        }
         void Start()
     	{
             FirstFadeIn();
             _tutorialIndex = 0;
             _tutorialPanels = _keyboardTutorial;
-            _maxLives = (int)_playerBlackboard.GetValue<float>("Lives");
+            _maxLives = _playerBlackboard.GetValue<int>("Lives");
             _spellImage.color = _spellList[0];
 
             for (int i = 0; i < _maxLives; i++)
@@ -40,6 +36,7 @@ namespace Game.Runtime
 
 
         #region Main Methods
+
         private void FirstFadeIn()
         {
             Sequence fadeSequence = DOTween.Sequence();
@@ -56,6 +53,29 @@ namespace Game.Runtime
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _teleportFadeOutDelay));
         }
 
+        public void ActionActivateGameOverScreen()
+        {
+            _gameOverPanel.SetActive(true);
+        }
+
+        public void ActionReloadScene()
+        {
+            string currentScene = SceneManager.GetActiveScene().ToString();
+            SceneManager.LoadScene(currentScene);
+        }
+
+        public void ActionLoadMainMenu() => SceneManager.LoadScene(0);
+
+        public void ActionOpenSettingMenu()
+        {
+            Time.timeScale = 0;
+        }
+
+        public void ActionCloseSettingsMenu()
+        {
+            Time.timeScale = 1;
+        }
+
         public void UpdateSpellImage(int spell)
         {
             _spellImage.color = _spellList[spell];
@@ -63,8 +83,12 @@ namespace Game.Runtime
 
         public void UpdateLives()
         {
-            _currentLives = (int)_playerBlackboard.GetValue<float>("Lives");
-            if (_currentLives < 0) { _currentLives = 0; }
+            _currentLives = _playerBlackboard.GetValue<int>("Lives");
+            if (_currentLives < 0) 
+            { 
+                _currentLives = 0;
+                return;
+            }
             for (int i = 0; i < _livesList.Count; i++)
             {
                 _livesList[i].SetActive(false);
@@ -78,11 +102,6 @@ namespace Game.Runtime
             {
                 _livesList[i].SetActive(true);
             }
-        }
-
-        public void TriggerTutorial(int index)
-        {
-
         }
 
         [ContextMenu("tutorial")]
@@ -106,7 +125,15 @@ namespace Game.Runtime
 
         #region Utils
 
-        private void UpdateTutorialIndex() => _tutorialIndex++;
+        private void UpdateTutorialIndex()
+        {
+           _tutorialIndex++;
+            if (_tutorialIndex >= _tutorialPanels.Count)
+            {
+                _tutorialObject.SetActive(false);
+                InputSystem.onDeviceChange -= OnDeviceChangeAdjustUI;
+            }
+        } 
 
         private void OnDeviceChangeAdjustUI(InputDevice device, InputDeviceChange change)
         {
@@ -135,19 +162,22 @@ namespace Game.Runtime
 
         [Header("References")]
         [SerializeField] private Blackboard _playerBlackboard;
+        [SerializeField] private GameObject _gameOverPanel;
 
+        [Space(8)]
         [Header("On Start Fade In")]
         [SerializeField] private float _spawnFadeInterval = .5f;
         [SerializeField] private float _spawnFadeOut = 1f;
         [SerializeField] private VoidEvent _onPlayerHasSpawned;
 
-
+        [Space(8)]
         [Header("Teleport Black Screen Settings")]
         [SerializeField] private CanvasGroup _teleportBlackScreen;
         [SerializeField] private float _teleportFadeInDelay = 1f;
         [SerializeField] private float _teleportIntervalDelay = .2f;
         [SerializeField] private float _teleportFadeOutDelay = 1.5f;
 
+        [Space(8)]
         [Header("Lives")]
         [SerializeField] private GameObject _livesPrefab;
         [SerializeField] private Transform _livesTransform;
@@ -155,6 +185,7 @@ namespace Game.Runtime
         private int _currentLives;
         [SerializeField] private List<GameObject> _livesList;
 
+        [Space(8)]
         [Header("Spells")]
         [SerializeField] private List<Color> _spellList = new List<Color>();
         [SerializeField] private Image _spellImage;
@@ -165,12 +196,12 @@ namespace Game.Runtime
         [SerializeField] private float _tutorialTimeOnScreen;
         [SerializeField] private float _tutorialFadeIn;
         [SerializeField] private float _tutorialFadeOut;
-
-        private bool _isKeyboard;
-        private int _tutorialIndex = 0;
-        [SerializeField] private List<CanvasGroup> _tutorialPanels = new();
+        [SerializeField] private GameObject _tutorialObject;
         [SerializeField] private List<CanvasGroup> _keyboardTutorial;
         [SerializeField] private List<CanvasGroup> _joyStickTutorial;
+        private List<CanvasGroup> _tutorialPanels = new();
+        private int _tutorialIndex = 0;
+        private bool _isKeyboard;
 
         #endregion
     }

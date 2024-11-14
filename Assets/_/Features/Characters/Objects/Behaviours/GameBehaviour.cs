@@ -19,6 +19,7 @@ namespace Objects.Runtime
         [Header("Init Camera")]
         [Tooltip("The Third Person Camere to init.")]
         public CinemachineVirtualCamera m_camera;
+        public CinemachineVirtualCamera m_frontCamera;
 
         [Header("Init Pools")]
         [Tooltip("The spell pool to init.")]
@@ -31,6 +32,8 @@ namespace Objects.Runtime
 
         private void Awake()
         {
+            _playerBlackboard.SetValue<int>("Lives", _startLifePoints);
+            m_frontCamera.Priority = 11;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _teleportTimer = new Timer(_teleportDelay);
@@ -52,8 +55,12 @@ namespace Objects.Runtime
         private void Start()
         {
             _player = Instantiate(m_player, m_position.position, Quaternion.identity, null);
+            _player.SetActive(true);
             _player.TryGetComponent(out _powerBehaviour);
             _player.TryGetComponent(out _moveBehaviour);
+            _player.TryGetComponent(out _healthBehaviour);
+
+            _healthBehaviour.m_startLives = _startLifePoints;
 
             m_camera.Follow = _moveBehaviour.m_cameraTarget.transform;
             m_camera.LookAt = _moveBehaviour.m_cameraTarget.transform;
@@ -93,7 +100,7 @@ namespace Objects.Runtime
             _player.SetActive(true);
         }
 
-        private void DisablePlayer()
+        public void DisablePlayer()
         {
             _player.SetActive(false);
         }
@@ -114,9 +121,11 @@ namespace Objects.Runtime
         private GameObject _player;
         private PowerBehaviour _powerBehaviour;
         private MoveBehaviour _moveBehaviour;
+        private HealthBehaviour _healthBehaviour;
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private float _teleportDelay = 1f;
         [SerializeField] private float _disablingDelay = .5f;
+        [SerializeField] private int _startLifePoints = 4;
         private Timer _teleportTimer;
         private Timer _disablingTimer;
 

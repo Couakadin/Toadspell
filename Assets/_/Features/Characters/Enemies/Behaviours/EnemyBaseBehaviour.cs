@@ -15,8 +15,8 @@ namespace Enemies.Runtime
 
         [Header("Enemy Specificities")]
         public float m_attackDelay = 2;
-        public float m_lifePoints;
-        public float m_damages = 1;
+        public int m_lifePoints;
+        public int m_damages = 1;
         public float m_maxDetectionRange = 20f;
 
         public float m_offsetDistance => throw new System.NotImplementedException();
@@ -32,7 +32,7 @@ namespace Enemies.Runtime
 
         public abstract void Attack();
 
-        public abstract void TakeDamage(float damage);
+        public abstract void TakeDamage(int damage);
 
         #endregion
 

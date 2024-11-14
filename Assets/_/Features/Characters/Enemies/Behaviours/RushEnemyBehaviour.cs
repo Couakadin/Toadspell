@@ -100,7 +100,7 @@ namespace Enemies.Runtime
             _LockIndicator.SetActive(false);
         }
         
-        public override void TakeDamage(float damage)
+        public override void TakeDamage(int damage)
         {
             m_lifePoints -= damage;
             _healthBar.value = m_lifePoints;
