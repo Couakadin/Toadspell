@@ -12,13 +12,15 @@ Material:
   m_Parent: {fileID: 2100000, guid: 1a47a4b6047d1244eb2dd3b2b38e6cf0, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - N_F_CO_ON
+  - N_F_COEDGL_ON
   - N_F_EAL_ON
   - N_F_GLO_ON
   - N_F_NM_ON
   - N_F_O_ON
   - N_F_RDC_ON
   - N_F_RELGI_ON
+  - N_F_SIMTRANS_ON
+  - N_F_SL_ON
   - N_F_SS_ON
   - N_F_TRANSAFFSHA_ON
   - N_F_TRANS_ON

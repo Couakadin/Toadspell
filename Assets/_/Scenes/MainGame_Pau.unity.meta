@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_/Scenes/MainGame_Pau.unity.meta
 guid: 9142fa8baff1d4f41a16e10f0e3a2adf
+========
+guid: a29f1fef4847e1045b42d6dc11c62274
+folderAsset: yes
+>>>>>>>> 0a1a3bd255e5bc68d1201dada5d47fa8bf80ddb5:Assets/_/Graphics/export fbx.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
