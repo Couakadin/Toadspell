@@ -58,6 +58,8 @@ namespace Player.Runtime
         {
             _timerReturn?.Tick();
 
+            if (_hit.collider != null) _playerTransform.LookAt(new Vector3(_hit.collider.gameObject.transform.position.x, _playerTransform.position.y, _hit.collider.gameObject.transform.position.z));
+
             if (_isTongueReturned)
             {
                 TongueReturn();
@@ -73,10 +75,7 @@ namespace Player.Runtime
 
         public void PhysicsTick() { }
 
-        public void FinalTick()
-        {
-            if (_hit.collider != null) _playerTransform.LookAt(new Vector3(_hit.collider.gameObject.transform.position.x, _playerTransform.position.y, _hit.collider.gameObject.transform.position.z));
-        }
+        public void FinalTick() { }
 
         public void HandleInput() { }
 
