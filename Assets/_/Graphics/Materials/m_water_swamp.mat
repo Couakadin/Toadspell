@@ -66,7 +66,7 @@ Material:
     - _SunReflectionStrength: 1
     - _WaveCount: 3
     - _WaveDistance: 0.719
-    - _WaveHeight: 4
+    - _WaveHeight: 1.2
     - _WaveNormalStr: 22.6
     - _WaveSpeed: 1
     - _WaveSteepness: 1.91

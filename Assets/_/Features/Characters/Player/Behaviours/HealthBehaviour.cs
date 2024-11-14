@@ -14,7 +14,7 @@ namespace Player.Runtime
 
         #region Unity API
 
-        private void Awake()
+        private void Start()
         {
             _currentLives = m_startLives;
         }
