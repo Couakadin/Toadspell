@@ -19,7 +19,7 @@ namespace Objects.Runtime
         [Header("Init Camera")]
         [Tooltip("The Third Person Camere to init.")]
         public CinemachineVirtualCamera m_camera;
-        public CinemachineVirtualCamera m_frontCamera;
+        //public CinemachineVirtualCamera m_frontCamera;
 
         [Header("Init Pools")]
         [Tooltip("The spell pool to init.")]
@@ -33,7 +33,7 @@ namespace Objects.Runtime
         private void Awake()
         {
             _playerBlackboard.SetValue<int>("Lives", _startLifePoints);
-            m_frontCamera.Priority = 11;
+            //m_frontCamera.Priority = 11;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _teleportTimer = new Timer(_teleportDelay);
