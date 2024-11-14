@@ -15,8 +15,8 @@ namespace Game.Runtime
         private void Start()
         {
             _typingTimer = new Timer(_typingSpeed);
-            StartDialogue(_firstExchange[_currentExchangeIndex]);
             _typingTimer.OnTimerFinished += OnCharacterTyping;
+            LaunchNewDialogueExchange();
         }
 
         private void Update()
@@ -31,7 +31,6 @@ namespace Game.Runtime
 
         #region Main Methods
 
-        [ContextMenu("start conversation")]
         private void LaunchNewDialogueExchange() 
         {
             _dialoguePanel.DOFade(1, _panelFadeIn);
@@ -73,10 +72,8 @@ namespace Game.Runtime
                 {
                     _dialoguePanel.DOFade(0, _panelFadeOut);
                     Debug.Log("Dialogue Has Ended");
-
                 }
             }
-
         }
 
         #endregion
@@ -95,6 +92,7 @@ namespace Game.Runtime
             }
             else
             {
+                _currentLineIndex++;
                 _isTyping = false;
                 DisplayNextLines();
             }
@@ -106,10 +104,10 @@ namespace Game.Runtime
         #region Privates & Protected
 
         private Dialogue _currentDialogue;
-        private int _currentExchangeIndex = 0;
-        private int _currentLineIndex = 0;
-        private int _currentCharacterIndex = 0;
-        private bool _isTyping = false;
+       [SerializeField] private int _currentExchangeIndex = 0;
+        [SerializeField] private int _currentLineIndex = 0;
+        [SerializeField] private int _currentCharacterIndex = 0;
+        [SerializeField] private bool _isTyping = false;
 
         private Timer _typingTimer;
 

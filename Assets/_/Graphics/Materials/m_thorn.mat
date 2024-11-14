@@ -238,7 +238,7 @@ Material:
     - _MCapIntensity: 1
     - _MVCOL: 0
     - _MaiColPo: 0.8
-    - _MaxFadDistance: 12
+    - _MaxFadDistance: 8
     - _Metallic: 0
     - _MinFadDistance: 2
     - _MixMainTexToOutline: 0
