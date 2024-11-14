@@ -34,6 +34,7 @@ namespace Enemies.Runtime
 
             float detectionRange = m_maxDetectionRange * m_maxDetectionRange;
             float rageRange = _rushDistance * _rushDistance;
+            Debug.Log(rageRange);
 
             if (sqrDistance < detectionRange && !_isRushing && !_isCoolingDownAfterRush)
             {
@@ -213,7 +214,7 @@ namespace Enemies.Runtime
         [SerializeField] private Slider _healthBar;
 
         [Header("References")]
-        [SerializeField] private Rigidbody _rigidbody;
+         private Rigidbody _rigidbody;
         //[SerializeField] private MeshRenderer _meshRenderer;
         //[SerializeField] private ParticleSystem _particleSystem;
         //[SerializeField] private AudioClip _damagedAudio;

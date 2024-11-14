@@ -25,7 +25,6 @@ namespace Objects.Runtime
 
         public void OnLock()
         {
-            Debug.Log("Show Yourself");
             if (_lockIndicator == null) return;
             _lockIndicator.SetActive(true);
         }
