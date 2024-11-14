@@ -60,5 +60,5 @@ Material:
     - _SelfLitHighContrast: 0
     - _SelfLitIntensity: 1
     m_Colors:
-    - _SelfLitColor: {r: 71.43683, g: 0, b: 191.74902, a: 1}
+    - _SelfLitColor: {r: 59.231373, g: 0, b: 191.74902, a: 1}
   m_BuildTextureStacks: []
