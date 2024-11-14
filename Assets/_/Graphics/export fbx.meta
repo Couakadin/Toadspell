@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_/Graphics/export fbx.meta
 guid: a29f1fef4847e1045b42d6dc11c62274
 folderAsset: yes
 DefaultImporter:
+========
+guid: 66cf25fe971376e4cb4284a584ecb4ec
+PrefabImporter:
+>>>>>>>> 0a1a3bd255e5bc68d1201dada5d47fa8bf80ddb5:Assets/_/Database/Prefabs/BOSS.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

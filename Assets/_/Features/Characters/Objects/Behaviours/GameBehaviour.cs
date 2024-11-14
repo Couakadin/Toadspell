@@ -96,6 +96,7 @@ namespace Objects.Runtime
         #region Utils
         private void TeleportMove()
         {
+            Debug.Log("TELEPORT");
             _player.transform.position = _playerBlackboard.GetValue<Vector3>("Checkpoint");
             _player.SetActive(true);
         }

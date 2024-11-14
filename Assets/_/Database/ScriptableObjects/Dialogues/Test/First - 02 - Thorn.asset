@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d24cd8284dafef74a977ab172c5feba3, type: 3}
-  m_Name: FirstDialogue
+  m_Name: First - 02 - Thorn
   m_EditorClassIdentifier: 
-  m_image: {fileID: 21300000, guid: 5ab91da04484f1f4583b19795d1083ca, type: 3}
-  m_speakerName: Frogmage
+  m_image: {fileID: 21300000, guid: a0b0eac0ce1c2b74bb450543dfb9c069, type: 3}
+  m_speakerName: Thorn
   m_lines:
-  - m_sentence: 'Ah ... '
+  - m_sentence: 'HA HA '
     m_screenTime: 1
-  - m_sentence: "Encore un sort r\xE9ussit avec brio ..."
+  - m_sentence: Lorem Ipsum
     m_screenTime: 1

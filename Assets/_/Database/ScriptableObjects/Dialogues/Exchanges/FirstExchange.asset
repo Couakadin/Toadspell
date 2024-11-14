@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: FirstExchange
+  m_EditorClassIdentifier: Data.Runtime:Data.Runtime:DialoguesExchanges
+  m_Dialogues:
+  - {fileID: 11400000, guid: c0bfce1cb6cc15e44938d4b8cc516d3e, type: 2}
+  - {fileID: 11400000, guid: d8fcbba2227d3d140b64beb5e148b9c2, type: 2}

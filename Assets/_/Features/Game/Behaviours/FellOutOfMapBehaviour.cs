@@ -9,9 +9,13 @@ namespace Game.Runtime
 
         private void OnTriggerEnter(Collider other)
         {
-            _onOutOfMapEvent.Raise();
-            other.TryGetComponent(out ICanBeHurt component);
-            component.TakeDamage(_damages);
+            if (other.gameObject.layer == 7)
+            {
+                Debug.Log(other.gameObject.name);
+                _onOutOfMapEvent.Raise();
+                other.TryGetComponent(out ICanBeHurt component);
+                component.TakeDamage(_damages);
+            }
         }
 
         #endregion
