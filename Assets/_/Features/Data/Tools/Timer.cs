@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 
@@ -25,7 +23,7 @@ namespace Data.Runtime
             if (_remainingTime < 0)
             {
                 Stop();
-                OnTimerFinished.Invoke();
+                OnTimerFinished?.Invoke();
             }
         }
 
