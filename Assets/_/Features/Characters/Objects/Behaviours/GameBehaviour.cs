@@ -33,6 +33,7 @@ namespace Objects.Runtime
         private void Awake()
         {
             _playerBlackboard.SetValue<int>("Lives", _startLifePoints);
+            m_frontCamera.Priority = 11;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _teleportTimer = new Timer(_teleportDelay);

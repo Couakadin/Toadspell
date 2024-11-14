@@ -633,7 +633,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c0bfce1cb6cc15e44938d4b8cc516d3e, type: 2}
   - {fileID: 11400000, guid: d8fcbba2227d3d140b64beb5e148b9c2, type: 2}
   _speakerImage: {fileID: 5384475349212688590}
-  _typingSpeed: 0
+  _typingSpeed: 0.2
   _characterName: {fileID: 8929331930476072472}
   _linesOfDialogue: {fileID: 4321791188637709171}
 --- !u!1 &477003202514635025
@@ -958,7 +958,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646238599969017078}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 0.75, b: 0.9979943, a: 0.11764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
