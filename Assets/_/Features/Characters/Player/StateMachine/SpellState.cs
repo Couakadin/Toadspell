@@ -21,7 +21,6 @@ namespace Player.Runtime
 
         public void Enter()
         {
-            Debug.Log("I can cast a spell");
             // Target
             _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;

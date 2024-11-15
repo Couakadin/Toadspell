@@ -125,7 +125,11 @@ namespace Player.Runtime
         {
             _isTongueInteract = true;
 
-            if (_sizeable == null) return;
+            if (_sizeable == null || _sizeable.size == ISizeable.Size.none)
+            {
+                _isTongueReturned = true;
+                return;
+            }
 
             if (_sizeable.size == ISizeable.Size.small)
             {
@@ -192,11 +196,11 @@ namespace Player.Runtime
         private void TongueReturn()
         {
             _distanceToTarget = new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z) - _tongueRigidbody.position;
-
+            Debug.Log(1);
             if (_distanceToTarget.sqrMagnitude > 1f)
             {
                 TongueMesh(Vector3.Distance(_tongueRigidbody.position, _tongueContainer.position));
-
+                Debug.Log(2);
                 _tongueRigidbody.velocity = _tongueSpeed * _distanceToTarget.normalized;
             }
             else
@@ -206,7 +210,7 @@ namespace Player.Runtime
                 _tongueRigidbody.velocity = Vector3.zero;
                 _tongueRigidbody.transform.parent = _playerTransform;
                 _tongueMesh.localScale = new Vector3(_tongueMesh.localScale.x, _tongueMesh.localScale.y, .01f);
-
+                Debug.Log(3);
                 m_stateMachine.ChangeState(m_stateMachine.m_lockState);
             }
         }
