@@ -17,7 +17,6 @@ namespace Enemies.Runtime
             _cutoutFullPropertyBlock.SetFloat("_Cutout", 0.0f);
             _cutoutDissolvedPropertyBlock = new MaterialPropertyBlock();
 
-
         }
 
         void Start()
