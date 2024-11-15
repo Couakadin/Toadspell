@@ -134,7 +134,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3c64ad492fbf0434c8a5e04cd48c39e9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -317,7 +317,7 @@ Material:
     - _SelfLitIntensity: 0
     - _SelfLitPower: 2
     - _SelfShadowAffectedByLightShadowStrength: 0
-    - _SelfShadowHardness: 0.58
+    - _SelfShadowHardness: 0.62
     - _SelfShadowRealTimeShadowColorPower: 1
     - _SelfShadowRealtimeShadowIntensity: 1
     - _SelfShadowShadowTAtViewDirection: 0
@@ -368,7 +368,7 @@ Material:
     - _ObjPosi: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0.011812014, g: 0.06363667, b: 0.07924521, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
-    - _OverallShadowColor: {r: 0.07807046, g: 0.09877413, b: 0.19245279, a: 1}
+    - _OverallShadowColor: {r: 0.07843137, g: 0.12681472, b: 0.19215687, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
     - _PrevPosition: {r: 0, g: 0, b: 0, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
