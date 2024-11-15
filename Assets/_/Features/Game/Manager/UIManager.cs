@@ -195,7 +195,7 @@ namespace Game.Runtime
         [SerializeField] private List<CanvasGroup> _keyboardTutorial;
         [SerializeField] private List<CanvasGroup> _joyStickTutorial;
         private List<CanvasGroup> _tutorialPanels = new();
-        private int _tutorialIndex = 0;
+        [SerializeField] private int _tutorialIndex = 0;
         private bool _isKeyboard;
 
         #endregion

@@ -280,16 +280,15 @@ MonoBehaviour:
   m_animator: {fileID: 2293500722224115723}
   _LockIndicator: {fileID: 9142448801338757842}
   m_attackDelay: 1
-  m_lifePoints: 3
+  m_lifePoints: 2
   m_damages: 1
-  m_maxDetectionRange: 50
+  m_maxDetectionRange: 40
   _angleDetectionRange: 10
-  _rushDistance: 50
-  _rushSpeed: 50
-  _recoilDistance: 10
+  _rushDistance: 35
+  _rushSpeed: 40
+  _recoilDistance: 1
   _takeDamageDelay: 3
   _healthBar: {fileID: 9117596524177799593}
-  _rigidbody: {fileID: 0}
 --- !u!54 &9063982294704922832
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -351,7 +350,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
