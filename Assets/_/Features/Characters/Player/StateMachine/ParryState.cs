@@ -25,13 +25,14 @@ namespace Player.Runtime
             _timer.Reset();
             _timer.Begin();
             m_stateMachine.m_powerBehaviour.m_parryObject.SetActive(true);
-            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetTrigger("Attack");
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsParry", true);
         }
 
         public void Exit()
         {
             m_stateMachine.m_powerBehaviour.m_parryObject.SetActive(false);
             _timer.OnTimerFinished -= ChangeState;
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsParry", false);
         }
 
         public void Tick()
