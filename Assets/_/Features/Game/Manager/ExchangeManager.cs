@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using System;
 
 namespace Game.Runtime
 {
@@ -12,20 +14,44 @@ namespace Game.Runtime
 
         #region Unity API
 
+        private void Awake()
+        {
+            _gameInput = new GameInput();
+            _dialogueActions = _gameInput.Dialogue;
+            _skipInput = _dialogueActions.Skip;
+        }
+
+        private void OnEnable()
+        {
+            _dialogueActions.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _dialogueActions.Disable();
+        }
+
         private void Start()
         {
             _typingSpeed = _typingSpeed / 100;
-            Debug.Log(_typingSpeed);
             _typingTimer = new Timer(_typingSpeed);
             _typingTimer.OnTimerFinished += OnCharacterTyping;
             _LineOnScreenTimer = new Timer(_timeOnScreenDelay);
             _LineOnScreenTimer.OnTimerFinished += DisplayNextLines;
-            LaunchFirstDialogue();
         }
 
         private void Update()
         {
-            if (_isTyping)  _typingTimer.Tick();
+            if (_isTyping)
+            {
+                if (_skipInput.triggered && !_isSkipping)
+                {
+                    _isSkipping = true;
+                    SkipText();
+                }
+                else if (!_isSkipping) _typingTimer.Tick();
+            }
+
             if(_LineOnScreenTimer.IsRunning()) _LineOnScreenTimer.Tick();
         }
 
@@ -34,10 +60,11 @@ namespace Game.Runtime
 
         #region Main Methods
 
-        private void LaunchFirstDialogue()
+        public void LaunchFirstDialogue()
         {
             Sequence firstExchange = DOTween.Sequence();
             Dialogue currentExchange = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
+            firstExchange.AppendInterval(2);
             firstExchange.Append(_dialoguePanel.DOFade(1, _panelFadeIn));
             firstExchange.AppendCallback(() => StartDialogue(currentExchange));
         }
@@ -63,7 +90,6 @@ namespace Game.Runtime
         {
             if (_currentLineIndex < _currentDialogue.m_lines.Count)
             {
-                //_typingSpeed = _currentDialogue.m_lines[_currentLineIndex].m_screenTime;
                 _currentCharacterIndex = 0;
                 _linesOfDialogue.text = "";
                 _isTyping = true;
@@ -76,7 +102,6 @@ namespace Game.Runtime
             {
                 if (_currentExchangeIndex < _exchanges[_currentExchangeInStoryIndex].m_Dialogues.Count - 1)
                 {
-                    Debug.Log("Next person");
                     _currentExchangeIndex++;
                     StartDialogue(_exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex]);
                 }
@@ -84,7 +109,6 @@ namespace Game.Runtime
                 {
                     _dialoguePanel.DOFade(0, _panelFadeOut);
                     if (_exchanges[0]) _onFirstExchangeFinished.Raise();
-                    Debug.Log("Dialogue Has Ended");
                 }
             }
         }
@@ -107,10 +131,24 @@ namespace Game.Runtime
             {
                 _currentLineIndex++;
                 _isTyping = false;
+                _isSkipping = false;
                 _LineOnScreenTimer.Reset();
                 _LineOnScreenTimer.Begin();
-                //DisplayNextLines();
             }
+        }
+
+        private void SkipText()
+        {
+            _linesOfDialogue.text = _writer;
+            _currentCharacterIndex = _writer.Length;
+            _currentLineIndex++;
+
+            _isTyping = false;
+
+            _LineOnScreenTimer.Reset();
+            _LineOnScreenTimer.Begin();
+           
+            _isSkipping=false;
         }
 
         #endregion
@@ -118,12 +156,17 @@ namespace Game.Runtime
 
         #region Privates & Protected
 
+        private GameInput _gameInput;
+        private GameInput.DialogueActions _dialogueActions;
+        private InputAction _skipInput;
+        
         private Dialogue _currentDialogue;
         private int _currentExchangeIndex = 0;
         private int _currentExchangeInStoryIndex = 0;
         private int _currentLineIndex = 0;
         private int _currentCharacterIndex = 0;
         private bool _isTyping = false;
+        private bool _isSkipping = false;
 
         private Timer _typingTimer;
         private Timer _LineOnScreenTimer;

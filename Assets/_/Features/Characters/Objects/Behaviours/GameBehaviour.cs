@@ -19,7 +19,7 @@ namespace Objects.Runtime
         [Header("Init Camera")]
         [Tooltip("The Third Person Camere to init.")]
         public CinemachineVirtualCamera m_camera;
-        //public CinemachineVirtualCamera m_frontCamera;
+        public CinemachineVirtualCamera m_frontCamera;
 
         [Header("Init Pools")]
         [Tooltip("The spell pool to init.")]
@@ -33,15 +33,20 @@ namespace Objects.Runtime
         private void Awake()
         {
             _playerBlackboard.SetValue<int>("Lives", _startLifePoints);
-            //m_frontCamera.Priority = 11;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             _teleportTimer = new Timer(_teleportDelay);
             _disablingTimer = new Timer(_disablingDelay);
+            m_frontCamera.Priority = 11;
         }
 
         private void OnEnable()
         {
+            if (_gameInput == null)
+            {
+                _gameInput = new();
+            }
+
             _teleportTimer.OnTimerFinished += TeleportMove;
             _disablingTimer.OnTimerFinished += DisablePlayer;
         }
@@ -54,7 +59,7 @@ namespace Objects.Runtime
 
         private void Start()
         {
-            _player = Instantiate(m_player, m_position.position, Quaternion.identity, null);
+            _player = Instantiate(m_player, m_position.position, m_position.rotation, null);
             _player.SetActive(true);
             _player.TryGetComponent(out _powerBehaviour);
             _player.TryGetComponent(out _moveBehaviour);
@@ -90,6 +95,19 @@ namespace Objects.Runtime
             SetOrResetTimer(_disablingTimer);
         }
 
+        [ContextMenu("disabled input")]
+        public void onFirstSpawnDontMove()
+        {
+            _gameInput.Gameplay.Disable();
+            _gameInput.Dialogue.Enable();
+        }
+
+        public void onStartDiscoveringTheWorld()
+        {
+            m_frontCamera.Priority = 0;
+            _gameInput.Gameplay.Enable();
+            _gameInput.Dialogue.Disable();
+        }
         #endregion
 
 
@@ -129,6 +147,7 @@ namespace Objects.Runtime
         [SerializeField] private int _startLifePoints = 4;
         private Timer _teleportTimer;
         private Timer _disablingTimer;
+        private GameInput _gameInput;
 
         #endregion
     }
