@@ -15,7 +15,12 @@ MonoBehaviour:
   m_image: {fileID: 21300000, guid: 5ab91da04484f1f4583b19795d1083ca, type: 3}
   m_speakerName: Frogmage
   m_lines:
-  - m_sentence: 'Ah ... '
+  - m_sentence: 'Yay ! J''ai pu entrer dans le domaine ! '
     m_screenTime: 1
-  - m_sentence: "Encore un sort r\xE9ussit avec brio ..."
+    m_image: {fileID: 0}
+  - m_sentence: 'AH ... MAIS ... '
     m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: Je suis un crapaud ?!
+    m_screenTime: 1
+    m_image: {fileID: 0}
