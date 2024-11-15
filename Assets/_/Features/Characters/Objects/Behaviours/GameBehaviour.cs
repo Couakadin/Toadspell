@@ -99,7 +99,7 @@ namespace Objects.Runtime
         public void onFirstSpawnDontMove()
         {
             _gameInput.Gameplay.Disable();
-            _gameInput.Dialogue.Enable();
+            //_gameInput.Dialogue.Enable();
         }
 
         public void onStartDiscoveringTheWorld()
