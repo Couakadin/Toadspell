@@ -16,11 +16,11 @@ MonoBehaviour:
   m_speakerName: 
   m_lines:
   - m_sentence: 
-    m_screenTime: 2
+    m_screenTime: 1
     m_image: {fileID: 21300000, guid: d2f4bd989227be4479bb4b7c8ae0fd62, type: 3}
   - m_sentence: 
-    m_screenTime: 2
+    m_screenTime: 1
     m_image: {fileID: 21300000, guid: d5fc2ffabb092584e897a821e49fb798, type: 3}
   - m_sentence: 
-    m_screenTime: 2
+    m_screenTime: 1
     m_image: {fileID: 21300000, guid: 40515a80fb617ce448e12ce75fec86b6, type: 3}

@@ -58,12 +58,26 @@ namespace Player.Runtime
         {
             _timer.Tick();
 
-            if (_target && _projectile) _distanceToTarget = _target.transform.position - _projectile.transform.position;
+            if (_target && _projectile)
+            {
+                // Obtenir le collider de l'ennemi
+                _target.TryGetComponent(out Collider targetCollider);
+                if (targetCollider)
+                {
+                    // Calculer le centre de l'ennemi en utilisant le collider
+                    Vector3 targetCenter = targetCollider.bounds.center;
+                    _distanceToTarget = targetCenter - _projectile.transform.position;
+                }
+                else
+                {
+                    // Si le collider n'est pas trouvé, utiliser une hauteur par défaut
+                    _distanceToTarget = _target.transform.position - _projectile.transform.position;
+                }
+            }
 
-            if (_distanceToTarget.sqrMagnitude > .5f * .5f)
-                _projectileRigidbody.velocity = m_stateMachine.m_powerBehaviour.m_speedOfProjectile * _distanceToTarget;
-            else
-                ChangeState();
+            if (_distanceToTarget.sqrMagnitude > .5f * .5f) _projectileRigidbody.velocity = m_stateMachine.m_powerBehaviour.m_speedOfProjectile * _distanceToTarget;
+            else ChangeState();
+
         }
 
         public void PhysicsTick() { }

@@ -14,16 +14,16 @@ namespace Game.Runtime
 
         private void Awake()
         {
-            InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
+            //InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
         }
 
         void Start()
     	{
-            FirstFadeIn();
             _tutorialIndex = 0;
             _tutorialPanels = _keyboardTutorial;
             _maxLives = _playerBlackboard.GetValue<int>("Lives");
             _spellImage.color = _spellList[0];
+            FirstFadeIn();
 
             for (int i = 0; i < _maxLives; i++)
             {
@@ -39,10 +39,10 @@ namespace Game.Runtime
 
         private void FirstFadeIn()
         {
+            _onPlayerHasSpawned.Raise();
             Sequence fadeSequence = DOTween.Sequence();
             fadeSequence.AppendInterval(_spawnFadeInterval);
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _spawnFadeOut));
-            fadeSequence.OnComplete(() => _onPlayerHasSpawned.Raise());
         }
 
         public void FadeOnTeleportation()
@@ -53,10 +53,7 @@ namespace Game.Runtime
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _teleportFadeOutDelay));
         }
 
-        public void ActionActivateGameOverScreen()
-        {
-            _gameOverPanel.SetActive(true);
-        }
+        public void ActionActivateGameOverScreen() => _gameOverPanel.SetActive(true);
 
         public void ActionReloadScene()
         {
@@ -66,16 +63,12 @@ namespace Game.Runtime
 
         public void ActionLoadMainMenu() => SceneManager.LoadScene(0);
 
-        public void ActionOpenSettingMenu()
-        {
-            Time.timeScale = 0;
-        }
+        public void ActionOpenSettingMenu() { }
 
-        public void ActionCloseSettingsMenu()
-        {
-            Time.timeScale = 1;
-        }
+        public void ActionCloseSettingsMenu() { }
 
+        public void ActionInGamePanelSetActive() => _inGamePanel.SetActive(true);
+       
         public void UpdateSpellImage(int spell)
         {
             _spellImage.color = _spellList[spell];
@@ -163,6 +156,8 @@ namespace Game.Runtime
         [Header("References")]
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private GameObject _gameOverPanel;
+        [SerializeField] private GameObject _inGamePanel;
+        [SerializeField] private GameObject _tutorialTigger;
 
         [Space(8)]
         [Header("On Start Fade In")]

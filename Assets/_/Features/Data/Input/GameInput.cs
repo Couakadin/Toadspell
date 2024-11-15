@@ -311,8 +311,8 @@ namespace Data.Runtime
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""04b063a8-4a62-4393-a1e8-11987eb9f7d0"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""91316dd8-b3c6-4101-b5d3-c040b0845d45"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -322,8 +322,8 @@ namespace Data.Runtime
                 },
                 {
                     ""name"": """",
-                    ""id"": ""91316dd8-b3c6-4101-b5d3-c040b0845d45"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""dd13c2c2-ac44-4114-87ed-34e5ff3ff403"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

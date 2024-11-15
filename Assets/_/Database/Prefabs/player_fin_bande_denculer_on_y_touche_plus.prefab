@@ -551,7 +551,7 @@ MonoBehaviour:
   m_tongueSpeed: 100
   m_canEat: 0
   m_spellSpawner: {fileID: 481850103328051413}
-  m_speedOfProjectile: 5
+  m_speedOfProjectile: 3
   m_durationOfProjectile: 1
   m_spell: 0
   m_currentPool: {fileID: 0}
