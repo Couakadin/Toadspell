@@ -107,8 +107,10 @@ namespace Game.Runtime
                 }
                 else
                 {
-                    _dialoguePanel.DOFade(0, _panelFadeOut);
-                    if (_exchanges[0]) _onFirstExchangeFinished.Raise();
+                    _dialoguePanel.DOFade(0, _panelFadeOut).OnComplete(() =>
+                    {
+                        if (_exchanges[0]) _onFirstExchangeFinished.Raise();
+                    });
                 }
             }
         }
