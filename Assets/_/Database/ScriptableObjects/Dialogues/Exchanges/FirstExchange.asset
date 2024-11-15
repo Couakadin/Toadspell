@@ -14,4 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Data.Runtime:Data.Runtime:DialoguesExchanges
   m_Dialogues:
   - {fileID: 11400000, guid: c0bfce1cb6cc15e44938d4b8cc516d3e, type: 2}
-  - {fileID: 11400000, guid: d8fcbba2227d3d140b64beb5e148b9c2, type: 2}

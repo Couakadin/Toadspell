@@ -40,9 +40,9 @@ namespace Game.Runtime
         private void FirstFadeIn()
         {
             Sequence fadeSequence = DOTween.Sequence();
+            fadeSequence.AppendCallback(() => _onPlayerHasSpawned.Raise());
             fadeSequence.AppendInterval(_spawnFadeInterval);
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _spawnFadeOut));
-            fadeSequence.OnComplete(() => _onPlayerHasSpawned.Raise());
         }
 
         public void FadeOnTeleportation()
@@ -53,10 +53,7 @@ namespace Game.Runtime
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _teleportFadeOutDelay));
         }
 
-        public void ActionActivateGameOverScreen()
-        {
-            _gameOverPanel.SetActive(true);
-        }
+        public void ActionActivateGameOverScreen() => _gameOverPanel.SetActive(true);
 
         public void ActionReloadScene()
         {
@@ -66,16 +63,14 @@ namespace Game.Runtime
 
         public void ActionLoadMainMenu() => SceneManager.LoadScene(0);
 
-        public void ActionOpenSettingMenu()
-        {
-            Time.timeScale = 0;
-        }
+        public void ActionOpenSettingMenu() { }
 
-        public void ActionCloseSettingsMenu()
-        {
-            Time.timeScale = 1;
-        }
+        public void ActionCloseSettingsMenu() { }
 
+        public void ActionInGamePanelSetActive() => _inGamePanel.SetActive(true);
+
+        public void ActionActivateTutorialPanel() => _tutorialObject.SetActive(true);
+       
         public void UpdateSpellImage(int spell)
         {
             _spellImage.color = _spellList[spell];
@@ -163,6 +158,7 @@ namespace Game.Runtime
         [Header("References")]
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private GameObject _gameOverPanel;
+        [SerializeField] private GameObject _inGamePanel;
 
         [Space(8)]
         [Header("On Start Fade In")]

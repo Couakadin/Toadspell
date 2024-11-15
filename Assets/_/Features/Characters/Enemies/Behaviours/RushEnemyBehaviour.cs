@@ -34,7 +34,6 @@ namespace Enemies.Runtime
 
             float detectionRange = m_maxDetectionRange * m_maxDetectionRange;
             float rageRange = _rushDistance * _rushDistance;
-            Debug.Log(rageRange);
 
             if (sqrDistance < detectionRange && !_isRushing && !_isCoolingDownAfterRush)
             {
