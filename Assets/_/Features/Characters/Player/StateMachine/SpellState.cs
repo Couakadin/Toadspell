@@ -32,7 +32,7 @@ namespace Player.Runtime
             }
 
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, 1f); // Attack Layer
-            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetTrigger("Attack");
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsAttack", true);
 
             // Pool
             _projectile = _currentPool?.GetFirstAvailableObject();
@@ -51,6 +51,7 @@ namespace Player.Runtime
 
             _timer?.Reset();
             _timer.OnTimerFinished -= ChangeState;
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsAttack", false);
         }
 
         public void Tick()
