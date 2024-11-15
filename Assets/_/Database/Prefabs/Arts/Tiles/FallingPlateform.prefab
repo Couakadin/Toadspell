@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3332000975178393312}
-  - component: {fileID: 2566818915680743454}
   - component: {fileID: 337789371009434548}
   - component: {fileID: 8201024620679400918}
+  - component: {fileID: 8134516628135761901}
   m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
@@ -34,14 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3204574601969444476}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2566818915680743454
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4446548011287096349}
-  m_Mesh: {fileID: -2284842264338315824, guid: 4a8056411bb328d47ae75243b86925cb, type: 3}
 --- !u!23 &337789371009434548
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62,7 +54,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7f99b92f04d24ad479937da4f77d59d0, type: 2}
+  - {fileID: 2100000, guid: 4578e1c24517c5f4c9f8ff1ed96d534e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,7 +67,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -103,8 +95,16 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18, y: 3, z: 18}
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Size: {x: 18, y: 6.4498253, z: 18}
+  m_Center: {x: 0, y: 3.0261135, z: 0}
+--- !u!33 &8134516628135761901
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446548011287096349}
+  m_Mesh: {fileID: 8082926491529525, guid: 8481ccbfb059f1c4cb4682bcb8abbbe9, type: 3}
 --- !u!1 &6575309113138458739
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6575309113138458739}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -236.07002, y: 15.33, z: 350.91284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -158,8 +158,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18, y: 3, z: 18}
-  m_Center: {x: 0, y: 7.06, z: 0}
+  m_Size: {x: 18, y: 1.7332687, z: 18}
+  m_Center: {x: 0, y: 9.850788, z: 0}
 --- !u!114 &240247133338681902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,13 +172,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ad0c3d065f79b40ad9f51f5b25ef00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakingDuration: 0.5
-  _shakingStrength: {x: 0.1, y: 0, z: 0}
+  _shakingDuration: 1
+  _shakingStrength: {x: 0.7, y: 0, z: 0.5}
   _shakingVibrations: 10
   _shankingRandomness: 10
   _fallingPositionY: -15
-  _fallingDuration: 1
+  _fallingDuration: 2
   _durationOfFadeOut: 0.5
   _durationOfFadeIn: 0.1
-  _DelayForRespawn: 2
-  _meshRenderer: {fileID: 337789371009434548}
+  _DelayForRespawn: 1.5
+  _meshRenderer: {fileID: -7511558181221131132, guid: 8481ccbfb059f1c4cb4682bcb8abbbe9,
+    type: 3}

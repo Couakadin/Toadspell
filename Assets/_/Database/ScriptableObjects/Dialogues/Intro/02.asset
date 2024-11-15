@@ -16,8 +16,8 @@ MonoBehaviour:
   m_speakerName: 
   m_lines:
   - m_sentence: 
-    m_screenTime: 2
+    m_screenTime: 1
     m_image: {fileID: 21300000, guid: eca0a5022695dd14ba9448e24a4cc16e, type: 3}
   - m_sentence: 
-    m_screenTime: 2
+    m_screenTime: 1
     m_image: {fileID: 21300000, guid: dc8ee4bd2c02d2143a33a47310fffb78, type: 3}

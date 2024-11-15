@@ -14,16 +14,16 @@ namespace Game.Runtime
 
         private void Awake()
         {
-            InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
+            //InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
         }
 
         void Start()
     	{
-            FirstFadeIn();
             _tutorialIndex = 0;
             _tutorialPanels = _keyboardTutorial;
             _maxLives = _playerBlackboard.GetValue<int>("Lives");
             _spellImage.color = _spellList[0];
+            FirstFadeIn();
 
             for (int i = 0; i < _maxLives; i++)
             {
@@ -39,8 +39,8 @@ namespace Game.Runtime
 
         private void FirstFadeIn()
         {
+            _onPlayerHasSpawned.Raise();
             Sequence fadeSequence = DOTween.Sequence();
-            fadeSequence.AppendCallback(() => _onPlayerHasSpawned.Raise());
             fadeSequence.AppendInterval(_spawnFadeInterval);
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _spawnFadeOut));
         }
@@ -68,8 +68,6 @@ namespace Game.Runtime
         public void ActionCloseSettingsMenu() { }
 
         public void ActionInGamePanelSetActive() => _inGamePanel.SetActive(true);
-
-        public void ActionActivateTutorialPanel() => _tutorialObject.SetActive(true);
        
         public void UpdateSpellImage(int spell)
         {
@@ -159,6 +157,7 @@ namespace Game.Runtime
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private GameObject _gameOverPanel;
         [SerializeField] private GameObject _inGamePanel;
+        [SerializeField] private GameObject _tutorialTigger;
 
         [Space(8)]
         [Header("On Start Fade In")]
@@ -196,7 +195,7 @@ namespace Game.Runtime
         [SerializeField] private List<CanvasGroup> _keyboardTutorial;
         [SerializeField] private List<CanvasGroup> _joyStickTutorial;
         private List<CanvasGroup> _tutorialPanels = new();
-        private int _tutorialIndex = 0;
+        [SerializeField] private int _tutorialIndex = 0;
         private bool _isKeyboard;
 
         #endregion
