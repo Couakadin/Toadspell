@@ -109,7 +109,7 @@ namespace Player.Runtime
             _tongueMesh.transform.parent = null;
 
             // Calculate the vector from the tongue to the target point
-            _distanceToTarget = _hit.point - _tongueRigidbody.position;
+            _distanceToTarget = _hit.collider.transform.position - _tongueRigidbody.position;
 
             // Check if the tongue is close enough to stop at the target point using sqrMagnitude
             if (_distanceToTarget.sqrMagnitude > 1f)
@@ -118,7 +118,7 @@ namespace Player.Runtime
                 _tongueRigidbody.velocity = _tongueSpeed * _distanceToTarget.normalized;
 
                 _tongueMesh.LookAt(_hit.collider.transform);
-                TongueMesh(Vector3.Distance(_hit.point, _tongueMesh.position));
+                TongueMesh(Vector3.Distance(_hit.collider.transform.position, _tongueMesh.position));
             }
             else
             {
@@ -240,7 +240,7 @@ namespace Player.Runtime
                 new Vector3(
                     _tongueMesh.localScale.x,
                     _tongueMesh.localScale.y,
-                    totalDistance * 0.035f
+                    currentDistance * 0.035f
                 ),
                 interpolationSpeed
             );
