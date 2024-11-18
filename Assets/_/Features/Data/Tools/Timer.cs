@@ -39,6 +39,11 @@ namespace Data.Runtime
 
         public bool IsRunning() => _isRunning;
 
+        public void UpdateTimer(float duration)
+        {
+            _duration = duration;
+        }
+
         #endregion
 
 

@@ -631,6 +631,7 @@ MonoBehaviour:
   _panelFadeOut: 0.8
   _exchanges:
   - {fileID: 11400000, guid: 15f993c6db004c444a3ee65566e49813, type: 2}
+  - {fileID: 11400000, guid: cfcce87a870f32a4caeb1c81f89359bf, type: 2}
   _speakerImage: {fileID: 5384475349212688590}
   _typingSpeed: 10
   _timeOnScreenDelay: 1

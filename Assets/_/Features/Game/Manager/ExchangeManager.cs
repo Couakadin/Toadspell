@@ -3,9 +3,8 @@ using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using System;
+using UnityEngine.UI;
 
 namespace Game.Runtime
 {
@@ -19,6 +18,7 @@ namespace Game.Runtime
             _gameInput = new GameInput();
             _dialogueActions = _gameInput.Dialogue;
             _skipInput = _dialogueActions.Skip;
+            _cutDialogueInput = _dialogueActions.CutDialogue;
         }
 
         private void OnEnable()
@@ -52,6 +52,12 @@ namespace Game.Runtime
                 else if (!_isSkipping) _typingTimer.Tick();
             }
 
+            if (_cutDialogueInput.triggered)
+            {
+                EndOfDialogue();
+                ResetOnCut();
+            }
+
             if(_LineOnScreenTimer.IsRunning()) _LineOnScreenTimer.Tick();
         }
 
@@ -62,6 +68,7 @@ namespace Game.Runtime
 
         public void LaunchFirstDialogue()
         {
+            if(_currentExchangeInStoryIndex > _exchanges.Count) return;
             Sequence firstExchange = DOTween.Sequence();
             Dialogue currentExchange = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
             firstExchange.AppendInterval(2);
@@ -69,12 +76,12 @@ namespace Game.Runtime
             firstExchange.AppendCallback(() => StartDialogue(currentExchange));
         }
 
-        private void LaunchNewDialogueExchange() 
-        {
-            _dialoguePanel.DOFade(1, _panelFadeIn);
-            Dialogue currentExchange = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
-            StartDialogue(currentExchange);
-        }
+        //private void LaunchNewDialogueExchange() 
+        //{
+        //    _dialoguePanel.DOFade(1, _panelFadeIn);
+        //    Dialogue currentExchange = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
+        //    StartDialogue(currentExchange);
+        //}
 
         public void StartDialogue(Dialogue dialogue)
         {
@@ -107,10 +114,7 @@ namespace Game.Runtime
                 }
                 else
                 {
-                    _dialoguePanel.DOFade(0, _panelFadeOut).OnComplete(() =>
-                    {
-                        if (_exchanges[0]) _onFirstExchangeFinished.Raise();
-                    });
+                    EndOfDialogue();
                 }
             }
         }
@@ -119,6 +123,22 @@ namespace Game.Runtime
 
 
         #region Utils
+
+        private void ResetOnCut()
+        {
+            _currentExchangeIndex = 0;
+            _currentCharacterIndex = 0;
+            _currentLineIndex = 0;
+
+        }
+        private void EndOfDialogue()
+        {
+            _dialoguePanel.DOFade(0, _panelFadeOut).OnComplete(() =>
+            {
+                _currentExchangeInStoryIndex++;
+                if (_exchanges[0]) _onFirstExchangeFinished.Raise();
+            });
+        }
 
         private void OnCharacterTyping()
         {
@@ -131,9 +151,11 @@ namespace Game.Runtime
             }
             else
             {
+                _timeOnScreenDelay = _currentDialogue.m_lines[_currentLineIndex].m_screenTime;
                 _currentLineIndex++;
                 _isTyping = false;
                 _isSkipping = false;
+                _LineOnScreenTimer.UpdateTimer(_timeOnScreenDelay);
                 _LineOnScreenTimer.Reset();
                 _LineOnScreenTimer.Begin();
             }
@@ -161,10 +183,11 @@ namespace Game.Runtime
         private GameInput _gameInput;
         private GameInput.DialogueActions _dialogueActions;
         private InputAction _skipInput;
+        private InputAction _cutDialogueInput;
         
         private Dialogue _currentDialogue;
         private int _currentExchangeIndex = 0;
-        private int _currentExchangeInStoryIndex = 0;
+        [SerializeField] private int _currentExchangeInStoryIndex = 0;
         private int _currentLineIndex = 0;
         private int _currentCharacterIndex = 0;
         private bool _isTyping = false;
