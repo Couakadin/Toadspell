@@ -22,7 +22,7 @@ namespace Player.Runtime
             m_stateMachine.m_powerBehaviour.m_tongue.TryGetComponent(out _tongueRigidbody);
             _tongueSpeed = m_stateMachine.m_powerBehaviour.m_tongueSpeed;
             _tongueMesh = m_stateMachine.m_powerBehaviour.m_tongueMesh;
-            _tongueContainer = m_stateMachine.m_powerBehaviour.m_tongueContainer;
+            _tongueMeshPosition = m_stateMachine.m_powerBehaviour.m_tongueMeshPosition;
 
             // Lock
             _detectionLayer = m_stateMachine.m_powerBehaviour.m_detectionLayer;
@@ -36,6 +36,8 @@ namespace Player.Runtime
             _timerReturn.OnTimerFinished += TongueReturn;
             _timerReturn?.Reset();
 
+            _tongueMesh.gameObject.SetActive(true);
+
             _tongueMaxDistance = m_stateMachine.m_powerBehaviour.m_maxDetectionRadius;
             _currentLockTarget = m_stateMachine.m_lockState.m_currentLockTarget?.transform;
             if (_currentLockTarget == null) m_stateMachine.ChangeState(m_stateMachine.m_lockState);
@@ -44,6 +46,8 @@ namespace Player.Runtime
         public void Exit()
         {
             _timerReturn.OnTimerFinished -= TongueReturn;
+
+            _tongueMesh.gameObject.SetActive(false);
 
             // Bools reset
             _isTongueExtended = false;
@@ -59,6 +63,8 @@ namespace Player.Runtime
             _timerReturn?.Tick();
 
             if (_hit.collider != null) _playerTransform.LookAt(new Vector3(_hit.collider.gameObject.transform.position.x, _playerTransform.position.y, _hit.collider.gameObject.transform.position.z));
+            
+            _tongueMesh.transform.position = _tongueMeshPosition.position;
 
             if (_isTongueReturned)
             {
@@ -100,6 +106,7 @@ namespace Player.Runtime
         {
             _isTongueExtended = true;
             _tongueRigidbody.transform.parent = null;
+            _tongueMesh.transform.parent = null;
 
             // Calculate the vector from the tongue to the target point
             _distanceToTarget = _hit.point - _tongueRigidbody.position;
@@ -110,8 +117,8 @@ namespace Player.Runtime
                 // Move towards the target point by setting the velocity directly to avoid excessive force accumulation
                 _tongueRigidbody.velocity = _tongueSpeed * _distanceToTarget.normalized;
 
-                _tongueContainer.LookAt(_hit.point);
-                TongueMesh(Vector3.Distance(_hit.point, _tongueContainer.position));
+                _tongueMesh.LookAt(_hit.collider.transform);
+                TongueMesh(Vector3.Distance(_hit.point, _tongueMesh.position));
             }
             else
             {
@@ -156,7 +163,8 @@ namespace Player.Runtime
             _tongueMaxDistance = 15f;
             _distanceToTarget = _tongueRigidbody.position - _playerTransform.position;
 
-            TongueMesh(Vector3.Distance(_tongueRigidbody.position, _tongueContainer.position));
+            _tongueMesh.LookAt(_hit.collider.transform);
+            TongueMesh(Vector3.Distance(_tongueRigidbody.position, _tongueMesh.position));
 
             if (_distanceToTarget.sqrMagnitude > _tongueMaxDistance * _tongueMaxDistance)
             {
@@ -180,7 +188,8 @@ namespace Player.Runtime
                 _moveBehaviour.enabled = false;
                 _characterController.Move(Time.deltaTime * _tongueSpeed * _distanceToTarget.normalized);
 
-                TongueMesh(Vector3.Distance(_tongueRigidbody.position, _tongueContainer.position));
+                _tongueMesh.LookAt(_hit.collider.transform);
+                TongueMesh(Vector3.Distance(_tongueRigidbody.position, _tongueMesh.position));
             }
             else
             {
@@ -196,11 +205,12 @@ namespace Player.Runtime
         private void TongueReturn()
         {
             _distanceToTarget = new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z) - _tongueRigidbody.position;
-            Debug.Log(1);
+
             if (_distanceToTarget.sqrMagnitude > 1f)
             {
-                TongueMesh(Vector3.Distance(_tongueRigidbody.position, _tongueContainer.position));
-                Debug.Log(2);
+                _tongueMesh.LookAt(_hit.collider.transform);
+                TongueMesh(Vector3.Distance(_tongueRigidbody.position, _tongueMesh.position));
+
                 _tongueRigidbody.velocity = _tongueSpeed * _distanceToTarget.normalized;
             }
             else
@@ -209,23 +219,30 @@ namespace Player.Runtime
                 if (_fixedJoint) _fixedJoint.connectedBody = null;
                 _tongueRigidbody.velocity = Vector3.zero;
                 _tongueRigidbody.transform.parent = _playerTransform;
+                _tongueMesh.transform.parent = _playerTransform;
                 _tongueMesh.localScale = new Vector3(_tongueMesh.localScale.x, _tongueMesh.localScale.y, .01f);
-                Debug.Log(3);
+
                 m_stateMachine.ChangeState(m_stateMachine.m_lockState);
             }
         }
 
         private void TongueMesh(float totalDistance)
         {
-            float normalizeDistance = totalDistance / totalDistance;
+            // Calculer la distance actuelle entre le rigidbody de la langue et le mesh
+            float currentDistance = Vector3.Distance(_tongueRigidbody.position, _tongueMesh.position);
 
-            _tongueMesh.localScale = Vector3.Lerp(_tongueMesh.localScale,
+            // Calculer la vitesse d'interpolation en fonction de la distance et du temps
+            float interpolationSpeed = _tongueSpeed * Time.deltaTime;
+
+            // Interpoler la taille du mesh de la langue
+            _tongueMesh.localScale = Vector3.Lerp(
+                _tongueMesh.localScale,
                 new Vector3(
                     _tongueMesh.localScale.x,
                     _tongueMesh.localScale.y,
-                    totalDistance * .035f
+                    totalDistance * 0.035f
                 ),
-                normalizeDistance
+                interpolationSpeed
             );
         }
 
@@ -239,8 +256,6 @@ namespace Player.Runtime
         private Transform _playerTransform;
         private float _tongueMaxDistance;
         private bool _isTongueAttract, _isTonguePlateform;
-        private float _velocityY;
-        private Vector3 _movement;
 
         // Tongue
         private Rigidbody _tongueRigidbody;
@@ -249,7 +264,7 @@ namespace Player.Runtime
         private Vector3 _distanceToTarget;
         private Vector3 _limitedPosition;
         private Transform _tongueMesh;
-        private Transform _tongueContainer;
+        public Transform _tongueMeshPosition;
 
         // Lock
         private Transform _currentLockTarget;
