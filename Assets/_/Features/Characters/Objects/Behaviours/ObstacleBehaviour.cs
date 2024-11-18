@@ -25,7 +25,6 @@ namespace Objects.Runtime
         {
             if (_isWatered) ResetWaterScaleEffect();
             if (_isImmobilized) ResetGroundFreezeEffect();
-            if (_isAffectedByFire) DestroyAfterFireEffect();
         }
 
         #endregion
@@ -71,18 +70,8 @@ namespace Objects.Runtime
 
         private void FireReacion()
         {
-            //Add dissolve effect here
-            _isAffectedByFire = true;
-            _timer = 0;
-        }
-
-        private void DestroyAfterFireEffect()
-        {
-            _timer += Time.deltaTime;
-            if (_timer >= _maxDelayToReset)
-            {
-                gameObject.SetActive(false);
-            }
+            _canDissolve = GetComponent<ICanDissolve>();
+            _canDissolve.StartDissolve();
         }
 
         private void WaterReaction()
@@ -131,6 +120,9 @@ namespace Objects.Runtime
         private float _timer = 0;
 
         private bool _isAffectedByFire;
+
+        [Header("Fire Effect")]
+        private ICanDissolve _canDissolve;
 
         [Header("Water Effect")]
         [SerializeField] private float _scaleSize = 2.5f;
