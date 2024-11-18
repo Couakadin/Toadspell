@@ -158,7 +158,7 @@ namespace Player.Runtime
 
             if (_cameraDirection.magnitude > 0.1f)
             {
-                Vector3 newForward = Vector3.Lerp(_characterController.transform.forward, _cameraDirection.normalized, Time.deltaTime * m_rotation);
+                Vector3 newForward = Vector3.Lerp(_characterController.transform.forward, _cameraDirection.normalized, m_rotation);
                 _characterController.transform.forward = newForward;
             }
         }
@@ -186,8 +186,6 @@ namespace Player.Runtime
         private Vector3 _cameraForward;
         private Vector3 _cameraDirection;
         private Transform _cameraTransform;
-
-        private bool _isGrounded;
 
         private float _currentSpeed;
         private Vector3 _movement;

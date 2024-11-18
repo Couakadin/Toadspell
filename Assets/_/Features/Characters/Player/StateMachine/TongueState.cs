@@ -228,13 +228,10 @@ namespace Player.Runtime
 
         private void TongueMesh(float totalDistance)
         {
-            // Calculer la distance actuelle entre le rigidbody de la langue et le mesh
             float currentDistance = Vector3.Distance(_tongueRigidbody.position, _tongueMesh.position);
 
-            // Calculer la vitesse d'interpolation en fonction de la distance et du temps
             float interpolationSpeed = _tongueSpeed * Time.deltaTime;
 
-            // Interpoler la taille du mesh de la langue
             _tongueMesh.localScale = Vector3.Lerp(
                 _tongueMesh.localScale,
                 new Vector3(
