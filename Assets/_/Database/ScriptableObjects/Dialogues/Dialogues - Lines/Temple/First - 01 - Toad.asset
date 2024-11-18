@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24cd8284dafef74a977ab172c5feba3, type: 3}
+  m_Name: First - 01 - Toad
+  m_EditorClassIdentifier: 
+  m_image: {fileID: 21300000, guid: 5ab91da04484f1f4583b19795d1083ca, type: 3}
+  m_speakerName: Frogmage
+  m_lines:
+  - m_sentence: "Oh par tous les esprits... J'ai l'impression de m'\xEAtre ramass\xE9
+      une brique en pleine face..."
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: "Non, c\u2019est une blague ?! "
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: "Un crapaud ?! UN CRAPAUD ?! Mais quel mauvais sort j\u2019ai pondu,
+      l\xE0 ?!"
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: Bon. On garde son calme, hein. Une petite erreur de rien du tout.
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: "Juste un rat\xE9, apr\xE8s... quoi ? 35 ans de pratique ? \xC7a
+      arrive, non ? M\xEAme les plus grands se sont..."
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: ...
+    m_screenTime: 0.5
+    m_image: {fileID: 0}
+  - m_sentence: "...transform\xE9s en amphibiens. OK, faut un plan. "
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: Je sais ! Les anciens du Temple ! I
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: "Ils sauront peut-\xEAtre r\xE9parer \xE7a."
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: "Allez, direction la for\xEAt... s\u2019ils se sont pas transform\xE9s
+      en foug\xE8res, eux aussi. "
+    m_screenTime: 1
+    m_image: {fileID: 0}
