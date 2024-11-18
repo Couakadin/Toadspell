@@ -14,6 +14,7 @@ namespace Enemies.Runtime
             _rigidbody = GetComponent<Rigidbody>();
             _healthBar.maxValue = m_lifePoints;
             _healthBar.value = m_lifePoints;
+            _dissolver = GetComponent<ICanDissolve>();
             _attackTimer = CreateAndSubscribeTimer(m_attackDelay, ResetCoolDown);
             _damageTimer = CreateAndSubscribeTimer(_takeDamageDelay, ResumeAfterDamage);
             ResetAnimations();
@@ -99,7 +100,13 @@ namespace Enemies.Runtime
         {
             _LockIndicator.SetActive(false);
         }
-        
+
+        [ContextMenu("test dissolve")]
+        private void TestDissolve()
+        {
+            TakeDamage(1);
+        }
+
         public override void TakeDamage(int damage)
         {
             m_lifePoints -= damage;
@@ -165,7 +172,7 @@ namespace Enemies.Runtime
         {
             m_animator.SetBool("isAttacking", false);
             _isCoolingDownAfterRush = false;
-            if (m_lifePoints <= 0) gameObject.SetActive(false);
+            if (m_lifePoints <= 0) _dissolver.StartDissolve();
             //_meshRenderer.material.color = _originalMaterial;
         }
 
@@ -218,9 +225,8 @@ namespace Enemies.Runtime
         //[SerializeField] private ParticleSystem _particleSystem;
         //[SerializeField] private AudioClip _damagedAudio;
 
-
+        private ICanDissolve _dissolver;
         private Timer _damageTimer;
-        private Color _originalMaterial;
 
         #endregion
     }
