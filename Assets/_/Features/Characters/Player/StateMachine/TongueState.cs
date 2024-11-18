@@ -91,11 +91,14 @@ namespace Player.Runtime
 
         private void DetectTarget()
         {
-            // Normalized direction between player and current lock target
-            _directionToTarget = (_currentLockTarget.position - _playerTransform.position).normalized;
+            if (_currentLockTarget == null) throw new System.Exception("Current lock target is null!");
 
-            // Raycast to the current lock target
-            if (Physics.Raycast(_playerTransform.position, _directionToTarget, out _hit, _tongueMaxDistance, _detectionLayer))
+            Vector3 adjustedPlayerPosition = _playerTransform.position;
+            adjustedPlayerPosition.y = _currentLockTarget.position.y; // Align player Y with target Y
+
+            _directionToTarget = (_currentLockTarget.position - adjustedPlayerPosition).normalized;
+
+            if (Physics.Raycast(adjustedPlayerPosition, _directionToTarget, out _hit, _tongueMaxDistance, _detectionLayer))
             {
                 _hit.collider?.TryGetComponent(out _sizeable);
                 _hit.collider?.TryGetComponent(out _fixedJoint);
@@ -276,9 +279,6 @@ namespace Player.Runtime
         private FixedJoint _fixedJoint;
 
         // Timer
-        private bool _isFirstPress = false;
-        private float _doublePressTimer = 0f;
-        private float _doublePressThreshold = 0.3f;
         private Timer _timerReturn;
 
         #endregion
