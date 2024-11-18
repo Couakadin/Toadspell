@@ -304,7 +304,7 @@ Material:
     - _Saturation: 1
     - _SelfLitHighContrast: 0
     - _SelfLitIntensity: 1
-    - _SelfLitPower: 203.9
+    - _SelfLitPower: 10
     - _SelfShadowAffectedByLightShadowStrength: 0
     - _SelfShadowHardness: 0.19
     - _SelfShadowRealTimeShadowColorPower: 1
@@ -362,7 +362,7 @@ Material:
     - _PrevPosition: {r: 0, g: 0, b: 0, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _SSAOColor: {r: 0, g: 0, b: 0, a: 0}
-    - _SelfLitColor: {r: 0.25471687, g: 1, b: 0.5978761, a: 1}
+    - _SelfLitColor: {r: 28.0037, g: 74.6451, b: 77.7066, a: 1}
     - _SelfShadowRealTimeShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowTColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
