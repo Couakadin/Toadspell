@@ -1,3 +1,5 @@
+using Data.Runtime;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Objects.Runtime
@@ -5,7 +7,7 @@ namespace Objects.Runtime
     /// <summary>
     /// Generates a grid of prefabs with specified m_rows, m_columns, and m_spacing.
     /// </summary>
-    public class GridBehaviour : MonoBehaviour
+    public class GridBehaviour : MonoBehaviour, IGrid
     {
         #region Publics
 
@@ -18,11 +20,9 @@ namespace Objects.Runtime
         public float m_spacing = 1f;
 
         [Header("Prefab Settings")]
-        [Tooltip("The m_prefab to instantiate in the grid.")]
-        public GameObject m_prefab;
-
-        public GameObject m_centralObject { get; private set; }
-
+        [Tooltip("The m_plateform to instantiate in the grid.")]
+        public GameObject m_plateform;
+        
         #endregion
 
         #region Unity
@@ -34,6 +34,12 @@ namespace Objects.Runtime
 
         #endregion
 
+        #region Methods
+
+        public GameObject GetRandomPlateform() => _plateformList[Random.Range(0, _plateformList.Count)];
+
+        #endregion
+
         #region Utils
 
         /// <summary>
@@ -41,9 +47,9 @@ namespace Objects.Runtime
         /// </summary>
         private void GenerateGrid()
         {
-            if (m_prefab == null) throw new System.Exception("Prefab is not assigned!");
+            if (m_plateform == null) throw new System.Exception("Prefab is not assigned!");
 
-            m_prefab.TryGetComponent(out MeshRenderer meshRenderer);
+            m_plateform.TryGetComponent(out MeshRenderer meshRenderer);
             if (meshRenderer == null) throw new System.Exception("Prefab does not have a MeshRenderer!");
 
             float width = meshRenderer.bounds.size.x;
@@ -59,12 +65,19 @@ namespace Objects.Runtime
                         row * (depth + m_spacing)
                     );
 
-                    GameObject plateform = Instantiate(m_prefab, position, Quaternion.identity, transform);
+                    GameObject plateform = Instantiate(m_plateform, position, Quaternion.identity, transform);
 
-                    if (row == m_rows / 2 && col == m_columns / 2) m_centralObject = plateform; 
+                    if (row == m_rows / 2 && col == m_columns / 2) continue;
+                    _plateformList.Add(plateform);
                 }
             }
         }
+
+        #endregion
+
+        #region Privates
+
+        private List<GameObject> _plateformList = new();
 
         #endregion
     }
