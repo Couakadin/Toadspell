@@ -24,14 +24,14 @@ MonoBehaviour:
     m_image: {fileID: 0}
   - m_sentence: "Un crapaud ?! UN CRAPAUD ?! Mais quel mauvais sort j\u2019ai pondu,
       l\xE0 ?!"
-    m_screenTime: 1
+    m_screenTime: 2
     m_image: {fileID: 0}
   - m_sentence: Bon. On garde son calme, hein. Une petite erreur de rien du tout.
-    m_screenTime: 1
+    m_screenTime: 1.5
     m_image: {fileID: 0}
   - m_sentence: "Juste un rat\xE9, apr\xE8s... quoi ? 35 ans de pratique ? \xC7a
       arrive, non ? M\xEAme les plus grands se sont..."
-    m_screenTime: 1
+    m_screenTime: 2
     m_image: {fileID: 0}
   - m_sentence: ...
     m_screenTime: 0.5
@@ -47,5 +47,5 @@ MonoBehaviour:
     m_image: {fileID: 0}
   - m_sentence: "Allez, direction la for\xEAt... s\u2019ils se sont pas transform\xE9s
       en foug\xE8res, eux aussi. "
-    m_screenTime: 1
+    m_screenTime: 2
     m_image: {fileID: 0}
