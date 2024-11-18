@@ -239,6 +239,7 @@ Transform:
   - {fileID: 4430079221071552464}
   - {fileID: 5077884039559925988}
   - {fileID: 7305948215225516553}
+  - {fileID: 3899345474514609119}
   - {fileID: 2702564889974632376}
   m_Father: {fileID: 1235157727936793771}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -348,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2702564889974632376
 Transform:
   m_ObjectHideFlags: 0
@@ -358,8 +359,8 @@ Transform:
   m_GameObject: {fileID: 6999590423627247462}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.01}
+  m_LocalPosition: {x: 0, y: 2.1, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 283393912131634263}
@@ -413,6 +414,37 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 72
+--- !u!1 &7962882347716807116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3899345474514609119}
+  m_Layer: 7
+  m_Name: TongueMeshPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3899345474514609119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962882347716807116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.1, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2942477459018785812}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8324299655603020914
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +579,7 @@ MonoBehaviour:
     m_Bits: 64
   m_tongue: {fileID: 59909841125045512}
   m_tongueMesh: {fileID: 2702564889974632376}
-  m_tongueContainer: {fileID: 2702564889974632376}
+  m_tongueMeshPosition: {fileID: 3899345474514609119}
   m_tongueSpeed: 100
   m_canEat: 0
   m_spellSpawner: {fileID: 481850103328051413}

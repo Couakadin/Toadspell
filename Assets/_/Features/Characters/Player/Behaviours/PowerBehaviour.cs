@@ -27,7 +27,8 @@ namespace Player.Runtime
         public GameObject m_tongue;
         [Tooltip("The mesh of the tongue.")]
         public Transform m_tongueMesh;
-        public Transform m_tongueContainer;
+        [Tooltip("Initial position of the tongue Mesh.")]
+        public Transform m_tongueMeshPosition;
         [Tooltip("The speed of the tongue.")]
         public float m_tongueSpeed;
         [Tooltip("Bool if frog can eat this frame."), HideInInspector]
@@ -120,6 +121,8 @@ namespace Player.Runtime
         private void FixedUpdate()
         {
             _stateMachine.PhysicsTick();
+
+            m_tongueMesh.transform.position = m_tongueMeshPosition.position;
         }
 
         private void LateUpdate()
