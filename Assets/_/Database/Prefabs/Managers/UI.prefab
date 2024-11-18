@@ -626,6 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a90169d033db94398e53ac6d36830c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentExchangeInStoryIndex: 0
   _dialoguePanel: {fileID: 6408286187885160621}
   _panelFadeIn: 1
   _panelFadeOut: 0.8
@@ -633,7 +634,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 15f993c6db004c444a3ee65566e49813, type: 2}
   - {fileID: 11400000, guid: cfcce87a870f32a4caeb1c81f89359bf, type: 2}
   _speakerImage: {fileID: 5384475349212688590}
-  _typingSpeed: 10
+  _typingSpeed: 5
   _timeOnScreenDelay: 1
   _characterName: {fileID: 8929331930476072472}
   _linesOfDialogue: {fileID: 4321791188637709171}
@@ -3116,6 +3117,7 @@ GameObject:
   - component: {fileID: 5997902721974630462}
   - component: {fileID: 7843884585204308706}
   - component: {fileID: 4502065439614643507}
+  - component: {fileID: 6176983056512406169}
   m_Layer: 0
   m_Name: Listener
   m_TagString: Untagged
@@ -3346,6 +3348,34 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_listerner: {fileID: 11400000, guid: c24875e98ce67b643b4d9e2ce2c2e30b, type: 2}
+--- !u!114 &6176983056512406169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159575985783138950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ae85d1e0f97d44fa14e5b40ed7e2d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 370143725704400565}
+        m_TargetAssemblyTypeName: Game.Runtime.ExchangeManager, Game.Runtime
+        m_MethodName: LaunchFirstDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_listerner: {fileID: 11400000, guid: 7fc386083059b98479748cfe742003ce, type: 2}
 --- !u!1 &5194772076136436853
 GameObject:
   m_ObjectHideFlags: 0
