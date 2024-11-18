@@ -8,7 +8,7 @@ namespace Objects.Runtime
     {
         #region Publics
 
-        public IAmElement.Element spell => m_element;
+        public IAmElement.Element spell => m_element; 
         public IAmElement.Element m_element;
 
         #endregion
