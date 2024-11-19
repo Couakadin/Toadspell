@@ -48,7 +48,6 @@ namespace Player.Runtime
             _jumpInput = _gameplayInput.Jump;
 
             _cameraTransform = Camera.main.transform;
-            _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnEnable()
@@ -175,9 +174,6 @@ namespace Player.Runtime
         [SerializeField]
         private Blackboard _playerBlackboard;
         [SerializeField] private Transform _pointOfContact;
-        [SerializeField] private AudioClip[] _footsteps;
-        private AudioSource _audioSource;
-        private int _footstepsIndex;
 
         private Animator _playerAnimator;
 

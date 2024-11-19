@@ -491,7 +491,8 @@ GameObject:
   - component: {fileID: 7403009533915956199}
   - component: {fileID: 1362105111767109176}
   - component: {fileID: 8439310960531280909}
-  - component: {fileID: 5761718808146387492}
+  - component: {fileID: 1066218291260339722}
+  - component: {fileID: 5930300728736771341}
   m_Layer: 7
   m_Name: player_fin_bande_denculer_on_y_touche_plus
   m_TagString: Player
@@ -653,7 +654,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a238b7b0c2a314db329eb811ab11e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &5761718808146387492
+--- !u!114 &1066218291260339722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324299655603020914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a11b9fe72de6d494b833ea7556de5aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _footsteps:
+  - {fileID: 8300000, guid: 633f75e38b694fa4abdf14d52cde377b, type: 3}
+  - {fileID: 8300000, guid: 5096f62285a89ef469956376d76e9d3a, type: 3}
+  - {fileID: 8300000, guid: 4df134773d6fad34c9d33c37a4500b8f, type: 3}
+  - {fileID: 8300000, guid: e8bfccca56bbf564caec5d2076119388, type: 3}
+  - {fileID: 8300000, guid: c134f75c6259165409b83a1027c665c4, type: 3}
+  - {fileID: 8300000, guid: 788abff056719c9438a6305b43012494, type: 3}
+  - {fileID: 8300000, guid: 8c23b405ea8709445ba6c6587a9a226a, type: 3}
+  _jumpUp: {fileID: 8300000, guid: 929862d285b351441b8bde762abfca4c, type: 3}
+  _jumpDown: {fileID: 8300000, guid: 6816fd2f49612654aa89f8f230483a13, type: 3}
+  _audioSource: {fileID: 5930300728736771341}
+  _groundBehaviour: {fileID: 2735069469735884496}
+--- !u!82 &5930300728736771341
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -665,7 +690,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 8329549548823700191, guid: 1375aa5abc7434140873cf96568cc46f,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -952,6 +977,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: -7270565422277788790, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
@@ -1418,7 +1473,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 72d73a0cfa0eb31449539db799135704, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -6838429127929745560, guid: 72d73a0cfa0eb31449539db799135704,
