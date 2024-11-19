@@ -35,6 +35,13 @@ namespace Enemies.Runtime
         public float m_durationFadeOut;
         public float m_durationFadeIn;
 
+        [Header("Line Settings")]
+        public GameObject m_wave;
+        public float m_timeWaveLine;
+        public float m_firstWaveSpeed;
+        public float m_secondWaveSpeed;
+        public float m_thirdWaveSpeed;
+
         [Header("Zone Danger Settings")]
         public GameObject m_dangerZone;
         public float m_growthSpeed;

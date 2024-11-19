@@ -19,9 +19,17 @@ namespace Objects.Runtime
         [Tooltip("The m_spacing between prefabs (set to 0 to have prefabs touching each other).")]
         public float m_spacing = 0f;
 
+        [Header("Boss Settings")]
+        [Tooltip("The offset of the boss in Y.")]
+        public float m_offsetHeightBoss;
+
         [Header("Prefab Settings")]
         [Tooltip("The platform prefab to instantiate in the grid.")]
         public GameObject m_platform;
+        [Tooltip("The boss prefab to instantiate in the grid.")]
+        public GameObject m_boss;
+
+        public GameObject m_centralPlatform { get; set; }
 
         #endregion
 
@@ -30,7 +38,7 @@ namespace Objects.Runtime
         /// <summary>
         /// Generates the grid when the script is loaded or a value is changed in the Inspector.
         /// </summary>
-        private void Start() => GenerateGrid();
+        private void Awake() => GenerateGrid();
 
         #endregion
 
@@ -67,7 +75,12 @@ namespace Objects.Runtime
 
                     GameObject plateform = Instantiate(m_platform, position, Quaternion.identity, transform);
 
-                    if (row == m_rows / 2 && col == m_columns / 2) continue;
+                    if (row == m_rows / 2 && col == m_columns / 2)
+                    {
+                        m_centralPlatform = plateform;
+                        m_boss.transform.position = m_centralPlatform.transform.position + new Vector3(0, m_offsetHeightBoss,0);
+                        continue;
+                    }
                     _plateformList.Add(plateform);
                 }
             }
