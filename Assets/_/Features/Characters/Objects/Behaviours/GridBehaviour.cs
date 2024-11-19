@@ -17,12 +17,12 @@ namespace Objects.Runtime
         [Tooltip("The number of m_columns in the grid.")]
         public int m_columns = 5;
         [Tooltip("The m_spacing between prefabs (set to 0 to have prefabs touching each other).")]
-        public float m_spacing = 1f;
+        public float m_spacing = 0f;
 
         [Header("Prefab Settings")]
-        [Tooltip("The m_plateform to instantiate in the grid.")]
-        public GameObject m_plateform;
-        
+        [Tooltip("The platform prefab to instantiate in the grid.")]
+        public GameObject m_platform;
+
         #endregion
 
         #region Unity
@@ -36,7 +36,7 @@ namespace Objects.Runtime
 
         #region Methods
 
-        public GameObject GetRandomPlateform() => _plateformList[Random.Range(0, _plateformList.Count)];
+        public GameObject GetRandomPlatform() => _plateformList[Random.Range(0, _plateformList.Count)];
 
         #endregion
 
@@ -47,9 +47,9 @@ namespace Objects.Runtime
         /// </summary>
         private void GenerateGrid()
         {
-            if (m_plateform == null) throw new System.Exception("Prefab is not assigned!");
+            if (m_platform == null) throw new System.Exception("Prefab is not assigned!");
 
-            m_plateform.TryGetComponent(out MeshRenderer meshRenderer);
+            m_platform.TryGetComponent(out MeshRenderer meshRenderer);
             if (meshRenderer == null) throw new System.Exception("Prefab does not have a MeshRenderer!");
 
             float width = meshRenderer.bounds.size.x;
@@ -65,7 +65,7 @@ namespace Objects.Runtime
                         row * (depth + m_spacing)
                     );
 
-                    GameObject plateform = Instantiate(m_plateform, position, Quaternion.identity, transform);
+                    GameObject plateform = Instantiate(m_platform, position, Quaternion.identity, transform);
 
                     if (row == m_rows / 2 && col == m_columns / 2) continue;
                     _plateformList.Add(plateform);

@@ -4,6 +4,6 @@ namespace Data.Runtime
 {
     public interface IGrid
     {
-        public GameObject GetRandomPlateform();
+        public GameObject GetRandomPlatform();
     }
 }

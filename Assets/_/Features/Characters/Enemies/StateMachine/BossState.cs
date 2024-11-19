@@ -33,25 +33,13 @@ namespace Enemies.Runtime
             m_timer.OnTimerFinished -= ChangeState;
         }
 
-        public void Tick()
-        {
-            m_timer?.Tick();
-        }
+        public void Tick() => m_timer?.Tick();
 
-        public void PhysicsTick()
-        {
+        public void PhysicsTick() { }
 
-        }
+        public void FinalTick() { }
 
-        public void FinalTick()
-        {
-
-        }
-
-        public void HandleInput()
-        {
-
-        }
+        public void HandleInput() { }
 
         #endregion
 
@@ -59,7 +47,7 @@ namespace Enemies.Runtime
 
         private void ChangeState()
         {
-            int rand = Random.Range(0, 3);
+            int rand = Random.Range(0, 0);
 
             switch(rand)
             {

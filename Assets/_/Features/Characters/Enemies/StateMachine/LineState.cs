@@ -17,35 +17,17 @@ namespace Enemies.Runtime
             m_stateMachine = stateMachine;
         }
 
-        public void Enter()
-        {
+        public void Enter() { }
 
-        }
+        public void Exit() { }
 
-        public void Exit()
-        {
+        public void Tick() { }
 
-        }
+        public void PhysicsTick() { }
 
-        public void Tick()
-        {
+        public void FinalTick() { }
 
-        }
-
-        public void PhysicsTick()
-        {
-
-        }
-
-        public void FinalTick()
-        {
-
-        }
-
-        public void HandleInput()
-        {
-
-        }
+        public void HandleInput() { }
 
         #endregion
 
