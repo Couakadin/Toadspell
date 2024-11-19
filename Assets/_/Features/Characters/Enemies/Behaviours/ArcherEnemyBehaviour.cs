@@ -22,12 +22,14 @@ namespace Enemies.Runtime
         void Update()
     	{
             Vector3 playerPosition = m_blackboard.GetValue<Vector3>("Position");
+            Vector3 bookPosition = m_blackboard.GetValue<Vector3>("Contact");
             var distanceWithPlayer = (playerPosition - transform.position).magnitude;
 
             if (distanceWithPlayer < m_maxDetectionRange)
             {
                 SetOrResetTimer(_attackTimer);
                 transform.LookAt(playerPosition);
+                _mouth.transform.LookAt(bookPosition);
             }
 
             UpdateTimers();
@@ -100,7 +102,7 @@ namespace Enemies.Runtime
 
         #region Private & Protected
 
-       
+        [SerializeField] private Transform _mouth;
         [SerializeField] private float _takeDamageDelay = .5f;
         [SerializeField] private Slider _healthBar;
         private Color _originalMaterial;

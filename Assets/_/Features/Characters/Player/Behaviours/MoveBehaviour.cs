@@ -48,6 +48,7 @@ namespace Player.Runtime
             _jumpInput = _gameplayInput.Jump;
 
             _cameraTransform = Camera.main.transform;
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnEnable()
@@ -81,6 +82,7 @@ namespace Player.Runtime
             else _movement = new Vector3(_characterController.transform.forward.x * m_jumpPlateform, m_velocity.y, _characterController.transform.forward.z * m_jumpPlateform);
 
             _playerBlackboard.SetValue("Position", transform.position);
+            _playerBlackboard.SetValue("Contact", _pointOfContact.position);
         }
 
         #endregion
@@ -117,6 +119,8 @@ namespace Player.Runtime
 
             // Calculate movement
             _characterController.Move(Time.deltaTime * _movement);
+
+            //_audioSource.PlayOneShot(_footsteps[_footstepsIndex]);
         }
 
         /// <summary>
@@ -170,6 +174,10 @@ namespace Player.Runtime
         [Header("Blackboards"), Required]
         [SerializeField]
         private Blackboard _playerBlackboard;
+        [SerializeField] private Transform _pointOfContact;
+        [SerializeField] private AudioClip[] _footsteps;
+        private AudioSource _audioSource;
+        private int _footstepsIndex;
 
         private Animator _playerAnimator;
 
