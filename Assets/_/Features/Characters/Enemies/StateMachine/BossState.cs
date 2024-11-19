@@ -47,7 +47,7 @@ namespace Enemies.Runtime
 
         private void ChangeState()
         {
-            int rand = Random.Range(0, 0);
+            int rand = Random.Range(0, 3);
 
             switch(rand)
             {
