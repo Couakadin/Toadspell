@@ -10,6 +10,7 @@ namespace Player.Runtime
 
         #endregion
 
+
         #region Unity
         private void Update()
         {
@@ -25,6 +26,7 @@ namespace Player.Runtime
         }
 
         #endregion
+
 
         #region Privates
 
