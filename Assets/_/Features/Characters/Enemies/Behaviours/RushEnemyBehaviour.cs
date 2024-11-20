@@ -64,12 +64,13 @@ namespace Enemies.Runtime
         {
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.isKinematic = true;
-            TouchedPlayer();
-            if (_isCoolingDownAfterRush) return;
+            //if (_isCoolingDownAfterRush) return;
             if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
             {
+                Debug.Log("hurting player");
                 hurt.TakeDamage(m_damages);
             }
+            TouchedPlayer();
         }
 
         private void OnCollisionEnter(Collision collision)

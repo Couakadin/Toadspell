@@ -280,7 +280,7 @@ MonoBehaviour:
   m_blackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   m_animator: {fileID: 2293500722224115723}
   _LockIndicator: {fileID: 9142448801338757842}
-  m_renderer: {fileID: 0}
+  m_renderer: {fileID: 9182105663463202562}
   m_attackDelay: 1
   m_lifePoints: 2
   m_damages: 1
@@ -354,7 +354,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.53, y: 8.49, z: 0.42}
+  m_Size: {x: 4.53, y: 7.39, z: 0.42}
   m_Center: {x: 0, y: 3.92, z: 3.99}
 --- !u!65 &4480438632064739162
 BoxCollider:
@@ -375,8 +375,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 6.2, z: 8.21}
-  m_Center: {x: 0, y: 3, z: 0.62}
+  m_Size: {x: 4.27, y: 6.2, z: 7.27}
+  m_Center: {x: 0, y: 3.09, z: 0.62}
 --- !u!1 &3793596806345422209
 GameObject:
   m_ObjectHideFlags: 0
