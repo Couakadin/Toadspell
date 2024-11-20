@@ -107,6 +107,12 @@ namespace Enemies.Runtime
         {
             m_lifePoints -= damage;
             _healthBar.value = m_lifePoints;
+            if (m_lifePoints <= 0)
+            {
+                m_lifePoints = 0;
+                _enemySound.PlaySoundWhenDying();
+                _dissolver.StartDissolve();
+            }
             Recoil();
         }
 
@@ -165,7 +171,7 @@ namespace Enemies.Runtime
             if (m_lifePoints <= 0)
             {
                 //_enemySound.PlaySoundWhenDying();
-                _dissolver.StartDissolve();
+                //_dissolver.StartDissolve();
             }
         }
 
