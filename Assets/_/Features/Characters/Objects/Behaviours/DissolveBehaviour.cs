@@ -7,11 +7,6 @@ namespace Objects.Runtime
 {
     public class DissolveBehaviour : MonoBehaviour, ICanDissolve
     {
-        #region Publics
-
-        #endregion
-
-
         #region Unity API
 
         private void Awake()

@@ -172,7 +172,11 @@ namespace Enemies.Runtime
         {
             m_animator.SetBool("isAttacking", false);
             _isCoolingDownAfterRush = false;
-            if (m_lifePoints <= 0) _dissolver.StartDissolve();
+            if (m_lifePoints <= 0)
+            {
+                //_enemySound.PlaySoundWhenDying();
+                _dissolver.StartDissolve();
+            }
             //_meshRenderer.material.color = _originalMaterial;
         }
 
@@ -221,6 +225,7 @@ namespace Enemies.Runtime
 
         [Header("References")]
          private Rigidbody _rigidbody;
+        [SerializeField] private EnemySoundBehaviour _enemySound;
         //[SerializeField] private MeshRenderer _meshRenderer;
         //[SerializeField] private ParticleSystem _particleSystem;
         //[SerializeField] private AudioClip _damagedAudio;

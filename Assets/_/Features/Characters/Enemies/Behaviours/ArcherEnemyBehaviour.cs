@@ -85,7 +85,12 @@ namespace Enemies.Runtime
 
         private void ResumeAfterDamage()
         {
-            if (m_lifePoints <= 0) _dissolver.StartDissolve();
+            if (m_lifePoints <= 0)
+            {
+                //_enemySound.PlaySoundWhenDying();
+                _dissolver.StartDissolve();
+
+            }
         }
 
         private void UpdateTimers()
@@ -108,6 +113,7 @@ namespace Enemies.Runtime
         [SerializeField] private float _takeDamageDelay = .5f;
         [SerializeField] private Transform _mouth;
         [SerializeField] private Slider _healthBar;
+        [SerializeField] private EnemySoundBehaviour _enemySound;
         private Color _originalMaterial;
         private bool _isShooting = false;
         private Timer _damageTimer;
