@@ -73,7 +73,7 @@ namespace Objects.Runtime
                         row * (depth + m_spacing)
                     );
 
-                    GameObject plateform = Instantiate(m_platform, position, Quaternion.identity, transform);
+                    GameObject plateform = Instantiate(m_platform, transform.position + position, Quaternion.identity, transform);
 
                     if (row == m_rows / 2 && col == m_columns / 2)
                     {
