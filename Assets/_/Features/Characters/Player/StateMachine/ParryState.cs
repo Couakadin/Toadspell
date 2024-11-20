@@ -26,6 +26,7 @@ namespace Player.Runtime
             _timer.Begin();
             m_stateMachine.m_powerBehaviour.m_parryObject.SetActive(true);
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsParry", true);
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, .7f); // Attack Layer
         }
 
         public void Exit()
@@ -33,6 +34,7 @@ namespace Player.Runtime
             m_stateMachine.m_powerBehaviour.m_parryObject.SetActive(false);
             _timer.OnTimerFinished -= ChangeState;
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsParry", false);
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, 0f); // Attack Layer
         }
 
         public void Tick()
