@@ -37,6 +37,7 @@ namespace Enemies.Runtime
 
         [Header("Line Settings")]
         public GameObject m_wave;
+        public float m_waveDistance;
         public float m_timeWaveLine;
         public float m_firstWaveSpeed;
         public float m_secondWaveSpeed;
