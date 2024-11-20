@@ -39,7 +39,6 @@ namespace Enemies.Runtime
             if (sqrDistance < detectionRange && !_isRushing && !_isCoolingDownAfterRush)
             {
                 transform.LookAt(playerFollow);
-                // We can show here that the enemy is about to rush
 
                 if (IsAlignedWithPlayer(playerPosition) && sqrDistance < rageRange)
                 {
