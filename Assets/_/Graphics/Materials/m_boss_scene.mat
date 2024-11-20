@@ -221,7 +221,7 @@ Material:
     - _MCIALO: 0
     - _MCapIntensity: 1
     - _MVCOL: 0
-    - _MaiColPo: 0.8
+    - _MaiColPo: 1
     - _MaxFadDistance: 2
     - _Metallic: 0
     - _MinFadDistance: 0
@@ -301,13 +301,13 @@ Material:
     - _SelfLitIntensity: 0
     - _SelfLitPower: 2
     - _SelfShadowAffectedByLightShadowStrength: 0
-    - _SelfShadowHardness: 0.878
+    - _SelfShadowHardness: 0.699
     - _SelfShadowRealTimeShadowColorPower: 1
-    - _SelfShadowRealtimeShadowIntensity: 0.328
+    - _SelfShadowRealtimeShadowIntensity: 0.544
     - _SelfShadowShadowTAtViewDirection: 0
-    - _SelfShadowThreshold: 0.21
+    - _SelfShadowThreshold: 0.946
     - _ShadowColorTexturePower: 0
-    - _ShadowHardness: 0.69
+    - _ShadowHardness: 0.185
     - _ShadowTColorPower: 1
     - _ShadowTHardness: 1
     - _ShadowTIntensity: 1
@@ -348,11 +348,11 @@ Material:
     - _GlossColor: {r: 1, g: 1, b: 1, a: 1}
     - _Glow_Color: {r: 1, g: 1, b: 1, a: 1}
     - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _ObjPosi: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
-    - _OverallShadowColor: {r: 0.21886778, g: 0.004542534, b: 0.007513846, a: 1}
+    - _OverallShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
     - _PrevPosition: {r: 0, g: 0, b: 0, a: 0}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
