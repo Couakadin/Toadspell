@@ -32,7 +32,7 @@ namespace Player.Runtime
                 return;
             }
 
-            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, 1f); // Attack Layer
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, .7f); // Attack Layer
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsAttack", true);
             m_stateMachine.m_powerBehaviour.CastASpell();
 
@@ -49,6 +49,7 @@ namespace Player.Runtime
 
         public void Exit()
         {
+            m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, 0f);
             _projectile?.SetActive(false);
 
             _timer?.Reset();
