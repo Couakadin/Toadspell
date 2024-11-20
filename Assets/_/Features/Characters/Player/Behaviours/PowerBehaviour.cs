@@ -62,6 +62,7 @@ namespace Player.Runtime
 
         #endregion
 
+
         #region Unity
 
         private void Awake()
@@ -133,11 +134,23 @@ namespace Player.Runtime
 
         #endregion
 
+
         #region Methods
 
         public IAmElement.Element spell => m_spell;
 
+        public void CastASpell()
+        {
+            int spellType = (int)m_spell;
+            _playerSoundBehaviour.PlaySpellSound(spellType);
+        }
+
+        public void TongueSoundOnExtension()
+        {
+            _playerSoundBehaviour.PlayTongueSound();
+        }
         #endregion
+
 
         #region Privates
 
@@ -147,6 +160,7 @@ namespace Player.Runtime
 
         private GameInput _gameInput;
         private GameInput.GameplayActions _gameplayInput;
+        [SerializeField] PlayerSoundBehaviour _playerSoundBehaviour;
 
         #endregion
     }
