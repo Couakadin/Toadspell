@@ -109,7 +109,6 @@ namespace Player.Runtime
         private Rigidbody _projectileRigidbody;
 
         private GameObject _target;
-        private Timer _timer;
         private PlayerSoundBehaviour _soundBehaviour;
         private Collider _targetCollider;
 
