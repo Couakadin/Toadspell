@@ -22,6 +22,7 @@ namespace Enemies.Runtime
             _wave.TryGetComponent(out _waveBody);
 
             _timerWave = new(_bossBehaviour.m_timeWaveLine);
+            _timerStill = new(1f);
         }
 
         public void Enter()
@@ -30,25 +31,32 @@ namespace Enemies.Runtime
 
             _direction = GetRandomDirection();
             
-            _waveBody.velocity = Vector3.zero;
             _wave.transform.position = _gridInterface.m_centralPlatform.transform.position;
             if (_direction == Vector3.forward) _wave.transform.rotation = Quaternion.Euler(0, 270f, 0);
             else if (_direction == Vector3.back) _wave.transform.rotation = Quaternion.Euler(0, 90f, 0);
             else if (_direction == Vector3.right) _wave.transform.rotation = Quaternion.Euler(0, 0, 0);
             else if (_direction == Vector3.left) _wave.transform.rotation = Quaternion.Euler(0, 180f, 0);
-            _wave.SetActive(true);
 
-            _timerWave?.Reset();
+            _timerStill.OnTimerFinished += StartReturningToCenter;
+            _timerStill?.Reset();
             _timerWave?.Begin();
+            Debug.Log(_timerWave.GetRemainingTime());
         }
 
-        public void Exit() => _wave.SetActive(false);
+        public void Exit()
+        {
+            _timerWave?.UpdateTimer(_bossBehaviour.m_timeWaveLine - 1);
+
+            _wave.SetActive(false);
+            _timerStill.OnTimerFinished -= StartReturningToCenter;
+        }
 
         public void Tick() 
         {
             _timerWave?.Tick();
+            _timerStill?.Tick();
 
-            MoveWave();
+            if (!_timerWave.IsRunning()) MoveWave();
         }
 
         public void PhysicsTick() { }
@@ -70,30 +78,30 @@ namespace Enemies.Runtime
 
         private void MoveWave()
         {
+            _wave.SetActive(true);
+
             if (_index == 3) _waveSpeed = _bossBehaviour.m_firstWaveSpeed;
             else if (_index == 2) _waveSpeed = _bossBehaviour.m_secondWaveSpeed;
             else if (_index == 1) _waveSpeed = _bossBehaviour.m_thirdWaveSpeed;
-            float t = _timerWave.GetRemainingTime() * _waveSpeed;
 
             Vector3 targetDirection = (_gridInterface.m_centralPlatform.transform.position + _direction * 100f) - _wave.transform.position;
             targetDirection.Normalize();
 
-            _waveBody.velocity = targetDirection * t;
+            _waveBody.velocity = targetDirection * _waveSpeed;
 
             Vector3 distanceToCenter = _wave.transform.position - _gridInterface.m_centralPlatform.transform.position;
-            if (distanceToCenter.sqrMagnitude > _waveBody.velocity.sqrMagnitude) StartReturningToCenter();
+            if (distanceToCenter.sqrMagnitude > _bossBehaviour.m_waveDistance)
+            {
+                _waveBody.velocity = Vector3.zero;
+                _timerStill?.Begin();
+            }
         }
 
         private void StartReturningToCenter()
         {
-            _wave.SetActive(false);
             _index--;
 
-            if (_index <= 0)
-            {
-                ChangeState();
-                return;
-            }
+            if (_index <= 0) ChangeState();
 
             m_stateMachine.ChangeState(m_stateMachine.m_lineState);
         }
@@ -112,6 +120,7 @@ namespace Enemies.Runtime
 
         private GameObject _wave;
         private Timer _timerWave;
+        private Timer _timerStill;
         private Rigidbody _waveBody;
         private float _waveSpeed;
 
