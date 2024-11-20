@@ -22,6 +22,7 @@ namespace Enemies.Runtime
             projectile.SetActive(true);
             projectile.transform.position = _mouth.position;
             projectile.transform.rotation = _mouth.rotation;
+            _enemySoundBehaviour.PlaySoundWhenAttacking();
         }
 
         #endregion
@@ -30,7 +31,7 @@ namespace Enemies.Runtime
         #region Privates & Protected
 
         [SerializeField] private Transform _mouth;
-
+        [SerializeField] private EnemySoundBehaviour _enemySoundBehaviour;
         #endregion
     }
 }

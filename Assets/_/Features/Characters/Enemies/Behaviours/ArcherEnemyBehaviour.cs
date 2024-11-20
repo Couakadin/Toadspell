@@ -28,7 +28,9 @@ namespace Enemies.Runtime
             if (distanceWithPlayer < m_maxDetectionRange)
             {
                 SetOrResetTimer(_attackTimer);
-                transform.LookAt(playerPosition);
+                Quaternion lookOnLoook = Quaternion.LookRotation(playerPosition -  transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLoook, _rotationSpeed * Time.deltaTime);
+                //transform.LookAt(playerPosition);
                 _mouth.transform.LookAt(bookPosition);
             }
 
@@ -102,8 +104,9 @@ namespace Enemies.Runtime
 
         #region Private & Protected
 
-        [SerializeField] private Transform _mouth;
+        [SerializeField] private float _rotationSpeed;
         [SerializeField] private float _takeDamageDelay = .5f;
+        [SerializeField] private Transform _mouth;
         [SerializeField] private Slider _healthBar;
         private Color _originalMaterial;
         private bool _isShooting = false;
