@@ -107,7 +107,7 @@ namespace Player.Runtime
             m_velocity.y += Time.deltaTime * m_gravity * multiplier;
 
             _playerAnimator.SetLayerWeight(0, 0f); // Move Layer
-            _playerAnimator.SetLayerWeight(1, .7f); // Jump Layer
+            _playerAnimator.SetLayerWeight(1, .8f); // Jump Layer
             _playerAnimator.SetBool("IsJump", true);
         }
 
