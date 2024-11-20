@@ -90,7 +90,7 @@ namespace Enemies.Runtime
             _waveBody.velocity = targetDirection * _waveSpeed;
 
             Vector3 distanceToCenter = _wave.transform.position - _gridInterface.m_centralPlatform.transform.position;
-            if (distanceToCenter.sqrMagnitude > 2000f)
+            if (distanceToCenter.sqrMagnitude > _bossBehaviour.m_waveDistance)
             {
                 _waveBody.velocity = Vector3.zero;
                 _timerStill?.Begin();
