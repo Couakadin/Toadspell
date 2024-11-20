@@ -101,7 +101,11 @@ namespace Enemies.Runtime
         {
             _index--;
 
-            if (_index <= 0) ChangeState();
+            if (_index <= 0)
+            {
+                ChangeState();
+                return;
+            }
 
             m_stateMachine.ChangeState(m_stateMachine.m_lineState);
         }
