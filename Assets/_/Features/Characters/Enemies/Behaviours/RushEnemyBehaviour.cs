@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Enemies.Runtime
 {
-    public class RushEnemyBehaviour : EnemyBaseBehaviour
+    public class RushEnemyBehaviour : EnemyBaseBehaviour, ICanBeImmobilized
     {
 
         #region Unity API
@@ -22,6 +22,8 @@ namespace Enemies.Runtime
 
         void Update()
     	{
+            if(_isFrozen) return;
+
             if(!_isRushing && !_isCoolingDownAfterRush)
             {
                 ResetAnimations();
@@ -101,23 +103,11 @@ namespace Enemies.Runtime
             _LockIndicator.SetActive(false);
         }
 
-        [ContextMenu("test dissolve")]
-        private void TestDissolve()
-        {
-            TakeDamage(1);
-        }
-
         public override void TakeDamage(int damage)
         {
             m_lifePoints -= damage;
             _healthBar.value = m_lifePoints;
             Recoil();
-            if (m_lifePoints <= 0)
-            {
-                //_meshRenderer.enabled = false;
-                //_particleSystem.Play();
-                //Sound
-            }
         }
 
         #endregion
@@ -177,7 +167,6 @@ namespace Enemies.Runtime
                 //_enemySound.PlaySoundWhenDying();
                 _dissolver.StartDissolve();
             }
-            //_meshRenderer.material.color = _originalMaterial;
         }
 
         private void UpdateTimers()
@@ -202,6 +191,11 @@ namespace Enemies.Runtime
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, _rushDistance);
         }
+
+        public void FreezePosition() => _isFrozen = true;
+
+
+        public void UnFreezePosition() => _isFrozen = false;
 
         #endregion
 
@@ -232,6 +226,7 @@ namespace Enemies.Runtime
 
         private ICanDissolve _dissolver;
         private Timer _damageTimer;
+        private bool _isFrozen = false;
 
         #endregion
     }

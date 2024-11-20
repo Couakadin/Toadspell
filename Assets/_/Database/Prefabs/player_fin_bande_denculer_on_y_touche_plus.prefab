@@ -443,7 +443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1671810382434410528}
-  - component: {fileID: 1437995365117766470}
+  - component: {fileID: 3977572317765814337}
   m_Layer: 7
   m_Name: Listeners
   m_TagString: Untagged
@@ -466,7 +466,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1235157727936793771}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1437995365117766470
+--- !u!114 &3977572317765814337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -475,7 +475,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5243987855818531307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d498ee970a154ff478d54d8731bbdf7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 873639abf14ba6d4d87530f3d0127362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_event:
@@ -484,16 +484,16 @@ MonoBehaviour:
       - m_Target: {fileID: 1362105111767109176}
         m_TargetAssemblyTypeName: Player.Runtime.HealthBehaviour, Player.Runtime
         m_MethodName: UpdateLives
-        m_Mode: 3
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_listerner: {fileID: 11400000, guid: a9aed23f086d91f45bebe128437a182d, type: 2}
+  m_listerner: {fileID: 11400000, guid: 4227beb429a233d429d4b91d5ca62310, type: 2}
 --- !u!1 &5492780292791217584
 GameObject:
   m_ObjectHideFlags: 0

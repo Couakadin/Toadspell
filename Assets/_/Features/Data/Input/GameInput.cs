@@ -315,6 +315,15 @@ namespace Data.Runtime
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Setttings"",
+                    ""type"": ""Button"",
+                    ""id"": ""e596598c-673a-4c70-9a01-80a57e63811c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -361,6 +370,28 @@ namespace Data.Runtime
                     ""action"": ""CutDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4398730e-2cc0-41c7-a325-901ff5d391f8"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Setttings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""578be1f9-6b14-46d2-b388-22c5e3438ca9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Setttings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -380,6 +411,7 @@ namespace Data.Runtime
             m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
             m_Dialogue_Skip = m_Dialogue.FindAction("Skip", throwIfNotFound: true);
             m_Dialogue_CutDialogue = m_Dialogue.FindAction("CutDialogue", throwIfNotFound: true);
+            m_Dialogue_Setttings = m_Dialogue.FindAction("Setttings", throwIfNotFound: true);
         }
 
         ~@GameInput()
@@ -543,12 +575,14 @@ namespace Data.Runtime
         private List<IDialogueActions> m_DialogueActionsCallbackInterfaces = new List<IDialogueActions>();
         private readonly InputAction m_Dialogue_Skip;
         private readonly InputAction m_Dialogue_CutDialogue;
+        private readonly InputAction m_Dialogue_Setttings;
         public struct DialogueActions
         {
             private @GameInput m_Wrapper;
             public DialogueActions(@GameInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Skip => m_Wrapper.m_Dialogue_Skip;
             public InputAction @CutDialogue => m_Wrapper.m_Dialogue_CutDialogue;
+            public InputAction @Setttings => m_Wrapper.m_Dialogue_Setttings;
             public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -564,6 +598,9 @@ namespace Data.Runtime
                 @CutDialogue.started += instance.OnCutDialogue;
                 @CutDialogue.performed += instance.OnCutDialogue;
                 @CutDialogue.canceled += instance.OnCutDialogue;
+                @Setttings.started += instance.OnSetttings;
+                @Setttings.performed += instance.OnSetttings;
+                @Setttings.canceled += instance.OnSetttings;
             }
 
             private void UnregisterCallbacks(IDialogueActions instance)
@@ -574,6 +611,9 @@ namespace Data.Runtime
                 @CutDialogue.started -= instance.OnCutDialogue;
                 @CutDialogue.performed -= instance.OnCutDialogue;
                 @CutDialogue.canceled -= instance.OnCutDialogue;
+                @Setttings.started -= instance.OnSetttings;
+                @Setttings.performed -= instance.OnSetttings;
+                @Setttings.canceled -= instance.OnSetttings;
             }
 
             public void RemoveCallbacks(IDialogueActions instance)
@@ -605,6 +645,7 @@ namespace Data.Runtime
         {
             void OnSkip(InputAction.CallbackContext context);
             void OnCutDialogue(InputAction.CallbackContext context);
+            void OnSetttings(InputAction.CallbackContext context);
         }
     }
 }

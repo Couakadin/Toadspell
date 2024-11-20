@@ -291,6 +291,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Setttings",
+                    "type": "Button",
+                    "id": "e596598c-673a-4c70-9a01-80a57e63811c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -335,6 +344,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "CutDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4398730e-2cc0-41c7-a325-901ff5d391f8",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Setttings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "578be1f9-6b14-46d2-b388-22c5e3438ca9",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Setttings",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

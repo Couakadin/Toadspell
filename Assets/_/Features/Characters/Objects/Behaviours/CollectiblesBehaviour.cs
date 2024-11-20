@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Data.Runtime;
+using Player.Runtime;
 
 namespace Objects.Runtime
 {
@@ -15,14 +16,16 @@ namespace Objects.Runtime
             //meshRenderer.enabled = true;
         }
 
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if(other.gameObject.layer == 7)
-        //    {
-        //        Debug.Log($"collect + {_pointsToSend}");
-        //        Collect();
-        //    }
-        //}
+        private void OnTriggerEnter(Collider collision)
+        {
+            if (collision.gameObject.TryGetComponent(out PowerBehaviour interact))
+            {
+                if (!interact.m_canEat) return;
+
+                Collect();
+                interact.m_canEat = false;
+            }
+        }
 
         #endregion
 
@@ -45,13 +48,23 @@ namespace Objects.Runtime
             gameObject.SetActive(false);
         }
 
+        public void OnLock()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnUnlock()
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
 
 
         #region Privates & Protected
 
-        [SerializeField] private float _pointsToSend;
-        [SerializeField] private FloatEvent _onCollectionEvent;
+        [SerializeField] private int _pointsToSend;
+        [SerializeField] private IntEvent _onCollectionEvent;
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private ParticleSystem _collectionParticles;
         [SerializeField] private AudioClip _collectionSound;
