@@ -14,13 +14,7 @@ namespace Game.Runtime
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("collifion");
             StartFallingSequence();
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-
         }
 
         #endregion
@@ -35,7 +29,7 @@ namespace Game.Runtime
 
             _fallingSequence.Append(transform.DOShakePosition(_shakingDuration, _shakingStrength, _shakingVibrations, _shankingRandomness));
             _fallingSequence.Append(transform.DOMoveY(_fallingPositionY, _fallingDuration));
-            _fallingSequence.Append(HideOrShowPlatform(_HideMaterialAplha, _durationOfFadeOut));
+            //_fallingSequence.Append(HideOrShowPlatform(_HideMaterialAplha, _durationOfFadeOut));
             _fallingSequence.AppendInterval(_DelayForRespawn);
             _fallingSequence.AppendCallback(RespawnAfterAWhile);
         }
@@ -49,7 +43,7 @@ namespace Game.Runtime
         private void RespawnAfterAWhile()
         {
             transform.position = _originPosition;
-            _meshRenderer.material.DOFade(_ShowMaterialAlpha, _durationOfFadeIn);
+            //_meshRenderer.material.DOFade(_ShowMaterialAlpha, _durationOfFadeIn);
         }
         #endregion
 

@@ -40,6 +40,7 @@ namespace Player.Runtime
 
             _tongueMaxDistance = m_stateMachine.m_powerBehaviour.m_maxDetectionRadius;
             _currentLockTarget = m_stateMachine.m_lockState.m_currentLockTarget?.transform;
+            m_stateMachine.m_powerBehaviour.TongueSoundOnExtension();
             if (_currentLockTarget == null) m_stateMachine.ChangeState(m_stateMachine.m_lockState);
         }
 
@@ -86,6 +87,7 @@ namespace Player.Runtime
         public void HandleInput() { }
 
         #endregion
+
 
         #region Utils
 
@@ -247,6 +249,7 @@ namespace Player.Runtime
         }
 
         #endregion
+
 
         #region Privates
 

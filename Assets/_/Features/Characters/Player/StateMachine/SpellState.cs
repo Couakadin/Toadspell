@@ -1,4 +1,5 @@
 using Data.Runtime;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace Player.Runtime
@@ -25,6 +26,7 @@ namespace Player.Runtime
         {
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, .7f); // Attack Layer
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsAttack", true);
+            m_stateMachine.m_powerBehaviour.CastASpell();
 
             // Timer
             _timerSpell.OnTimerFinished += CastSpell;
@@ -107,6 +109,8 @@ namespace Player.Runtime
         private Rigidbody _projectileRigidbody;
 
         private GameObject _target;
+        private Timer _timer;
+        private PlayerSoundBehaviour _soundBehaviour;
         private Collider _targetCollider;
 
         private Vector3 _distanceToTarget;

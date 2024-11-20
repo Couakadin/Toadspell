@@ -4,33 +4,34 @@ namespace Player.Runtime
 {
     public class PlayerSoundBehaviour : MonoBehaviour
     {
-        #region Unity API
-		
-    	void Start()
-    	{
-            _audioSource = GetComponent<AudioSource>();
-        }
-
-        #endregion
-
-
         #region Main Methods
 
         public void PlayRandomFootstep()
         {
             if(_groundBehaviour.m_isGrounded == false) return;
             int footstep = Random.Range(0, _footsteps.Length);
-            _audioSource.PlayOneShot(_footsteps[footstep]);
+            _movementsAudioSource.PlayOneShot(_footsteps[footstep]);
         }
 
         public void PlayJumpSound()
         {
-            _audioSource.PlayOneShot(_jumpUp);
+            _movementsAudioSource.PlayOneShot(_jumpUp);
         }
 
         public void PlayLandingSound()
         {
-            _audioSource.PlayOneShot(_jumpDown);
+            _movementsAudioSource.PlayOneShot(_jumpDown);
+        }
+
+        public void PlayTongueSound()
+        {
+            int random = Random.Range(0, _tongues.Length);
+            _powerAudioSource.PlayOneShot(_tongues[random]);
+        }
+
+        public void PlaySpellSound(int type)
+        {
+            _powerAudioSource.PlayOneShot(_spells[type]);
         }
 
 
@@ -48,9 +49,12 @@ namespace Player.Runtime
         [SerializeField] private AudioClip[] _footsteps;
         [SerializeField] private AudioClip _jumpUp;
         [SerializeField] private AudioClip _jumpDown;
-
+        [SerializeField] private AudioClip[] _spells;
+        [SerializeField] private AudioClip[] _tongues;
+ 
         [Header("References")]
-        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioSource _movementsAudioSource;
+        [SerializeField] private AudioSource _powerAudioSource;
         [SerializeField] private GroundBehaviour _groundBehaviour;
 
         #endregion

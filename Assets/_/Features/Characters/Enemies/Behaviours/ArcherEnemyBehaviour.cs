@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Enemies.Runtime
 {
-    public class ArcherEnemyBehaviour : EnemyBaseBehaviour
+    public class ArcherEnemyBehaviour : EnemyBaseBehaviour, ICanBeImmobilized
     {
 
         #region Unity API
@@ -21,6 +21,8 @@ namespace Enemies.Runtime
 
         void Update()
     	{
+            if (_isFrozen) return;
+
             Vector3 playerPosition = m_blackboard.GetValue<Vector3>("Position");
             Vector3 bookPosition = m_blackboard.GetValue<Vector3>("Contact");
             var distanceWithPlayer = (playerPosition - transform.position).magnitude;
@@ -85,7 +87,11 @@ namespace Enemies.Runtime
 
         private void ResumeAfterDamage()
         {
-            if (m_lifePoints <= 0) _dissolver.StartDissolve();
+            if (m_lifePoints <= 0)
+            {
+                //_enemySound.PlaySoundWhenDying();
+                _dissolver.StartDissolve();
+            }
         }
 
         private void UpdateTimers()
@@ -99,6 +105,16 @@ namespace Enemies.Runtime
             Gizmos.DrawWireSphere(transform.position, m_maxDetectionRange);
         }
 
+        public void FreezePosition()
+        {
+            _isFrozen = true;
+        }
+
+        public void UnFreezePosition()
+        {
+            _isFrozen = false;
+        }
+
         #endregion
 
 
@@ -108,8 +124,10 @@ namespace Enemies.Runtime
         [SerializeField] private float _takeDamageDelay = .5f;
         [SerializeField] private Transform _mouth;
         [SerializeField] private Slider _healthBar;
+        [SerializeField] private EnemySoundBehaviour _enemySound;
         private Color _originalMaterial;
         private bool _isShooting = false;
+        private bool _isFrozen = false;
         private Timer _damageTimer;
         private ICanDissolve _dissolver;
 

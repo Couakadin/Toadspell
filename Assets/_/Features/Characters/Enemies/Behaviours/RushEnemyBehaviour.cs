@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Enemies.Runtime
 {
-    public class RushEnemyBehaviour : EnemyBaseBehaviour
+    public class RushEnemyBehaviour : EnemyBaseBehaviour, ICanBeImmobilized
     {
 
         #region Unity API
@@ -22,6 +22,8 @@ namespace Enemies.Runtime
 
         void Update()
     	{
+            if(_isFrozen) return;
+
             if(!_isRushing && !_isCoolingDownAfterRush)
             {
                 ResetAnimations();
@@ -64,12 +66,13 @@ namespace Enemies.Runtime
         {
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.isKinematic = true;
-            TouchedPlayer();
-            if (_isCoolingDownAfterRush) return;
+            //if (_isCoolingDownAfterRush) return;
             if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
             {
+                Debug.Log("hurting player");
                 hurt.TakeDamage(m_damages);
             }
+            TouchedPlayer();
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -100,23 +103,11 @@ namespace Enemies.Runtime
             _LockIndicator.SetActive(false);
         }
 
-        [ContextMenu("test dissolve")]
-        private void TestDissolve()
-        {
-            TakeDamage(1);
-        }
-
         public override void TakeDamage(int damage)
         {
             m_lifePoints -= damage;
             _healthBar.value = m_lifePoints;
             Recoil();
-            if (m_lifePoints <= 0)
-            {
-                //_meshRenderer.enabled = false;
-                //_particleSystem.Play();
-                //Sound
-            }
         }
 
         #endregion
@@ -171,8 +162,11 @@ namespace Enemies.Runtime
         {
             m_animator.SetBool("isAttacking", false);
             _isCoolingDownAfterRush = false;
-            if (m_lifePoints <= 0) _dissolver.StartDissolve();
-            //_meshRenderer.material.color = _originalMaterial;
+            if (m_lifePoints <= 0)
+            {
+                //_enemySound.PlaySoundWhenDying();
+                _dissolver.StartDissolve();
+            }
         }
 
         private void UpdateTimers()
@@ -198,6 +192,11 @@ namespace Enemies.Runtime
             Gizmos.DrawWireSphere(transform.position, _rushDistance);
         }
 
+        public void FreezePosition() => _isFrozen = true;
+
+
+        public void UnFreezePosition() => _isFrozen = false;
+
         #endregion
 
 
@@ -220,12 +219,14 @@ namespace Enemies.Runtime
 
         [Header("References")]
          private Rigidbody _rigidbody;
+        [SerializeField] private EnemySoundBehaviour _enemySound;
         //[SerializeField] private MeshRenderer _meshRenderer;
         //[SerializeField] private ParticleSystem _particleSystem;
         //[SerializeField] private AudioClip _damagedAudio;
 
         private ICanDissolve _dissolver;
         private Timer _damageTimer;
+        private bool _isFrozen = false;
 
         #endregion
     }
