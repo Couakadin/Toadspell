@@ -4979,7 +4979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
-  _endOfLife: 2
+  _endOfLife: 10
   _speedOfProjectile: 20
   _damages: -1
 --- !u!1 &8392335403184944290

@@ -55,7 +55,7 @@ namespace Enemies.Runtime
 	
         #region Privates & Protected
 	    
-        [SerializeField] private MeshRenderer _meshRenderer;
+        private MeshRenderer _meshRenderer;
         [SerializeField] private float _endOfLife;
         [SerializeField] private float _speedOfProjectile;
         [SerializeField] private int _damages;
