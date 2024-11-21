@@ -10,6 +10,7 @@ namespace Player.Runtime
         public StateMachine m_stateMachine { get; }
 
         #endregion
+        
 
         #region Methods
 
@@ -18,14 +19,13 @@ namespace Player.Runtime
             m_stateMachine = stateMachine;
 
             _timerState = new(m_stateMachine.m_powerBehaviour.m_durationOfProjectile);
-            _timerSpell = new(.7f);
+            _timerSpell = new(m_stateMachine.m_powerBehaviour.m_castingASpellDelay);
         }
 
         public void Enter()
         {
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, .7f); // Attack Layer
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsAttack", true);
-            m_stateMachine.m_powerBehaviour.CastASpell();
 
             // Timer
             _timerSpell.OnTimerFinished += CastSpell;
@@ -72,6 +72,7 @@ namespace Player.Runtime
 
         #endregion
 
+
         #region Utils
 
         private void CastSpell()
@@ -87,6 +88,7 @@ namespace Player.Runtime
             }
 
             // Pool
+            m_stateMachine.m_powerBehaviour.CastASpell(); // sound of casting a spell
             _projectile = _currentPool?.GetFirstAvailableObject();
             _projectile.transform.position = m_stateMachine.m_powerBehaviour._playerBlackboard.GetValue<Vector3>("SpellPosition");
             _projectile.TryGetComponent(out _projectileRigidbody);
@@ -104,6 +106,7 @@ namespace Player.Runtime
         private void ChangeState() => m_stateMachine.ChangeState(m_stateMachine.m_lockState);
 
         #endregion
+
 
         #region Privates
 
