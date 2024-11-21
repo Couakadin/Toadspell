@@ -736,7 +736,7 @@ MonoBehaviour:
   groundCheckRadius: 0.1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
 --- !u!1 &7962882347716807116
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 8439310960531280909}
   - component: {fileID: 1066218291260339722}
   m_Layer: 7
-  m_Name: player_fin_bande_denculer_on_y_touche_plus
+  m_Name: player_fin
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -911,7 +911,7 @@ MonoBehaviour:
   m_canEat: 0
   m_spellSpawner: {fileID: 481850103328051413}
   m_speedOfProjectile: 3
-  m_durationOfProjectile: 1
+  m_durationOfProjectile: 2
   m_spell: 0
   m_currentPool: {fileID: 0}
   m_spellPools: []

@@ -56,6 +56,7 @@ namespace Objects.Runtime
                     WaterReaction();
                     return;
                 case IAmElement.Element.arcane:
+                    Debug.Log("hello i am arcane");
                     return;
                 case IAmElement.Element.grass:
                     Debug.Log("ground");
