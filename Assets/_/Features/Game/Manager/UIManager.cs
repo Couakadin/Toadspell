@@ -15,6 +15,7 @@ namespace Game.Runtime
         private void Awake()
         {
             //InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
+            _gameOverPanel.SetActive(false);
         }
 
         void Start()
@@ -53,12 +54,17 @@ namespace Game.Runtime
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _teleportFadeOutDelay));
         }
 
-        public void ActionActivateGameOverScreen() => _gameOverPanel.SetActive(true);
+        [ContextMenu("GameOverScreen")]
+        public void ActionActivateGameOverScreen()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            _gameOverPanel.SetActive(true);
+        }
 
         public void ActionReloadScene()
         {
             string currentScene = SceneManager.GetActiveScene().ToString();
-            SceneManager.LoadScene(currentScene);
+            SceneManager.LoadScene(currentScene,LoadSceneMode.Single);
         }
 
         public void ActionLoadMainMenu() => SceneManager.LoadScene(0);
