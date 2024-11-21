@@ -80,7 +80,6 @@ namespace Player.Runtime
         {
             // Target
             _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
-            _playerTransform.LookAt(new Vector3(_target.transform.position.x, _playerTransform.position.y, _target.gameObject.transform.position.z));
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
 
             if (_target == null || _currentPool == null)
@@ -90,13 +89,15 @@ namespace Player.Runtime
             }
 
             // Pool
-            m_stateMachine.m_powerBehaviour.CastASpell(); // sound of casting a spell
+           
             _projectile = _currentPool?.GetFirstAvailableObject();
             _projectile.transform.position = m_stateMachine.m_powerBehaviour._playerBlackboard.GetValue<Vector3>("SpellPosition");
             _projectile.TryGetComponent(out _projectileRigidbody);
 
             if (!_target && !_projectile) { ChangeState(); return; }
 
+            _playerTransform.LookAt(new Vector3(_target.transform.position.x, _playerTransform.position.y, _target.gameObject.transform.position.z));
+            m_stateMachine.m_powerBehaviour.CastASpell(); // sound of casting a spell
             _target.TryGetComponent(out _targetCollider);
             if (!_targetCollider) throw new System.Exception("No Target Collider!");
 
