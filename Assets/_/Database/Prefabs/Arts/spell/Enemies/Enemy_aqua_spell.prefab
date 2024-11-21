@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 0}
   _endOfLife: 2
-  _speedOfProjectile: 10
+  _speedOfProjectile: 17
   _damages: -1
 --- !u!1 &2397232195873837334
 GameObject:
