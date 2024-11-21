@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7174170611697926482}
   - component: {fileID: 418054464207039724}
   - component: {fileID: 7417572833710643564}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle_EP01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4841,7 +4841,7 @@ GameObject:
   - component: {fileID: 5819536178156762207}
   - component: {fileID: 2384328334632012214}
   - component: {fileID: 2018615272635311030}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle_EP02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9674,7 +9674,7 @@ GameObject:
   - component: {fileID: 6589815318381865729}
   - component: {fileID: 962547257961001022}
   - component: {fileID: 6354379666847018628}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_rock_spell
   m_TagString: Untagged
   m_Icon: {fileID: 0}

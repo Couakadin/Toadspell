@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6114657655015446012}
   - component: {fileID: 3152685191603734308}
   - component: {fileID: 8069145499606965090}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle_EP01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4841,7 +4841,7 @@ GameObject:
   - component: {fileID: 8317303356758680210}
   - component: {fileID: 4413023404239194783}
   - component: {fileID: 4587838588936778998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle_EP02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9752,6 +9752,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: geo_rock_spell
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6ded6de467caefd43b850d7570bb5c90,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
