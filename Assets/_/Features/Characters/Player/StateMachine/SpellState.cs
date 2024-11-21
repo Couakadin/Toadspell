@@ -1,5 +1,4 @@
 using Data.Runtime;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace Player.Runtime
@@ -54,8 +53,12 @@ namespace Player.Runtime
             _timerSpell?.Tick();
             _timerState?.Tick();
 
-            Vector3 targetCenter = _targetCollider.bounds.center;
-            _distanceToTarget = targetCenter - _projectile.transform.position;
+            if (_targetCollider != null)
+            {
+                Vector3 targetCenter = _targetCollider.bounds.center;
+                _distanceToTarget = targetCenter - _projectile.transform.position;
+            }
+            else _distanceToTarget = _target.transform.position - _projectile.transform.position;
 
             if (_distanceToTarget.sqrMagnitude > .5f * .5f) _projectileRigidbody.velocity = m_stateMachine.m_powerBehaviour.m_speedOfProjectile * _distanceToTarget;
             else ChangeState();
