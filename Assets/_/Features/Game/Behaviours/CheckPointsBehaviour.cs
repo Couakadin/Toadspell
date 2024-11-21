@@ -14,6 +14,7 @@ namespace Game.Runtime
             {
                 // Met à jour la position du checkpoint dans le Blackboard
                 _playerBlackboard.SetValue<Vector3>("Checkpoint", _spawnPoint.position);
+                _onCheckpointTriggered.Raise();
 
                 // Active les bébés spécifiés
                 ActivateChildObjects();
@@ -22,12 +23,14 @@ namespace Game.Runtime
 
         #endregion
 
+
         #region Privates & Protected
 
         [SerializeField] private Transform _spawnPoint; // Point de spawn
         [SerializeField] private Blackboard _playerBlackboard; // Blackboard pour stocker la position du checkpoint
         [SerializeField] private GameObject _child1; // Premier enfant à activer
         [SerializeField] private GameObject _child2; // Deuxième enfant à activer
+        [SerializeField] private VoidEvent _onCheckpointTriggered;
 
         /// <summary>
         /// Active les enfants spécifiés

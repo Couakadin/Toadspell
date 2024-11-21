@@ -107,16 +107,25 @@ namespace Game.Runtime
             tutorialSequence.Append(_tutorialPanels[_tutorialIndex].DOFade(0, _tutorialFadeOut)).OnComplete(UpdateTutorialIndex);   
         }
 
-        [ContextMenu("switch test")]
-        private void SwitchList()
+        public void ActionCheckpointRegistered()
         {
-            _tutorialPanels = _joyStickTutorial;
+            Sequence checkpoint = DOTween.Sequence();
+            checkpoint.Append(_checkpoint.DOFade(1, _checkpointFadeIn));
+            checkpoint.AppendInterval(_checkpointTImeOnScreen);
+            checkpoint.Append(_checkpoint.DOFade(0, _checkpointFadeOut));
         }
 
         #endregion
 
 
         #region Utils
+
+        [ContextMenu("switch test")]
+        private void SwitchList()
+        {
+            _tutorialPanels = _joyStickTutorial;
+        }
+
 
         private void UpdateTutorialIndex()
         {
@@ -197,6 +206,13 @@ namespace Game.Runtime
         private List<CanvasGroup> _tutorialPanels = new();
         [SerializeField] private int _tutorialIndex = 0;
         private bool _isKeyboard;
+
+        [Header("Checkpoint UI")]
+        [SerializeField] private CanvasGroup _checkpoint;
+        [SerializeField] private float _checkpointTImeOnScreen;
+        [SerializeField] private float _checkpointFadeIn;
+        [SerializeField] private float _checkpointFadeOut;
+
 
         #endregion
     }

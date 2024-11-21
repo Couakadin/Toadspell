@@ -69,6 +69,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 8898652475854429457}
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
+  _child1: {fileID: 0}
+  _child2: {fileID: 0}
+  _onCheckpointTriggered: {fileID: 11400000, guid: 23d96767ca6c665488ea6f15fc7a2ad0,
+    type: 2}
 --- !u!1 &863546894239041102
 GameObject:
   m_ObjectHideFlags: 0
