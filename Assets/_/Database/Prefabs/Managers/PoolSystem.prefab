@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_poolCapacity: 0
-  m_poolTransform: {fileID: 0}
+  m_poolCapacity: 10
+  m_poolTransform: {fileID: 7464925733653585607}
   m_gameObject: {fileID: 9034298060732826985, guid: fe2ddf2b9c62c884ba0b8c9f67d8ef12,
     type: 3}
   m_poolOfObjects: []
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_poolCapacity: 0
-  m_poolTransform: {fileID: 0}
+  m_poolCapacity: 10
+  m_poolTransform: {fileID: 5138112664677252662}
   m_gameObject: {fileID: 3884492845388431974, guid: 71d6af6b444fd9d4090f28c0d0cdc4fc,
     type: 3}
   m_poolOfObjects: []
@@ -227,8 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_poolCapacity: 0
-  m_poolTransform: {fileID: 0}
+  m_poolCapacity: 10
+  m_poolTransform: {fileID: 1830265710747398282}
   m_gameObject: {fileID: 7638124327235467493, guid: 524dad1d048d83249bf2a7df7769d863,
     type: 3}
   m_poolOfObjects: []
@@ -408,8 +408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf8ee4ee00193b458a802890907b6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_poolCapacity: 0
-  m_poolTransform: {fileID: 0}
+  m_poolCapacity: 10
+  m_poolTransform: {fileID: 4073673083963430637}
   m_gameObject: {fileID: 1663523309765281475, guid: 803f81941f6bcf54f8d6b72be9b1f769,
     type: 3}
   m_poolOfObjects: []

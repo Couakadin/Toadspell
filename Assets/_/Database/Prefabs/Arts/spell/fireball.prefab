@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5417222630511523492}
   - component: {fileID: -325111704613418381}
   - component: {fileID: 2815116188745441643}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 2686178586657060709}
   - component: {fileID: 1405181375809866051}
   - component: {fileID: 3618205826110879099}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particles_FP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4992,7 +4992,7 @@ GameObject:
   - component: {fileID: 84763952818085578}
   - component: {fileID: 9193431406496155845}
   - component: {fileID: 3168373834819785740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fireball_int
   m_TagString: Untagged
   m_Icon: {fileID: 0}
