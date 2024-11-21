@@ -29,12 +29,6 @@ namespace Enemies.Runtime
         public float m_fallDuration;
         public float m_fallPositionY;
 
-        [Header("Collapse Material Settings")]
-        public float m_hideMaterialAlpha;
-        public float m_showMaterialAlpha;
-        public float m_durationFadeOut;
-        public float m_durationFadeIn;
-
         [Header("Line Settings")]
         public GameObject m_wave;
         public float m_waveDistance;

@@ -13,7 +13,6 @@ namespace Objects.Runtime
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.gameObject.name);
             if (other.gameObject.layer == 6)
             {
                 if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
@@ -25,6 +24,7 @@ namespace Objects.Runtime
                 {
                     if(element.spell == m_element)
                     {
+                        Debug.Log("test");
                         obstacle.ReactToSpell();
                     }
                 }

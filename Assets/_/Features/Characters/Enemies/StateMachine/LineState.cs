@@ -40,7 +40,6 @@ namespace Enemies.Runtime
             _timerStill.OnTimerFinished += StartReturningToCenter;
             _timerStill?.Reset();
             _timerWave?.Begin();
-            Debug.Log(_timerWave.GetRemainingTime());
         }
 
         public void Exit()
@@ -56,7 +55,7 @@ namespace Enemies.Runtime
             _timerWave?.Tick();
             _timerStill?.Tick();
 
-            if (!_timerWave.IsRunning()) MoveWave();
+            if (!_timerWave.IsRunning() && _index > 0) MoveWave();
         }
 
         public void PhysicsTick() { }
@@ -78,7 +77,7 @@ namespace Enemies.Runtime
 
         private void MoveWave()
         {
-            _wave.SetActive(true);
+            if (!_wave.activeSelf)_wave.SetActive(true);
 
             if (_index == 3) _waveSpeed = _bossBehaviour.m_firstWaveSpeed;
             else if (_index == 2) _waveSpeed = _bossBehaviour.m_secondWaveSpeed;

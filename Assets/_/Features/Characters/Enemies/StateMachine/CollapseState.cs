@@ -87,19 +87,14 @@ namespace Enemies.Runtime
                 ));
 
                 _fallSequence.Append(platform.transform.DOMoveY(_bossBehaviour.m_fallPositionY, _bossBehaviour.m_fallDuration));
-                _fallSequence.Append(HideOrShowPlatform(meshRenderer, _bossBehaviour.m_hideMaterialAlpha, _bossBehaviour.m_durationFadeOut));
                 _fallSequence.AppendInterval(_bossBehaviour.m_DelayRespawn);
                 _fallSequence.AppendCallback(() => RespawnPlatform(platform, meshRenderer, originalPosition));
             }
         }
 
-        private Tween HideOrShowPlatform(MeshRenderer meshRenderer, float fadeColor, float fadeTime) =>
-            meshRenderer.material.DOFade(fadeColor, fadeTime);
-
         private void RespawnPlatform(GameObject platform, MeshRenderer meshRenderer, Vector3 originalPosition)
         {
             platform.transform.position = originalPosition;
-            meshRenderer.material.DOFade(_bossBehaviour.m_showMaterialAlpha, _bossBehaviour.m_durationFadeIn);
 
             if (!m_timer.IsRunning()) m_timer?.Begin();
         }
