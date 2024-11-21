@@ -88,8 +88,10 @@ namespace Game.Runtime
             _currentDialogue = dialogue;
             _currentLineIndex = 0;
 
+            _characterBackground.sprite = dialogue.m_background;
             _speakerImage.sprite = dialogue.m_image;
-            _characterName.text = dialogue.m_speakerName;
+            _speakerName.sprite = dialogue.m_speakerNameImage;
+
             DisplayNextLines();
         }
 
@@ -98,7 +100,7 @@ namespace Game.Runtime
             if (_currentLineIndex < _currentDialogue.m_lines.Count)
             {
                 _currentCharacterIndex = 0;
-                _linesOfDialogue.text = "";
+                _linesOfDialogue.text = $"";
                 _isTyping = true;
                 _writer = _currentDialogue.m_lines[_currentLineIndex].m_sentence;
 
@@ -144,7 +146,7 @@ namespace Game.Runtime
         {
             if(_currentCharacterIndex < _writer.Length)
             {
-                _linesOfDialogue.text += _writer[_currentCharacterIndex];
+                _linesOfDialogue.text += $"{_writer[_currentCharacterIndex]}";
                 _currentCharacterIndex++;
                 _typingTimer.Reset();
                 _typingTimer.Begin();
@@ -163,7 +165,7 @@ namespace Game.Runtime
 
         private void SkipText()
         {
-            _linesOfDialogue.text = _writer;
+            _linesOfDialogue.text = $"{_writer}";
             _currentCharacterIndex = _writer.Length;
             _currentLineIndex++;
 
@@ -204,12 +206,15 @@ namespace Game.Runtime
 
         [Header("Dialogues Specifics")]
         [SerializeField] private List<DialoguesExchanges> _exchanges = new List<DialoguesExchanges>();
+        [SerializeField] private Image _characterBackground;
         [SerializeField] private Image _speakerImage;
+        [SerializeField] private Image _speakerName;
         [SerializeField] private float _typingSpeed;
         [SerializeField] private float _timeOnScreenDelay;
 
         [Header("Text Specifics")]
-        [SerializeField] private TMP_Text _characterName;
+        //[SerializeField] private TMP_Text _characterName;
+        //[SerializeField] private TMP_Text _characterNameShadow;
         [SerializeField] private TMP_Text _linesOfDialogue;
 
         [Header("Events")]
