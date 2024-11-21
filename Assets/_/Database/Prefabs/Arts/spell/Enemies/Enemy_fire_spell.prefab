@@ -4843,7 +4843,7 @@ GameObject:
   - component: {fileID: 3181404541141383257}
   - component: {fileID: 2793036423442541001}
   - component: {fileID: 2328354809550247740}
-  - component: {fileID: 5115225344276089902}
+  - component: {fileID: -6822157827533763266}
   m_Layer: 8
   m_Name: Enemy_fire_spell
   m_TagString: Untagged
@@ -4931,7 +4931,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 152
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -4966,7 +4966,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5115225344276089902
+--- !u!114 &-6822157827533763266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4975,11 +4975,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7559435005498160748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2d7c5e1b4b0284cabef0588fed04d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 733050f6729e99848ab91c78c81bb111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_element: 1
-  _damages: 1
+  _meshRenderer: {fileID: 0}
+  _endOfLife: 2
+  _speedOfProjectile: 20
+  _damages: -1
 --- !u!1 &8392335403184944290
 GameObject:
   m_ObjectHideFlags: 0
