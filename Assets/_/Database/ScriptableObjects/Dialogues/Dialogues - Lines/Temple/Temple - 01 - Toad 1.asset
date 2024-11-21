@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24cd8284dafef74a977ab172c5feba3, type: 3}
+  m_Name: Temple - 01 - Toad 1
+  m_EditorClassIdentifier: 
+  m_image: {fileID: 21300000, guid: edc4f6cd30ffa3647a20aa6647328b0a, type: 3}
+  m_background: {fileID: 21300000, guid: cd861bea741f48b4bb554414edf959cd, type: 3}
+  m_speakerNameImage: {fileID: 21300000, guid: de402e3477fad1146b57f43b21fd481b, type: 3}
+  m_speakerName: Frogmage
+  m_lines:
+  - m_sentence: "Non, c\u2019est une blague ?! "
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: "Un crapaud ?! UN CRAPAUD ?! Mais quel mauvais sort j\u2019ai pondu,
+      l\xE0 ?!"
+    m_screenTime: 2
+    m_image: {fileID: 0}
+  - m_sentence: Bon. On garde son calme, hein. Une petite erreur de rien du tout.
+    m_screenTime: 1.5
+    m_image: {fileID: 0}

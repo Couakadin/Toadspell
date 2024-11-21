@@ -37,6 +37,7 @@ namespace Player.Runtime
         [Header("Element Params")]
         [Tooltip("The GameObject where spells are launched.")]
         public GameObject m_spellSpawner;
+        public float m_castingASpellDelay = 0.7f;
         [Tooltip("The speed at spells are launched.")]
         public float m_speedOfProjectile;
         [Tooltip("The duration of spells.")]

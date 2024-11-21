@@ -9,19 +9,41 @@ namespace Game.Runtime
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.layer == 7)
+            // Vérifie si l'objet qui entre dans le trigger est sur le layer 7
+            if (other.gameObject.layer == 7)
             {
+                // Met à jour la position du checkpoint dans le Blackboard
                 _playerBlackboard.SetValue<Vector3>("Checkpoint", _spawnPoint.position);
+
+                // Active les bébés spécifiés
+                ActivateChildObjects();
             }
         }
 
         #endregion
 
-
         #region Privates & Protected
 
-        [SerializeField] private Transform _spawnPoint;
-        [SerializeField] private Blackboard _playerBlackboard;
+        [SerializeField] private Transform _spawnPoint; // Point de spawn
+        [SerializeField] private Blackboard _playerBlackboard; // Blackboard pour stocker la position du checkpoint
+        [SerializeField] private GameObject _child1; // Premier enfant à activer
+        [SerializeField] private GameObject _child2; // Deuxième enfant à activer
+
+        /// <summary>
+        /// Active les enfants spécifiés
+        /// </summary>
+        private void ActivateChildObjects()
+        {
+            if (_child1 != null)
+            {
+                _child1.SetActive(true);
+            }
+
+            if (_child2 != null)
+            {
+                _child2.SetActive(true);
+            }
+        }
 
         #endregion
     }
