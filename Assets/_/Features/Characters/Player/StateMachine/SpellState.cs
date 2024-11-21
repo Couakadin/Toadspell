@@ -20,6 +20,7 @@ namespace Player.Runtime
 
             _timerState = new(m_stateMachine.m_powerBehaviour.m_durationOfProjectile);
             _timerSpell = new(m_stateMachine.m_powerBehaviour.m_castingASpellDelay);
+            _playerTransform = m_stateMachine.m_powerBehaviour.transform;
         }
 
         public void Enter()
@@ -79,6 +80,7 @@ namespace Player.Runtime
         {
             // Target
             _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
+            _playerTransform.LookAt(new Vector3(_target.transform.position.x, _playerTransform.position.y, _target.gameObject.transform.position.z));
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
 
             if (_target == null || _currentPool == null)
@@ -117,6 +119,7 @@ namespace Player.Runtime
         private GameObject _target;
         private PlayerSoundBehaviour _soundBehaviour;
         private Collider _targetCollider;
+        private Transform _playerTransform;
 
         private Vector3 _distanceToTarget;
 
