@@ -54,6 +54,7 @@ namespace Player.Runtime
             _timerSpell?.Tick();
             _timerState?.Tick();
 
+            if (_timerSpell.IsRunning()) return;
             if (_targetCollider != null)
             {
                 Vector3 targetCenter = _targetCollider.bounds.center;
