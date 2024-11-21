@@ -90,12 +90,6 @@ namespace Player.Runtime
             _playerTransform.LookAt(new Vector3(_target.transform.position.x, _playerTransform.position.y, _target.gameObject.transform.position.z));
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
 
-            if (_target == null || _currentPool == null)
-            {
-                ChangeState();
-                return;
-            }
-
             // Pool
             m_stateMachine.m_powerBehaviour.CastASpell(); // sound of casting a spell
             _projectile = _currentPool?.GetFirstAvailableObject();
