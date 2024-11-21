@@ -25,13 +25,6 @@ namespace Player.Runtime
 
         public void Enter()
         {
-            // Target
-            _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
-            _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
-
-            if (!_target || !_currentPool) { ChangeState(); return; }
-            if (!_target && !_projectile) { ChangeState(); return; }
-
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, .7f); // Attack Layer
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsAttack", true);
 
@@ -61,6 +54,7 @@ namespace Player.Runtime
             _timerSpell?.Tick();
             _timerState?.Tick();
 
+            if (_timerSpell.IsRunning()) return;
             if (_targetCollider != null)
             {
                 Vector3 targetCenter = _targetCollider.bounds.center;
@@ -87,15 +81,24 @@ namespace Player.Runtime
         {
             // Target
             _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
-            _playerTransform.LookAt(new Vector3(_target.transform.position.x, _playerTransform.position.y, _target.gameObject.transform.position.z));
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
 
+            if (_target == null || _currentPool == null)
+            {
+                ChangeState();
+                return;
+            }
+
             // Pool
-            m_stateMachine.m_powerBehaviour.CastASpell(); // sound of casting a spell
+           
             _projectile = _currentPool?.GetFirstAvailableObject();
             _projectile.transform.position = m_stateMachine.m_powerBehaviour._playerBlackboard.GetValue<Vector3>("SpellPosition");
             _projectile.TryGetComponent(out _projectileRigidbody);
 
+            if (!_target && !_projectile) { ChangeState(); return; }
+
+            _playerTransform.LookAt(new Vector3(_target.transform.position.x, _playerTransform.position.y, _target.gameObject.transform.position.z));
+            m_stateMachine.m_powerBehaviour.CastASpell(); // sound of casting a spell
             _target.TryGetComponent(out _targetCollider);
             if (!_targetCollider) throw new System.Exception("No Target Collider!");
 
