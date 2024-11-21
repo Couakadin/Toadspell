@@ -18,9 +18,10 @@ namespace Objects.Runtime
 
         private void Start()
         {
-            if (m_element == IAmElement.Element.grass) _freezeObject = GetComponent<ICanBeImmobilized>();
+            if (m_element == IAmElement.Element.grass) _freezeObject = _objectToFreeze.GetComponent<ICanBeImmobilized>();
             _originScale = transform.localScale;
         }
+
         private void Update()
         {
             if (_isWatered) ResetWaterScaleEffect();
@@ -55,6 +56,7 @@ namespace Objects.Runtime
                     WaterReaction();
                     return;
                 case IAmElement.Element.arcane:
+                    Debug.Log("hello i am arcane");
                     return;
                 case IAmElement.Element.grass:
                     Debug.Log("ground");
@@ -91,7 +93,7 @@ namespace Objects.Runtime
             }
         }
 
-        [ContextMenu("test ground")]
+        [ContextMenu("freeze lilypad")]
         private void GroundReaction()
         {
             _freezeObject.FreezePosition();
@@ -132,6 +134,7 @@ namespace Objects.Runtime
 
         [Header("Ground Effect")]
         private ICanBeImmobilized _freezeObject;
+        [SerializeField] private GameObject _objectToFreeze;
         private bool _isImmobilized;
 
         #endregion

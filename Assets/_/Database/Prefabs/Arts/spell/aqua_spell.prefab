@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5883930396969007454}
   - component: {fileID: -2610122625105366668}
   - component: {fileID: -412800160392898557}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: aqua_spell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 1591162101401460499}
   - component: {fileID: 7680181699518254204}
   - component: {fileID: 5446165087314757036}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle_AP_sp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4991,7 +4991,7 @@ GameObject:
   - component: {fileID: 3218930382304761052}
   - component: {fileID: 7715969753950820175}
   - component: {fileID: 5349232525196213516}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle_AP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
