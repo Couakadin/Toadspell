@@ -10,6 +10,7 @@ namespace Player.Runtime
         public StateMachine m_stateMachine { get; }
 
         #endregion
+        
 
         #region Methods
 
@@ -18,7 +19,8 @@ namespace Player.Runtime
             m_stateMachine = stateMachine;
 
             _timerState = new(m_stateMachine.m_powerBehaviour.m_durationOfProjectile);
-            _timerSpell = new(.7f);
+            _timerSpell = new(m_stateMachine.m_powerBehaviour.m_castingASpellDelay);
+            _playerTransform = m_stateMachine.m_powerBehaviour.transform;
         }
 
         public void Enter()
@@ -32,7 +34,6 @@ namespace Player.Runtime
 
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, .7f); // Attack Layer
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsAttack", true);
-            m_stateMachine.m_powerBehaviour.CastASpell();
 
             // Timer
             _timerSpell.OnTimerFinished += CastSpell;
@@ -79,11 +80,24 @@ namespace Player.Runtime
 
         #endregion
 
+
         #region Utils
 
         private void CastSpell()
         {
+            // Target
+            _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
+            _playerTransform.LookAt(new Vector3(_target.transform.position.x, _playerTransform.position.y, _target.gameObject.transform.position.z));
+            _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
+
+            if (_target == null || _currentPool == null)
+            {
+                ChangeState();
+                return;
+            }
+
             // Pool
+            m_stateMachine.m_powerBehaviour.CastASpell(); // sound of casting a spell
             _projectile = _currentPool?.GetFirstAvailableObject();
             _projectile.transform.position = m_stateMachine.m_powerBehaviour._playerBlackboard.GetValue<Vector3>("SpellPosition");
             _projectile.TryGetComponent(out _projectileRigidbody);
@@ -100,6 +114,7 @@ namespace Player.Runtime
 
         #endregion
 
+
         #region Privates
 
         private PoolSystem _currentPool;
@@ -109,6 +124,7 @@ namespace Player.Runtime
         private GameObject _target;
         private PlayerSoundBehaviour _soundBehaviour;
         private Collider _targetCollider;
+        private Transform _playerTransform;
 
         private Vector3 _distanceToTarget;
 

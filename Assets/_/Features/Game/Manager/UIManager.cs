@@ -22,7 +22,7 @@ namespace Game.Runtime
             _tutorialIndex = 0;
             _tutorialPanels = _keyboardTutorial;
             _maxLives = _playerBlackboard.GetValue<int>("Lives");
-            _spellImage.color = _spellList[0];
+            _spellImage.sprite = _spellList[0];
             FirstFadeIn();
 
             for (int i = 0; i < _maxLives; i++)
@@ -71,7 +71,7 @@ namespace Game.Runtime
        
         public void UpdateSpellImage(int spell)
         {
-            _spellImage.color = _spellList[spell];
+            _spellImage.sprite = _spellList[spell];
         }
 
         public void UpdateLives()
@@ -182,7 +182,7 @@ namespace Game.Runtime
 
         [Space(8)]
         [Header("Spells")]
-        [SerializeField] private List<Color> _spellList = new List<Color>();
+        [SerializeField] private List<Sprite> _spellList = new List<Sprite>();
         [SerializeField] private Image _spellImage;
         [SerializeField] private int _spell;
 

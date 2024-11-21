@@ -9,6 +9,8 @@ namespace Data.Runtime
         #region Publics
 
         public Sprite m_image;
+        public Sprite m_background;
+        public Sprite m_speakerNameImage;
         public string m_speakerName;
         public List<DialogueLine> m_lines;
 
