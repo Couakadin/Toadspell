@@ -11,7 +11,7 @@ namespace Game.Runtime
         public void LoadCinematique()
         {
             Sequence cinematique = DOTween.Sequence();
-            cinematique.Append(_menuCanvas.DOFade(0, 1)).OnComplete(StartIntro);
+            cinematique.Append(_menuCanvas.DOFade(1, 2)).OnComplete(StartIntro);
         }
 
         public void LoadGameScene()

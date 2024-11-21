@@ -17,6 +17,14 @@ namespace Game.Runtime
             TestWithImage();
         }
 
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                _intro.Kill();
+                LoadMainScene();
+            }
+        }
         #endregion
 
 
