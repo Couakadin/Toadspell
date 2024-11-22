@@ -12,6 +12,7 @@ namespace Enemies.Runtime
         [Header("Grid Settings")]
         public GameObject m_gridBehaviour;
         public IGrid m_gridInterface;
+        public GameObject m_player;
 
         [Header("Attack Settings")]
         public Image m_waveAttack;
