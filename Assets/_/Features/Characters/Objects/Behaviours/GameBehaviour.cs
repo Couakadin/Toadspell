@@ -1,6 +1,7 @@
 using Cinemachine;
 using Data.Runtime;
 using Player.Runtime;
+using Enemies.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,10 @@ namespace Objects.Runtime
         public GameObject m_player;
         [Tooltip("The init position to spawn the Player.")]
         public Transform m_position;
+
+        [Header("Init Boss")]
+        [Tooltip("The Boss Prefab to init.")]
+        public BossBehaviour m_boss;
 
         [Header("Init Camera")]
         [Tooltip("The Third Person Camere to init.")]
@@ -63,6 +68,8 @@ namespace Objects.Runtime
             _player.TryGetComponent(out _powerBehaviour);
             _player.TryGetComponent(out _moveBehaviour);
             _player.TryGetComponent(out _healthBehaviour);
+
+            m_boss.m_player = _player;
 
             _healthBehaviour.m_startLives = _startLifePoints;
 
