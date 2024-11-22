@@ -298,7 +298,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 8449616504448171305}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -636,6 +636,7 @@ MonoBehaviour:
   _takeDamageDelay: 0.5
   _mouth: {fileID: 9016212283607561259}
   _healthBar: {fileID: 2121046400085977291}
+  _enemySound: {fileID: 0}
 --- !u!65 &169277854746905199
 BoxCollider:
   m_ObjectHideFlags: 0
