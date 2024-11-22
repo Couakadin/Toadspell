@@ -67,6 +67,7 @@ namespace Game.Runtime
             if(_currentExchangeInStoryIndex > _exchanges.Count) return;
             Sequence firstExchange = DOTween.Sequence();
             Dialogue currentExchange = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
+            Debug.Log(currentExchange.ToString());
             firstExchange.AppendInterval(2);
             firstExchange.Append(_dialoguePanel.DOFade(1, _panelFadeIn));
             firstExchange.AppendCallback(() => StartDialogue(currentExchange));
@@ -80,6 +81,7 @@ namespace Game.Runtime
             _characterBackground.sprite = dialogue.m_background;
             _speakerImage.sprite = dialogue.m_image;
             _speakerName.sprite = dialogue.m_speakerNameImage;
+            _characterPanel.DOFade(1, .5f);
 
             DisplayNextLines();
         }
@@ -124,10 +126,13 @@ namespace Game.Runtime
         }
         private void EndOfDialogue()
         {
+            _characterPanel.DOFade(0, .5f);
             _dialoguePanel.DOFade(0, _panelFadeOut).OnComplete(() =>
             {
+                ResetOnCut();
                 _currentExchangeInStoryIndex++;
                 if (_exchanges[0]) _onFirstExchangeFinished.Raise();
+                if (_exchanges[1]) _onBridgeExchangeFinished.Raise();
             });
         }
 
@@ -180,10 +185,10 @@ namespace Game.Runtime
         private InputAction _cutDialogueInput;
         
         private Dialogue _currentDialogue;
-        private int _currentExchangeIndex = 0;
-        private int _currentExchangeInStoryIndex = 0;
-        private int _currentLineIndex = 0;
-        private int _currentCharacterIndex = 0;
+        [SerializeField] private int _currentExchangeIndex = 0;
+        [SerializeField] private int _currentExchangeInStoryIndex = 0;
+        [SerializeField] private int _currentLineIndex = 0;
+        [SerializeField] private int _currentCharacterIndex = 0;
         private bool _isTyping = false;
         private bool _isSkipping = false;
 
@@ -193,6 +198,7 @@ namespace Game.Runtime
 
         [Header("Panel Fade in/out")]
         [SerializeField] private CanvasGroup _dialoguePanel;
+        [SerializeField] private CanvasGroup _characterPanel;
         [SerializeField] private float _panelFadeIn;
         [SerializeField] private float _panelFadeOut;
 
@@ -211,6 +217,7 @@ namespace Game.Runtime
 
         [Header("Events")]
         [SerializeField] private VoidEvent _onFirstExchangeFinished;
+        [SerializeField] private VoidEvent _onBridgeExchangeFinished;
 
         #endregion
     }
