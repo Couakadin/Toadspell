@@ -91,6 +91,7 @@ namespace Enemies.Runtime
             {
                 //_enemySound.PlaySoundWhenDying();
                 _dissolver.StartDissolve();
+                _isFrozen = true;
             }
         }
 
