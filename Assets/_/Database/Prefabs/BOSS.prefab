@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.10076237, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5215632132220729997}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6223da4bcf12d747a538509d7e7cb6e, type: 3}
   m_Name: 
@@ -458,13 +458,13 @@ MonoBehaviour:
   m_player: {fileID: 0}
   m_healthBar: {fileID: 4348176876675426887}
   m_lifePoints: 50
-  m_waveAttack: {fileID: 0}
-  m_zoneAttack: {fileID: 0}
-  m_CollapseAttack: {fileID: 0}
-  m_timerAttack: 0
-  m_timeIdle: 5
-  m_timeCollapseToIdle: 5
-  m_timeZoneToIdle: 5
+  m_waveAttack: {fileID: 319796473036530140}
+  m_zoneAttack: {fileID: 8894888560237914742}
+  m_CollapseAttack: {fileID: 6423659699767744564}
+  m_timerAttack: 3
+  m_timeIdle: 3
+  m_timeCollapseToIdle: 3
+  m_timeZoneToIdle: 3
   m_shakingRandom: 10
   m_shakingVibration: 10
   m_shakingDuration: 1
@@ -479,9 +479,10 @@ MonoBehaviour:
   m_firstWaveSpeed: 5
   m_secondWaveSpeed: 10
   m_thirdWaveSpeed: 15
-  m_dangerZone: {fileID: 0}
+  m_dangerZone: {fileID: 9165098171398899518, guid: 871072bccc51b094fb3388d1128d8e19,
+    type: 3}
   m_growthSpeed: 1.5
-  m_ZoneNumber: 3
+  m_ZoneNumber: 6
   m_dangerZones: []
 --- !u!1 &5330549996258153498
 GameObject:
@@ -727,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.42199242, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

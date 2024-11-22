@@ -12,13 +12,12 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - N_F_COEDGL_ON
+  - N_F_CO_ON
   - N_F_EAL_ON
   - N_F_GLO_ON
   - N_F_NM_ON
   - N_F_RDC_ON
   - N_F_RELGI_ON
-  - N_F_SIMTRANS_ON
   - N_F_SL_ON
   - N_F_SS_ON
   - N_F_TRANSAFFSHA_ON
@@ -52,9 +51,9 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2450
   stringTagMap:
-    RenderType: Transparent
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - SRPDEFAULTUNLIT
   m_LockedProperties: 
@@ -118,7 +117,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTransparency:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 25fdf4f09926f2948bc9878844c7d00a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -146,7 +145,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SecondaryCutout:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 25fdf4f09926f2948bc9878844c7d00a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowColorTexture:
@@ -193,7 +192,7 @@ Material:
     - _CustomLightDirectionFollowObjectRotation: 0
     - _CustomLightDirectionIntensity: 0
     - _Cutoff: 0.5
-    - _Cutout: 0
+    - _Cutout: 0.5
     - _DepthThreshold: 900
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -236,8 +235,8 @@ Material:
     - _MixMainTexToOutline: 0
     - _N_F_CA: 0
     - _N_F_CLD: 0
-    - _N_F_CO: 0
-    - _N_F_COEDGL: 1
+    - _N_F_CO: 1
+    - _N_F_COEDGL: 0
     - _N_F_DCS: 0
     - _N_F_DDMD: 0
     - _N_F_EAL: 1
@@ -324,7 +323,7 @@ Material:
     - _ShowInAmbientLightShadowIntensity: 1
     - _ShowInAmbientLightShadowThreshold: 0.4
     - _ShowNormal: 0
-    - _SimTrans: 1
+    - _SimTrans: 0
     - _SkinMatrixIndex: 0
     - _SmoothObjectNormal: 0
     - _Smoothness: 0.5

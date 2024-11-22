@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_minDetectionRadius: 5
   m_detectionLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   m_tongue: {fileID: 59909841125045512}
   m_tongueMesh: {fileID: 2702564889974632376}
   m_tongueMeshPosition: {fileID: 3899345474514609119}

@@ -10,9 +10,9 @@ Material:
   m_Name: m_ivy Variant
   m_Shader: {fileID: 4800000, guid: 6459b2db96a08ca41b0f9b39dc7ad59e, type: 3}
   m_Parent: {fileID: 2100000, guid: 1a47a4b6047d1244eb2dd3b2b38e6cf0, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
-  - N_F_COEDGL_ON
+  - N_F_CO_ON
   - N_F_EAL_ON
   - N_F_GLO_ON
   - N_F_NM_ON
@@ -51,8 +51,9 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -62,17 +63,27 @@ Material:
         m_Texture: {fileID: 2800000, guid: 0f7f538df229c9d42a117f5c6fb3fdf7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MaskTransparency:
+        m_Texture: {fileID: 2800000, guid: 25fdf4f09926f2948bc9878844c7d00a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BleModDest: 10
+    - _BleModSour: 5
     - _GlossSoftness: 1
     - _Glossiness: 0.3
-    - _MaiColPo: 1.03
+    - _MaiColPo: 1
     - _N_F_O: 1
+    - _Opacity: 1
     - _OverallShadowColorPower: 1.28
     - _ReduSha: 1.01
     - _SelfShadowHardness: 0.66
     - _SelfShadowRealTimeShadowColorPower: 1.34
     - _SelfShadowThreshold: 0.95
+    - _SimTrans: 1
+    - _TRANSMODE: 1
+    - _TransparentThreshold: 0
     m_Colors:
     - _GlossColor: {r: 0.11351368, g: 0.5622641, b: 0.38133213, a: 1}
     - _MainColor: {r: 0.6280455, g: 0.7035144, b: 0.9169811, a: 1}

@@ -13,7 +13,7 @@ namespace Enemies.Runtime
         private void OnTriggerEnter(Collider other)
         {
             _timer?.Begin();
-            if (_timer.IsRunning() || ((1 << other.gameObject.layer) & _layerMask) == 0 || _script.enabled) return;
+            if (/*_timer.IsRunning() ||*/ ((1 << other.gameObject.layer) & _layerMask) == 0 || _script.enabled) return;
             _script.enabled = true;
             _wall.SetActive(true);
         }
