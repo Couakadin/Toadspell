@@ -106,7 +106,7 @@ namespace Objects.Runtime
         {
             m_frontCamera.Priority = 0;
             _gameInput.Gameplay.Enable();
-            _gameInput.Dialogue.Disable();
+            //_gameInput.Dialogue.Disable();
         }
         #endregion
 
