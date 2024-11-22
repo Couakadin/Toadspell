@@ -14,7 +14,11 @@ namespace Game.Runtime
 
         private void Awake()
         {
-            //InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
+            InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
+            _gameInput = new GameInput();
+            _dialogueActions = _gameInput.Dialogue;
+            _settingsInput = _dialogueActions.Settings;
+
             _gameOverPanel.SetActive(false);
         }
 
@@ -57,7 +61,7 @@ namespace Game.Runtime
         [ContextMenu("GameOverScreen")]
         public void ActionActivateGameOverScreen()
         {
-            Cursor.lockState = CursorLockMode.None;
+            UIActivation();
             _gameOverPanel.SetActive(true);
         }
 
@@ -69,9 +73,18 @@ namespace Game.Runtime
 
         public void ActionLoadMainMenu() => SceneManager.LoadScene(0);
 
-        public void ActionOpenSettingMenu() { }
+        [ContextMenu("settings")]
+        public void ActionOpenSettingMenu() 
+        {
+            UIActivation();
+            _settingsPanel.SetActive(true);
+        }
 
-        public void ActionCloseSettingsMenu() { }
+        public void ActionCloseSettingsMenu() 
+        {
+            UIDeactivation();
+            _settingsPanel.SetActive(false);
+        }
 
         public void ActionInGamePanelSetActive() => _inGamePanel.SetActive(true);
        
@@ -126,13 +139,6 @@ namespace Game.Runtime
 
         #region Utils
 
-        [ContextMenu("switch test")]
-        private void SwitchList()
-        {
-            _tutorialPanels = _joyStickTutorial;
-        }
-
-
         private void UpdateTutorialIndex()
         {
            _tutorialIndex++;
@@ -163,6 +169,16 @@ namespace Game.Runtime
             }
         }
 
+        private static void UIActivation()
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        private void UIDeactivation()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
         #endregion
 
 
@@ -173,6 +189,11 @@ namespace Game.Runtime
         [SerializeField] private GameObject _gameOverPanel;
         [SerializeField] private GameObject _inGamePanel;
         [SerializeField] private GameObject _tutorialTigger;
+        [SerializeField] private GameObject _settingsPanel;
+
+        private GameInput _gameInput;
+        private GameInput.DialogueActions _dialogueActions;
+        private InputAction _settingsInput;
 
         [Space(8)]
         [Header("On Start Fade In")]
@@ -213,6 +234,7 @@ namespace Game.Runtime
         [SerializeField] private int _tutorialIndex = 0;
         private bool _isKeyboard;
 
+        [Space(8)]
         [Header("Checkpoint UI")]
         [SerializeField] private CanvasGroup _checkpoint;
         [SerializeField] private float _checkpointTImeOnScreen;

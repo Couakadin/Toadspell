@@ -14,7 +14,7 @@ namespace Game.Runtime
             {
                 // Met à jour la position du checkpoint dans le Blackboard
                 _playerBlackboard.SetValue<Vector3>("Checkpoint", _spawnPoint.position);
-                _onCheckpointTriggered.Raise();
+                if(_onCheckpointTriggered != null) _onCheckpointTriggered.Raise();
 
                 // Active les bébés spécifiés
                 ActivateChildObjects();
