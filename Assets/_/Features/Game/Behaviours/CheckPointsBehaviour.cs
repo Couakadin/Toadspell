@@ -14,10 +14,13 @@ namespace Game.Runtime
             {
                 // Met à jour la position du checkpoint dans le Blackboard
                 _playerBlackboard.SetValue<Vector3>("Checkpoint", _spawnPoint.position);
-                if(_onCheckpointTriggered != null) _onCheckpointTriggered.Raise();
+                if (!AreChildrenAlreadyActivated()) 
+                {
+                    if(_onCheckpointTriggered != null) _onCheckpointTriggered.Raise();
 
-                // Active les bébés spécifiés
-                ActivateChildObjects();
+                    // Active les bébés spécifiés
+                    ActivateChildObjects();
+                }
             }
         }
 
@@ -46,6 +49,11 @@ namespace Game.Runtime
             {
                 _child2.SetActive(true);
             }
+        }
+
+        private bool AreChildrenAlreadyActivated()
+        {
+            return _child1.activeSelf;
         }
 
         #endregion

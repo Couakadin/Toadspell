@@ -1920,6 +1920,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cinematique
       objectReference: {fileID: 0}
+    - target: {fileID: 4545480661748223302, guid: 99c9a5cf04707b843b2019873a1c5943,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7482851148010306342, guid: 99c9a5cf04707b843b2019873a1c5943,
         type: 3}
       propertyPath: m_Pivot.x

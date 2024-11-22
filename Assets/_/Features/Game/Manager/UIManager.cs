@@ -17,13 +17,23 @@ namespace Game.Runtime
             InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
             _gameInput = new GameInput();
             _dialogueActions = _gameInput.Dialogue;
+            _gameplayActions = _gameInput.Gameplay;
             _settingsInput = _dialogueActions.Settings;
-
-            _gameOverPanel.SetActive(false);
         }
 
-        void Start()
+        private void OnEnable()
+        {
+            _gameInput.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _gameInput.Disable();
+        }
+
+        private void Start()
     	{
+            _gameOverPanel.SetActive(false);
             _tutorialIndex = 0;
             _tutorialPanels = _keyboardTutorial;
             _maxLives = _playerBlackboard.GetValue<int>("Lives");
@@ -35,6 +45,11 @@ namespace Game.Runtime
                 GameObject life = Instantiate(_livesPrefab, _livesTransform);
                 _livesList.Add(life);
             }
+        }
+
+        private void Update()
+        {
+            if (_settingsInput.triggered) ActionOpenSettingMenu();
         }
 
         #endregion
@@ -67,8 +82,7 @@ namespace Game.Runtime
 
         public void ActionReloadScene()
         {
-            string currentScene = SceneManager.GetActiveScene().ToString();
-            SceneManager.LoadScene(currentScene,LoadSceneMode.Single);
+            SceneManager.LoadScene(1);
         }
 
         public void ActionLoadMainMenu() => SceneManager.LoadScene(0);
@@ -169,13 +183,15 @@ namespace Game.Runtime
             }
         }
 
-        private static void UIActivation()
+        private void UIActivation()
         {
+            _onUIActivationPanels.Raise();
             Cursor.lockState = CursorLockMode.None;
         }
 
         private void UIDeactivation()
         {
+            _onUIDeactivationPanels.Raise();
             Cursor.lockState = CursorLockMode.Locked;
         }
 
@@ -190,9 +206,12 @@ namespace Game.Runtime
         [SerializeField] private GameObject _inGamePanel;
         [SerializeField] private GameObject _tutorialTigger;
         [SerializeField] private GameObject _settingsPanel;
+        [SerializeField] private VoidEvent _onUIActivationPanels;
+        [SerializeField] private VoidEvent _onUIDeactivationPanels;
 
         private GameInput _gameInput;
         private GameInput.DialogueActions _dialogueActions;
+        private GameInput.GameplayActions _gameplayActions;
         private InputAction _settingsInput;
 
         [Space(8)]
