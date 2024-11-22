@@ -1,4 +1,5 @@
 using Data.Runtime;
+using Enemies.Runtime;
 using UnityEngine;
 
 namespace Objects.Runtime
@@ -28,6 +29,12 @@ namespace Objects.Runtime
                         obstacle.ReactToSpell();
                     }
                 }
+            }
+
+            if (other.gameObject.layer == 9)
+            {
+                other.TryGetComponent(out BossBehaviour bossBehaviour);
+                bossBehaviour?.TakeDamage(_damages);
             }
             gameObject.SetActive(false);
         }
