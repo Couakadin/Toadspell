@@ -25,6 +25,13 @@ namespace Player.Runtime
 
         public void Enter()
         {
+            // Target
+            _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
+            _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
+
+            if (_target == null || _currentPool == null) { ChangeState(); return; }
+            if (!_target && !_projectile) { ChangeState(); return; }
+
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, .7f); // Attack Layer
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsAttack", true);
 
@@ -79,23 +86,11 @@ namespace Player.Runtime
 
         private void CastSpell()
         {
-            // Target
-            _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
-            _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
-
-            if (_target == null || _currentPool == null)
-            {
-                ChangeState();
-                return;
-            }
-
             // Pool
            
             _projectile = _currentPool?.GetFirstAvailableObject();
             _projectile.transform.position = m_stateMachine.m_powerBehaviour._playerBlackboard.GetValue<Vector3>("SpellPosition");
             _projectile.TryGetComponent(out _projectileRigidbody);
-
-            if (!_target && !_projectile) { ChangeState(); return; }
 
             _playerTransform.LookAt(new Vector3(_target.transform.position.x, _playerTransform.position.y, _target.gameObject.transform.position.z));
             m_stateMachine.m_powerBehaviour.CastASpell(); // sound of casting a spell
