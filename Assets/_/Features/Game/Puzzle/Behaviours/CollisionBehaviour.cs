@@ -13,6 +13,7 @@ namespace Game.Runtime
             if (other.gameObject.layer == 7)
             {
                 other.gameObject.transform.parent = _parent;
+                if(_projectilImpactCollider != null) _projectilImpactCollider.enabled = false;
             }
         }
 
@@ -21,6 +22,7 @@ namespace Game.Runtime
             if (other.gameObject.layer == 7)
             {
                 other.gameObject.transform.parent = null;
+                if (_projectilImpactCollider != null) _projectilImpactCollider.enabled = true;
             }
         }
 
@@ -29,6 +31,7 @@ namespace Game.Runtime
 
         #region Privates & Protected
         [SerializeField] private Transform _parent;
+        [SerializeField] private Collider _projectilImpactCollider;
         #endregion
     }
 }
