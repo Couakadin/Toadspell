@@ -20,13 +20,19 @@ namespace Enemies.Runtime
             m_stateMachine = stateMachine;
             _bossBehaviour = m_stateMachine.m_bossBehaviour;
 
-            m_timer = new(_bossBehaviour.m_timeCollapseToIdle);
+            _timer = new(_bossBehaviour.m_timeCollapseToIdle);
+            _timerAttack = new(_bossBehaviour.m_timerAttack);
         }
 
         public void Enter()
         {
-            m_timer.OnTimerFinished += ChangeState;
-            m_timer?.Reset();
+            _timerAttack?.Reset();
+            _timerAttack?.Begin();
+            _bossBehaviour.m_CollapseAttack.enabled = true;
+            _timerAttack.OnTimerFinished += FallSequence;
+
+            _timer.OnTimerFinished += ChangeState;
+            _timer?.Reset();
 
             HashSet<GameObject> selectedPlatforms = new();
 
@@ -44,8 +50,6 @@ namespace Enemies.Runtime
                 if (platform.TryGetComponent(out MeshRenderer meshRenderer)) _meshRenderers.Add(meshRenderer);
                 else throw new System.Exception($"{platform.name} is missing a mesh renderer!");
             }
-
-            FallSequence();
         }
 
         public void Exit()
@@ -54,10 +58,19 @@ namespace Enemies.Runtime
             _originalPositions.Clear();  
             _meshRenderers.Clear();
 
-            m_timer.OnTimerFinished -= ChangeState; 
+            _timerAttack.OnTimerFinished -= FallSequence;
+            _timer.OnTimerFinished -= ChangeState; 
         }
 
-        public void Tick() => m_timer?.Tick(); 
+        public void Tick()
+        {
+            _timerAttack?.Tick();
+
+            if (_timerAttack.IsRunning()) return;
+            else if (_bossBehaviour.m_CollapseAttack.enabled) _bossBehaviour.m_CollapseAttack.enabled = false;
+
+            _timer?.Tick();
+        }
 
         public void PhysicsTick() { }
 
@@ -96,7 +109,7 @@ namespace Enemies.Runtime
         {
             platform.transform.position = originalPosition;
 
-            if (!m_timer.IsRunning()) m_timer?.Begin();
+            if (!_timer.IsRunning()) _timer?.Begin();
         }
 
         private void ChangeState() => m_stateMachine.ChangeState(m_stateMachine.m_bossState);
@@ -116,7 +129,7 @@ namespace Enemies.Runtime
         private List<Vector3> _originalPositions = new();
         private List<MeshRenderer> _meshRenderers = new();
 
-        private Timer m_timer;
+        private Timer _timer, _timerAttack;
 
         #endregion
     }

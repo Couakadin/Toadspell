@@ -23,10 +23,15 @@ namespace Enemies.Runtime
 
             _timerWave = new(_bossBehaviour.m_timeWaveLine);
             _timerStill = new(1f);
+            _timerAttack = new(_bossBehaviour.m_timerAttack);
         }
 
         public void Enter()
         {
+            _timerAttack?.Reset();
+            _timerAttack?.Begin();
+            _bossBehaviour.m_waveAttack.enabled = true;
+
             if (_index <= 0) _index = 3;
 
             _direction = GetRandomDirection();
@@ -52,6 +57,11 @@ namespace Enemies.Runtime
 
         public void Tick() 
         {
+            _timerAttack?.Tick();
+
+            if (_timerAttack.IsRunning()) return;
+            else if (_bossBehaviour.m_waveAttack.enabled) _bossBehaviour.m_waveAttack.enabled = false;
+
             _timerWave?.Tick();
             _timerStill?.Tick();
 
@@ -122,8 +132,7 @@ namespace Enemies.Runtime
         private int _index = 3;
 
         private GameObject _wave;
-        private Timer _timerWave;
-        private Timer _timerStill;
+        private Timer _timerWave, _timerStill, _timerAttack;
         private Rigidbody _waveBody;
         private float _waveSpeed;
 

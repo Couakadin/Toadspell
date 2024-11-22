@@ -1,6 +1,7 @@
 using Data.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Enemies.Runtime
 {
@@ -11,6 +12,12 @@ namespace Enemies.Runtime
         [Header("Grid Settings")]
         public GameObject m_gridBehaviour;
         public IGrid m_gridInterface;
+
+        [Header("Attack Settings")]
+        public Image m_waveAttack;
+        public Image m_zoneAttack;
+        public Image m_CollapseAttack;
+        public float m_timerAttack;
 
         [Header("Timer Settings")]
         public float m_timeIdle;
