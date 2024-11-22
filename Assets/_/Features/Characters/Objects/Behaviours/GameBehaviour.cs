@@ -108,6 +108,15 @@ namespace Objects.Runtime
             //_gameInput.Dialogue.Disable();
         }
 
+        public void DisableGameplayInput() { 
+        }
+
+        public void EnableGameplayInput()
+        {
+            _gameInput.Gameplay.Enable();
+        }
+
+
         public void LockCursor()
         {
             Cursor.lockState = CursorLockMode.Locked;
