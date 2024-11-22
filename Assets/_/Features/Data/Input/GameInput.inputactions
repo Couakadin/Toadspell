@@ -293,7 +293,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Setttings",
+                    "name": "Settings",
                     "type": "Button",
                     "id": "e596598c-673a-4c70-9a01-80a57e63811c",
                     "expectedControlType": "",
@@ -354,7 +354,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Setttings",
+                    "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -365,7 +365,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Setttings",
+                    "action": "Settings",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

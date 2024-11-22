@@ -77,8 +77,27 @@ namespace Player.Runtime
 
         private void LateUpdate()
         {
-            if (!m_tonguePlateform) _movement = new Vector3(_cameraDirection.x * _currentSpeed, m_velocity.y, _cameraDirection.z * _currentSpeed);
-            else _movement = new Vector3(_characterController.transform.forward.x * m_jumpPlateform, m_velocity.y, _characterController.transform.forward.z * m_jumpPlateform);
+            Vector3 targetMovement;
+
+            if (!m_tonguePlateform)
+            {
+                targetMovement = new Vector3(
+                    _cameraDirection.x * _currentSpeed,
+                    m_velocity.y,
+                    _cameraDirection.z * _currentSpeed
+                );
+            }
+            else
+            {
+                targetMovement = new Vector3(
+                    _characterController.transform.forward.x * m_jumpPlateform,
+                    m_velocity.y,
+                    _characterController.transform.forward.z * m_jumpPlateform
+                );
+            }
+
+            // Interpolation pour un mouvement fluide
+            _movement = Vector3.Lerp(_movement, targetMovement, Time.deltaTime * m_speedAcceleration);
 
             _playerBlackboard.SetValue("Position", transform.position);
             _playerBlackboard.SetValue("Contact", _pointOfContact.position);
@@ -151,20 +170,37 @@ namespace Player.Runtime
             _cameraForward = _cameraTransform.forward;
             _cameraRight = _cameraTransform.right;
 
-            _cameraForward.y = 0;
+            _cameraForward.y = 0; // Ignore l'axe Y pour éviter les inclinaisons
             _cameraRight.y = 0;
 
             _cameraForward.Normalize();
             _cameraRight.Normalize();
 
+            // Calcul de la direction en fonction de la caméra et des inputs
             _cameraDirection = (_cameraForward * direction.y + _cameraRight * direction.x);
 
+            // Rotation fluide uniquement si une direction est donnée
             if (_cameraDirection.magnitude > 0.1f)
             {
-                Vector3 newForward = Vector3.Lerp(_characterController.transform.forward, _cameraDirection.normalized, m_rotation);
-                _characterController.transform.forward = newForward;
+                Quaternion targetRotation = Quaternion.LookRotation(_cameraDirection.normalized);
+                _characterController.transform.rotation = Quaternion.Lerp(
+                    _characterController.transform.rotation,
+                    targetRotation,
+                    Time.deltaTime * m_rotation
+                );
+            }
+            else
+            {
+                // Suivi automatique de la caméra
+                Quaternion targetRotation = Quaternion.LookRotation(_cameraForward);
+                _characterController.transform.rotation = Quaternion.Lerp(
+                    _characterController.transform.rotation,
+                    targetRotation,
+                    Time.deltaTime * m_rotation
+                );
             }
         }
+
 
         #endregion
 

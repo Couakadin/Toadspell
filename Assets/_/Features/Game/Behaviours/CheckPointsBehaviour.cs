@@ -14,13 +14,18 @@ namespace Game.Runtime
             {
                 // Met à jour la position du checkpoint dans le Blackboard
                 _playerBlackboard.SetValue<Vector3>("Checkpoint", _spawnPoint.position);
+                if (!AreChildrenAlreadyActivated()) 
+                {
+                    if(_onCheckpointTriggered != null) _onCheckpointTriggered.Raise();
 
-                // Active les bébés spécifiés
-                ActivateChildObjects();
+                    // Active les bébés spécifiés
+                    ActivateChildObjects();
+                }
             }
         }
 
         #endregion
+
 
         #region Privates & Protected
 
@@ -28,6 +33,7 @@ namespace Game.Runtime
         [SerializeField] private Blackboard _playerBlackboard; // Blackboard pour stocker la position du checkpoint
         [SerializeField] private GameObject _child1; // Premier enfant à activer
         [SerializeField] private GameObject _child2; // Deuxième enfant à activer
+        [SerializeField] private VoidEvent _onCheckpointTriggered;
 
         /// <summary>
         /// Active les enfants spécifiés
@@ -43,6 +49,12 @@ namespace Game.Runtime
             {
                 _child2.SetActive(true);
             }
+        }
+
+        private bool AreChildrenAlreadyActivated()
+        {
+            if( _child1 == null ) return false;
+            return _child1.activeSelf;
         }
 
         #endregion

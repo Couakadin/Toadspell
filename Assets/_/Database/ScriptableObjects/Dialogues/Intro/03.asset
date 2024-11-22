@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24cd8284dafef74a977ab172c5feba3, type: 3}
   m_Name: 03
   m_EditorClassIdentifier: 
-  m_image: {fileID: 21300000, guid: 8ad142f84a39e3f4ea776ff509a3f334, type: 3}
+  m_image: {fileID: 21300000, guid: 86d8993877dedea48a6dac2c302c32c5, type: 3}
+  m_background: {fileID: 0}
+  m_speakerNameImage: {fileID: 0}
   m_speakerName: 
   m_lines:
   - m_sentence: 

@@ -14,11 +14,26 @@ namespace Game.Runtime
 
         private void Awake()
         {
-            //InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
+            InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
+            _gameInput = new GameInput();
+            _dialogueActions = _gameInput.Dialogue;
+            _gameplayActions = _gameInput.Gameplay;
+            _settingsInput = _dialogueActions.Settings;
         }
 
-        void Start()
+        private void OnEnable()
+        {
+            _gameInput.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _gameInput.Disable();
+        }
+
+        private void Start()
     	{
+            _gameOverPanel.SetActive(false);
             _tutorialIndex = 0;
             _tutorialPanels = _keyboardTutorial;
             _maxLives = _playerBlackboard.GetValue<int>("Lives");
@@ -32,6 +47,15 @@ namespace Game.Runtime
             }
         }
 
+        private void Update()
+        {
+            if (_settingsInput.triggered)
+            {
+                if (_settingsPanel.activeSelf == false) ActionOpenSettingMenu();
+                else ActionCloseSettingsMenu();
+            }
+        }
+
         #endregion
 
 
@@ -39,9 +63,9 @@ namespace Game.Runtime
 
         private void FirstFadeIn()
         {
-            _onPlayerHasSpawned.Raise();
             Sequence fadeSequence = DOTween.Sequence();
             fadeSequence.AppendInterval(_spawnFadeInterval);
+            fadeSequence.JoinCallback(() => _onPlayerHasSpawned.Raise());
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _spawnFadeOut));
         }
 
@@ -53,19 +77,32 @@ namespace Game.Runtime
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _teleportFadeOutDelay));
         }
 
-        public void ActionActivateGameOverScreen() => _gameOverPanel.SetActive(true);
+        [ContextMenu("GameOverScreen")]
+        public void ActionActivateGameOverScreen()
+        {
+            UIActivation();
+            _gameOverPanel.SetActive(true);
+        }
 
         public void ActionReloadScene()
         {
-            string currentScene = SceneManager.GetActiveScene().ToString();
-            SceneManager.LoadScene(currentScene);
+            SceneManager.LoadScene(1);
         }
 
         public void ActionLoadMainMenu() => SceneManager.LoadScene(0);
 
-        public void ActionOpenSettingMenu() { }
+        [ContextMenu("settings")]
+        public void ActionOpenSettingMenu() 
+        {
+            UIActivation();
+            _settingsPanel.SetActive(true);
+        }
 
-        public void ActionCloseSettingsMenu() { }
+        public void ActionCloseSettingsMenu() 
+        {
+            UIDeactivation();
+            _settingsPanel.SetActive(false);
+        }
 
         public void ActionInGamePanelSetActive() => _inGamePanel.SetActive(true);
        
@@ -73,6 +110,8 @@ namespace Game.Runtime
         {
             _spellImage.sprite = _spellList[spell];
         }
+
+        public void ActionQuitApplication() => Application.Quit();
 
         public void UpdateLives()
         {
@@ -107,10 +146,12 @@ namespace Game.Runtime
             tutorialSequence.Append(_tutorialPanels[_tutorialIndex].DOFade(0, _tutorialFadeOut)).OnComplete(UpdateTutorialIndex);   
         }
 
-        [ContextMenu("switch test")]
-        private void SwitchList()
+        public void ActionCheckpointRegistered()
         {
-            _tutorialPanels = _joyStickTutorial;
+            Sequence checkpoint = DOTween.Sequence();
+            checkpoint.Append(_checkpoint.DOFade(1, _checkpointFadeIn));
+            checkpoint.AppendInterval(_checkpointTImeOnScreen);
+            checkpoint.Append(_checkpoint.DOFade(0, _checkpointFadeOut));
         }
 
         #endregion
@@ -148,6 +189,18 @@ namespace Game.Runtime
             }
         }
 
+        private void UIActivation()
+        {
+            _onUIActivationPanels.Raise();
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        private void UIDeactivation()
+        {
+            _onUIDeactivationPanels.Raise();
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
         #endregion
 
 
@@ -157,7 +210,14 @@ namespace Game.Runtime
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private GameObject _gameOverPanel;
         [SerializeField] private GameObject _inGamePanel;
-        [SerializeField] private GameObject _tutorialTigger;
+        [SerializeField] private GameObject _settingsPanel;
+        [SerializeField] private VoidEvent _onUIActivationPanels;
+        [SerializeField] private VoidEvent _onUIDeactivationPanels;
+
+        private GameInput _gameInput;
+        private GameInput.DialogueActions _dialogueActions;
+        private GameInput.GameplayActions _gameplayActions;
+        private InputAction _settingsInput;
 
         [Space(8)]
         [Header("On Start Fade In")]
@@ -197,6 +257,14 @@ namespace Game.Runtime
         private List<CanvasGroup> _tutorialPanels = new();
         [SerializeField] private int _tutorialIndex = 0;
         private bool _isKeyboard;
+
+        [Space(8)]
+        [Header("Checkpoint UI")]
+        [SerializeField] private CanvasGroup _checkpoint;
+        [SerializeField] private float _checkpointTImeOnScreen;
+        [SerializeField] private float _checkpointFadeIn;
+        [SerializeField] private float _checkpointFadeOut;
+
 
         #endregion
     }

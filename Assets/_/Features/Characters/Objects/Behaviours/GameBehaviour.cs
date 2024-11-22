@@ -33,8 +33,7 @@ namespace Objects.Runtime
         private void Awake()
         {
             _playerBlackboard.SetValue<int>("Lives", _startLifePoints);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            LockCursor();
             _teleportTimer = new Timer(_teleportDelay);
             _disablingTimer = new Timer(_disablingDelay);
             m_frontCamera.Priority = 11;
@@ -106,7 +105,28 @@ namespace Objects.Runtime
         {
             m_frontCamera.Priority = 0;
             _gameInput.Gameplay.Enable();
-            _gameInput.Dialogue.Disable();
+            //_gameInput.Dialogue.Disable();
+        }
+
+        public void DisableGameplayInput() { 
+        }
+
+        public void EnableGameplayInput()
+        {
+            _gameInput.Gameplay.Enable();
+        }
+
+
+        public void LockCursor()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        public void UnLockCursor()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         #endregion
 
