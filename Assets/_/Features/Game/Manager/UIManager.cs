@@ -111,6 +111,8 @@ namespace Game.Runtime
             _spellImage.sprite = _spellList[spell];
         }
 
+        public void ActionQuitApplication() => Application.Quit();
+
         public void UpdateLives()
         {
             _currentLives = _playerBlackboard.GetValue<int>("Lives");
