@@ -45,17 +45,41 @@ namespace Enemies.Runtime
 
         #region Utils
 
+        /// <summary>
+        /// Changes the boss's attack state.
+        /// Ensures an attack can be repeated twice in a row but not three times.
+        /// </summary>
         private void ChangeState()
         {
-            int rand = Random.Range(0, 3);
+            int rand;
 
-            switch(rand)
+            // If the current attack was repeated twice, force a different attack
+            if (_repeatCount >= 2)
             {
-                case 0: m_stateMachine.ChangeState(m_stateMachine.m_collapseState);
+                do rand = Random.Range(0, 3); // Number of possible attacks
+                while (rand == _currentAttack); // Ensure it's not the same as the current attack
+            }
+            else rand = Random.Range(0, 3); // Select a random attack
+
+            // Update the current attack and its repetition count
+            if (rand == _currentAttack) _repeatCount++;
+            else
+            {
+                _currentAttack = rand;
+                _repeatCount = 1; // Reset the count for the new attack
+            }
+
+            // Execute the corresponding attack state change
+            switch (rand)
+            {
+                case 0:
+                    m_stateMachine.ChangeState(m_stateMachine.m_collapseState);
                     break;
-                case 1: m_stateMachine.ChangeState(m_stateMachine.m_lineState);
+                case 1:
+                    m_stateMachine.ChangeState(m_stateMachine.m_lineState);
                     break;
-                case 2: m_stateMachine.ChangeState(m_stateMachine.m_zoneState);
+                case 2:
+                    m_stateMachine.ChangeState(m_stateMachine.m_zoneState);
                     break;
             }
         }
@@ -66,6 +90,11 @@ namespace Enemies.Runtime
 
         private BossBehaviour _bossBehaviour;
         private Timer m_timer;
+
+        // Tracks the current attack type (-1 indicates no initial attack)
+        private int _currentAttack = -1;
+        // Counts consecutive repetitions of the current attack
+        private int _repeatCount = 0;
 
         #endregion
     }

@@ -22,13 +22,18 @@ namespace Enemies.Runtime
             _dangerZones = _bossBehaviour.m_dangerZones;
             _growthSpeed = _bossBehaviour.m_growthSpeed;
             
-            m_timer = new(_bossBehaviour.m_timeZoneToIdle);
+            _timer = new(_bossBehaviour.m_timeZoneToIdle);
+            _timerAttack = new(_bossBehaviour.m_timerAttack);
         }
 
         public void Enter()
         {
-            m_timer.OnTimerFinished += ChangeState;
-            m_timer?.Reset();
+            _timerAttack?.Reset();
+            _timerAttack?.Begin();
+            _bossBehaviour.m_zoneAttack.enabled = true;
+
+            _timer.OnTimerFinished += ChangeState;
+            _timer?.Reset();
 
             HashSet<GameObject> selectedPlatforms = new HashSet<GameObject>();
             while (selectedPlatforms.Count < _dangerZones.Count)
@@ -72,12 +77,17 @@ namespace Enemies.Runtime
             _activeDangerZones.Clear();
             _targetScales.Clear();
 
-            m_timer.OnTimerFinished -= ChangeState;
+            _timer.OnTimerFinished -= ChangeState;
         }
 
         public void Tick()
         {
-            m_timer?.Tick();
+            _timerAttack?.Tick();
+
+            if (_timerAttack.IsRunning()) return;
+            else if (_bossBehaviour.m_zoneAttack.enabled) _bossBehaviour.m_zoneAttack.enabled = false;
+
+            _timer?.Tick();
 
             for (int i = 0; i < _activeDangerZones.Count; i++)
             {
@@ -95,7 +105,7 @@ namespace Enemies.Runtime
 
             if (_activeDangerZones.TrueForAll(dz => 
             dz.transform.localScale.x >= _targetScales[_activeDangerZones.IndexOf(dz)].x && 
-            dz.transform.localScale.z >= _targetScales[_activeDangerZones.IndexOf(dz)].z)) if (!m_timer.IsRunning()) m_timer?.Begin();
+            dz.transform.localScale.z >= _targetScales[_activeDangerZones.IndexOf(dz)].z)) if (!_timer.IsRunning()) _timer?.Begin();
         }
 
         public void PhysicsTick() { }
@@ -126,7 +136,7 @@ namespace Enemies.Runtime
         private List<GameObject> _dangerZones = new();
         private List<Vector3> _targetScales = new();
 
-        private Timer m_timer;
+        private Timer _timer, _timerAttack;
 
         #endregion
     }

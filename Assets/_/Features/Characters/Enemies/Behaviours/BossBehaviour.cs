@@ -1,6 +1,7 @@
 using Data.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Enemies.Runtime
 {
@@ -8,9 +9,18 @@ namespace Enemies.Runtime
     {
         #region Publics
 
-        [Header("Grid Settings")]
+        [Header("Components Settings")]
         public GameObject m_gridBehaviour;
         public IGrid m_gridInterface;
+        public GameObject m_player;
+        public Slider m_healthBar;
+        public float m_lifePoints;
+
+        [Header("Attack Settings")]
+        public Image m_waveAttack;
+        public Image m_zoneAttack;
+        public Image m_CollapseAttack;
+        public float m_timerAttack;
 
         [Header("Timer Settings")]
         public float m_timeIdle;
@@ -58,6 +68,9 @@ namespace Enemies.Runtime
         {
             _stateMachine = new(this);
             _stateMachine.ChangeState(_stateMachine.m_bossState);
+
+            m_healthBar.maxValue = m_lifePoints;
+            m_healthBar.value = m_lifePoints;
         }
 
         private void Update()
@@ -69,6 +82,16 @@ namespace Enemies.Runtime
         private void FixedUpdate() => _stateMachine.PhysicsTick();
 
         private void LateUpdate() => _stateMachine.FinalTick();
+
+        #endregion
+
+        #region Methods
+
+        public void TakeDamage(int damage)
+        {
+            m_lifePoints -= damage;
+            m_healthBar.value = m_lifePoints;
+        }
 
         #endregion
 

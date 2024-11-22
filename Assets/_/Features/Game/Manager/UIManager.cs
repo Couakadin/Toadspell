@@ -96,11 +96,13 @@ namespace Game.Runtime
         {
             UIActivation();
             _settingsPanel.SetActive(true);
+            _settingsPanel.GetComponent<CanvasGroup>().DOFade(1, .5f);
         }
 
         public void ActionCloseSettingsMenu() 
         {
             UIDeactivation();
+            _settingsPanel.GetComponent<CanvasGroup>().DOFade(0, .5f);
             _settingsPanel.SetActive(false);
         }
 

@@ -23,15 +23,24 @@ namespace Enemies.Runtime
 
             _timerWave = new(_bossBehaviour.m_timeWaveLine);
             _timerStill = new(1f);
+            _timerAttack = new(_bossBehaviour.m_timerAttack);
         }
 
         public void Enter()
         {
+            _timerAttack?.Reset();
+            _timerAttack?.Begin();
+            if (_index == 3) _bossBehaviour.m_waveAttack.enabled = true;
+
             if (_index <= 0) _index = 3;
 
-            _direction = GetRandomDirection();
-            
+            if (PlayerDetected(out Vector3 playerPosition))
+                _direction = GetPlayerDirection(playerPosition);
+            else
+                _direction = GetRandomDirection();
+
             _wave.transform.position = _gridInterface.m_centralPlatform.transform.position;
+
             if (_direction == Vector3.forward) _wave.transform.rotation = Quaternion.Euler(0, 270f, 0);
             else if (_direction == Vector3.back) _wave.transform.rotation = Quaternion.Euler(0, 90f, 0);
             else if (_direction == Vector3.right) _wave.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -52,6 +61,11 @@ namespace Enemies.Runtime
 
         public void Tick() 
         {
+            _timerAttack?.Tick();
+
+            if (_timerAttack.IsRunning()) return;
+            else if (_bossBehaviour.m_waveAttack.enabled) _bossBehaviour.m_waveAttack.enabled = false;
+
             _timerWave?.Tick();
             _timerStill?.Tick();
 
@@ -67,6 +81,26 @@ namespace Enemies.Runtime
         #endregion
 
         #region Utils
+
+        private Vector3 GetPlayerDirection(Vector3 playerPosition)
+        {
+            Vector3 rawDirection = playerPosition - _gridInterface.m_centralPlatform.transform.position;
+
+            if (Mathf.Abs(rawDirection.x) > Mathf.Abs(rawDirection.z)) return rawDirection.x > 0 ? Vector3.right : Vector3.left;
+            else return rawDirection.z > 0 ? Vector3.forward : Vector3.back;
+        }
+
+        internal bool PlayerDetected(out Vector3 playerPosition)
+        {
+            if (_bossBehaviour.m_player != null)
+            {
+                playerPosition = _bossBehaviour.m_player.transform.position;
+                return true;
+            }
+
+            playerPosition = GetRandomDirection();
+            return false;
+        }
 
         private Vector3 GetRandomDirection()
         {
@@ -122,8 +156,7 @@ namespace Enemies.Runtime
         private int _index = 3;
 
         private GameObject _wave;
-        private Timer _timerWave;
-        private Timer _timerStill;
+        private Timer _timerWave, _timerStill, _timerAttack;
         private Rigidbody _waveBody;
         private float _waveSpeed;
 
