@@ -53,6 +53,7 @@ namespace Game.Runtime
 
         private bool AreChildrenAlreadyActivated()
         {
+            if( _child1 == null ) return false;
             return _child1.activeSelf;
         }
 

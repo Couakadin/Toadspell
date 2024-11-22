@@ -6426,8 +6426,11 @@ MonoBehaviour:
   _playerBlackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   _gameOverPanel: {fileID: 5548933359328355218}
   _inGamePanel: {fileID: 5739515843761695086}
-  _tutorialTigger: {fileID: 0}
-  _settingsPanel: {fileID: 0}
+  _settingsPanel: {fileID: 3951532634975133788}
+  _onUIActivationPanels: {fileID: 11400000, guid: 1fff9efe66694ca47adca8f2a8eb073f,
+    type: 2}
+  _onUIDeactivationPanels: {fileID: 11400000, guid: d96cc3ef7041c0d4587ea863435bc2d3,
+    type: 2}
   _spawnFadeInterval: 0.5
   _spawnFadeOut: 1
   _onPlayerHasSpawned: {fileID: 11400000, guid: 196659727af0e684a9d4cc583edb08ee,

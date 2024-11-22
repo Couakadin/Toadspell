@@ -49,7 +49,11 @@ namespace Game.Runtime
 
         private void Update()
         {
-            if (_settingsInput.triggered) ActionOpenSettingMenu();
+            if (_settingsInput.triggered)
+            {
+                if (_settingsPanel.activeSelf == false) ActionOpenSettingMenu();
+                else ActionCloseSettingsMenu();
+            }
         }
 
         #endregion
@@ -59,9 +63,9 @@ namespace Game.Runtime
 
         private void FirstFadeIn()
         {
-            _onPlayerHasSpawned.Raise();
             Sequence fadeSequence = DOTween.Sequence();
             fadeSequence.AppendInterval(_spawnFadeInterval);
+            fadeSequence.JoinCallback(() => _onPlayerHasSpawned.Raise());
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _spawnFadeOut));
         }
 
@@ -204,7 +208,6 @@ namespace Game.Runtime
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private GameObject _gameOverPanel;
         [SerializeField] private GameObject _inGamePanel;
-        [SerializeField] private GameObject _tutorialTigger;
         [SerializeField] private GameObject _settingsPanel;
         [SerializeField] private VoidEvent _onUIActivationPanels;
         [SerializeField] private VoidEvent _onUIDeactivationPanels;
