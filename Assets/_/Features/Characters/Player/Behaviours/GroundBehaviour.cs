@@ -8,14 +8,29 @@ namespace Player.Runtime
 
         public bool m_isGrounded { get; private set; }
 
+        public GameObject m_particleParent;
+
         #endregion
 
 
         #region Unity
+
+        private void Start()
+        {
+            m_camera = Camera.main;
+            _particleFalling = m_particleParent.GetComponentsInChildren<ParticleSystem>();
+        }
+
         private void Update()
         {
             // Check if there is any collider within the specified radius on the ground layer
             m_isGrounded = Physics.CheckSphere(transform.position, groundCheckRadius, groundLayer);
+
+            if (m_isGrounded && !hasParticlePlayed)
+            {
+                PlayAllParticles();
+                hasParticlePlayed = true; // Empêche de rejouer
+            } else if (!m_isGrounded && hasParticlePlayed) hasParticlePlayed = false;
         }
 
         private void OnDrawGizmosSelected()
@@ -27,6 +42,20 @@ namespace Player.Runtime
 
         #endregion
 
+        #region Utils
+
+        private void PlayAllParticles()
+        {
+            m_particleParent.transform.LookAt(m_camera.transform);
+
+            foreach (ParticleSystem particleSystem in _particleFalling)
+            {
+                particleSystem.Play();
+                Debug.Log(particleSystem.isPlaying);
+            }
+        }
+
+        #endregion
 
         #region Privates
 
@@ -38,6 +67,11 @@ namespace Player.Runtime
         [Tooltip("Layer(s) considered as ground.")]
         [SerializeField]
         private LayerMask groundLayer;
+
+        private ParticleSystem[] _particleFalling;
+        private bool hasParticlePlayed = false;
+
+        private Camera m_camera;
 
         #endregion
     }
