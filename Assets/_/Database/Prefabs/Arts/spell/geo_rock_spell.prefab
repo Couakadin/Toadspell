@@ -9901,7 +9901,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 408
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -9950,7 +9950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_element: 3
   m_particleImpact: {fileID: 1016193208712058494}
-  _damages: 1
+  _damages: 2
 --- !u!4 &8049271111958469905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ded6de467caefd43b850d7570bb5c90,

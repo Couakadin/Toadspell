@@ -1024,7 +1024,7 @@ MonoBehaviour:
   m_tongueSpeed: 100
   m_canEat: 0
   m_spellSpawner: {fileID: 481850103328051413}
-  m_castingASpellDelay: 0.1
+  m_castingASpellDelay: 0.05
   m_speedOfProjectile: 3
   m_durationOfProjectile: 2
   m_spell: 0
