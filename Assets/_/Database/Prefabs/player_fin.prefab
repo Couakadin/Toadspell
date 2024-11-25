@@ -1291,6 +1291,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -8141477795306152486, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7486430210045690014, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
       propertyPath: m_Layer
@@ -1298,33 +1303,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
       propertyPath: m_AABB.m_Center.x
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
       propertyPath: m_AABB.m_Center.z
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
       propertyPath: m_AABB.m_Extent.x
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
       propertyPath: m_AABB.m_Extent.y
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
       propertyPath: m_AABB.m_Extent.z
-      value: NaN
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7457551541330988689, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_SkinnedMotionVectors
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7270565422277788790, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
@@ -1530,6 +1565,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 280959703943896072, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 741158358184435717, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
@@ -1765,6 +1805,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246336295711893839, guid: 72d73a0cfa0eb31449539db799135704,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8779361863029983439, guid: 72d73a0cfa0eb31449539db799135704,
         type: 3}
