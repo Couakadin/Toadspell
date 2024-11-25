@@ -29,6 +29,7 @@ namespace Game.Runtime
         {
             _unpaused.TransitionTo(.01f);
         }
+
         #endregion
 
 
@@ -42,7 +43,6 @@ namespace Game.Runtime
             }
             RefreshSlider(value, slider);
             _audioMixer.SetFloat(nameOfAudio, Mathf.Log10(value / 100) * 20f);
-
         }
 
         //private void SetVolumeFromslider(Slider slider)

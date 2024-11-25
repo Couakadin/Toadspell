@@ -2971,8 +2971,7 @@ MonoBehaviour:
   _vfxSlider: {fileID: 9174030073251295147}
   _audioMixer: {fileID: 24100000, guid: 1375aa5abc7434140873cf96568cc46f, type: 2}
   _paused: {fileID: 4005628801384680491, guid: 1375aa5abc7434140873cf96568cc46f, type: 2}
-  _unpaused: {fileID: 895196608827976256, guid: 1375aa5abc7434140873cf96568cc46f,
-    type: 2}
+  _unpaused: {fileID: 24500006, guid: 1375aa5abc7434140873cf96568cc46f, type: 2}
 --- !u!1 &4216574838570712285
 GameObject:
   m_ObjectHideFlags: 0
