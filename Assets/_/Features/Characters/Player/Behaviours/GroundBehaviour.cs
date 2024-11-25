@@ -48,11 +48,7 @@ namespace Player.Runtime
         {
             m_particleParent.transform.LookAt(m_camera.transform);
 
-            foreach (ParticleSystem particleSystem in _particleFalling)
-            {
-                particleSystem.Play();
-                Debug.Log(particleSystem.isPlaying);
-            }
+            foreach (ParticleSystem particleSystem in _particleFalling) particleSystem.Play();
         }
 
         #endregion
