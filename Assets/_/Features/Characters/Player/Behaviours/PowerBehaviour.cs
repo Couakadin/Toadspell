@@ -140,6 +140,16 @@ namespace Player.Runtime
 
         public IAmElement.Element spell => m_spell;
 
+        public void DeactivateInputSystem()
+        {
+            _gameInput.Disable();
+        }
+
+        public void ActivateInputSystem()
+        {
+            _gameInput.Enable();
+        }
+
         public void CastASpell()
         {
             int spellType = (int)m_spell;
