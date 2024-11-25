@@ -21,19 +21,14 @@ namespace Game.Runtime
             _cutDialogueInput = _dialogueActions.CutDialogue;
         }
 
-        private void OnEnable()
-        {
-            _dialogueActions.Enable();
-        }
+        private void OnEnable() => _dialogueActions.Enable();
 
-        private void OnDisable()
-        {
-            _dialogueActions.Disable();
-        }
+        private void OnDisable() => _dialogueActions.Disable();
 
         private void Start()
         {
             _typingSpeed = _typingSpeed / 100;
+
             _typingTimer = new Timer(_typingSpeed);
             _typingTimer.OnTimerFinished += OnCharacterTyping;
             _LineOnScreenTimer = new Timer(_timeOnScreenDelay);
@@ -66,22 +61,17 @@ namespace Game.Runtime
 
         #region Main Methods
 
+        [ContextMenu("test dialogue)")]
         public void LaunchFirstDialogue()
         {
             if(_currentExchangeInStoryIndex > _exchanges.Count) return;
             Sequence firstExchange = DOTween.Sequence();
             Dialogue currentExchange = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
+            Debug.Log(currentExchange.ToString());
             firstExchange.AppendInterval(2);
             firstExchange.Append(_dialoguePanel.DOFade(1, _panelFadeIn));
             firstExchange.AppendCallback(() => StartDialogue(currentExchange));
         }
-
-        //private void LaunchNewDialogueExchange() 
-        //{
-        //    _dialoguePanel.DOFade(1, _panelFadeIn);
-        //    Dialogue currentExchange = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
-        //    StartDialogue(currentExchange);
-        //}
 
         public void StartDialogue(Dialogue dialogue)
         {
@@ -91,6 +81,7 @@ namespace Game.Runtime
             _characterBackground.sprite = dialogue.m_background;
             _speakerImage.sprite = dialogue.m_image;
             _speakerName.sprite = dialogue.m_speakerNameImage;
+            _characterPanel.DOFade(1, .5f);
 
             DisplayNextLines();
         }
@@ -104,8 +95,7 @@ namespace Game.Runtime
                 _isTyping = true;
                 _writer = _currentDialogue.m_lines[_currentLineIndex].m_sentence;
 
-                _typingTimer.Reset();
-                _typingTimer.Begin();
+                ResetTimer(_typingTimer);
             }
             else
             {
@@ -128,6 +118,7 @@ namespace Game.Runtime
 
         private void ResetOnCut()
         {
+            _typingTimer.Stop();
             _currentExchangeIndex = 0;
             _currentCharacterIndex = 0;
             _currentLineIndex = 0;
@@ -135,10 +126,13 @@ namespace Game.Runtime
         }
         private void EndOfDialogue()
         {
+            _characterPanel.DOFade(0, .5f);
             _dialoguePanel.DOFade(0, _panelFadeOut).OnComplete(() =>
             {
+                ResetOnCut();
                 _currentExchangeInStoryIndex++;
                 if (_exchanges[0]) _onFirstExchangeFinished.Raise();
+                if (_exchanges[1]) _onBridgeExchangeFinished.Raise();
             });
         }
 
@@ -148,8 +142,7 @@ namespace Game.Runtime
             {
                 _linesOfDialogue.text += $"{_writer[_currentCharacterIndex]}";
                 _currentCharacterIndex++;
-                _typingTimer.Reset();
-                _typingTimer.Begin();
+                ResetTimer(_typingTimer);
             }
             else
             {
@@ -158,8 +151,7 @@ namespace Game.Runtime
                 _isTyping = false;
                 _isSkipping = false;
                 _LineOnScreenTimer.UpdateTimer(_timeOnScreenDelay);
-                _LineOnScreenTimer.Reset();
-                _LineOnScreenTimer.Begin();
+                ResetTimer(_LineOnScreenTimer);
             }
         }
 
@@ -171,10 +163,15 @@ namespace Game.Runtime
 
             _isTyping = false;
 
-            _LineOnScreenTimer.Reset();
-            _LineOnScreenTimer.Begin();
+            ResetTimer(_LineOnScreenTimer);
            
             _isSkipping=false;
+        }
+
+        private void ResetTimer(Timer timer)
+        {
+            timer.Reset();
+            timer.Begin();
         }
 
         #endregion
@@ -188,10 +185,10 @@ namespace Game.Runtime
         private InputAction _cutDialogueInput;
         
         private Dialogue _currentDialogue;
-        private int _currentExchangeIndex = 0;
+        [SerializeField] private int _currentExchangeIndex = 0;
         [SerializeField] private int _currentExchangeInStoryIndex = 0;
-        private int _currentLineIndex = 0;
-        private int _currentCharacterIndex = 0;
+        [SerializeField] private int _currentLineIndex = 0;
+        [SerializeField] private int _currentCharacterIndex = 0;
         private bool _isTyping = false;
         private bool _isSkipping = false;
 
@@ -201,6 +198,7 @@ namespace Game.Runtime
 
         [Header("Panel Fade in/out")]
         [SerializeField] private CanvasGroup _dialoguePanel;
+        [SerializeField] private CanvasGroup _characterPanel;
         [SerializeField] private float _panelFadeIn;
         [SerializeField] private float _panelFadeOut;
 
@@ -219,6 +217,7 @@ namespace Game.Runtime
 
         [Header("Events")]
         [SerializeField] private VoidEvent _onFirstExchangeFinished;
+        [SerializeField] private VoidEvent _onBridgeExchangeFinished;
 
         #endregion
     }

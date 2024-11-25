@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24cd8284dafef74a977ab172c5feba3, type: 3}
   m_Name: Bridge - 08 - Toad
   m_EditorClassIdentifier: 
-  m_image: {fileID: 0}
+  m_image: {fileID: 21300000, guid: 9ce73785784d08140aeb63d35ec53a9a, type: 3}
+  m_background: {fileID: 21300000, guid: cd861bea741f48b4bb554414edf959cd, type: 3}
+  m_speakerNameImage: {fileID: 21300000, guid: de402e3477fad1146b57f43b21fd481b, type: 3}
   m_speakerName: Toad
   m_lines:
   - m_sentence: Ooh il va se calmer, le bouquet de fleurs !
