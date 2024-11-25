@@ -11,6 +11,8 @@ namespace Objects.Runtime
         public IAmElement.Element spell => m_element;
         public IAmElement.Element m_element;
 
+        public ParticleSystem m_particleImpact;
+
 
         private void OnTriggerEnter(Collider other)
         {
@@ -25,7 +27,6 @@ namespace Objects.Runtime
                 {
                     if(element.spell == m_element)
                     {
-                        Debug.Log("test");
                         obstacle.ReactToSpell();
                     }
                 }
@@ -36,7 +37,11 @@ namespace Objects.Runtime
                 other.TryGetComponent(out BossBehaviour bossBehaviour);
                 bossBehaviour?.TakeDamage(_damages);
             }
-            gameObject.SetActive(false);
+
+            m_particleImpact.transform.position = gameObject.transform.position;
+            m_particleImpact.Play();
+            
+            //gameObject.SetActive(false);
         }
 
         #endregion
