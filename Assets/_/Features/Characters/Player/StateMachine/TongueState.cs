@@ -40,7 +40,8 @@ namespace Player.Runtime
 
             _tongueMaxDistance = m_stateMachine.m_powerBehaviour.m_maxDetectionRadius;
             _currentLockTarget = m_stateMachine.m_lockState.m_currentLockTarget?.transform;
-            if (_currentLockTarget == null) m_stateMachine.ChangeState(m_stateMachine.m_lockState);
+            if (_currentLockTarget == null) { m_stateMachine.ChangeState(m_stateMachine.m_lockState); return; }
+            m_stateMachine.m_powerBehaviour.TongueSoundOnExtension();
         }
 
         public void Exit()
@@ -108,7 +109,6 @@ namespace Player.Runtime
 
         private void TongueExtend()
         {
-            m_stateMachine.m_powerBehaviour.TongueSoundOnExtension();
             _isTongueExtended = true;
             _tongueRigidbody.transform.parent = null;
             _tongueMesh.transform.parent = null;
