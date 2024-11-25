@@ -105,6 +105,20 @@ namespace Player.Runtime
 
         #endregion
 
+        #region Main Methods
+
+        public void DeactivateInputSystem()
+        {
+            _gameInput.Disable();
+        }
+
+        public void ActivateInputSystem()
+        {
+            _gameInput.Enable();
+        }
+
+        #endregion
+
         #region Utils
 
         private void HandleMove()

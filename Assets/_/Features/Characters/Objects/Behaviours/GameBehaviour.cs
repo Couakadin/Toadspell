@@ -103,22 +103,24 @@ namespace Objects.Runtime
         [ContextMenu("disabled input")]
         public void onFirstSpawnDontMove()
         {
-            _gameInput.Gameplay.Disable();
-            //_gameInput.Dialogue.Enable();
+            DisableGameplayInput();
         }
 
         public void onStartDiscoveringTheWorld()
         {
-            _gameInput.Gameplay.Enable();
-            //_gameInput.Dialogue.Disable();
+            EnableGameplayInput();
         }
 
-        public void DisableGameplayInput() { 
+        public void DisableGameplayInput() 
+        {
+            _moveBehaviour.DeactivateInputSystem();
+            _powerBehaviour.DeactivateInputSystem();
         }
 
         public void EnableGameplayInput()
         {
-            _gameInput.Gameplay.Enable();
+            _moveBehaviour.ActivateInputSystem();
+            _powerBehaviour.ActivateInputSystem();
         }
 
 
