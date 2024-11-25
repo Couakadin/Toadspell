@@ -8,26 +8,6 @@ namespace Game.Runtime
 {
     public class SoundSettings : MonoBehaviour
     {
-        #region Publics
-	
-        #endregion
-
-
-        #region Unity API
-		
-    	void Start()
-    	{
-	       
-    	}
-
-    	void Update()
-    	{
-	
-    	}
-
-        #endregion
-
-
         #region Main Methods
 
         public void SetEnvironmentVolume()

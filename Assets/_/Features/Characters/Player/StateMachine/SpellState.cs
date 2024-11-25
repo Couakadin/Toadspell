@@ -44,7 +44,7 @@ namespace Player.Runtime
 
         public void Exit()
         {
-            _projectile?.SetActive(false);
+            //_projectile?.SetActive(false);
 
             _timerSpell?.Reset();
             _timerState?.Reset();
@@ -97,7 +97,7 @@ namespace Player.Runtime
             _target.TryGetComponent(out _targetCollider);
             if (!_targetCollider) throw new System.Exception("No Target Collider!");
 
-            _projectile.SetActive(true);
+            //_projectile.SetActive(true);
 
             _timerState?.Begin();
         }
