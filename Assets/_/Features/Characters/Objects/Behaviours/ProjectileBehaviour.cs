@@ -13,6 +13,17 @@ namespace Objects.Runtime
 
         public ParticleSystem m_particleImpact;
 
+        private void Awake() => _timer = new(.5f);
+
+        private void OnEnable()
+        {
+            _timer?.Reset();
+            _timer.OnTimerFinished += Deactivate;
+        }
+
+        private void OnDisable() => _timer.OnTimerFinished -= Deactivate;
+
+        private void Update() => _timer?.Tick();
 
         private void OnTriggerEnter(Collider other)
         {
@@ -38,11 +49,16 @@ namespace Objects.Runtime
                 bossBehaviour?.TakeDamage(_damages);
             }
 
-            m_particleImpact.transform.position = gameObject.transform.position;
-            m_particleImpact.Play();
-            
-            //gameObject.SetActive(false);
+            if (other.gameObject.layer == 9 || other.gameObject.layer == 6)
+            {
+                m_particleImpact.transform.position = gameObject.transform.position;
+                m_particleImpact.Play();
+
+                _timer?.Begin();
+            }
         }
+
+        private void Deactivate() => gameObject.SetActive(false);
 
         #endregion
 
@@ -50,6 +66,8 @@ namespace Objects.Runtime
         #region Private and Protected
 
         [SerializeField] private int _damages;
+        private Timer _timer;
+
         #endregion
     }
 }

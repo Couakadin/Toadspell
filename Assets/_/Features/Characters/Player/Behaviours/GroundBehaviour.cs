@@ -1,3 +1,4 @@
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace Player.Runtime
@@ -19,6 +20,7 @@ namespace Player.Runtime
         {
             m_camera = Camera.main;
             _particleFalling = m_particleParent.GetComponentsInChildren<ParticleSystem>();
+            if (_particleFalling.IsNullOrEmpty()) throw new System.Exception("Particle Parent empty!");
         }
 
         private void Update()
@@ -46,7 +48,7 @@ namespace Player.Runtime
 
         private void PlayAllParticles()
         {
-            m_particleParent.transform.LookAt(m_camera.transform);
+            m_particleParent.transform.LookAt(new Vector3(m_camera.transform.position.x, 0, m_camera.transform.position.z));
 
             foreach (ParticleSystem particleSystem in _particleFalling) particleSystem.Play();
         }
