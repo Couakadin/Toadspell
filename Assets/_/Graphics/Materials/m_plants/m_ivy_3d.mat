@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 2100000, guid: 1a47a4b6047d1244eb2dd3b2b38e6cf0, type: 2}
   m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
+  - N_F_COEDGL_ON
   - N_F_CO_ON
   - N_F_EAL_ON
   - N_F_GLO_ON
@@ -66,6 +67,7 @@ Material:
     - _AlphaBaseCutout: 1
     - _Cutout: 0
     - _N_F_CO: 1
+    - _N_F_COEDGL: 1
     - _NormalMapIntensity: 0
     - _SelfShadowRealtimeShadowIntensity: 1
     - _ShadowHardness: 0
