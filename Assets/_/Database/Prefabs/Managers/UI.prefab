@@ -433,7 +433,7 @@ MonoBehaviour:
   _currentLineIndex: 0
   _currentCharacterIndex: 0
   _dialoguePanel: {fileID: 6408286187885160621}
-  _characterPanel: {fileID: 8719192362720410164}
+  _characterPanel: {fileID: 6173812613166398894}
   _panelFadeIn: 1
   _panelFadeOut: 0.8
   _exchanges:
@@ -5989,7 +5989,7 @@ GameObject:
   - component: {fileID: 4599464257742354824}
   - component: {fileID: 2739268403450981109}
   - component: {fileID: 2290256616885338314}
-  - component: {fileID: 8719192362720410164}
+  - component: {fileID: 6173812613166398894}
   m_Layer: 5
   m_Name: MainCharacter
   m_TagString: Untagged
@@ -6057,7 +6057,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &8719192362720410164
+--- !u!225 &6173812613166398894
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
