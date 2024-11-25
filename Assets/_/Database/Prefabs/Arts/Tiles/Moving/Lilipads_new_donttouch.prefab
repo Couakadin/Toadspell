@@ -526,7 +526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_element: 3
   _lockIndicator: {fileID: 7630868497926171245}
-  _maxDelayToReset: 5
+  _maxDelayToReset: 8
   _scaleSize: 2.5
   _scaleTime: 0.5
   _objectToFreeze: {fileID: 2776564302426842523}
