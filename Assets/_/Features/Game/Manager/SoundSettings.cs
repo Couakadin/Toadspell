@@ -40,6 +40,15 @@ namespace Game.Runtime
             SetVolume(_vfxSlider.value, _vfxSlider, "SfxVolume");
         }
 
+        public void onPauseLowkeyIsOn()
+        {
+            _paused.TransitionTo(.01f);
+        }
+
+        public void onUnpausedLowkeyIsOff()
+        {
+            _unpaused.TransitionTo(.01f);
+        }
         #endregion
 
 
@@ -74,6 +83,8 @@ namespace Game.Runtime
         [SerializeField] private Slider _environmentSlider;
         [SerializeField] private Slider _vfxSlider;
         [SerializeField] private AudioMixer _audioMixer;
+        [SerializeField] private AudioMixerSnapshot _paused;
+        [SerializeField] private AudioMixerSnapshot _unpaused;
         #endregion
     }
 }
