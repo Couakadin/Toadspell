@@ -24,7 +24,6 @@ namespace Objects.Runtime
         [Header("Init Camera")]
         [Tooltip("The Third Person Camere to init.")]
         public CinemachineVirtualCamera m_camera;
-        public CinemachineVirtualCamera m_frontCamera;
 
         [Header("Init Pools")]
         [Tooltip("The spell pool to init.")]
@@ -41,7 +40,7 @@ namespace Objects.Runtime
             LockCursor();
             _teleportTimer = new Timer(_teleportDelay);
             _disablingTimer = new Timer(_disablingDelay);
-            m_frontCamera.Priority = 11;
+
         }
 
         private void OnEnable()
@@ -110,7 +109,6 @@ namespace Objects.Runtime
 
         public void onStartDiscoveringTheWorld()
         {
-            m_frontCamera.Priority = 0;
             _gameInput.Gameplay.Enable();
             //_gameInput.Dialogue.Disable();
         }
