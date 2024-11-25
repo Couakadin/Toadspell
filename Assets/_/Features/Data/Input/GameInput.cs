@@ -329,8 +329,8 @@ namespace Data.Runtime
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""91316dd8-b3c6-4101-b5d3-c040b0845d45"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""dd13c2c2-ac44-4114-87ed-34e5ff3ff403"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -340,8 +340,8 @@ namespace Data.Runtime
                 },
                 {
                     ""name"": """",
-                    ""id"": ""dd13c2c2-ac44-4114-87ed-34e5ff3ff403"",
-                    ""path"": ""<Keyboard>/g"",
+                    ""id"": ""91316dd8-b3c6-4101-b5d3-c040b0845d45"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -363,7 +363,7 @@ namespace Data.Runtime
                 {
                     ""name"": """",
                     ""id"": ""4951834c-a9d7-413c-ab02-0d99cad22d67"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -385,7 +385,7 @@ namespace Data.Runtime
                 {
                     ""name"": """",
                     ""id"": ""578be1f9-6b14-46d2-b388-22c5e3438ca9"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
