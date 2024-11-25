@@ -26,8 +26,8 @@ namespace Game.Runtime
         private void StartFallingSequence()
         {
             _fallingSequence = DOTween.Sequence();
-
             _fallingSequence.Append(transform.DOShakePosition(_shakingDuration, _shakingStrength, _shakingVibrations, _shankingRandomness));
+            _fallingSequence.JoinCallback(() =>_particles.Play());// Active les particules
             _fallingSequence.Append(transform.DOMoveY(_fallingPositionY, _fallingDuration));
             //_fallingSequence.Append(HideOrShowPlatform(_HideMaterialAplha, _durationOfFadeOut));
             _fallingSequence.AppendInterval(_DelayForRespawn);
@@ -81,6 +81,7 @@ namespace Game.Runtime
         [SerializeField] private MeshRenderer _meshRenderer;
         private Sequence _fallingSequence;
         private Vector3 _originPosition;
+        [SerializeField] private ParticleSystem _particles; //particule pour le shake
 
 
         #endregion
