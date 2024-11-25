@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 1257634969269191597}
   - component: {fileID: 9174030073251295147}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -671,12 +671,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4151580990006031483}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 695154807247571945}
+        m_TargetAssemblyTypeName: Game.Runtime.SoundSettings, Game.Runtime
+        m_MethodName: SetVFXVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &593958643352651109
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,7 +911,7 @@ GameObject:
   - component: {fileID: 527756143581836173}
   - component: {fileID: 7257841177391791570}
   m_Layer: 5
-  m_Name: slider (1)
+  m_Name: slider Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2877,13 +2889,14 @@ GameObject:
   - component: {fileID: 460431150169882498}
   - component: {fileID: 1079947509223207818}
   - component: {fileID: 3969702750605005969}
+  - component: {fileID: 695154807247571945}
   m_Layer: 5
   m_Name: Settings_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &460431150169882498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2942,6 +2955,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &695154807247571945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951532634975133788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3054e5a1f2eae7c4690af659e3dee49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _environmentSlider: {fileID: 1787137385612483383}
+  _vfxSlider: {fileID: 9174030073251295147}
+  _audioMixer: {fileID: 24100000, guid: 1375aa5abc7434140873cf96568cc46f, type: 2}
 --- !u!1 &4216574838570712285
 GameObject:
   m_ObjectHideFlags: 0
@@ -3510,7 +3538,6 @@ GameObject:
   - component: {fileID: 7843884585204308706}
   - component: {fileID: 4502065439614643507}
   - component: {fileID: 6176983056512406169}
-  - component: {fileID: 5378385677694335629}
   - component: {fileID: 759713312771537638}
   - component: {fileID: 5972072939169974964}
   m_Layer: 0
@@ -3744,34 +3771,6 @@ MonoBehaviour:
         m_CallState: 2
   m_listerner: {fileID: 11400000, guid: c24875e98ce67b643b4d9e2ce2c2e30b, type: 2}
 --- !u!114 &6176983056512406169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5159575985783138950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ae85d1e0f97d44fa14e5b40ed7e2d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 370143725704400565}
-        m_TargetAssemblyTypeName: Game.Runtime.ExchangeManager, Game.Runtime
-        m_MethodName: LaunchFirstDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_listerner: {fileID: 11400000, guid: 7fc386083059b98479748cfe742003ce, type: 2}
---- !u!114 &5378385677694335629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4442,7 +4441,7 @@ GameObject:
   - component: {fileID: 4854404674504367593}
   - component: {fileID: 1787137385612483383}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SliderMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4515,12 +4514,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5891918485094177619}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 695154807247571945}
+        m_TargetAssemblyTypeName: Game.Runtime.SoundSettings, Game.Runtime
+        m_MethodName: SetEnvironmentVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5707452133051769362
 GameObject:
   m_ObjectHideFlags: 0

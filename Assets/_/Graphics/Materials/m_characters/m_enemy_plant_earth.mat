@@ -158,7 +158,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SecondaryCutout:
         m_Texture: {fileID: 2800000, guid: 98bbb5b86d93bed45a33b7f19e47b23f, type: 3}
-        m_Scale: {x: 5, y: 5}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowColorTexture:
         m_Texture: {fileID: 0}
@@ -365,7 +365,7 @@ Material:
     - _CustomLightDirection: {r: 0, g: 0, b: 10, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 0.5320754, g: 0.26521632, b: 0.21584189, a: 1}
-    - _Glow_Color: {r: 0, g: 0.22745098, b: 0.0000049890255, a: 1}
+    - _Glow_Color: {r: 0.5622641, g: 0.07398212, b: 0, a: 1}
     - _HighlightColor: {r: 0.79622644, g: 0.7022379, b: 0.65951586, a: 1}
     - _MainColor: {r: 0.8106158, g: 0.8629761, b: 0.96981126, a: 1}
     - _ObjPosi: {r: 0, g: 0, b: 0, a: 0}
