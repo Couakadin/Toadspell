@@ -4978,9 +4978,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733050f6729e99848ab91c78c81bb111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 0}
   _endOfLife: 10
-  _speedOfProjectile: 20
+  _speedOfProjectile: 25
   _damages: -1
 --- !u!1 &8392335403184944290
 GameObject:
