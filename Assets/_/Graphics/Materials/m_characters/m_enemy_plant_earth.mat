@@ -25,6 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - N_F_COEDGL_ON
   - N_F_CO_ON
   - N_F_EAL_ON
   - N_F_GLO_ON
@@ -156,8 +157,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SecondaryCutout:
-        m_Texture: {fileID: 2800000, guid: 0f857cccd4d7ff942a10e95c3b35bd3e, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 98bbb5b86d93bed45a33b7f19e47b23f, type: 3}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _ShadowColorTexture:
         m_Texture: {fileID: 0}
@@ -203,7 +204,7 @@ Material:
     - _CustomLightDirectionFollowObjectRotation: 0
     - _CustomLightDirectionIntensity: 0
     - _Cutoff: 0.5
-    - _Cutout: 0.5
+    - _Cutout: 0
     - _DepthThreshold: 900
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -247,7 +248,7 @@ Material:
     - _N_F_CA: 0
     - _N_F_CLD: 0
     - _N_F_CO: 1
-    - _N_F_COEDGL: 0
+    - _N_F_COEDGL: 1
     - _N_F_DCS: 0
     - _N_F_DDMD: 0
     - _N_F_EAL: 1
@@ -364,7 +365,7 @@ Material:
     - _CustomLightDirection: {r: 0, g: 0, b: 10, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 0.5320754, g: 0.26521632, b: 0.21584189, a: 1}
-    - _Glow_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Glow_Color: {r: 0, g: 0.22745098, b: 0.0000049890255, a: 1}
     - _HighlightColor: {r: 0.79622644, g: 0.7022379, b: 0.65951586, a: 1}
     - _MainColor: {r: 0.8106158, g: 0.8629761, b: 0.96981126, a: 1}
     - _ObjPosi: {r: 0, g: 0, b: 0, a: 0}
