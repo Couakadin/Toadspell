@@ -6,22 +6,13 @@ namespace Game.Runtime
 {
     public class SoundManager : MonoBehaviour
     {
-        #region Publics
-	    
-        #endregion
-
-
         #region Unity API
 		
     	void Start()
     	{
             _AudioMixer.GetFloat("MusicVolume",out _baseMusicVolume);
+            _baseSnapshot.TransitionTo(0.01f);
         }
-
-    	void Update()
-    	{
-	
-    	}
 
         #endregion
 
@@ -72,6 +63,10 @@ namespace Game.Runtime
         [Header("Dialogue Music Settings")]
         [SerializeField] private float _audioFadeIn = 1.5f;
         [SerializeField] private float _audioFadeOut = 1.5f;
+
+        [Header("GameOver Settings")]
+        [SerializeField] private AudioMixerSnapshot _baseSnapshot;
+
 
         private float _baseMusicVolume;
 

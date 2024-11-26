@@ -38,6 +38,23 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!245 &-6528139808398575490
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GameOver
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 717bcb3003e8b134ca2f78ab8806d8ca
+  m_FloatValues:
+    961801d262d78f648b5993b04e5c51aa: -10.345207
+    e0042ba7304f8b4488eac2a104b750d5: -9.332112
+    4e9697986456c624389375de03cff4c6: -37.04165
+    0142718a809452a498b72972f2b2af7c: -12.074528
+    47cb421cd53cf91488390c79c139031f: -10.345207
+    cad4a6ee9cdb54f498b673c9ad7c561d: -9.833286
+  m_TransitionOverrides: {}
 --- !u!243 &-5679466734453998668
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -107,6 +124,28 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-1958191248123358805
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 34565d4afc166bc4aa0303d0384a4023
+  m_EffectName: Pitch Shifter
+  m_MixLevel: 4f68ded410bca5448b9e3e2951b2d66c
+  m_Parameters:
+  - m_ParameterName: Pitch
+    m_GUID: cfb4c325f401b9948a48ee156b690545
+  - m_ParameterName: FFT size
+    m_GUID: 81e184c554083444682eaf7b15223c21
+  - m_ParameterName: Overlap
+    m_GUID: 4a673a5367f04dc4580985346145c931
+  - m_ParameterName: Max channels
+    m_GUID: 7d88032bac5089645bc15cd0220d7cef
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -119,6 +158,7 @@ AudioMixerController:
   m_Snapshots:
   - {fileID: 24500006}
   - {fileID: 4005628801384680491}
+  - {fileID: -6528139808398575490}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -142,7 +182,7 @@ AudioMixerController:
     - 731a5d04817ac184d914286631680c4a
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: -6528139808398575490}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -277,6 +317,7 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: 2143420157217768518}
   - {fileID: 3104423328777176951}
+  - {fileID: -1958191248123358805}
   m_UserColorIndex: 6
   m_Mute: 0
   m_Solo: 0
