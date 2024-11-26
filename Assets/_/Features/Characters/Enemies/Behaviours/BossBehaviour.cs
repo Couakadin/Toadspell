@@ -111,6 +111,10 @@ namespace Enemies.Runtime
         private void DeathBoss()
         {
             _stateMachine.ChangeState(_stateMachine.m_bossState);
+            m_healthBar.gameObject.SetActive(false);
+            m_CollapseAttack.gameObject.SetActive(false);
+            m_waveAttack.gameObject.SetActive(false);
+            m_zoneAttack.gameObject.SetActive(false);
             this.enabled = false;
             return;
         }
