@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_spellSpawner: {fileID: 481850103328051413}
   m_castingASpellDelay: 0.05
   m_speedOfProjectile: 3
-  m_durationOfProjectile: 2
+  m_spellFireRate: 1.5
   m_spell: 0
   m_currentPool: {fileID: 0}
   m_spellPools: []

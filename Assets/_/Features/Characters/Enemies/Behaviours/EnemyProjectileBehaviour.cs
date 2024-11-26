@@ -29,8 +29,10 @@ namespace Enemies.Runtime
         {
             if(other.gameObject.layer == 7)
             {
-                other.TryGetComponent<ICanBeHurt>(out ICanBeHurt hurt);
-                hurt.TakeDamage(_damages);
+                if(other.TryGetComponent<ICanBeHurt>(out ICanBeHurt hurt))
+                {
+                    hurt.TakeDamage(_damages);
+                }
             }
             gameObject.SetActive(false);
         }
