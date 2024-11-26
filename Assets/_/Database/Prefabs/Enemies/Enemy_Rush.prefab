@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSound: {fileID: 0}
-  _deathSound: {fileID: 8300000, guid: d0a50cc4f8679a64397b499e1e278f83, type: 3}
+  _deathSound: {fileID: 8300000, guid: 58ff71f312ea39a498779bc5a2149e7e, type: 3}
   _audioSource: {fileID: 5735718229571321763}
 --- !u!54 &9063982294704922832
 Rigidbody:

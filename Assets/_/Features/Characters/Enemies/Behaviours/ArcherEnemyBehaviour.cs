@@ -89,7 +89,7 @@ namespace Enemies.Runtime
         {
             if (m_lifePoints <= 0)
             {
-                //_enemySound.PlaySoundWhenDying();
+                _enemySound.PlaySoundWhenDying();
                 _dissolver.StartDissolve();
                 _isFrozen = true;
             }
