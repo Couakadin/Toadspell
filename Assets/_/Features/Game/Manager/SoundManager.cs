@@ -1,6 +1,8 @@
+using Data.Runtime;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 
 namespace Game.Runtime
 {
@@ -28,6 +30,17 @@ namespace Game.Runtime
         {
             MusicChange(_mainMusicSound);
         }
+
+        public void onPauseLowkeyIsOn()
+        {
+            _paused.TransitionTo(.01f);
+        }
+
+        public void onUnpausedLowkeyIsOff()
+        {
+            _baseSnapshot.TransitionTo(.01f);
+        }
+
 
         #endregion
 
@@ -66,7 +79,7 @@ namespace Game.Runtime
 
         [Header("GameOver Settings")]
         [SerializeField] private AudioMixerSnapshot _baseSnapshot;
-
+        [SerializeField] private AudioMixerSnapshot _paused;
 
         private float _baseMusicVolume;
 

@@ -16,7 +16,6 @@ namespace Enemies.Runtime
             _healthBar.maxValue = m_lifePoints;
             _healthBar.value = m_lifePoints;
             _attackTimer = CreateAndSubscribeTimer(m_attackDelay, StartAttacking);
-            _damageTimer = CreateAndSubscribeTimer(_takeDamageDelay, ResumeAfterDamage);
         }
 
         void Update()
@@ -72,7 +71,10 @@ namespace Enemies.Runtime
             m_animator.SetBool("Attacking", false);
             m_lifePoints -= damage;
             _healthBar.value = m_lifePoints;
-            SetOrResetTimer(_damageTimer);
+            if (m_lifePoints <= 0)
+            {
+                ResumeAfterDamage();
+            }
         }
 
         private void StartAttacking()
@@ -87,19 +89,17 @@ namespace Enemies.Runtime
 
         private void ResumeAfterDamage()
         {
-            if (m_lifePoints <= 0)
-            {
-                _enemySound.PlaySoundWhenDying();
-                _dissolver.StartDissolve();
-                _isFrozen = true;
-            }
+            _isFrozen = true;
+            _enemySound.PlaySoundWhenDying();
+            _dissolver.StartDissolve();
+
         }
 
         private void UpdateTimers()
         {
             if (_attackTimer.IsRunning()) _attackTimer.Tick();
-            if (_damageTimer.IsRunning()) _damageTimer.Tick();
         }
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
