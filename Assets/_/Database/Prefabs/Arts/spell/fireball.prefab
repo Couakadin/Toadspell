@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_element: 1
-  m_particleImpact: {fileID: 8647136630308864247}
+  m_particleImpact: {fileID: 6362113236994134337}
   _damages: 2
 --- !u!1 &2589456119540180944
 GameObject:
@@ -5170,15 +5170,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5e350983af3de0409851f67e9e078eb, type: 3}
---- !u!4 &7454301468335159851 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6599346404580305537, guid: a5e350983af3de0409851f67e9e078eb,
+--- !u!114 &6362113236994134337 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7254645203562136043, guid: a5e350983af3de0409851f67e9e078eb,
     type: 3}
   m_PrefabInstance: {fileID: 4388591981577146538}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &8647136630308864247 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4965119447034269789, guid: a5e350983af3de0409851f67e9e078eb,
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a4f9e02531b93489eb1c48afb2fd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &7454301468335159851 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6599346404580305537, guid: a5e350983af3de0409851f67e9e078eb,
     type: 3}
   m_PrefabInstance: {fileID: 4388591981577146538}
   m_PrefabAsset: {fileID: 0}

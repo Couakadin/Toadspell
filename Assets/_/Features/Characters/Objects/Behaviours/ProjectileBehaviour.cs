@@ -11,36 +11,16 @@ namespace Objects.Runtime
         public IAmElement.Element spell => m_element;
         public IAmElement.Element m_element;
 
-        public ParticleSystem m_particleImpact;
-
-        private void Awake() => _timer = new(.4f);
-
-        private void OnEnable()
-        {
-            _timer?.Reset();
-            _timer.OnTimerFinished += Deactivate;
-        }
-
-        private void OnDisable() => _timer.OnTimerFinished -= Deactivate;
-
-        private void Update() => _timer?.Tick();
+        public ParticleImpactBehaviour m_particleImpact;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer == 6)
             {
-                if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
-                {
-                    hurt.TakeDamage(_damages);
-                }
+                if (other.gameObject.TryGetComponent(out ICanBeHurt hurt)) hurt.TakeDamage(_damages);
 
                 if(other.gameObject.TryGetComponent(out IAmElement element) && other.gameObject.TryGetComponent(out IAmObstacle obstacle))
-                {
-                    if(element.spell == m_element)
-                    {
-                        obstacle.ReactToSpell();
-                    }
-                }
+                    if(element.spell == m_element) obstacle.ReactToSpell();
             }
 
             if (other.gameObject.layer == 9)
@@ -49,16 +29,10 @@ namespace Objects.Runtime
                 bossBehaviour?.TakeDamage(_damages);
             }
 
-            if (other.gameObject.layer == 9 || other.gameObject.layer == 6)
-            {
-                m_particleImpact.transform.position = gameObject.transform.position;
-                m_particleImpact.Play();
+            if (other.gameObject.layer == 9 || other.gameObject.layer == 6) m_particleImpact?.DetachParticles(gameObject);
 
-                _timer?.Begin();
-            }
+            gameObject.SetActive(false);
         }
-
-        private void Deactivate() => gameObject.SetActive(false);
 
         #endregion
 
@@ -66,7 +40,6 @@ namespace Objects.Runtime
         #region Private and Protected
 
         [SerializeField] private int _damages;
-        private Timer _timer;
 
         #endregion
     }
