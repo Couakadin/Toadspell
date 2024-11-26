@@ -85,7 +85,7 @@ MonoBehaviour:
   _takeDamageDelay: 0.5
   _mouth: {fileID: 0}
   _healthBar: {fileID: 246621465063017685}
-  _enemySound: {fileID: 0}
+  _enemySound: {fileID: 8870600643003042757}
 --- !u!114 &7585661558473295035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSound: {fileID: 8300000, guid: 495d72d98c312ce4785b96951be611bc, type: 3}
-  _deathSound: {fileID: 0}
+  _deathSound: {fileID: 8300000, guid: 58ff71f312ea39a498779bc5a2149e7e, type: 3}
   _audioSource: {fileID: 3275767815946770785}
 --- !u!82 &3275767815946770785
 AudioSource:
