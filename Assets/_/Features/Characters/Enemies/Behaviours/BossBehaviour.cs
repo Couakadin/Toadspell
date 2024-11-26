@@ -115,6 +115,7 @@ namespace Enemies.Runtime
             m_CollapseAttack.gameObject.SetActive(false);
             m_waveAttack.gameObject.SetActive(false);
             m_zoneAttack.gameObject.SetActive(false);
+            gameObject.layer = 0;
             this.enabled = false;
             return;
         }
