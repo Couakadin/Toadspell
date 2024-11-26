@@ -46,6 +46,8 @@ namespace Player.Runtime
 
         public void Exit()
         {
+            _particle?.StopParticle();
+
             _timerReturn.OnTimerFinished -= TongueReturn;
 
             _tongueMesh.gameObject.SetActive(false);
@@ -152,14 +154,14 @@ namespace Player.Runtime
             else if (_sizeable.size == ISizeable.Size.medium)
             {
                 _fixedJoint.connectedBody = _tongueRigidbody;
-                _hit.collider.gameObject.TryGetComponent(out IParticle particle);
-                particle?.PlayParticle();
+                _hit.collider.gameObject.TryGetComponent(out _particle);
                 _isTongueControl = true;
             }
             else if (_sizeable.size == ISizeable.Size.large || _sizeable.size == ISizeable.Size.platform)
             {
                 _timerReturn.Begin();
 
+                _hit.collider.gameObject.TryGetComponent(out _particle);
                 if (_sizeable.size == ISizeable.Size.platform) _isTonguePlateform = true;
                 _isTongueAttract = true;
             }
@@ -177,6 +179,7 @@ namespace Player.Runtime
             {
                 _limitedPosition = _playerTransform.position + _distanceToTarget.normalized * _tongueMaxDistance;
                 _tongueRigidbody.MovePosition(_limitedPosition);
+                _particle?.PlayParticle();
             }
 
             if (m_stateMachine.m_powerBehaviour.m_tongueInput.triggered)
@@ -189,6 +192,7 @@ namespace Player.Runtime
         private void TongueAttract()
         {
             _distanceToTarget = _tongueRigidbody.transform.position - new Vector3(_playerTransform.position.x, (_playerTransform.position.y + 3.45f), _playerTransform.position.z);
+            _particle?.PlayParticle();
 
             if (_distanceToTarget.sqrMagnitude > 5f)
             {
@@ -282,6 +286,7 @@ namespace Player.Runtime
         // Interact
         private ISizeable _sizeable;
         private FixedJoint _fixedJoint;
+        private IParticle _particle;
 
         // Timer
         private Timer _timerReturn;
