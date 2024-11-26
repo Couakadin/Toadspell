@@ -18,15 +18,19 @@ namespace Player.Runtime
         {
             m_stateMachine = stateMachine;
 
-            _timerState = new(m_stateMachine.m_powerBehaviour.m_durationOfProjectile);
+            _timerState = new(m_stateMachine.m_powerBehaviour.m_spellFireRate);
             _timerSpell = new(m_stateMachine.m_powerBehaviour.m_castingASpellDelay);
             _playerTransform = m_stateMachine.m_powerBehaviour.transform;
         }
 
         public void Enter()
         {
-            _timerSpell.Begin();
-            _timerState.Begin();
+            _timerSpell?.Reset();
+            _timerState?.Reset();
+
+            _timerSpell?.Begin();
+            _timerState?.Begin();
+            m_stateMachine.m_powerBehaviour.m_onSpellTimerTrigger.Raise();
 
             // Target
             _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
@@ -91,6 +95,7 @@ namespace Player.Runtime
             _projectile.transform.position = m_stateMachine.m_powerBehaviour._playerBlackboard.GetValue<Vector3>("SpellPosition");
             _projectile.TryGetComponent(out _projectileRigidbody);
             _projectileRigidbody.velocity = Vector3.zero;
+            m_stateMachine.m_powerBehaviour.m_onSpellCast.Raise();
 
             _playerTransform.LookAt(new Vector3(_target.transform.position.x, _playerTransform.position.y, _target.gameObject.transform.position.z));
             m_stateMachine.m_powerBehaviour.CastASpell(); // sound of casting a spell

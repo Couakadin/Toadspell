@@ -41,7 +41,7 @@ namespace Player.Runtime
         [Tooltip("The speed at spells are launched.")]
         public float m_speedOfProjectile;
         [Tooltip("The duration of spells.")]
-        public float m_durationOfProjectile;
+        public float m_spellFireRate;
         [EnumToggleButtons]
         public IAmElement.Element m_spell;
         public PoolSystem m_currentPool;
@@ -52,6 +52,11 @@ namespace Player.Runtime
         public float m_durationOfParry;
         [Tooltip("The GameObject of parrying.")]
         public GameObject m_parryObject;
+
+
+        [Header("Events for Spell Timer")]
+        public VoidEvent m_onSpellTimerTrigger;
+        public VoidEvent m_onSpellCast;
 
         public InputAction m_lockInput { get; private set; }
         public InputAction m_tongueInput { get; private set; }
@@ -78,6 +83,7 @@ namespace Player.Runtime
 
             TryGetComponent(out _animator);
             m_playerAnimator = _animator;
+            _playerBlackboard.SetValue<float>("SpellDelay", m_spellFireRate);
         }
 
         private void Start()

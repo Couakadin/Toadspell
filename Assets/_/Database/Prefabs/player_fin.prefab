@@ -1032,6 +1032,9 @@ MonoBehaviour:
   m_spellPools: []
   m_durationOfParry: 1
   m_parryObject: {fileID: 809481365779563954}
+  m_onSpellTimerTrigger: {fileID: 11400000, guid: 8b0b5ae5dc8c7d84480ab6baf304b559,
+    type: 2}
+  m_onSpellCast: {fileID: 11400000, guid: c45e2f9b703ebb44eb3027658abc9acc, type: 2}
   _playerSoundBehaviour: {fileID: 1066218291260339722}
 --- !u!114 &1362105111767109176
 MonoBehaviour:
