@@ -11,7 +11,8 @@ namespace Game.Runtime
         public void LoadCinematique()
         {
             Sequence cinematique = DOTween.Sequence();
-            cinematique.Append(_menuCanvas.DOFade(1, 2)).OnComplete(StartIntro);
+            _leaves.gameObject.SetActive(false);
+            cinematique.Append(_backgroundPanel.DOFade(1, 2.5f)).OnComplete(StartIntro);
         }
 
         public void LoadGameScene()
@@ -27,6 +28,7 @@ namespace Game.Runtime
         private void StartIntro()
         {
             _introPanel.SetActive(true);
+            _introPanel.GetComponent<CanvasGroup>().DOFade(1, 2);
         }
 
         #endregion
@@ -35,9 +37,11 @@ namespace Game.Runtime
         #region Privates & Protected
 
         [SerializeField] private int _loadGameScene;
-        [SerializeField] private GameObject _introPanel;
         [SerializeField] private Intro _intro;
-        [SerializeField] private CanvasGroup _menuCanvas;
+        [SerializeField] private GameObject _introPanel;
+        [SerializeField] private CanvasGroup _backgroundPanel;
+        [SerializeField] private ParticleSystem _leaves;
+
         #endregion
     }
 }
