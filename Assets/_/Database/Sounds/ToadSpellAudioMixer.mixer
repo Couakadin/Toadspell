@@ -38,6 +38,23 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!245 &-6528139808398575490
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GameOver
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 717bcb3003e8b134ca2f78ab8806d8ca
+  m_FloatValues:
+    961801d262d78f648b5993b04e5c51aa: -10.345207
+    e0042ba7304f8b4488eac2a104b750d5: -9.332112
+    4e9697986456c624389375de03cff4c6: -37.04165
+    0142718a809452a498b72972f2b2af7c: -12.074528
+    47cb421cd53cf91488390c79c139031f: -10.345207
+    cad4a6ee9cdb54f498b673c9ad7c561d: -9.833286
+  m_TransitionOverrides: {}
 --- !u!243 &-5679466734453998668
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -104,6 +121,28 @@ AudioMixerEffectController:
   m_EffectName: Attenuation
   m_MixLevel: 647d1c1a7cbb55f4a9ac65d21d250853
   m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &-1958191248123358805
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 34565d4afc166bc4aa0303d0384a4023
+  m_EffectName: Pitch Shifter
+  m_MixLevel: 4f68ded410bca5448b9e3e2951b2d66c
+  m_Parameters:
+  - m_ParameterName: Pitch
+    m_GUID: cfb4c325f401b9948a48ee156b690545
+  - m_ParameterName: FFT size
+    m_GUID: 81e184c554083444682eaf7b15223c21
+  - m_ParameterName: Overlap
+    m_GUID: 4a673a5367f04dc4580985346145c931
+  - m_ParameterName: Max channels
+    m_GUID: 7d88032bac5089645bc15cd0220d7cef
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
@@ -254,7 +293,7 @@ AudioMixerSnapshotController:
     49f47412ac0667448b00e5445d3208e4: 1
     961801d262d78f648b5993b04e5c51aa: -10.345207
     e0042ba7304f8b4488eac2a104b750d5: -18.7
-    4e9697986456c624389375de03cff4c6: -28.5
+    4e9697986456c624389375de03cff4c6: -43.10106
     d0045fb914aed954d98ee29980276d57: 3064
     0142718a809452a498b72972f2b2af7c: -12.1
     47cb421cd53cf91488390c79c139031f: -1.5191216

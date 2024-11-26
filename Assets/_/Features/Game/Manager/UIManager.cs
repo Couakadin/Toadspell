@@ -17,7 +17,6 @@ namespace Game.Runtime
             InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
             _gameInput = new GameInput();
             _dialogueActions = _gameInput.Dialogue;
-            _gameplayActions = _gameInput.Gameplay;
             _settingsInput = _dialogueActions.Settings;
         }
 
@@ -218,7 +217,6 @@ namespace Game.Runtime
 
         private GameInput _gameInput;
         private GameInput.DialogueActions _dialogueActions;
-        private GameInput.GameplayActions _gameplayActions;
         private InputAction _settingsInput;
 
         [Space(8)]
@@ -266,7 +264,6 @@ namespace Game.Runtime
         [SerializeField] private float _checkpointTImeOnScreen;
         [SerializeField] private float _checkpointFadeIn;
         [SerializeField] private float _checkpointFadeOut;
-
 
         #endregion
     }

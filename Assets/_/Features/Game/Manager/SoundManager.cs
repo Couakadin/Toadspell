@@ -1,27 +1,20 @@
+using Data.Runtime;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 
 namespace Game.Runtime
 {
     public class SoundManager : MonoBehaviour
     {
-        #region Publics
-	    
-        #endregion
-
-
         #region Unity API
 		
     	void Start()
     	{
             _AudioMixer.GetFloat("MusicVolume",out _baseMusicVolume);
+            _baseSnapshot.TransitionTo(0.01f);
         }
-
-    	void Update()
-    	{
-	
-    	}
 
         #endregion
 
@@ -37,6 +30,17 @@ namespace Game.Runtime
         {
             MusicChange(_mainMusicSound);
         }
+
+        public void onPauseLowkeyIsOn()
+        {
+            _paused.TransitionTo(.01f);
+        }
+
+        public void onUnpausedLowkeyIsOff()
+        {
+            _baseSnapshot.TransitionTo(.01f);
+        }
+
 
         #endregion
 
@@ -72,6 +76,10 @@ namespace Game.Runtime
         [Header("Dialogue Music Settings")]
         [SerializeField] private float _audioFadeIn = 1.5f;
         [SerializeField] private float _audioFadeOut = 1.5f;
+
+        [Header("GameOver Settings")]
+        [SerializeField] private AudioMixerSnapshot _baseSnapshot;
+        [SerializeField] private AudioMixerSnapshot _paused;
 
         private float _baseMusicVolume;
 
