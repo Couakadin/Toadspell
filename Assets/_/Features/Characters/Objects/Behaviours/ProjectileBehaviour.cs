@@ -13,7 +13,7 @@ namespace Objects.Runtime
 
         public ParticleSystem m_particleImpact;
 
-        private void Awake() => _timer = new(.5f);
+        private void Awake() => _timer = new(.4f);
 
         private void OnEnable()
         {
