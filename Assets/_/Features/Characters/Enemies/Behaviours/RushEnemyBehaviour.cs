@@ -67,11 +67,8 @@ namespace Enemies.Runtime
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.isKinematic = true;
             //if (_isCoolingDownAfterRush) return;
-            if (other.gameObject.TryGetComponent(out ICanBeHurt hurt))
-            {
-                Debug.Log("hurting player");
-                hurt.TakeDamage(m_damages);
-            }
+            if (other.gameObject.TryGetComponent(out ICanBeHurt hurt)) hurt.TakeDamage(m_damages);
+            other?.gameObject?.TryGetComponent(out _playerBeHurt);
             TouchedPlayer();
         }
 
@@ -148,6 +145,7 @@ namespace Enemies.Runtime
             m_animator.SetBool("isRaging", false);
             m_animator.SetBool("isAttacking", true);
             SetOrResetTimer(_attackTimer);
+            _playerBeHurt?.AddImpact(transform.forward, _rushPower);
         }
 
         private void Recoil()
@@ -213,6 +211,7 @@ namespace Enemies.Runtime
         [Header("Attack Specifics")]
         [SerializeField] private float _rushDistance = 5f;
         [SerializeField] private float _rushSpeed = 10f;
+        [SerializeField] private float _rushPower = 70f;
 
         private bool _isRushing = false;
         private bool _isCoolingDownAfterRush = false;
@@ -233,6 +232,7 @@ namespace Enemies.Runtime
         private ICanDissolve _dissolver;
         private Timer _damageTimer;
         private bool _isFrozen = false;
+        private IHurt _playerBeHurt;
 
         #endregion
     }
