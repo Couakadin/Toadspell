@@ -50,7 +50,7 @@ namespace Enemies.Runtime
                     GameObject dangerZone = _dangerZones[index];
                     dangerZone.transform.localScale = Vector3.zero;
 
-                    Vector3 targetScale = new Vector3(platformMeshRenderer.bounds.size.x, dangerZone.transform.localScale.y, platformMeshRenderer.bounds.size.z);
+                    Vector3 targetScale = new Vector3(platformMeshRenderer.bounds.size.x, platformMeshRenderer.bounds.size.x, platformMeshRenderer.bounds.size.z);
                     dangerZone.transform.position = new Vector3(
                         platform.transform.position.x,
                         platform.transform.position.y + (platformMeshRenderer.bounds.size.y + .5f),
@@ -95,17 +95,20 @@ namespace Enemies.Runtime
                 Vector3 currentScale = dangerZone.transform.localScale;
                 Vector3 targetScale = _targetScales[i];
 
-                if (currentScale.x < targetScale.x || currentScale.z < targetScale.z)
+                if (currentScale.x < targetScale.x || currentScale.y < targetScale.y || currentScale.z < targetScale.z)
                 {
                     currentScale.x = Mathf.Min(targetScale.x, currentScale.x + Time.deltaTime * _growthSpeed);
+                    currentScale.y = Mathf.Min(targetScale.y, currentScale.y + Time.deltaTime * _growthSpeed);
                     currentScale.z = Mathf.Min(targetScale.z, currentScale.z + Time.deltaTime * _growthSpeed);
                     dangerZone.transform.localScale = currentScale;
                 }
             }
 
             if (_activeDangerZones.TrueForAll(dz => 
-            dz.transform.localScale.x >= _targetScales[_activeDangerZones.IndexOf(dz)].x && 
-            dz.transform.localScale.z >= _targetScales[_activeDangerZones.IndexOf(dz)].z)) if (!_timer.IsRunning()) _timer?.Begin();
+                dz.transform.localScale.x >= _targetScales[_activeDangerZones.IndexOf(dz)].x &&
+                dz.transform.localScale.y >= _targetScales[_activeDangerZones.IndexOf(dz)].y &&
+                dz.transform.localScale.z >= _targetScales[_activeDangerZones.IndexOf(dz)].z)) 
+                    if (!_timer.IsRunning()) _timer?.Begin();
         }
 
         public void PhysicsTick() { }

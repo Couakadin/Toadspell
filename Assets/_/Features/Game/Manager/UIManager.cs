@@ -1,5 +1,6 @@
 using Data.Runtime;
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -44,6 +45,10 @@ namespace Game.Runtime
                 GameObject life = Instantiate(_livesPrefab, _livesTransform);
                 _livesList.Add(life);
             }
+
+            _spellDelayFloat = _playerBlackboard.GetValue<float>("SpellDelay");
+            Debug.Log(_spellDelayFloat);
+
         }
 
         private void Update()
@@ -53,20 +58,14 @@ namespace Game.Runtime
                 if (_settingsPanel.activeSelf == false) ActionOpenSettingMenu();
                 else ActionCloseSettingsMenu();
             }
+
+            if (_hasToWaitForSpell) ReduceSpellImageWithTimer();
         }
 
         #endregion
 
 
         #region Main Methods
-
-        private void FirstFadeIn()
-        {
-            Sequence fadeSequence = DOTween.Sequence();
-            fadeSequence.AppendInterval(_spawnFadeInterval);
-            fadeSequence.JoinCallback(() => _onPlayerHasSpawned.Raise());
-            fadeSequence.Append(_teleportBlackScreen.DOFade(0, _spawnFadeOut));
-        }
 
         public void FadeOnTeleportation()
         {
@@ -76,21 +75,17 @@ namespace Game.Runtime
             fadeSequence.Append(_teleportBlackScreen.DOFade(0, _teleportFadeOutDelay));
         }
 
-        [ContextMenu("GameOverScreen")]
         public void ActionActivateGameOverScreen()
         {
             UIActivation();
             _gameOverPanel.SetActive(true);
         }
 
-        public void ActionReloadScene()
-        {
-            SceneManager.LoadScene(1);
-        }
+        public void ActionReloadScene() => SceneManager.LoadScene(1);
+
 
         public void ActionLoadMainMenu() => SceneManager.LoadScene(0);
 
-        [ContextMenu("settings")]
         public void ActionOpenSettingMenu() 
         {
             UIActivation();
@@ -106,11 +101,14 @@ namespace Game.Runtime
         }
 
         public void ActionInGamePanelSetActive() => _inGamePanel.SetActive(true);
-       
-        public void UpdateSpellImage(int spell)
+
+        public void ActionSpellDelayTimer()
         {
-            _spellImage.sprite = _spellList[spell];
+            _spellDelayImage.fillAmount = 1;
+            _hasToWaitForSpell = true;
         }
+       
+        public void UpdateSpellImage(int spell) => _spellImage.sprite = _spellList[spell];
 
         public void ActionQuitApplication() => Application.Quit();
 
@@ -137,7 +135,6 @@ namespace Game.Runtime
             }
         }
 
-        [ContextMenu("tutorial")]
         public void ShowTutorial()
         {
             if (_tutorialIndex >= _tutorialPanels.Count) return;
@@ -159,6 +156,14 @@ namespace Game.Runtime
 
 
         #region Utils
+
+        private void FirstFadeIn()
+        {
+            Sequence fadeSequence = DOTween.Sequence();
+            fadeSequence.AppendInterval(_spawnFadeInterval);
+            fadeSequence.JoinCallback(() => _onPlayerHasSpawned.Raise());
+            fadeSequence.Append(_teleportBlackScreen.DOFade(0, _spawnFadeOut));
+        }
 
         private void UpdateTutorialIndex()
         {
@@ -190,16 +195,17 @@ namespace Game.Runtime
             }
         }
 
-        private void UIActivation()
-        {
-            _onUIActivationPanels.Raise();
-            Cursor.lockState = CursorLockMode.None;
-        }
+        private void UIActivation() => _onUIActivationPanels.Raise();
 
-        private void UIDeactivation()
+        private void UIDeactivation() => _onUIDeactivationPanels.Raise();
+
+        private void ReduceSpellImageWithTimer()
         {
-            _onUIDeactivationPanels.Raise();
-            Cursor.lockState = CursorLockMode.Locked;
+            _spellDelayImage.fillAmount -= 1.0f / _spellDelayFloat * Time.deltaTime;
+            if (_spellDelayFloat <= 0)
+            {
+                _hasToWaitForSpell = false;
+            }
         }
 
         #endregion
@@ -264,6 +270,12 @@ namespace Game.Runtime
         [SerializeField] private float _checkpointTImeOnScreen;
         [SerializeField] private float _checkpointFadeIn;
         [SerializeField] private float _checkpointFadeOut;
+
+        [Space(8)]
+        [Header("Spell Caster Delay")]
+        [SerializeField] private Image _spellDelayImage;
+        private float _spellDelayFloat;
+        private bool _hasToWaitForSpell;
 
         #endregion
     }
