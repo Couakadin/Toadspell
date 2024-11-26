@@ -152,6 +152,8 @@ namespace Player.Runtime
             else if (_sizeable.size == ISizeable.Size.medium)
             {
                 _fixedJoint.connectedBody = _tongueRigidbody;
+                _hit.collider.gameObject.TryGetComponent(out IParticle particle);
+                particle?.PlayParticle();
                 _isTongueControl = true;
             }
             else if (_sizeable.size == ISizeable.Size.large || _sizeable.size == ISizeable.Size.platform)
