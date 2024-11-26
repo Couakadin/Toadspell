@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/_/Scenes/ForMain/BlockingMapsTuto.unity
     guid: 800a6d652168f4f4e9bfba382b5d50c6
   - enabled: 1
+    path: Assets/_/Scenes/ForMain/MainMenu.unity
+    guid: ef3a6a8296ca35740a134438ad4724e1
+  - enabled: 1
     path: Assets/_/Scenes/MainGame.unity
     guid: 1d7d7c993e614c042b2beea499cac773
   m_configObjects:
