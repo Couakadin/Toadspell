@@ -25,6 +25,9 @@ namespace Player.Runtime
 
         public void Enter()
         {
+            _timerSpell.Begin();
+            _timerState.Begin();
+
             // Target
             _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
@@ -38,14 +41,10 @@ namespace Player.Runtime
             // Timer
             _timerSpell.OnTimerFinished += CastSpell;
             _timerState.OnTimerFinished += ChangeState;
-
-            _timerSpell.Begin();
         }
 
         public void Exit()
         {
-            //_projectile?.SetActive(false);
-
             _timerSpell?.Reset();
             _timerState?.Reset();
 
@@ -91,15 +90,12 @@ namespace Player.Runtime
             _projectile = _currentPool?.GetFirstAvailableObject();
             _projectile.transform.position = m_stateMachine.m_powerBehaviour._playerBlackboard.GetValue<Vector3>("SpellPosition");
             _projectile.TryGetComponent(out _projectileRigidbody);
+            _projectileRigidbody.velocity = Vector3.zero;
 
             _playerTransform.LookAt(new Vector3(_target.transform.position.x, _playerTransform.position.y, _target.gameObject.transform.position.z));
             m_stateMachine.m_powerBehaviour.CastASpell(); // sound of casting a spell
             _target.TryGetComponent(out _targetCollider);
             if (!_targetCollider) throw new System.Exception("No Target Collider!");
-
-            //_projectile.SetActive(true);
-
-            _timerState?.Begin();
         }
 
         private void ChangeState() => m_stateMachine.ChangeState(m_stateMachine.m_lockState);
