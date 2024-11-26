@@ -30,7 +30,7 @@ namespace Enemies.Runtime
         {
             _timerAttack?.Reset();
             _timerAttack?.Begin();
-            if (_index == 3) _bossBehaviour.m_waveAttack.enabled = true;
+            _bossBehaviour.m_waveAttack.enabled = true;
 
             if (_index <= 0) _index = 3;
 

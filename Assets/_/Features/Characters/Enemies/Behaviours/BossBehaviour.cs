@@ -91,6 +91,8 @@ namespace Enemies.Runtime
         {
             m_lifePoints -= damage;
             m_healthBar.value = m_lifePoints;
+
+            if (m_healthBar.value <= 0) DeathBoss();
         }
 
         #endregion
@@ -104,6 +106,17 @@ namespace Enemies.Runtime
                 GameObject zone = Instantiate(m_dangerZone, transform);
                 m_dangerZones.Add(zone);
             }
+        }
+
+        private void DeathBoss()
+        {
+            _stateMachine.ChangeState(_stateMachine.m_bossState);
+            m_healthBar.gameObject.SetActive(false);
+            m_CollapseAttack.gameObject.SetActive(false);
+            m_waveAttack.gameObject.SetActive(false);
+            m_zoneAttack.gameObject.SetActive(false);
+            this.enabled = false;
+            return;
         }
 
         #endregion
