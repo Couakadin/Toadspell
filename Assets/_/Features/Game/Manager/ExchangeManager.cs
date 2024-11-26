@@ -45,12 +45,14 @@ namespace Game.Runtime
                     SkipText();
                 }
                 else if (!_isSkipping) _typingTimer.Tick();
-            }
 
-            if (_cutDialogueInput.triggered)
-            {
-                EndOfDialogue();
-                ResetOnCut();
+
+                if (_cutDialogueInput.triggered)
+                {
+                    EndOfDialogue();
+                    ResetOnCut();
+                }
+
             }
 
             if(_LineOnScreenTimer.IsRunning()) _LineOnScreenTimer.Tick();
@@ -130,9 +132,9 @@ namespace Game.Runtime
             _dialoguePanel.DOFade(0, _panelFadeOut).OnComplete(() =>
             {
                 ResetOnCut();
+                if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[0]) _onFirstExchangeFinished.Raise();
+                if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[1]) _onBridgeExchangeFinished.Raise();
                 _currentExchangeInStoryIndex++;
-                if (_exchanges[0]) _onFirstExchangeFinished.Raise();
-                if (_exchanges[1]) _onBridgeExchangeFinished.Raise();
             });
         }
 
