@@ -20,7 +20,6 @@ namespace Objects.Runtime
 
             // Sauvegarder le parent actuel
             _originalParent = parent.transform;
-            Debug.Log(_originalParent, this);
 
             // Détacher et repositionner
             transform.parent = null;
@@ -32,7 +31,6 @@ namespace Objects.Runtime
 
         private void OnParticleSystemStopped()
         {
-            Debug.Log(1);
             // Réassigner le parent d'origine
             transform.parent = _originalParent;
             transform.localPosition = Vector3.zero;
