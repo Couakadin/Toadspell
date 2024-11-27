@@ -10,6 +10,7 @@ namespace Game.Runtime
         private void Start () 
         {
             _originPosition = transform.position;
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -25,31 +26,19 @@ namespace Game.Runtime
         [ContextMenu("Test falling platform")]
         private void StartFallingSequence()
         {
+            _audioSource.Play();
             _fallingSequence = DOTween.Sequence();
             _fallingSequence.Append(transform.DOShakePosition(_shakingDuration, _shakingStrength, _shakingVibrations, _shankingRandomness));
             _fallingSequence.JoinCallback(() =>_particles.Play());// Active les particules
             _fallingSequence.Append(transform.DOMoveY(_fallingPositionY, _fallingDuration));
-            //_fallingSequence.Append(HideOrShowPlatform(_HideMaterialAplha, _durationOfFadeOut));
             _fallingSequence.AppendInterval(_DelayForRespawn);
             _fallingSequence.AppendCallback(RespawnAfterAWhile);
-        }
-
-
-        private Tween HideOrShowPlatform(float fadeColor, float fadeTime)
-        {
-            return _meshRenderer.material.DOFade(fadeColor, fadeTime);
         }
 
         private void RespawnAfterAWhile()
         {
             transform.position = _originPosition;
-            //_meshRenderer.material.DOFade(_ShowMaterialAlpha, _durationOfFadeIn);
         }
-        #endregion
-
-
-        #region Utils
-
         #endregion
 
 
@@ -69,20 +58,14 @@ namespace Game.Runtime
         [SerializeField] private float _fallingDuration = 1f;
 
         [Header("Platform Disappear")]
-        private float _HideMaterialAplha = 0.5f;
-        private float _ShowMaterialAlpha = 1f;
-        [SerializeField]
-        private float _durationOfFadeOut = .5f;
-        [SerializeField]
-        private float _durationOfFadeIn = .1f;
         [SerializeField]
         private float _DelayForRespawn = 2f;
 
-        [SerializeField] private MeshRenderer _meshRenderer;
         private Sequence _fallingSequence;
         private Vector3 _originPosition;
         [SerializeField] private ParticleSystem _particles; //particule pour le shake
 
+        private AudioSource _audioSource;
 
         #endregion
     }
