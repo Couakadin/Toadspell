@@ -37,6 +37,7 @@ namespace Objects.Runtime
         private void Awake()
         {
             _playerBlackboard.SetValue<int>("Lives", _startLifePoints);
+            _playerBlackboard.SetValue<float>("teleportTime", _teleportDelay);
             LockCursor();
             _teleportTimer = new Timer(_teleportDelay);
             _disablingTimer = new Timer(_disablingDelay);
@@ -141,7 +142,7 @@ namespace Objects.Runtime
         #region Utils
         private void TeleportMove()
         {
-            Debug.Log("TELEPORT");
+            _onResetAfterTeleportation.Raise();
             _player.transform.position = _playerBlackboard.GetValue<Vector3>("Checkpoint");
             _player.SetActive(true);
         }
@@ -176,6 +177,8 @@ namespace Objects.Runtime
         private Timer _teleportTimer;
         private Timer _disablingTimer;
         private GameInput _gameInput;
+
+        [SerializeField] private VoidEvent _onResetAfterTeleportation;
 
         #endregion
     }

@@ -23,12 +23,12 @@ namespace Game.Runtime
 
         public void SwitchToDialogueMusic()
         {
-            MusicChange(_dialogueSound);
+            MusicChangeToDialogue();
         }
 
         public void SwitchToMainMusic()
         {
-            MusicChange(_mainMusicSound);
+            MusicChangeToMain();
         }
 
         public void onPauseLowkeyIsOn()
@@ -41,25 +41,36 @@ namespace Game.Runtime
             _baseSnapshot.TransitionTo(.01f);
         }
 
+        public void ChangePitchOnteleport()
+        {
+            _musicSource.DOPitch(-0.34f, .2f);
+        }
 
+        public void ResetPitchAfterTeleport()
+        {
+            _musicSource.DOPitch(1, .2f);
+        }
         #endregion
 
 
         #region Utils
 
-        private void MusicChange(AudioClip clip)
+        private void MusicChangeToMain()
         {
             Sequence lowerMusic = DOTween.Sequence();
-            lowerMusic.Append(_AudioMixer.DOSetFloat("MusicVolume", -40f, _audioFadeIn));
-            lowerMusic.AppendCallback(() => AddMusicToAudioSource(_mainMusicSound));
-            lowerMusic.Append(_AudioMixer.DOSetFloat("MusicVolume", _baseMusicVolume, _audioFadeOut));
+            lowerMusic.Append(_AudioMixer.DOSetFloat("DialogueMusicVolume", -40f, _audioFadeIn));
+            lowerMusic.Join(_AudioMixer.DOSetFloat("MainMusicVolume", -7.00f, _audioFadeIn));
+            //lowerMusic.AppendCallback(() => AddMusicToAudioSource(_mainMusicSound));
+            //lowerMusic.Append(_AudioMixer.DOSetFloat("MusicVolume", _baseMusicVolume, _audioFadeOut));
         }
 
-        private void AddMusicToAudioSource(AudioClip audioClip)
+        private void MusicChangeToDialogue()
         {
-            _musicSource.clip = audioClip;
-            _musicSource.Play();
+            Sequence lowerMusic = DOTween.Sequence();
+            lowerMusic.Append(_AudioMixer.DOSetFloat("MainMusicVolume", -40f, _audioFadeIn));
+            lowerMusic.Join(_AudioMixer.DOSetFloat("DialogueMusicVolume", _baseMusicVolume, _audioFadeIn));
         }
+
         #endregion
 
 
@@ -68,14 +79,10 @@ namespace Game.Runtime
         [Header("Audio Sources References")]
         [SerializeField] private AudioMixer _AudioMixer;
         [SerializeField] private AudioSource _musicSource;
-
-        [Header("Music Audio Clips")]
-        [SerializeField] private AudioClip _dialogueSound;
-        [SerializeField] private AudioClip _mainMusicSound;
+        [SerializeField] private AudioSource _mainMusicSource;
 
         [Header("Dialogue Music Settings")]
         [SerializeField] private float _audioFadeIn = 1.5f;
-        [SerializeField] private float _audioFadeOut = 1.5f;
 
         [Header("GameOver Settings")]
         [SerializeField] private AudioMixerSnapshot _baseSnapshot;
