@@ -284,15 +284,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CutDialogue",
-                    "type": "Button",
-                    "id": "77d05235-c2d1-435e-a20e-ace63a545e20",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Settings",
                     "type": "Button",
                     "id": "e596598c-673a-4c70-9a01-80a57e63811c",
@@ -306,7 +297,7 @@
                 {
                     "name": "",
                     "id": "dd13c2c2-ac44-4114-87ed-34e5ff3ff403",
-                    "path": "<Keyboard>/g",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -322,28 +313,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Skip",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "221b5284-bcf9-4c70-a7ff-1dc89e98b912",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CutDialogue",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4951834c-a9d7-413c-ab02-0d99cad22d67",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CutDialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

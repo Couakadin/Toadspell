@@ -308,15 +308,6 @@ namespace Data.Runtime
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CutDialogue"",
-                    ""type"": ""Button"",
-                    ""id"": ""77d05235-c2d1-435e-a20e-ace63a545e20"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Settings"",
                     ""type"": ""Button"",
                     ""id"": ""e596598c-673a-4c70-9a01-80a57e63811c"",
@@ -330,7 +321,7 @@ namespace Data.Runtime
                 {
                     ""name"": """",
                     ""id"": ""dd13c2c2-ac44-4114-87ed-34e5ff3ff403"",
-                    ""path"": ""<Keyboard>/g"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -346,28 +337,6 @@ namespace Data.Runtime
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Skip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""221b5284-bcf9-4c70-a7ff-1dc89e98b912"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CutDialogue"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4951834c-a9d7-413c-ab02-0d99cad22d67"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CutDialogue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -410,7 +379,6 @@ namespace Data.Runtime
             // Dialogue
             m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
             m_Dialogue_Skip = m_Dialogue.FindAction("Skip", throwIfNotFound: true);
-            m_Dialogue_CutDialogue = m_Dialogue.FindAction("CutDialogue", throwIfNotFound: true);
             m_Dialogue_Settings = m_Dialogue.FindAction("Settings", throwIfNotFound: true);
         }
 
@@ -574,14 +542,12 @@ namespace Data.Runtime
         private readonly InputActionMap m_Dialogue;
         private List<IDialogueActions> m_DialogueActionsCallbackInterfaces = new List<IDialogueActions>();
         private readonly InputAction m_Dialogue_Skip;
-        private readonly InputAction m_Dialogue_CutDialogue;
         private readonly InputAction m_Dialogue_Settings;
         public struct DialogueActions
         {
             private @GameInput m_Wrapper;
             public DialogueActions(@GameInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Skip => m_Wrapper.m_Dialogue_Skip;
-            public InputAction @CutDialogue => m_Wrapper.m_Dialogue_CutDialogue;
             public InputAction @Settings => m_Wrapper.m_Dialogue_Settings;
             public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
             public void Enable() { Get().Enable(); }
@@ -595,9 +561,6 @@ namespace Data.Runtime
                 @Skip.started += instance.OnSkip;
                 @Skip.performed += instance.OnSkip;
                 @Skip.canceled += instance.OnSkip;
-                @CutDialogue.started += instance.OnCutDialogue;
-                @CutDialogue.performed += instance.OnCutDialogue;
-                @CutDialogue.canceled += instance.OnCutDialogue;
                 @Settings.started += instance.OnSettings;
                 @Settings.performed += instance.OnSettings;
                 @Settings.canceled += instance.OnSettings;
@@ -608,9 +571,6 @@ namespace Data.Runtime
                 @Skip.started -= instance.OnSkip;
                 @Skip.performed -= instance.OnSkip;
                 @Skip.canceled -= instance.OnSkip;
-                @CutDialogue.started -= instance.OnCutDialogue;
-                @CutDialogue.performed -= instance.OnCutDialogue;
-                @CutDialogue.canceled -= instance.OnCutDialogue;
                 @Settings.started -= instance.OnSettings;
                 @Settings.performed -= instance.OnSettings;
                 @Settings.canceled -= instance.OnSettings;
@@ -644,7 +604,6 @@ namespace Data.Runtime
         public interface IDialogueActions
         {
             void OnSkip(InputAction.CallbackContext context);
-            void OnCutDialogue(InputAction.CallbackContext context);
             void OnSettings(InputAction.CallbackContext context);
         }
     }

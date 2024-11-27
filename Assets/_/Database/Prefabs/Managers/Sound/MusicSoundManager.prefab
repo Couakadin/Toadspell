@@ -800,11 +800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _AudioMixer: {fileID: 24100000, guid: 1375aa5abc7434140873cf96568cc46f, type: 2}
-  _musicSource: {fileID: 0}
-  _mainMusicSource: {fileID: 0}
-  _dialogueSound: {fileID: 8300000, guid: e9622d080d2adae4ca19e1a482ef24ff, type: 3}
-  _mainMusicSound: {fileID: 8300000, guid: 17b6fa9c1a6b1a047919a2fcfbfebf94, type: 3}
+  _dialogueMusicSource: {fileID: 7429876417111820780}
+  _mainMusicSource: {fileID: 1216810614498288459}
   _audioFadeIn: 2
-  _audioFadeOut: 1.5
   _baseSnapshot: {fileID: 24500006, guid: 1375aa5abc7434140873cf96568cc46f, type: 2}
   _paused: {fileID: 4005628801384680491, guid: 1375aa5abc7434140873cf96568cc46f, type: 2}
