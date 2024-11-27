@@ -18,7 +18,6 @@ namespace Game.Runtime
             _gameInput = new GameInput();
             _dialogueActions = _gameInput.Dialogue;
             _skipInput = _dialogueActions.Skip;
-            _cutDialogueInput = _dialogueActions.CutDialogue;
         }
 
         private void OnEnable() => _dialogueActions.Enable();
@@ -45,14 +44,6 @@ namespace Game.Runtime
                     SkipText();
                 }
                 else if (!_isSkipping) _typingTimer.Tick();
-
-
-                if (_cutDialogueInput.triggered)
-                {
-                    EndOfDialogue();
-                    ResetOnCut();
-                }
-
             }
 
             if(_LineOnScreenTimer.IsRunning()) _LineOnScreenTimer.Tick();
@@ -184,13 +175,12 @@ namespace Game.Runtime
         private GameInput _gameInput;
         private GameInput.DialogueActions _dialogueActions;
         private InputAction _skipInput;
-        private InputAction _cutDialogueInput;
         
         private Dialogue _currentDialogue;
-        [SerializeField] private int _currentExchangeIndex = 0;
-        [SerializeField] private int _currentExchangeInStoryIndex = 0;
-        [SerializeField] private int _currentLineIndex = 0;
-        [SerializeField] private int _currentCharacterIndex = 0;
+        private int _currentExchangeIndex = 0;
+        private int _currentExchangeInStoryIndex = 0;
+        private int _currentLineIndex = 0;
+        private int _currentCharacterIndex = 0;
         private bool _isTyping = false;
         private bool _isSkipping = false;
 

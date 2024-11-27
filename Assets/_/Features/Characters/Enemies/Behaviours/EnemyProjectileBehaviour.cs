@@ -2,6 +2,7 @@ using Data.Runtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Enemies.Runtime
 {
@@ -18,6 +19,7 @@ namespace Enemies.Runtime
         {
             //_meshRenderer.enabled = true;
             Invoke(nameof(LifespanOfProjectile), _endOfLife);
+            transform.rotation = Quaternion.Euler(Vector3.zero);
         }
 
         void Update()
@@ -61,7 +63,6 @@ namespace Enemies.Runtime
         [SerializeField] private float _endOfLife;
         [SerializeField] private float _speedOfProjectile;
         [SerializeField] private int _damages;
-
 
         #endregion
     }
