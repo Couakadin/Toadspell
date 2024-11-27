@@ -19,9 +19,9 @@ namespace Enemies.Runtime
         public void ShootOnTime()
         {
             GameObject projectile = m_projectilePool.GetFirstAvailableObject();
-            projectile.SetActive(true);
+            //projectile.SetActive(true);
             projectile.transform.position = _mouth.position;
-            projectile.transform.rotation = _mouth.rotation;
+            projectile.transform.forward = _mouth.forward;
             _enemySoundBehaviour.PlaySoundWhenAttacking();
         }
 
