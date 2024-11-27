@@ -31,6 +31,10 @@ namespace Player.Runtime
             _timerSpell?.Begin();
             _timerState?.Begin();
 
+            // Timer
+            _timerSpell.OnTimerFinished += CastSpell;
+            _timerState.OnTimerFinished += ChangeState;
+
             // Target
             _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
             _currentPool = m_stateMachine.m_powerBehaviour.m_currentPool;
@@ -42,10 +46,6 @@ namespace Player.Runtime
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsAttack", true);
 
             m_stateMachine.m_powerBehaviour.m_onSpellTimerTrigger.Raise();
-
-            // Timer
-            _timerSpell.OnTimerFinished += CastSpell;
-            _timerState.OnTimerFinished += ChangeState;
         }
 
         public void Exit()
