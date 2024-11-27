@@ -39,7 +39,11 @@ namespace Enemies.Runtime
             else
                 _direction = GetRandomDirection();
 
-            _wave.transform.position = _gridInterface.m_centralPlatform.transform.position;
+            _wave.transform.position = new Vector3(
+                _gridInterface.m_centralPlatform.transform.position.x, 
+                _gridInterface.m_centralPlatform.transform.position.y + m_stateMachine.m_bossBehaviour.m_waveOffset, 
+                _gridInterface.m_centralPlatform.transform.position.z
+            );
 
             if (_direction == Vector3.forward) _wave.transform.rotation = Quaternion.Euler(0, 270f, 0);
             else if (_direction == Vector3.back) _wave.transform.rotation = Quaternion.Euler(0, 90f, 0);

@@ -30,7 +30,6 @@ namespace Player.Runtime
 
             _timerSpell?.Begin();
             _timerState?.Begin();
-            m_stateMachine.m_powerBehaviour.m_onSpellTimerTrigger.Raise();
 
             // Target
             _target = m_stateMachine.m_powerBehaviour.m_tongueBlackboard.GetValue<GameObject>("CurrentLockedTarget");
@@ -41,6 +40,8 @@ namespace Player.Runtime
 
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetLayerWeight(2, .7f); // Attack Layer
             m_stateMachine.m_powerBehaviour.m_playerAnimator.SetBool("IsAttack", true);
+
+            m_stateMachine.m_powerBehaviour.m_onSpellTimerTrigger.Raise();
 
             // Timer
             _timerSpell.OnTimerFinished += CastSpell;
