@@ -10,8 +10,16 @@ namespace Game.Runtime
     {
         #region Unity API
 
+        private void Start()
+        {
+            _asyncOperation = SceneManager.LoadSceneAsync(1);
+            _asyncOperation.allowSceneActivation = false;
+
+        }
+
         private void Update()
         {
+            Debug.Log("Pro :" + _asyncOperation.progress);
             if (Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame)
             {
                 _deviceUsed = 1;
@@ -21,6 +29,7 @@ namespace Game.Runtime
                 _deviceUsed = 0;
             }
         }
+
         #endregion
 
 
@@ -51,7 +60,12 @@ namespace Game.Runtime
         private void StartIntro()
         {
             _introPanel.SetActive(true);
-            _introPanel.GetComponent<CanvasGroup>().DOFade(1, 2);
+            //_introPanel.GetComponent<CanvasGroup>().DOFade(1, 2);
+        }
+
+        public void LaunchGameScene()
+        {
+            _asyncOperation.allowSceneActivation = true;
         }
 
         #endregion
@@ -59,9 +73,9 @@ namespace Game.Runtime
 
         #region Privates & Protected
 
+        AsyncOperation _asyncOperation;
         private int _deviceUsed;
         [SerializeField] private int _loadGameScene;
-        [SerializeField] private Intro _intro;
         [SerializeField] private GameObject _introPanel;
         [SerializeField] private CanvasGroup _backgroundPanel;
         [SerializeField] private ParticleSystem _leaves;
