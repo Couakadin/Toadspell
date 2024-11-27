@@ -10,6 +10,7 @@ namespace Game.Runtime
         private void Start () 
         {
             _originPosition = transform.position;
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -25,6 +26,7 @@ namespace Game.Runtime
         [ContextMenu("Test falling platform")]
         private void StartFallingSequence()
         {
+            _audioSource.Play();
             _fallingSequence = DOTween.Sequence();
             _fallingSequence.Append(transform.DOShakePosition(_shakingDuration, _shakingStrength, _shakingVibrations, _shankingRandomness));
             _fallingSequence.JoinCallback(() =>_particles.Play());// Active les particules
@@ -83,6 +85,7 @@ namespace Game.Runtime
         private Vector3 _originPosition;
         [SerializeField] private ParticleSystem _particles; //particule pour le shake
 
+        private AudioSource _audioSource;
 
         #endregion
     }
