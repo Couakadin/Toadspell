@@ -9,7 +9,7 @@ namespace Objects.Runtime
         private void LateUpdate()
         {
             transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
-            transform.Rotate(0, 180, 0);
+            //transform.Rotate(0, 180, 0);
         }
     }
 }
