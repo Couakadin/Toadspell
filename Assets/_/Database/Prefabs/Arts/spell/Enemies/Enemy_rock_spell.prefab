@@ -9761,7 +9761,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 321
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -9811,3 +9811,4 @@ MonoBehaviour:
   _endOfLife: 10
   _speedOfProjectile: 85
   _damages: -1
+  _contact: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
