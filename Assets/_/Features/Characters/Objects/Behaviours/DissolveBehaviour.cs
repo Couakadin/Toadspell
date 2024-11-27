@@ -43,6 +43,7 @@ namespace Objects.Runtime
             _isDying = true;
             _elapsedTime = 0;
             _timeToDissolve = _dissolveTime;
+            gameObject.layer = 0;
 
             if (_leaves == null) return;
             for(int i = 0; i < _leaves.Count; i++)
