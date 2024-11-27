@@ -15,7 +15,7 @@ namespace Game.Runtime
 
         private void Awake()
         {
-            InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
+            //InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
             _gameInput = new GameInput();
             _dialogueActions = _gameInput.Dialogue;
             _settingsInput = _dialogueActions.Settings;
@@ -35,7 +35,6 @@ namespace Game.Runtime
     	{
             _gameOverPanel.SetActive(false);
             _tutorialIndex = 0;
-            _tutorialPanels = _keyboardTutorial;
             _maxLives = _playerBlackboard.GetValue<int>("Lives");
             _spellImage.sprite = _spellList[0];
             FirstFadeIn();
@@ -48,6 +47,16 @@ namespace Game.Runtime
 
             _spellDelayFloat = _playerBlackboard.GetValue<float>("SpellDelay");
             Debug.Log(_spellDelayFloat);
+            _deviceUsed = _playerBlackboard.GetValue<int>("device");
+            if (_deviceUsed == 1)
+            {
+                _tutorialPanels = _joyStickTutorial;
+            }
+            else if (_deviceUsed == 0)
+            {
+                _tutorialPanels = _keyboardTutorial;
+            }
+
 
         }
 
@@ -171,29 +180,29 @@ namespace Game.Runtime
             if (_tutorialIndex >= _tutorialPanels.Count)
             {
                 _tutorialObject.SetActive(false);
-                InputSystem.onDeviceChange -= OnDeviceChangeAdjustUI;
+                //InputSystem.onDeviceChange -= OnDeviceChangeAdjustUI;
             }
         } 
 
-        private void OnDeviceChangeAdjustUI(InputDevice device, InputDeviceChange change)
-        {
-            if (change == InputDeviceChange.Added || change == InputDeviceChange.Enabled)
-            {
-                SwitchUIWithDevice(device);
-            }
-        }
+        //private void OnDeviceChangeAdjustUI(InputDevice device, InputDeviceChange change)
+        //{
+        //    if (change == InputDeviceChange.Added || change == InputDeviceChange.Enabled)
+        //    {
+        //        SwitchUIWithDevice(device);
+        //    }
+        //}
 
-        private void SwitchUIWithDevice(InputDevice device)
-        {
-            if (device is Gamepad)
-            {
-                _tutorialPanels = _joyStickTutorial;
-            }
-            else if (device is Keyboard || device is Mouse)
-            {
-                _tutorialPanels = _keyboardTutorial;
-            }
-        }
+        //private void SwitchUIWithDevice(InputDevice device)
+        //{
+        //    if (device is Joystick || device is Gamepad)
+        //    {
+        //        _tutorialPanels = _joyStickTutorial;
+        //    }
+        //    else if (device is Keyboard || device is Mouse)
+        //    {
+        //        _tutorialPanels = _keyboardTutorial;
+        //    }
+        //}
 
         private void UIActivation() => _onUIActivationPanels.Raise();
 
@@ -212,6 +221,8 @@ namespace Game.Runtime
 
 
         #region Privates & Protected
+
+        private int _deviceUsed;
 
         [Header("References")]
         [SerializeField] private Blackboard _playerBlackboard;
@@ -260,7 +271,7 @@ namespace Game.Runtime
         [SerializeField] private GameObject _tutorialObject;
         [SerializeField] private List<CanvasGroup> _keyboardTutorial;
         [SerializeField] private List<CanvasGroup> _joyStickTutorial;
-        private List<CanvasGroup> _tutorialPanels = new();
+        [SerializeField] private List<CanvasGroup> _tutorialPanels = new();
         [SerializeField] private int _tutorialIndex = 0;
         private bool _isKeyboard;
 
