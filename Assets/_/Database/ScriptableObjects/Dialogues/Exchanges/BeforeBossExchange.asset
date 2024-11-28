@@ -13,16 +13,8 @@ MonoBehaviour:
   m_Name: BeforeBossExchange
   m_EditorClassIdentifier: 
   m_Dialogues:
-  - {fileID: 11400000, guid: d8fcbba2227d3d140b64beb5e148b9c2, type: 2}
-  - {fileID: 11400000, guid: ecc036f0bbb8286419e34c118553555f, type: 2}
-  - {fileID: 11400000, guid: 45214cecf874146439878b39153aa8d5, type: 2}
-  - {fileID: 11400000, guid: 4aaa29a3071f8fc4dbf0aa938f16050e, type: 2}
-  - {fileID: 11400000, guid: 7bb88bf4711713c41b58af32c8c2fdcf, type: 2}
-  - {fileID: 11400000, guid: d905778317262364793578218ee3d581, type: 2}
-  - {fileID: 11400000, guid: 855831345f9fb39458d0ed476f2b8b8e, type: 2}
-  - {fileID: 11400000, guid: b0b33ac30784140419d75015aae224f2, type: 2}
-  - {fileID: 11400000, guid: 643ba258990fca249b6a98b484561582, type: 2}
-  - {fileID: 11400000, guid: 3ee2b9ecc873c1043bfcad273e952318, type: 2}
-  - {fileID: 11400000, guid: 40c14942eeb3bf548b1fa582900d4081, type: 2}
-  - {fileID: 11400000, guid: a86334a0f10703b40a85bdbd30ddb59a, type: 2}
-  - {fileID: 11400000, guid: e21a1ddf0c4914347832363b6c9b434c, type: 2}
+  - {fileID: 11400000, guid: 9ce5bd53c70e6fa4aa6ccd8869e78603, type: 2}
+  - {fileID: 11400000, guid: 1187580fa57b4a047b0b2f8f52c478b3, type: 2}
+  - {fileID: 11400000, guid: 4b8651ed38e88304b8bfd675b36b37a0, type: 2}
+  - {fileID: 11400000, guid: 98beea19e2e99464696e5c29dd0d7377, type: 2}
+  - {fileID: 11400000, guid: dbb818b99dd69b94db92fa61e062fdc0, type: 2}
