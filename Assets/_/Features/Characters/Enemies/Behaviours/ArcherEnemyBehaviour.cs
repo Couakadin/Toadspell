@@ -30,7 +30,7 @@ namespace Enemies.Runtime
             {
                 SetOrResetTimer(_attackTimer);
                 Quaternion lookOnLoook = Quaternion.LookRotation(playerPosition -  transform.position);
-                //transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLoook, _rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookOnLoook, _rotationSpeed * Time.deltaTime);
                 //transform.LookAt(playerPosition);
                 _mouth.transform.LookAt(bookPosition);
             }
