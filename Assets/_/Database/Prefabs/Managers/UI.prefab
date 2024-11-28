@@ -3129,7 +3129,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: sfsdfsdfsdf
+  m_text: ' hello'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 78458abd8e416164daa38db8cf160d76, type: 2}
   m_sharedMaterial: {fileID: -6640436271465853214, guid: 78458abd8e416164daa38db8cf160d76,
@@ -3419,7 +3419,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859140958548297592}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -11492,7 +11492,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7614190530278616128}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -11960,7 +11960,7 @@ GameObject:
   - component: {fileID: 5161056318255486542}
   - component: {fileID: 3173078372697327795}
   - component: {fileID: 6391735082752207183}
-  - component: {fileID: 633318845437089203}
+  - component: {fileID: 3346326176528561060}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -12128,7 +12128,7 @@ MonoBehaviour:
   _checkpointFadeIn: 0.5
   _checkpointFadeOut: 0.5
   _spellDelayImage: {fileID: 3538458151071100359}
---- !u!114 &633318845437089203
+--- !u!114 &3346326176528561060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
