@@ -125,6 +125,8 @@ namespace Game.Runtime
                 ResetOnCut();
                 if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[0]) _onFirstExchangeFinished.Raise();
                 if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[1]) _onBridgeExchangeFinished.Raise();
+                if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[2]) _onBeforeBossBattleFinished.Raise();
+                if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[3]) _onEndingDialogueFinished.Raise();
                 _currentExchangeInStoryIndex++;
             });
         }
@@ -210,6 +212,9 @@ namespace Game.Runtime
         [Header("Events")]
         [SerializeField] private VoidEvent _onFirstExchangeFinished;
         [SerializeField] private VoidEvent _onBridgeExchangeFinished;
+        [SerializeField] private VoidEvent _onBeforeBossBattleFinished;
+        [SerializeField] private VoidEvent _onEndingDialogueFinished;
+
 
         #endregion
     }

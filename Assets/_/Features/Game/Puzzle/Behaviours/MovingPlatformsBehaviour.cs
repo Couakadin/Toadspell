@@ -56,11 +56,14 @@ namespace Game.Runtime
         public void FreezePosition()
         {
             _isFrozen = true;
+            _audioSource.Stop();
+
         }
 
         public void UnFreezePosition()
         {
             _isFrozen = false;
+            _audioSource.Play();
         }
 
         #endregion
@@ -84,6 +87,8 @@ namespace Game.Runtime
         private int _waypointIndex = 0;
 
         [SerializeField] private bool _isFrozen;
+        [SerializeField] private AudioSource _audioSource;
+        
         #endregion
     }
 }

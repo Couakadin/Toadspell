@@ -807,6 +807,8 @@ MonoBehaviour:
   _exchanges:
   - {fileID: 11400000, guid: a7fe86117a7d17a4ba8072d65fcf48d8, type: 2}
   - {fileID: 11400000, guid: cfcce87a870f32a4caeb1c81f89359bf, type: 2}
+  - {fileID: 11400000, guid: 33e2021b3867cc843a614467b7f35628, type: 2}
+  - {fileID: 11400000, guid: da66e0a3bd4250b459cd84b2a8f6fc29, type: 2}
   _characterBackground: {fileID: 8804795525255319076}
   _speakerImage: {fileID: 5384475349212688590}
   _speakerName: {fileID: 5314142858316888357}
@@ -816,6 +818,10 @@ MonoBehaviour:
   _onFirstExchangeFinished: {fileID: 11400000, guid: 368e4a6f80194ac4f9cdf64fda010d88,
     type: 2}
   _onBridgeExchangeFinished: {fileID: 11400000, guid: 1e9d541ce3c4c614eb7c8535027714bf,
+    type: 2}
+  _onBeforeBossBattleFinished: {fileID: 11400000, guid: 37bb4d21713692d41b6367a354be1604,
+    type: 2}
+  _onEndingDialogueFinished: {fileID: 11400000, guid: 582ddfa2d89d08f41bea20e3570a91b9,
     type: 2}
 --- !u!1 &477003202514635025
 GameObject:
@@ -7484,6 +7490,7 @@ GameObject:
   - component: {fileID: 5972072939169974964}
   - component: {fileID: 8443326206616428309}
   - component: {fileID: 8613278706409042606}
+  - component: {fileID: 4550193806031331863}
   m_Layer: 0
   m_Name: Listener
   m_TagString: Untagged
@@ -7826,6 +7833,34 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_listerner: {fileID: 11400000, guid: 1e9d541ce3c4c614eb7c8535027714bf, type: 2}
+--- !u!114 &4550193806031331863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159575985783138950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ae85d1e0f97d44fa14e5b40ed7e2d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 370143725704400565}
+        m_TargetAssemblyTypeName: Game.Runtime.ExchangeManager, Game.Runtime
+        m_MethodName: LaunchFirstDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_listerner: {fileID: 11400000, guid: 6093c3d080c2c7f42970f8b802fe5294, type: 2}
 --- !u!1 &5164501345857334384
 GameObject:
   m_ObjectHideFlags: 0

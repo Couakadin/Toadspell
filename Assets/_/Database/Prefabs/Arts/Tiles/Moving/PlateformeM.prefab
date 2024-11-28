@@ -275,6 +275,7 @@ MonoBehaviour:
   - {fileID: 6233921893094765621}
   - {fileID: 4895868484899523109}
   _isFrozen: 0
+  _audioSource: {fileID: 0}
 --- !u!64 &197145169392663289
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24cd8284dafef74a977ab172c5feba3, type: 3}
+  m_Name: AfterBoss - 02 - Toad
+  m_EditorClassIdentifier: 
+  m_image: {fileID: 21300000, guid: 141f503b0b5ed9041bea3634307505d1, type: 3}
+  m_background: {fileID: 21300000, guid: cd861bea741f48b4bb554414edf959cd, type: 3}
+  m_speakerNameImage: {fileID: 21300000, guid: de402e3477fad1146b57f43b21fd481b, type: 3}
+  m_speakerName: Toad
+  m_lines:
+  - m_sentence: "Tu mena\xE7ais l'\xE9quilibre du Royaume."
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: "Je ne pouvais pas me permettre d'\xE9chouer"
+    m_screenTime: 1
+    m_image: {fileID: 0}
+  - m_sentence: "(m\xEAme si je m'\xE9tonne  moi-m\xEAme)."
+    m_screenTime: 0.5
+    m_image: {fileID: 0}
