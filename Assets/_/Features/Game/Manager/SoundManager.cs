@@ -69,7 +69,7 @@ namespace Game.Runtime
         {
             Sequence lowerMusic = DOTween.Sequence();
             lowerMusic.Append(_AudioMixer.DOSetFloat("MainMusicVolume", -55f, _audioFadeIn));
-            lowerMusic.Join(_AudioMixer.DOSetFloat("DialogueMusicVolume", _baseMusicVolume, _audioFadeIn));
+            lowerMusic.Join(_AudioMixer.DOSetFloat("DialogueMusicVolume", -22f, _audioFadeIn));
         }
 
         #endregion
