@@ -1,16 +1,19 @@
-using Data.Runtime;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.InputSystem;
 
 namespace Game.Runtime
 {
     public class SoundManager : MonoBehaviour
     {
         #region Unity API
-		
-    	void Start()
+
+        private void Awake()
+        {
+            InitializeAudioSources();
+        }
+
+        void Start()
     	{
             _AudioMixer.GetFloat("MusicVolume",out _baseMusicVolume);
             _baseSnapshot.TransitionTo(0.01f);
@@ -41,16 +44,13 @@ namespace Game.Runtime
             _baseSnapshot.TransitionTo(.01f);
         }
 
-        public void ChangePitchOnteleport()
+        public void GameOverMusic()
         {
-            _mainMusicSource.DOPitch(-0.34f, .2f);
-            
+            _gameOverSource.enabled = true;
+            _mainMusicSource.enabled = false;
+            _dialogueMusicSource.enabled = false;
         }
 
-        public void ResetPitchAfterTeleport()
-        {
-            _mainMusicSource.DOPitch(1, .2f);
-        }
         #endregion
 
 
@@ -71,6 +71,13 @@ namespace Game.Runtime
             lowerMusic.Append(_AudioMixer.DOSetFloat("MainMusicVolume", -55f, _audioFadeIn));
             lowerMusic.Join(_AudioMixer.DOSetFloat("DialogueMusicVolume", -22f, _audioFadeIn));
         }
+        
+        private void InitializeAudioSources()
+        {
+            _gameOverSource.enabled = false;
+            _mainMusicSource.enabled = true;
+            _dialogueMusicSource.enabled = true;
+        }
 
         #endregion
 
@@ -81,6 +88,7 @@ namespace Game.Runtime
         [SerializeField] private AudioMixer _AudioMixer;
         [SerializeField] private AudioSource _dialogueMusicSource;
         [SerializeField] private AudioSource _mainMusicSource;
+        [SerializeField] private AudioSource _gameOverSource;
 
         [Header("Dialogue Music Settings")]
         [SerializeField] private float _audioFadeIn = 1.5f;
