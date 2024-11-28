@@ -1,6 +1,4 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Runtime
@@ -23,16 +21,6 @@ namespace Game.Runtime
 
             movingBackground.SetLoops(-1, LoopType.Yoyo);
         }
-
-        #endregion
-
-
-        #region Main Methods
-
-        #endregion
-
-
-        #region Utils
 
         #endregion
 
