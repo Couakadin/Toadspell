@@ -126,10 +126,10 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _WindDirection: 0
+    - _WindDirection: -1
     - _WindEnabled: 1
-    - _WindFrequency: 1
-    - _WindIntensity: 0.32
+    - _WindFrequency: 0.48
+    - _WindIntensity: 0.43
     - _WindNoise: 1
     - _WindSpeed: 1
     - _WorkflowMode: 1
