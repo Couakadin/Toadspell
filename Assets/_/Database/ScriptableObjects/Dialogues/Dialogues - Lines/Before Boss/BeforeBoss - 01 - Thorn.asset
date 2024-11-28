@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24cd8284dafef74a977ab172c5feba3, type: 3}
+  m_Name: BeforeBoss - 01 - Thorn
+  m_EditorClassIdentifier: 
+  m_image: {fileID: 21300000, guid: d790c19a8de40424ea941e7dacfac2a9, type: 3}
+  m_background: {fileID: 21300000, guid: 0531d0c17fb189f45a93d1ede3456199, type: 3}
+  m_speakerNameImage: {fileID: 21300000, guid: 86174e2cca934574b8f9d599f592b696, type: 3}
+  m_speakerName: Thorn
+  m_lines:
+  - m_sentence: "Quelle entr\xE9e fracassante ! On a pris des cours d'acrobatie ?"
+    m_screenTime: 1
+    m_image: {fileID: 0}
