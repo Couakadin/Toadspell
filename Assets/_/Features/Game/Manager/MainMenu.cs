@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Data.Runtime;
+using UnityEngine.Audio;
 
 namespace Game.Runtime
 {
@@ -12,6 +13,7 @@ namespace Game.Runtime
 
         private void Start()
         {
+            _audioMixer.DOSetFloat("MenuMusicVolume", -15, 4);
             _asyncOperation = SceneManager.LoadSceneAsync(1);
             _asyncOperation.allowSceneActivation = false;
 
@@ -19,7 +21,6 @@ namespace Game.Runtime
 
         private void Update()
         {
-            Debug.Log("Pro :" + _asyncOperation.progress);
             if (Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame)
             {
                 _deviceUsed = 1;
@@ -47,11 +48,6 @@ namespace Game.Runtime
             _playerBlackboard.SetValue<int>("device", _deviceUsed);
         }
 
-        public void LoadGameScene()
-        {
-            SceneManager.LoadScene(_loadGameScene);
-        }
-
         public void QuitTheGame()
         {
             Application.Quit();
@@ -65,6 +61,7 @@ namespace Game.Runtime
 
         public void LaunchGameScene()
         {
+            _audioMixer.DOSetFloat("MenuMusicVolume", -50f,4);
             _asyncOperation.allowSceneActivation = true;
         }
 
@@ -80,6 +77,8 @@ namespace Game.Runtime
         [SerializeField] private CanvasGroup _backgroundPanel;
         [SerializeField] private ParticleSystem _leaves;
         [SerializeField] private Blackboard _playerBlackboard;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioMixer _audioMixer;
 
         #endregion
     }

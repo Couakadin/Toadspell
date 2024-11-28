@@ -2,13 +2,20 @@ using Data.Runtime;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Game.Runtime
 {
     public class BackstoryPanel : MonoBehaviour
     {
-        // Start is called before the first frame update
+        private void Awake()
+        {
+            _gameInput = new GameInput();
+            _dialogueActions = _gameInput.Dialogue;
+            _skipInput = _dialogueActions.Skip;
+        }
+
         void Start()
         {
             InitializeTextInfo();
@@ -16,16 +23,30 @@ namespace Game.Runtime
 
             StartBackStory();
         }
+
+        private void OnEnable()
+        {
+            _dialogueActions.Enable();
+        }
+
         private void OnDisable()
         {
+            _dialogueActions.Disable();
             _typingTimer.OnTimerFinished -= OnCharacterTyping;
             _LineOnScreenTimer.OnTimerFinished -= OnLineScreenTimeOver;
         }
 
-        // Update is called once per frame
         void Update()
         {
-            if (_typingTimer.IsRunning()) _typingTimer.Tick();
+            if (_isTyping)
+            {
+                if (_skipInput.triggered && !_isSkipping)
+                {
+                    _isSkipping = true;
+                    SkipText();
+                }
+                else if (!_isSkipping) _typingTimer.Tick();
+            }
             if (_LineOnScreenTimer.IsRunning()) _LineOnScreenTimer.Tick();
         }
 
@@ -54,16 +75,14 @@ namespace Game.Runtime
 
         private void StartBackStory()
         {
-            Debug.Log("let's start this story");
             Sequence backstory = DOTween.Sequence();
             if (_hasBackground) backstory.Append(_imgBackgroundCanvas.DOFade(1, _backgroundImageFadeIn));
             backstory.Append(_textBackgroundCanvas.DOFade(1, _textBackgroundFadeIn));
-            backstory.OnComplete(() => OnCharacterTyping());
-        }
-
-        private void StartTyping()
-        {
-            _isTyping = true;
+            backstory.OnComplete(() => 
+            {
+                OnCharacterTyping();
+                _isTyping = true;
+            });
         }
 
         private void OnCharacterTyping()
@@ -80,6 +99,20 @@ namespace Game.Runtime
                 ResetTimer(_LineOnScreenTimer);
             }
         }
+
+        private void SkipText()
+        {
+            Debug.Log("skip");
+            _storyText.text = $"{_writer}";
+            _currentCharacterIndex = _writer.Length;
+
+            _isTyping = false;
+
+            ResetTimer(_LineOnScreenTimer);
+
+            _isSkipping = false;
+        }
+
 
         private void OnLineScreenTimeOver()
         {
@@ -104,10 +137,15 @@ namespace Game.Runtime
 
         #region Privates & Protected
 
+        private GameInput _gameInput;
+        private GameInput.DialogueActions _dialogueActions;
+        private InputAction _skipInput;
+
         private Timer _typingTimer;
         private Timer _LineOnScreenTimer;
         private int _currentCharacterIndex = 0;
-        private bool _isTyping = false;
+        [SerializeField] private bool _isTyping = false;
+        [SerializeField] private bool _isSkipping = false;
         private string _writer;
 
         [SerializeField] private bool _hasBackground;
