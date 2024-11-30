@@ -38,6 +38,17 @@ namespace Game.Runtime
             _bridgeBossCamera.Priority = 0;
         }
 
+        public void ABossFightCameraFirstPriority()
+        {
+            _bossFightCamera.Priority = 12;
+        }
+
+        public void ABossFightCameraReset()
+        {
+            Debug.Log("camera rest");
+            _bossFightCamera.Priority = 0;
+        }
+
         #endregion
 
 
@@ -50,6 +61,7 @@ namespace Game.Runtime
 
         [SerializeField] private CinemachineVirtualCamera _frontTempleCamera;
         [SerializeField] private CinemachineVirtualCamera _bridgeBossCamera;
+        [SerializeField] private CinemachineVirtualCamera _bossFightCamera;
 
         #endregion
     }

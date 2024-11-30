@@ -9,11 +9,9 @@ namespace Game.Runtime
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.layer == 7)
+            if (other.TryGetComponent(out ICanBeHurt component))
             {
-                Debug.Log(other.gameObject.name);
                 _onOutOfMapEvent.Raise();
-                other.TryGetComponent(out ICanBeHurt component);
                 component.TakeDamage(_damages);
             }
         }

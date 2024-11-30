@@ -540,7 +540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6253441078854989440
 RectTransform:
   m_ObjectHideFlags: 0
@@ -800,6 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a90169d033db94398e53ac6d36830c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentExchangeInStoryIndex: 0
   _dialoguePanel: {fileID: 6408286187885160621}
   _characterPanel: {fileID: 6173812613166398894}
   _panelFadeIn: 1
@@ -12116,7 +12117,7 @@ MonoBehaviour:
   _onPlayerHasSpawned: {fileID: 11400000, guid: 196659727af0e684a9d4cc583edb08ee,
     type: 2}
   _teleportBlackScreen: {fileID: 5978635037228917074}
-  _teleportFadeInDelay: 1
+  _teleportFadeInDelay: 0.5
   _teleportIntervalDelay: 1
   _teleportFadeOutDelay: 1.5
   _livesPrefab: {fileID: 7372596661763423861, guid: b2c05bec5bcb9c94ea034e2fdc39ea0d,

@@ -125,7 +125,11 @@ namespace Game.Runtime
                 ResetOnCut();
                 if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[0]) _onFirstExchangeFinished.Raise();
                 if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[1]) _onBridgeExchangeFinished.Raise();
-                if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[2]) _onBeforeBossBattleFinished.Raise();
+                if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[2])
+                {
+                    _onBeforeBossBattleFinished.Raise();
+                    Debug.Log("let's fight");
+                }
                 if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[3]) _onEndingDialogueFinished.Raise();
                 _currentExchangeInStoryIndex++;
             });
@@ -180,7 +184,7 @@ namespace Game.Runtime
         
         private Dialogue _currentDialogue;
         private int _currentExchangeIndex = 0;
-        private int _currentExchangeInStoryIndex = 0;
+        [SerializeField] private int _currentExchangeInStoryIndex = 0;
         private int _currentLineIndex = 0;
         private int _currentCharacterIndex = 0;
         private bool _isTyping = false;
