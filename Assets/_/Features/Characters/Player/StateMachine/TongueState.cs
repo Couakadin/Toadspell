@@ -155,6 +155,7 @@ namespace Player.Runtime
             {
                 _fixedJoint.connectedBody = _tongueRigidbody;
                 _hit.collider.gameObject.TryGetComponent(out _particle);
+                _hit.collider.gameObject.TryGetComponent(out _sound);
                 _isTongueControl = true;
             }
             else if (_sizeable.size == ISizeable.Size.large || _sizeable.size == ISizeable.Size.platform)
@@ -180,11 +181,13 @@ namespace Player.Runtime
                 _limitedPosition = _playerTransform.position + _distanceToTarget.normalized * _tongueMaxDistance;
                 _tongueRigidbody.MovePosition(_limitedPosition);
                 _particle?.PlayParticle();
+                _sound.PlayAudioSource();
             }
 
             if (m_stateMachine.m_powerBehaviour.m_tongueInput.triggered)
             {
                 if (_fixedJoint) _fixedJoint.connectedBody = null;
+                _sound.StopAudioSource();
                 _isTongueReturned = true;
             }
         }
@@ -287,6 +290,7 @@ namespace Player.Runtime
         private ISizeable _sizeable;
         private FixedJoint _fixedJoint;
         private IParticle _particle;
+        private IHaveSound _sound;
 
         // Timer
         private Timer _timerReturn;

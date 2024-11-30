@@ -1,21 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using Data.Runtime;
 using UnityEngine;
 
 namespace Objects.Runtime
 {
-    public class SoundTongueBehaviour : MonoBehaviour
+    public class SoundTongueBehaviour : MonoBehaviour, IHaveSound
     {
-        // Start is called before the first frame update
-        void Start()
+        public void PlayAudioSource()
         {
-        
+            Debug.Log("playingAudio");
+            _audioSource.Play();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void StopAudioSource()
         {
-        
+            _audioSource.Stop();
         }
+
+        [SerializeField] private AudioSource _audioSource;
     }
 }
