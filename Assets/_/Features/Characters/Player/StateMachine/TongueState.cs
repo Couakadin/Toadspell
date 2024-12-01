@@ -47,6 +47,7 @@ namespace Player.Runtime
         public void Exit()
         {
             _particle?.StopParticle();
+            _sound.StopAudioSource();
 
             _timerReturn.OnTimerFinished -= TongueReturn;
 
@@ -187,7 +188,6 @@ namespace Player.Runtime
             if (m_stateMachine.m_powerBehaviour.m_tongueInput.triggered)
             {
                 if (_fixedJoint) _fixedJoint.connectedBody = null;
-                _sound.StopAudioSource();
                 _isTongueReturned = true;
             }
         }

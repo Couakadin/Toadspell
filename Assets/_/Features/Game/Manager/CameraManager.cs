@@ -45,7 +45,6 @@ namespace Game.Runtime
 
         public void ABossFightCameraReset()
         {
-            Debug.Log("camera rest");
             _bossFightCamera.Priority = 0;
         }
 
