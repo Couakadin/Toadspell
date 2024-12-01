@@ -47,7 +47,7 @@ namespace Player.Runtime
         public void Exit()
         {
             _particle?.StopParticle();
-            _sound.StopAudioSource();
+            //_sound.StopAudioSource();
 
             _timerReturn.OnTimerFinished -= TongueReturn;
 

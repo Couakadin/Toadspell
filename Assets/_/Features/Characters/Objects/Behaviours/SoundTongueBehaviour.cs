@@ -13,20 +13,26 @@ namespace Objects.Runtime
 
         private void Update()
         {
-            if (_canPlaySound) ObjectIsMoving();
-            if(ObjectIsMoving())
+            if (_canPlaySound)
             {
-                Debug.Log("Moving");
-                if (_audioSource.isPlaying) return;
-                Debug.Log("playingAudio");
-                _audioSource.Play();
+                if (ObjectIsMoving())
+                {
+                    Debug.Log("Moving");
+                    if (_audioSource.isPlaying) return;
+                    Debug.Log("playingAudio");
+                    _audioSource.Play();
+                }
+                else if (!ObjectIsMoving()) _audioSource.Stop();
             }
-            if(!ObjectIsMoving() && _audioSource.isPlaying) _audioSource.Stop();
+            //ObjectIsMoving();
+            //Debug.Log(ObjectIsMoving());
+            //if(ObjectIsMoving())
+
+            //if(!ObjectIsMoving() && _audioSource.isPlaying) _audioSource.Stop();
         }
         public void PlayAudioSource()
         {
             _canPlaySound = true;
-            Debug.Log(_canPlaySound);
         }
 
         public void StopAudioSource()
@@ -44,7 +50,7 @@ namespace Objects.Runtime
 
         [SerializeField] private AudioSource _audioSource;
         private Vector3 _lastPosition;
-        private bool _canPlaySound;
+        [SerializeField] private bool _canPlaySound;
 
 
     }
