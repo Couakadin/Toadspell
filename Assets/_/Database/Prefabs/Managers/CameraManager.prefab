@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8618232721878158517}
   - component: {fileID: 2524647679972011336}
   - component: {fileID: 8572322077254283193}
+  - component: {fileID: 6976618681605559573}
   m_Layer: 0
   m_Name: Listener
   m_TagString: Untagged
@@ -176,6 +177,34 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_listerner: {fileID: 11400000, guid: 37bb4d21713692d41b6367a354be1604, type: 2}
+--- !u!114 &6976618681605559573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380744977185918964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ae85d1e0f97d44fa14e5b40ed7e2d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5784016084416075735}
+        m_TargetAssemblyTypeName: Game.Runtime.CameraManager, Game.Runtime
+        m_MethodName: AAfterFightCameraPriority
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_listerner: {fileID: 11400000, guid: 18324c73ee0ebe340847aec1470e9a66, type: 2}
 --- !u!1 &7433752058349521100
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,3 +253,4 @@ MonoBehaviour:
   _frontTempleCamera: {fileID: 0}
   _bridgeBossCamera: {fileID: 0}
   _bossFightCamera: {fileID: 0}
+  _afterFightCamera: {fileID: 0}

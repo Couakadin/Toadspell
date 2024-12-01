@@ -15,6 +15,7 @@ namespace Game.Runtime
         #region Unity API
         private void Awake()
         {
+            _afterFightCamera.Priority = 0;
             _frontTempleCamera.Priority = 11;
         }
 
@@ -48,6 +49,12 @@ namespace Game.Runtime
             _bossFightCamera.Priority = 0;
         }
 
+        public void AAfterFightCameraPriority()
+        {
+            _afterFightCamera.Priority = 12;
+        }
+
+
         #endregion
 
 
@@ -61,6 +68,7 @@ namespace Game.Runtime
         [SerializeField] private CinemachineVirtualCamera _frontTempleCamera;
         [SerializeField] private CinemachineVirtualCamera _bridgeBossCamera;
         [SerializeField] private CinemachineVirtualCamera _bossFightCamera;
+        [SerializeField] private CinemachineVirtualCamera _afterFightCamera;
 
         #endregion
     }

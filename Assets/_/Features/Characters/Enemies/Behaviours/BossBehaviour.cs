@@ -116,6 +116,7 @@ namespace Enemies.Runtime
             m_CollapseAttack.gameObject.SetActive(false);
             m_waveAttack.gameObject.SetActive(false);
             m_zoneAttack.gameObject.SetActive(false);
+            _onDeathOfBossDialogueTriggered.Raise();
             gameObject.layer = 0;
             this.enabled = false;
             return;
@@ -126,6 +127,7 @@ namespace Enemies.Runtime
         #region Privates
 
         private StateMachine _stateMachine;
+        [SerializeField] private VoidEvent _onDeathOfBossDialogueTriggered;
 
         #endregion
     }

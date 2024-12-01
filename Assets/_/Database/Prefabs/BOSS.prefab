@@ -409,6 +409,8 @@ MonoBehaviour:
   m_growthSpeed: 1.5
   m_ZoneNumber: 6
   m_dangerZones: []
+  _onDeathOfBossDialogueTriggered: {fileID: 11400000, guid: 18324c73ee0ebe340847aec1470e9a66,
+    type: 2}
 --- !u!1 &5330549996258153498
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +589,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 5e19794c70c97fc4d977d8bba1783d91, type: 3}
   m_Type: 3
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
@@ -823,7 +825,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 100}
+  m_SizeDelta: {x: 800, y: 191.38}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2482590753571986146
 CanvasRenderer:
@@ -855,7 +857,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 774f28eba8eea5e4fa853bd18b111046, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
