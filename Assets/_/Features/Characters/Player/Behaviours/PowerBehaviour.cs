@@ -162,6 +162,11 @@ namespace Player.Runtime
             _playerSoundBehaviour.PlaySpellSound(spellType);
         }
 
+        public void ShieldSound()
+        {
+            _playerSoundBehaviour.PlayShieldSound();
+        }
+
         public void TongueSoundOnExtension()
         {
             _playerSoundBehaviour.PlayTongueSound();

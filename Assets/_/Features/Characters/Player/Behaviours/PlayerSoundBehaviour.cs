@@ -34,6 +34,11 @@ namespace Player.Runtime
             _powerAudioSource.PlayOneShot(_spells[type]);
         }
 
+        public void PlayShieldSound()
+        {
+            _powerAudioSource.PlayOneShot(_shield);
+        }
+
 
         #endregion
 
@@ -51,7 +56,8 @@ namespace Player.Runtime
         [SerializeField] private AudioClip _jumpDown;
         [SerializeField] private AudioClip[] _spells;
         [SerializeField] private AudioClip[] _tongues;
- 
+        [SerializeField] private AudioClip _shield;
+  
         [Header("References")]
         [SerializeField] private AudioSource _movementsAudioSource;
         [SerializeField] private AudioSource _powerAudioSource;
