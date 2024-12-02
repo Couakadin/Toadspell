@@ -598,7 +598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &112479899
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2169,7 +2169,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574456919}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -3900,7 +3900,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 1389.73, y: 137.8}
+  m_SizeDelta: {x: 1481, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1073626259
 MonoBehaviour:
@@ -3922,7 +3922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "tous les 5 ans, un sorcier extraordinaire est envoy\xE9 au domaine c\xE9leste. "
+  m_text: Every 5 years, the celestial realm requires the strongest sorcerer be sent.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -5579,7 +5579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1440156013
 RectTransform:
   m_ObjectHideFlags: 0

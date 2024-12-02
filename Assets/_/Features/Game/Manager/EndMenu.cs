@@ -1,4 +1,5 @@
 using Data.Runtime;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;

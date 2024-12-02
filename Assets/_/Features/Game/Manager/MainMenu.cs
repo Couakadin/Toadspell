@@ -61,7 +61,7 @@ namespace Game.Runtime
 
         public void LaunchGameScene()
         {
-            _audioMixer.DOSetFloat("MenuMusicVolume", -50f,4);
+            _audioMixer.DOSetFloat("MenuMusicVolume", -80f,4);
             _asyncOperation.allowSceneActivation = true;
         }
 
