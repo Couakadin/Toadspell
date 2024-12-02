@@ -1095,6 +1095,7 @@ MonoBehaviour:
   _tongues:
   - {fileID: 8300000, guid: 1ae62b481e31323409563d7feb8993a9, type: 3}
   - {fileID: 8300000, guid: a7eb2c386ca8f8e4a97af5a0c1597df6, type: 3}
+  _shield: {fileID: 8300000, guid: 777752ee3938f734f88301242ad4bea4, type: 3}
   _movementsAudioSource: {fileID: 7985263341743417972}
   _powerAudioSource: {fileID: 2248001470830814473}
   _groundBehaviour: {fileID: 2735069469735884496}

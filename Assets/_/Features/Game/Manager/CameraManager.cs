@@ -1,18 +1,12 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Runtime
 {
     public class CameraManager : MonoBehaviour
     {
-        #region Publics
-
-        #endregion
-
-
         #region Unity API
+
         private void Awake()
         {
             _afterFightCamera.Priority = 0;
@@ -54,11 +48,6 @@ namespace Game.Runtime
             _afterFightCamera.Priority = 12;
         }
 
-
-        #endregion
-
-
-        #region Utils
 
         #endregion
 

@@ -33,12 +33,18 @@ namespace Enemies.Runtime
             _audioSource.PlayOneShot(_deathSound);
         }
 
+        public void PlayDetectionSound()
+        {
+            _audioSource.PlayOneShot(_detectionSound);
+        }
+
         #endregion
 
 
         #region Privates & Protected
 
         [Header("Audioclips")]
+        [SerializeField] private AudioClip _detectionSound;
         [SerializeField] private AudioClip _attackSound;
         [SerializeField] private AudioClip _deathSound;
 

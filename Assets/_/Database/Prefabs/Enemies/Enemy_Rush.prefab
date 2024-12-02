@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_blackboard: {fileID: 11400000, guid: ac57ea5e64244f14385ab091580c768c, type: 2}
   m_animator: {fileID: 2293500722224115723}
-  _LockIndicator: {fileID: 0}
+  _LockIndicator: {fileID: 625627337698618290}
   m_renderer: {fileID: 9182105663463202562}
   m_attackDelay: 1
   m_lifePoints: 2
@@ -174,7 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1c164132728c84b8037a42abd56728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackSound: {fileID: 0}
+  _detectionSound: {fileID: 8300000, guid: dd4ed2849cb8c4f468912789dd9beb2c, type: 3}
+  _attackSound: {fileID: 8300000, guid: 6e720af3335fb6a4681851de94525dab, type: 3}
   _deathSound: {fileID: 8300000, guid: 58ff71f312ea39a498779bc5a2149e7e, type: 3}
   _audioSource: {fileID: 5735718229571321763}
 --- !u!54 &9063982294704922832
@@ -217,7 +218,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 383
+    m_Bits: 895
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -238,7 +239,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -258,8 +259,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -4351551375414597981, guid: 1375aa5abc7434140873cf96568cc46f,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -267,8 +268,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 4.8
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -663,6 +664,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e13cfba0d4e2c044930e3b021f6edac, type: 3}
+--- !u!1 &625627337698618290 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5748602937810806814, guid: 1e13cfba0d4e2c044930e3b021f6edac,
+    type: 3}
+  m_PrefabInstance: {fileID: 5145801647296234412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5296649557318341176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1074378853616898452, guid: 1e13cfba0d4e2c044930e3b021f6edac,

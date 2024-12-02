@@ -1,6 +1,7 @@
 using Data.Runtime;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,10 @@ namespace Game.Runtime
     public class EndMenu : MonoBehaviour
     {
         #region Unity
+        private void Awake()
+        {
+            _audioMixer.DOSetFloat("MenuMusicVolume", -15f, 4);
+        }
 
         private void Update()
         {
@@ -31,6 +36,7 @@ namespace Game.Runtime
         #region Privates
 
         private int _deviceUsed;
+        [SerializeField] private AudioMixer _audioMixer;
 
         #endregion
     }

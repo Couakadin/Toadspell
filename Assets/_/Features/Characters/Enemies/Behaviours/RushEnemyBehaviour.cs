@@ -40,6 +40,11 @@ namespace Enemies.Runtime
 
             if (sqrDistance < detectionRange && !_isRushing && !_isCoolingDownAfterRush)
             {
+                if (!_hasDetectedPlayer)
+                {
+                    _enemySound.PlayDetectionSound();
+                    _hasDetectedPlayer = true;
+                }
                 transform.LookAt(playerFollow);
 
                 if (IsAlignedWithPlayer(playerPosition) && sqrDistance < rageRange)
@@ -87,6 +92,7 @@ namespace Enemies.Runtime
         public override void Attack()
         {
             _rushStartPosition = transform.position;
+            if(!_isRushing) _enemySound.PlaySoundWhenAttacking();
             _isRushing = true;
         }
 
@@ -213,6 +219,7 @@ namespace Enemies.Runtime
         [SerializeField] private float _rushSpeed = 10f;
         [SerializeField] private float _rushPower = 70f;
 
+        private bool _hasDetectedPlayer = false;
         private bool _isRushing = false;
         private bool _isCoolingDownAfterRush = false;
         private Vector3 _rushStartPosition;
