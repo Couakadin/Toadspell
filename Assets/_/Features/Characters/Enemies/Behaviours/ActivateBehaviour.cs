@@ -45,6 +45,7 @@ namespace Enemies.Runtime
 
         private void Activate()
         {
+            onBossFightStarted.Raise();
             _script.enabled = true;
             _healthBar.value = _healthBar.maxValue;
             _healthBar.gameObject.SetActive(true);
@@ -74,6 +75,8 @@ namespace Enemies.Runtime
         [Tooltip("Time before to activate.")]
         [SerializeField]
         private float _delayActivate, _delayDeactivate;
+
+        [SerializeField] private VoidEvent onBossFightStarted;
 
         private Timer _timerActivate, _timerDeactivate;
     }

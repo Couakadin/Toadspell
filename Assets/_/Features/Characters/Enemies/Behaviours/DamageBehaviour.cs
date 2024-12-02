@@ -14,11 +14,13 @@ namespace Enemies.Runtime
         {
             if (((1 << other.gameObject.layer) & _layerMask) == 0 || _damageTimer.IsRunning()) return;
             
-            other.TryGetComponent(out ICanBeHurt hurt);
-            if (hurt == null) throw new System.Exception("The target has no ICanBeHurt interface!");
+            if(other.TryGetComponent(out ICanBeHurt hurt))
+            {
+                //if (hurt == null) throw new System.Exception("The target has no ICanBeHurt interface!");
             
-            hurt.TakeDamage(_damage);
-            _damageTimer.Begin();
+                hurt.TakeDamage(_damage);
+                _damageTimer.Begin();
+            }
         }
 
         private void Update() => _damageTimer.Tick();

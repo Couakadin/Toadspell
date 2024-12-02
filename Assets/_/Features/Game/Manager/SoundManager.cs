@@ -47,8 +47,25 @@ namespace Game.Runtime
         public void GameOverMusic()
         {
             _gameOverSource.enabled = true;
+            _bossSource.enabled = false;
             _mainMusicSource.enabled = false;
             _dialogueMusicSource.enabled = false;
+        }
+
+        public void BossFightStarted()
+        {
+            Sequence bossFightIsOn = DOTween.Sequence();
+            bossFightIsOn.Append(_AudioMixer.DOSetFloat("MainMusicVolume", -55f, _audioFadeIn));
+            bossFightIsOn.Join(_AudioMixer.DOSetFloat("BossThemeVolume", 0, _audioFadeIn));
+            _bossSource.enabled = true;
+        }
+
+        public void BossFightFinished()
+        {
+            Sequence bossFightOver = DOTween.Sequence();
+            bossFightOver.Append(_AudioMixer.DOSetFloat("BossThemeVolume", -80f, _audioFadeIn));
+            bossFightOver.Join(_AudioMixer.DOSetFloat("MainMusicVolume", -7.00f, _audioFadeIn));
+            _bossSource.enabled = false;
         }
 
         #endregion
@@ -74,6 +91,7 @@ namespace Game.Runtime
         
         private void InitializeAudioSources()
         {
+            _bossSource.enabled = false;
             _gameOverSource.enabled = false;
             _mainMusicSource.enabled = true;
             _dialogueMusicSource.enabled = true;
@@ -89,6 +107,7 @@ namespace Game.Runtime
         [SerializeField] private AudioSource _dialogueMusicSource;
         [SerializeField] private AudioSource _mainMusicSource;
         [SerializeField] private AudioSource _gameOverSource;
+        [SerializeField] private AudioSource _bossSource;
 
         [Header("Dialogue Music Settings")]
         [SerializeField] private float _audioFadeIn = 1.5f;
