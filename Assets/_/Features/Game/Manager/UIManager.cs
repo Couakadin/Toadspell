@@ -1,6 +1,5 @@
 using Data.Runtime;
 using DG.Tweening;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -94,6 +93,8 @@ namespace Game.Runtime
 
 
         public void ActionLoadMainMenu() => SceneManager.LoadScene(0);
+
+        public void ActionLoadEndingScene() => SceneManager.LoadScene(2);
 
         public void ActionOpenSettingMenu() 
         {

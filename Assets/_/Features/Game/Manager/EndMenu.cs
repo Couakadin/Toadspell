@@ -17,6 +17,7 @@ namespace Game.Runtime
 
         #endregion
 
+
         #region Methods
 
         public void RestartGame(int loadGameScene) => SceneManager.LoadScene(loadGameScene);
@@ -24,6 +25,7 @@ namespace Game.Runtime
         public void TellMeWhichDeviceWasUsed(Blackboard playerBlackboard) => playerBlackboard.SetValue<int>("device", _deviceUsed);
 
         #endregion
+
 
         #region Privates
 
