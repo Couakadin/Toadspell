@@ -20,9 +20,10 @@ MonoBehaviour:
   - m_sentence: "Moi ? H\xE9ros ? Nan, trop de responsabilit\xE9."
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: Je vais me contenter de trouver un antidote, reprendre ma forme normale
+  - m_sentence: Je vais me contenter de trouver un antidote, reprendre ma  forme
+      normale
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "et aller boire un coup bien m\xE9rit\xE9."
+  - m_sentence: "et me d\xE9salt\xE9rer, je l'ai bien m\xE9rit\xE9."
     m_screenTime: 1
     m_image: {fileID: 0}

@@ -21,7 +21,7 @@ MonoBehaviour:
       ne te reconna\xEEtra plus !"
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "Allez, on s\u2019\xE9charpe ou on discute plantes m\xE9dicinales
+  - m_sentence: "Allez, on s\u2019\xE9charpe ou  on discute plantes m\xE9dicinales
       ?"
     m_screenTime: 1
     m_image: {fileID: 0}

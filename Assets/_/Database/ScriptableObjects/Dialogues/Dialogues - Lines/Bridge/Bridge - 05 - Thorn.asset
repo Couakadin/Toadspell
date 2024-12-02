@@ -20,13 +20,13 @@ MonoBehaviour:
   - m_sentence: "Je suis Roncelot ! Sorcier du Temple c\xE9leste,"
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "premier de ma promo, trois fois champion d\u2019\xE9checs international,
-      et l\u2019inventeur de la potion anti-froissage ! "
+  - m_sentence: "premier de ma promo, trois fois champion d\u2019\xE9checs international
+      et inventeur de la potion anti-froissage !"
     m_screenTime: 1
     m_image: {fileID: 0}
   - m_sentence: ...
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "Et d\xE9sormais... ma\xEEtre supr\xEAme du royaume ! "
+  - m_sentence: "Et d\xE9sormais... ma\xEEtre supr\xEAme du royaume !"
     m_screenTime: 1
     m_image: {fileID: 0}

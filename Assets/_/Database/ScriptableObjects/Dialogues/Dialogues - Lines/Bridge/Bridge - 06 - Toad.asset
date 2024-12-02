@@ -17,6 +17,6 @@ MonoBehaviour:
   m_speakerNameImage: {fileID: 21300000, guid: de402e3477fad1146b57f43b21fd481b, type: 3}
   m_speakerName: Toad
   m_lines:
-  - m_sentence: "Tout ce curriculum pour finir en d\xE9coration de potager. "
+  - m_sentence: "Tout ce curriculum pour finir en d\xE9coration de potager."
     m_screenTime: 1
     m_image: {fileID: 0}

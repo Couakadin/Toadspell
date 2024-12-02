@@ -23,6 +23,6 @@ MonoBehaviour:
   - m_sentence: Crois-tu vraiment que tu peux me vaincre ?
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "Moi, Roncelot, h\xE9raut du chaos, tyran des mages, et... "
+  - m_sentence: "Moi, Roncelot, h\xE9raut du chaos, tyran des  mages et..."
     m_screenTime: 1
     m_image: {fileID: 0}

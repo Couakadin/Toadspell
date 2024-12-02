@@ -21,6 +21,6 @@ MonoBehaviour:
     m_screenTime: 1
     m_image: {fileID: 0}
   - m_sentence: "Comme quoi, il y a des jours o\xF9 la vie de crapaud, \xE7a vaut
-      le  coup.)"
+      le coup.)"
     m_screenTime: 1
     m_image: {fileID: 0}

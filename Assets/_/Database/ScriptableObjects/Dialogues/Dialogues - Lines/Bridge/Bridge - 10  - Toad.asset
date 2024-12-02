@@ -17,13 +17,13 @@ MonoBehaviour:
   m_speakerNameImage: {fileID: 21300000, guid: de402e3477fad1146b57f43b21fd481b, type: 3}
   m_speakerName: Toad
   m_lines:
-  - m_sentence: 'CRAPAUD, pas grenouille, merci ! '
+  - m_sentence: CRAPAUD, pas grenouille, merci !
     m_screenTime: 1
     m_image: {fileID: 0}
   - m_sentence: "Bon... Sa Majest\xE9 bien profit\xE9 de son r\xE8gne,"
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "maintenant c\u2019est l\u2019heure que bibi lui taille le museau
-      ! "
+  - m_sentence: "maintenant c\u2019est l\u2019heure  de se faire tailler le museau
+      par bibi !"
     m_screenTime: 1
     m_image: {fileID: 0}

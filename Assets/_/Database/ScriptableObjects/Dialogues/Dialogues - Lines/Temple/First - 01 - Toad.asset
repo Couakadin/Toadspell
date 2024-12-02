@@ -21,7 +21,7 @@ MonoBehaviour:
       une brique en pleine face..."
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "Non, c\u2019est une blague ?! "
+  - m_sentence: "Non, c\u2019est une blague ?!"
     m_screenTime: 1
     m_image: {fileID: 0}
   - m_sentence: "Un crapaud ?! UN CRAPAUD ?! Mais quel mauvais sort j\u2019ai pondu,

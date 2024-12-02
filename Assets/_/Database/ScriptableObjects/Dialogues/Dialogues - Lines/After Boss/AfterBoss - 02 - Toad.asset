@@ -23,6 +23,6 @@ MonoBehaviour:
   - m_sentence: "Je ne pouvais pas me permettre d'\xE9chouer"
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "(m\xEAme si je m'\xE9tonne  moi-m\xEAme)."
+  - m_sentence: "(m\xEAme si je m'\xE9tonne moi-m\xEAme)."
     m_screenTime: 0.5
     m_image: {fileID: 0}

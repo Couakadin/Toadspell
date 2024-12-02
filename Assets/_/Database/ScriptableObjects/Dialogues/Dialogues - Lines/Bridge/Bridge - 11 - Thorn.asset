@@ -17,7 +17,7 @@ MonoBehaviour:
   m_speakerNameImage: {fileID: 21300000, guid: 86174e2cca934574b8f9d599f592b696, type: 3}
   m_speakerName: Thorn
   m_lines:
-  - m_sentence: "Ha ! Le rat\xE9 de la classe ?  "
+  - m_sentence: "Ha ! Le rat\xE9 de la classe ?"
     m_screenTime: 1
     m_image: {fileID: 0}
   - m_sentence: "Toi, tu vas m\u2019arr\xEAter ?!"

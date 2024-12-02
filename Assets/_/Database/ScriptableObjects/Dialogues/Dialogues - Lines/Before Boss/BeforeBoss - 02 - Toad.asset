@@ -18,6 +18,6 @@ MonoBehaviour:
   m_speakerName: Toad
   m_lines:
   - m_sentence: "Ouais, j'aime bien sauter \xE0 pieds joints. Et c'est souvent dans
-      la bouche"
+      la bouche."
     m_screenTime: 1
     m_image: {fileID: 0}

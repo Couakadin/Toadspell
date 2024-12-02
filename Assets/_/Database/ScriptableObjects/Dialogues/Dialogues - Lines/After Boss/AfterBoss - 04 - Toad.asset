@@ -17,7 +17,7 @@ MonoBehaviour:
   m_speakerNameImage: {fileID: 21300000, guid: de402e3477fad1146b57f43b21fd481b, type: 3}
   m_speakerName: Toad
   m_lines:
-  - m_sentence: "Tu as peut-\xEAtre sacrifi\xE9 mais tu n'as rien cultiv\xE9, vieux."
+  - m_sentence: "Tu t'es peut-\xEAtre sacrifi\xE9 mais tu n'as rien cultiv\xE9, vieux."
     m_screenTime: 1
     m_image: {fileID: 0}
   - m_sentence: Tu voulais dominer, pas construire.

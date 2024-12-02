@@ -17,13 +17,13 @@ MonoBehaviour:
   m_speakerNameImage: {fileID: 21300000, guid: de402e3477fad1146b57f43b21fd481b, type: 3}
   m_speakerName: Frogmage
   m_lines:
-  - m_sentence: 'Je sais ! Les anciens du Temple ! '
+  - m_sentence: Je sais ! Les anciens du Temple !
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "Ils sauront peut-\xEAtre r\xE9parer \xE7a."
+  - m_sentence: "Ils pourront peut-\xEAtre r\xE9parer \xE7a."
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "Allez, direction la for\xEAt... s\u2019ils se sont pas transform\xE9s
-      en foug\xE8res, eux aussi. "
+  - m_sentence: "Allez, direction la for\xEAt... s\u2019ils se sont  pas transform\xE9s
+      en foug\xE8res, eux aussi."
     m_screenTime: 2
     m_image: {fileID: 0}

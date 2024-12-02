@@ -17,12 +17,12 @@ MonoBehaviour:
   m_speakerNameImage: {fileID: 21300000, guid: 86174e2cca934574b8f9d599f592b696, type: 3}
   m_speakerName: Thorn
   m_lines:
-  - m_sentence: 'Que vas-tu faire maintenant ? '
+  - m_sentence: Que vas-tu faire maintenant ?
     m_screenTime: 1
     m_image: {fileID: 0}
   - m_sentence: Gouverner ?
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "\xCAtre le nouveau h\xE9ros du Temple ? "
+  - m_sentence: "\xCAtre le nouveau h\xE9ros du Temple ?"
     m_screenTime: 1
     m_image: {fileID: 0}

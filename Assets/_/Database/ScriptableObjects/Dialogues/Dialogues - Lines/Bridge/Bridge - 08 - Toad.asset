@@ -17,10 +17,10 @@ MonoBehaviour:
   m_speakerNameImage: {fileID: 21300000, guid: de402e3477fad1146b57f43b21fd481b, type: 3}
   m_speakerName: Toad
   m_lines:
-  - m_sentence: Ooh il va se calmer, le bouquet de fleurs !
+  - m_sentence: Oooh il va se calmer, le bouquet de fleurs !
     m_screenTime: 1
     m_image: {fileID: 0}
-  - m_sentence: "Un coup de s\xE9cateur et j'envoie fissa au composte, hein. "
+  - m_sentence: "Un coup de s\xE9cateur et je l'envoie fissa au composte, hein."
     m_screenTime: 1
     m_image: {fileID: 0}
   - m_sentence: '... '

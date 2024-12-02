@@ -17,10 +17,10 @@ MonoBehaviour:
   m_speakerNameImage: {fileID: 21300000, guid: 86174e2cca934574b8f9d599f592b696, type: 3}
   m_speakerName: Thorn
   m_lines:
-  - m_sentence: 'Tu ne comprends rien ! '
+  - m_sentence: Tu ne comprends rien !
     m_screenTime: 0.5
     m_image: {fileID: 0}
-  - m_sentence: "Sans moi, ce Royaume est vou\xE9 \xE0 dispara\xEEtre. "
+  - m_sentence: "Sans moi, ce Royaume est vou\xE9 \xE0 dispara\xEEtre."
     m_screenTime: 1
     m_image: {fileID: 0}
   - m_sentence: "Ce n'est pas juste... pas apr\xE8s tout  ce que j'ai sacrifi\xE9..."
