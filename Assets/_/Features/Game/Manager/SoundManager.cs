@@ -56,7 +56,7 @@ namespace Game.Runtime
         {
             Sequence bossFightIsOn = DOTween.Sequence();
             bossFightIsOn.Append(_AudioMixer.DOSetFloat("MainMusicVolume", -55f, _audioFadeIn));
-            bossFightIsOn.Join(_AudioMixer.DOSetFloat("BossThemeVolume", 0, _audioFadeIn));
+            bossFightIsOn.Join(_AudioMixer.DOSetFloat("BossThemeVolume", -15f, _audioFadeIn));
             _bossSource.enabled = true;
         }
 
