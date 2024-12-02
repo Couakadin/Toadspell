@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_background: {fileID: 21300000, guid: 89ad00a9bae7280428dabf1b6ab71e53, type: 3}
   m_line:
-    m_sentence: 'Mysterious happenings have been happening... how suspicious. '
+    m_sentence: "D'\xE9tranges myst\xE8res s'y d\xE9roulent..."
     m_screenTime: 1
     m_image: {fileID: 0}

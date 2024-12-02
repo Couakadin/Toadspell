@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_background: {fileID: 21300000, guid: afc0fbfa7b1262547a15ba74286f80ce, type: 3}
   m_line:
-    m_sentence: "Cast your strongest spell to journey to the realm. Let\u2019s see
-      how it goes!"
+    m_sentence: Lancez votre meilleur sort pour ouvrir les portes du Domaine. C'est
+      partit !
     m_screenTime: 1
     m_image: {fileID: 0}

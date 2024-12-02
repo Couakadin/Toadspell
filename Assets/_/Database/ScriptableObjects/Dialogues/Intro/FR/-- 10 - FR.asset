@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_background: {fileID: 21300000, guid: a2575dda30a11aa4faecf20d2c092712, type: 3}
   m_line:
-    m_sentence: 'Those who were sent have not returned. '
+    m_sentence: "Ceux qui y ont \xE9t\xE9 envoy\xE9s ne sont jamais revenus."
     m_screenTime: 1
     m_image: {fileID: 0}

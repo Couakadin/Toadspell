@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_background: {fileID: 0}
   m_line:
-    m_sentence: Fingers crossed, we are all counting on you!
+    m_sentence: "Bonne chance ? On n\u2019est pas tr\xE8s sereins."
     m_screenTime: 1
     m_image: {fileID: 0}

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_background: {fileID: 21300000, guid: df65823e53c8bbf4c9e7f8c915c8db82, type: 3}
   m_line:
-    m_sentence: 'Glory awaits those who revive its magic! '
+    m_sentence: "Gloire \xE0 ces sorciers qui ravivent la magie du domaine ! "
     m_screenTime: 1
     m_image: {fileID: 0}

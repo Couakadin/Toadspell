@@ -184,7 +184,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 0
-  _backStoryInfo: {fileID: 11400000, guid: 9213875fbe6d07f4a95c622bac00e0be, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: 23282d6e5e095cf48b94832e75024f21, type: 2}
   _storyText: {fileID: 294040625}
   _backStoryImage: {fileID: 0}
   _typingSpeed: 7
@@ -326,7 +326,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 0
-  _backStoryInfo: {fileID: 11400000, guid: f23a771eb3fa65842943ae54246764b7, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: 77397b0bd76f72c42a61410d701834a9, type: 2}
   _storyText: {fileID: 1319734726}
   _backStoryImage: {fileID: 0}
   _typingSpeed: 7
@@ -598,7 +598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &112479899
 RectTransform:
   m_ObjectHideFlags: 0
@@ -645,7 +645,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: 87b391019f90fd149a1611c053c9b03c, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: f95964ca054981849b3e934245a31bb4, type: 2}
   _storyText: {fileID: 1073626259}
   _backStoryImage: {fileID: 574456921}
   _typingSpeed: 7
@@ -694,7 +694,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 1170.1, y: 137.8}
+  m_SizeDelta: {x: 1158, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &179985157
 CanvasGroup:
@@ -728,7 +728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Congratulations, you\u2019ve been volunteered to save the world! "
+  m_text: "F\xE9licitations ! On vous a port\xE9 d\xE9sign\xE9 pour sauver le monde."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -961,10 +961,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: de8acf79029d1cf4a91ed5e9084e35f7,
+    m_HighlightedSprite: {fileID: 21300000, guid: 8aabfcefb5e23ce478b4a8d27db62af8,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 21300000, guid: de8acf79029d1cf4a91ed5e9084e35f7, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 8aabfcefb5e23ce478b4a8d27db62af8, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1021,7 +1021,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7048b925153c0d74fa66afbd5b2819b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 935e886fc64e0c149b69cc2bde5cdf6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1163,7 +1163,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 771.6, y: 137.8}
+  m_SizeDelta: {x: 547, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &294040624
 CanvasGroup:
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Glory awaits those who revive its magic! '
+  m_text: Serait-ce enfin votre tour ?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -1575,7 +1575,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 215.4, y: 137.8}
+  m_SizeDelta: {x: 181.5, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &445723024
 CanvasGroup:
@@ -1609,7 +1609,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ... very bad.
+  m_text: "Tr\xE8s nul."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -1894,7 +1894,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: 730dc5c1647af304c90e497c275028e3, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: bec3a8334f84a574fac6a9c10f8fe6a6, type: 2}
   _storyText: {fileID: 1185214591}
   _backStoryImage: {fileID: 390298447}
   _typingSpeed: 7
@@ -1949,7 +1949,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 51.119995, y: -11.25}
+  m_AnchoredPosition: {x: 51.119995, y: -11.249939}
   m_SizeDelta: {x: -102.24, y: -22.50006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &565755596
@@ -2019,10 +2019,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 6cb71ae8cb01fb94e80442d9e0b93d59,
+    m_HighlightedSprite: {fileID: 21300000, guid: d698bbef85c572642a4924f0a8acaf11,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 21300000, guid: 6cb71ae8cb01fb94e80442d9e0b93d59, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: d698bbef85c572642a4924f0a8acaf11, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -2067,7 +2067,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bf06fc0388af4644d842ff63900930ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 576e77e60f1a0cb4ba0847ee42cee8e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2169,7 +2169,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574456919}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -2210,7 +2210,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -731.3, y: -185.1}
-  m_SizeDelta: {x: 500, y: 350}
+  m_SizeDelta: {x: 500, y: 356.31}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &576003307
 MonoBehaviour:
@@ -2230,7 +2230,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 32
+  m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -2544,7 +2544,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: a7ba632548121ad4da6f85111d22d4ca, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: 9c9b79506da2ea2489357127af2139eb, type: 2}
   _storyText: {fileID: 886772882}
   _backStoryImage: {fileID: 931671444}
   _typingSpeed: 7
@@ -2757,7 +2757,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: 27e6eb8b71570744bbc35e3c75212e1a, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: d8f51db31018a6a4b9e86b559add80f3, type: 2}
   _storyText: {fileID: 1487724012}
   _backStoryImage: {fileID: 96500307}
   _typingSpeed: 7
@@ -2990,7 +2990,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 648.4, y: 137.8}
+  m_SizeDelta: {x: 1013.3, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &886772881
 CanvasGroup:
@@ -3024,7 +3024,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: However, in the past 5 years, the realm hasn't been so celestial.
+  m_text: "Cependant, la magie du Domaine s'\xE9puise depuis 25 ans."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -3338,7 +3338,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: 612bfe0e740203c49a1e370e85a77b79, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: 53660335fe529254d8b01cfa8ffe8c59, type: 2}
   _storyText: {fileID: 1300080412}
   _backStoryImage: {fileID: 292088256}
   _typingSpeed: 7
@@ -3680,7 +3680,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: 6bd1ff106afa92646a7fcbdf5b442dcc, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: 546a59d8eabf2864382b1ef2a51fdc90, type: 2}
   _storyText: {fileID: 445723025}
   _backStoryImage: {fileID: 641490236}
   _typingSpeed: 7
@@ -3755,7 +3755,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 0
-  _backStoryInfo: {fileID: 11400000, guid: 687166632e952584c93dd205e8542974, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: 32e9aefde6275f5429042dc980b627d4, type: 2}
   _storyText: {fileID: 179985158}
   _backStoryImage: {fileID: 0}
   _typingSpeed: 7
@@ -3900,7 +3900,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 1389.73, y: 137.8}
+  m_SizeDelta: {x: 1433.8, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1073626259
 MonoBehaviour:
@@ -3922,7 +3922,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "tous les 5 ans, un sorcier extraordinaire est envoy\xE9 au domaine c\xE9leste. "
+  m_text: "Tous les cinq ans, un sorcier extraordinaire est envoy\xE9 au Domaine
+    C\xE9leste."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -4342,7 +4343,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 782, y: 137.8}
+  m_SizeDelta: {x: 962.5, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1185214590
 CanvasGroup:
@@ -4376,9 +4377,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Those who were sent have not returned.
-
-'
+  m_text: "Ceux qui y ont \xE9t\xE9 envoy\xE9s ne sont jamais revenus."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -4691,7 +4690,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 350, y: 94.53}
+  m_SizeDelta: {x: 442, y: 107.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1255146477
 MonoBehaviour:
@@ -4722,10 +4721,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: baf92fc3548106b47aa2e62e6b001c66,
+    m_HighlightedSprite: {fileID: 21300000, guid: 9186dc764f3e49a41a14ea3ed0b093fe,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 21300000, guid: baf92fc3548106b47aa2e62e6b001c66, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 9186dc764f3e49a41a14ea3ed0b093fe, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -4770,7 +4769,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c28016944e2bc8047b6a7793ce183659, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f5297bd2c5d9ef04b8f0ecb433eebd6b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4843,7 +4842,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: 6beee1ef9f83084439c33c965293c25c, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: 739725bd6e1f1604ca1782821cd6d6f2, type: 2}
   _storyText: {fileID: 1812239339}
   _backStoryImage: {fileID: 92857973}
   _typingSpeed: 7
@@ -4900,7 +4899,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 1423.4, y: 137.8}
+  m_SizeDelta: {x: 1453, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1300080411
 CanvasGroup:
@@ -4934,8 +4933,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Cast your strongest spell to journey to the realm. Let\u2019s see how
-    it goes!"
+  m_text: Lancez votre meilleur sort pour ouvrir les portes du Domaine. C'est partit
+    !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -5049,7 +5048,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 855, y: 137.8}
+  m_SizeDelta: {x: 779, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1319734725
 CanvasGroup:
@@ -5083,7 +5082,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fingers crossed, we are all counting on you!
+  m_text: "Bonne chance ? On n\u2019est pas tr\xE8s sereins."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -5197,7 +5196,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 648.4, y: 137.8}
+  m_SizeDelta: {x: 733.9, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1364849513
 CanvasGroup:
@@ -5231,7 +5230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You missed the mark 35 years ago
+  m_text: "Votre chance est pass\xE9e depuis 35 ans."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -5364,7 +5363,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: 18551a5d1df1afb4eac5cb4048cc9e2c, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: 53234f0d02213aa4399dacb1c1020efd, type: 2}
   _storyText: {fileID: 1716353882}
   _backStoryImage: {fileID: 2120171407}
   _typingSpeed: 7
@@ -5892,7 +5891,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 292.9, y: 137.8}
+  m_SizeDelta: {x: 147.9, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1487724011
 CanvasGroup:
@@ -5926,7 +5925,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Of course not!
+  m_text: Et non !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -6235,7 +6234,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: 18d22d1da4098fc4298e7130b6d341c6, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: 19ea6b10dabcb7942b19c515806cfe75, type: 2}
   _storyText: {fileID: 1364849514}
   _backStoryImage: {fileID: 789330352}
   _typingSpeed: 7
@@ -6292,7 +6291,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 771.6, y: 137.8}
+  m_SizeDelta: {x: 1043, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1603428926
 CanvasGroup:
@@ -6326,7 +6325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Glory awaits those who revive its magic! '
+  m_text: "Gloire \xE0 ces sorciers qui ravivent la magie du domaine ! "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -6459,7 +6458,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: b488bcd04c6b0564c8653b236529c2e6, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: 8b932c1a96e1d58459992446d972eb44, type: 2}
   _storyText: {fileID: 2091202165}
   _backStoryImage: {fileID: 640070241}
   _typingSpeed: 7
@@ -6721,7 +6720,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: 51a29f2dc27dd1b448e8ceb533457208, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: f0ca9941546b4b243a51a4de7ed340d0, type: 2}
   _storyText: {fileID: 2051965156}
   _backStoryImage: {fileID: 962826628}
   _typingSpeed: 7
@@ -6778,7 +6777,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 955.36, y: 137.8}
+  m_SizeDelta: {x: 605.6, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1716353881
 CanvasGroup:
@@ -6812,7 +6811,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Yes, you read it correctly ... you didn\u2019t chose this. "
+  m_text: oui, vous avez bien lu ... vous ne l'avez pas choisi
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -6840,8 +6839,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.5
-  m_fontSizeBase: 49.5
+  m_fontSize: 33
+  m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7014,7 +7013,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 304.52, y: 137.8}
+  m_SizeDelta: {x: 530.2, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1812239338
 CanvasGroup:
@@ -7048,7 +7047,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' and you were...'
+  m_text: "Vous \xE9tiez \u2026 comment dire?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -7589,7 +7588,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 1130.5, y: 137.8}
+  m_SizeDelta: {x: 689.6, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &2051965155
 CanvasGroup:
@@ -7623,7 +7622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mysterious happenings have been happening... how suspicious. '
+  m_text: "D'\xE9tranges myst\xE8res s'y d\xE9roulent..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -7825,7 +7824,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -445.1}
-  m_SizeDelta: {x: 350.3, y: 137.8}
+  m_SizeDelta: {x: 248.5, y: 137.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &2091202164
 CanvasGroup:
@@ -7859,7 +7858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '... well, hm... bad... '
+  m_text: Ah oui ! Nul ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09960f52d2f425f499e8d57ad76dd83c, type: 2}
   m_sharedMaterial: {fileID: -5811927454998312369, guid: 09960f52d2f425f499e8d57ad76dd83c,
@@ -8168,7 +8167,7 @@ MonoBehaviour:
   _isTyping: 0
   _isSkipping: 0
   _hasBackground: 1
-  _backStoryInfo: {fileID: 11400000, guid: fb2d5cd22e648f243b204104fd070edd, type: 2}
+  _backStoryInfo: {fileID: 11400000, guid: f7aa5aa3730d8e749862398be3cfb37b, type: 2}
   _storyText: {fileID: 1603428927}
   _backStoryImage: {fileID: 847157880}
   _typingSpeed: 7

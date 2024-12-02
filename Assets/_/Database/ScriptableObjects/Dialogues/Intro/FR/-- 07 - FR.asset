@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_background: {fileID: 21300000, guid: 1534333249459a04baac09598b367b9c, type: 3}
   m_line:
-    m_sentence: ... well, hm... bad
+    m_sentence: Ah oui ! Nul ...
     m_screenTime: 0.5
     m_image: {fileID: 0}

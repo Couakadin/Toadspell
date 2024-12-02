@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_background: {fileID: 21300000, guid: db36c43a28d67d9419d3b1aaf032c829, type: 3}
   m_line:
-    m_sentence: 'and you were ... '
+    m_sentence: "Vous \xE9tiez \u2026 comment dire?"
     m_screenTime: 0.5
     m_image: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_background: {fileID: 21300000, guid: 93462f1adc3a7874f95c7f7f5a9d6e0d, type: 3}
   m_line:
-    m_sentence: "tous les 5 ans, un sorcier extraordinaire est envoy\xE9 au domaine
-      c\xE9leste."
+    m_sentence: "Tous les cinq ans, un sorcier extraordinaire est envoy\xE9 au Domaine
+      C\xE9leste."
     m_screenTime: 1
     m_image: {fileID: 0}

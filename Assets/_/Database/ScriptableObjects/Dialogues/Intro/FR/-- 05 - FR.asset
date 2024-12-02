@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_background: {fileID: 21300000, guid: b8e3198b429c5e743bbd6b9b24714bcc, type: 3}
   m_line:
-    m_sentence: You missed the mark 35 years ago
+    m_sentence: "Votre chance est pass\xE9e depuis 35 ans."
     m_screenTime: 1
     m_image: {fileID: 0}

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_background: {fileID: 0}
   m_line:
-    m_sentence: "Congratulations, you\u2019ve been volunteered to save the world! "
+    m_sentence: "F\xE9licitations ! On vous a port\xE9 d\xE9sign\xE9 pour sauver
+      le monde."
     m_screenTime: 1
     m_image: {fileID: 0}
