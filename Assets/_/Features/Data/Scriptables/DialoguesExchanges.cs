@@ -7,5 +7,6 @@ namespace Data.Runtime
     public class DialoguesExchanges : ScriptableObject
     {
         public List<Dialogue> m_Dialogues;
+        public bool m_hasAlreadyBeenDisplayed = false;
     }
 }

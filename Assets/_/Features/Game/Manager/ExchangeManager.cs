@@ -57,13 +57,19 @@ namespace Game.Runtime
         [ContextMenu("test dialogue)")]
         public void LaunchFirstDialogue()
         {
-            if(_currentExchangeInStoryIndex > _exchanges.Count) return;
+            if (_currentExchangeInStoryIndex > _exchanges.Count) return;
             Sequence firstExchange = DOTween.Sequence();
-            Dialogue currentExchange = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
-            Debug.Log(currentExchange.ToString());
+            _currentExchange = _exchanges[_currentExchangeInStoryIndex];
+            if (_currentExchange.m_hasAlreadyBeenDisplayed == true)
+            {
+                EndOfDialogue();
+                return;
+            }
+            Dialogue currentDialogue = _exchanges[_currentExchangeInStoryIndex].m_Dialogues[_currentExchangeIndex];
+            Debug.Log(currentDialogue.ToString());
             firstExchange.AppendInterval(2);
             firstExchange.Append(_dialoguePanel.DOFade(1, _panelFadeIn));
-            firstExchange.AppendCallback(() => StartDialogue(currentExchange));
+            firstExchange.AppendCallback(() => StartDialogue(currentDialogue));
         }
 
         public void StartDialogue(Dialogue dialogue)
@@ -120,6 +126,7 @@ namespace Game.Runtime
         private void EndOfDialogue()
         {
             _characterPanel.DOFade(0, .5f);
+            _currentExchange.m_hasAlreadyBeenDisplayed = true; 
             _dialoguePanel.DOFade(0, _panelFadeOut).OnComplete(() =>
             {
                 ResetOnCut();
@@ -128,7 +135,6 @@ namespace Game.Runtime
                 if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[2])
                 {
                     _onBeforeBossBattleFinished.Raise();
-                    Debug.Log("let's fight");
                 }
                 if (_exchanges[_currentExchangeInStoryIndex] == _exchanges[3]) _onEndingDialogueFinished.Raise();
                 _currentExchangeInStoryIndex++;
@@ -183,6 +189,7 @@ namespace Game.Runtime
         private InputAction _skipInput;
         
         private Dialogue _currentDialogue;
+        private DialoguesExchanges _currentExchange;
         private int _currentExchangeIndex = 0;
         [SerializeField] private int _currentExchangeInStoryIndex = 0;
         private int _currentLineIndex = 0;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Data.Runtime;
 using DG.Tweening;
 using UnityEngine;
@@ -16,6 +17,11 @@ namespace Game.Runtime
             _audioMixer.DOSetFloat("MenuMusicVolume", -15, 4);
             _asyncOperation = SceneManager.LoadSceneAsync(1);
             _asyncOperation.allowSceneActivation = false;
+
+            foreach(DialoguesExchanges talk in _exchanges)
+            {
+                talk.m_hasAlreadyBeenDisplayed = false;
+            }
 
         }
 
@@ -79,6 +85,9 @@ namespace Game.Runtime
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioMixer _audioMixer;
+
+        [Header("info to set up the dialogues in main scene")]
+        [SerializeField] private List<DialoguesExchanges> _exchanges = new List<DialoguesExchanges>();
 
         #endregion
     }
