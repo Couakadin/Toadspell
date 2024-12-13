@@ -45,8 +45,8 @@ namespace Enemies.Runtime
         public float m_waveOffset;
         public float m_timeWaveLine;
         public float m_firstWaveSpeed;
-        public float m_secondWaveSpeed;
-        public float m_thirdWaveSpeed;
+        //public float m_secondWaveSpeed;
+        //public float m_thirdWaveSpeed;
 
         [Header("Zone Danger Settings")]
         public GameObject m_dangerZone;

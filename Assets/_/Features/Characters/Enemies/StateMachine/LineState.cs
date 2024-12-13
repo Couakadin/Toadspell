@@ -32,7 +32,7 @@ namespace Enemies.Runtime
             _timerAttack?.Begin();
             _bossBehaviour.m_waveAttack.enabled = true;
 
-            if (_index <= 0) _index = 3;
+            if (_index <= 0) _index = 1;
 
             if (PlayerDetected(out Vector3 playerPosition))
                 _direction = GetPlayerDirection(playerPosition);
@@ -117,9 +117,11 @@ namespace Enemies.Runtime
         {
             if (!_wave.activeSelf)_wave.SetActive(true);
 
-            if (_index == 3) _waveSpeed = _bossBehaviour.m_firstWaveSpeed;
-            else if (_index == 2) _waveSpeed = _bossBehaviour.m_secondWaveSpeed;
-            else if (_index == 1) _waveSpeed = _bossBehaviour.m_thirdWaveSpeed;
+            _waveSpeed = _bossBehaviour.m_firstWaveSpeed;
+
+            //if (_index == 3) _waveSpeed = _bossBehaviour.m_firstWaveSpeed;
+            //else if (_index == 2) _waveSpeed = _bossBehaviour.m_secondWaveSpeed;
+            //else if (_index == 1) _waveSpeed = _bossBehaviour.m_thirdWaveSpeed;
 
             Vector3 targetDirection = (_gridInterface.m_centralPlatform.transform.position + _direction * 100f) - _wave.transform.position;
             targetDirection.Normalize();
@@ -157,7 +159,7 @@ namespace Enemies.Runtime
         private IGrid _gridInterface;
 
         private Vector3 _direction;
-        private int _index = 3;
+        private int _index = 1;
 
         private GameObject _wave;
         private Timer _timerWave, _timerStill, _timerAttack;
