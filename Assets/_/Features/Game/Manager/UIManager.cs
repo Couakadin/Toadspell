@@ -14,7 +14,6 @@ namespace Game.Runtime
 
         private void Awake()
         {
-            //InputSystem.onDeviceChange += OnDeviceChangeAdjustUI;
             _gameInput = new GameInput();
             _dialogueActions = _gameInput.Dialogue;
             _settingsInput = _dialogueActions.Settings;
