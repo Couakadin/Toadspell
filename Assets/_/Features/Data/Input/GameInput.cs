@@ -287,7 +287,7 @@ namespace Data.Runtime
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";pad"",
                     ""action"": ""Parry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -365,7 +365,35 @@ namespace Data.Runtime
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""keyboard"",
+            ""bindingGroup"": ""keyboard"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""pad"",
+            ""bindingGroup"": ""pad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
             // Gameplay
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
@@ -591,6 +619,24 @@ namespace Data.Runtime
             }
         }
         public DialogueActions @Dialogue => new DialogueActions(this);
+        private int m_keyboardSchemeIndex = -1;
+        public InputControlScheme keyboardScheme
+        {
+            get
+            {
+                if (m_keyboardSchemeIndex == -1) m_keyboardSchemeIndex = asset.FindControlSchemeIndex("keyboard");
+                return asset.controlSchemes[m_keyboardSchemeIndex];
+            }
+        }
+        private int m_padSchemeIndex = -1;
+        public InputControlScheme padScheme
+        {
+            get
+            {
+                if (m_padSchemeIndex == -1) m_padSchemeIndex = asset.FindControlSchemeIndex("pad");
+                return asset.controlSchemes[m_padSchemeIndex];
+            }
+        }
         public interface IGameplayActions
         {
             void OnMove(InputAction.CallbackContext context);

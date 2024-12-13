@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Data.Runtime;
 using DG.Tweening;
@@ -18,6 +19,7 @@ namespace Game.Runtime
             _asyncOperation = SceneManager.LoadSceneAsync(1);
             _asyncOperation.allowSceneActivation = false;
 
+
             foreach(DialoguesExchanges talk in _exchanges)
             {
                 talk.m_hasAlreadyBeenDisplayed = false;
@@ -25,16 +27,32 @@ namespace Game.Runtime
 
         }
 
+        private void OnDeviceChanged(InputDevice device, InputDeviceChange change)
+        {
+            Debug.Log(device);
+        }
+
         private void Update()
         {
-            if (Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame)
+            //if (/*Gamepad.current != null &&*/ Gamepad.current.wasUpdatedThisFrame)
+            //{
+            //    _deviceUsed = 1;
+            //}
+            //else if (/*Keyboard.current != null && */Keyboard.current.wasUpdatedThisFrame || /*Mouse.current != null && */Mouse.current.wasUpdatedThisFrame)
+            //{
+            //    _deviceUsed = 0;
+            //}
+
+            if (_playerInput.currentControlScheme == "pad")
             {
                 _deviceUsed = 1;
             }
-            else if (Keyboard.current != null && Keyboard.current.wasUpdatedThisFrame || Mouse.current != null && Mouse.current.wasUpdatedThisFrame)
+            else if(_playerInput.currentControlScheme == "keyboard")
             {
                 _deviceUsed = 0;
             }
+            //Debug.Log(_playerInput.currentControlScheme);
+            //Debug.Log(_deviceUsed);
         }
 
         #endregion
@@ -85,6 +103,7 @@ namespace Game.Runtime
         [SerializeField] private Blackboard _playerBlackboard;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioMixer _audioMixer;
+        [SerializeField] private PlayerInput _playerInput;
 
         [Header("info to set up the dialogues in main scene")]
         [SerializeField] private List<DialoguesExchanges> _exchanges = new List<DialoguesExchanges>();
